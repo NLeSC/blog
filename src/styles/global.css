@@ -17,6 +17,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.dark body,
+body.dark {
+  color: #e5e5e5;
+}
+
 /* Post content — Medium-like reading experience */
 .post-content {
   font-family: var(--font-serif);
@@ -24,6 +29,10 @@ body {
   line-height: 1.8;
   color: #242424;
   letter-spacing: -0.003em;
+}
+
+.dark .post-content {
+  color: #e5e5e5;
 }
 
 .post-content p {
@@ -41,6 +50,13 @@ body {
   letter-spacing: -0.016em;
 }
 
+.dark .post-content h1,
+.dark .post-content h2,
+.dark .post-content h3,
+.dark .post-content h4 {
+  color: #fff;
+}
+
 .post-content h1 { font-size: 2rem; }
 .post-content h2 { font-size: 1.5rem; }
 .post-content h3 { font-size: 1.25rem; }
@@ -50,6 +66,10 @@ body {
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
+}
+
+.dark .post-content a {
+  color: #e5e5e5;
 }
 
 .post-content a:hover {
@@ -73,22 +93,6 @@ body {
   }
 }
 
-/* Photo captions — closer, smaller, sans-serif, centered */
-.post-content p:has(img) + p {
-  margin-top: 0.5em;
-  margin-bottom: 2.5em;
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  text-align: center;
-  color: #757575;
-  line-height: 1.4;
-}
-
-.post-content p:has(img) + p em,
-.post-content p:has(img) + p i {
-  font-style: normal;
-}
-
 .post-content blockquote {
   border-left: 3px solid #242424;
   padding-left: 1.5rem;
@@ -96,6 +100,11 @@ body {
   margin-left: -1.5rem;
   color: #6b6b6b;
   font-style: italic;
+}
+
+.dark .post-content blockquote {
+  border-left-color: #555;
+  color: #999;
 }
 
 .post-content pre {
@@ -109,12 +118,22 @@ body {
   margin: 1.5em 0;
 }
 
+.dark .post-content pre {
+  background: #1a1a1a;
+  color: #e5e5e5;
+}
+
 .post-content code {
   background: #f2f2f2;
   padding: 0.15em 0.4em;
   border-radius: 3px;
   font-size: 0.85em;
   font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.dark .post-content code {
+  background: #333;
+  color: #e5e5e5;
 }
 
 .post-content pre code {
@@ -140,4 +159,8 @@ body {
   border: none;
   border-top: 1px solid #f2f2f2;
   margin: 2em 0;
+}
+
+.dark .post-content hr {
+  border-top-color: #333;
 }
