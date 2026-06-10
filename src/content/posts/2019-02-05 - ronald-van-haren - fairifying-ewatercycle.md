@@ -6,8 +6,12 @@ author: Ronald van Haren
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Accessibility
+  - Climate
+  - Community
+  - Containers
+  - Docker
+  - Environment
 ---
 
 ## Towards reproducible science and better flooding forecasts

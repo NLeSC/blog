@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/research-software-engineers-in-the-age-of-genai-same-value-changing-practice-79607290e47a
 tags:
-  - uncategorized
-
+  - API
+  - Community
+  - Ethics
+  - GenAI
+  - LLM
+  - RSE
 ---
 
 *Stephan Druskat, Michelle Barker, Ian Cosden, Cunliang Geng, Robert Haines, Daniel S. Katz, Joseph Shingleton, Ben van Werkhoven*

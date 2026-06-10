@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/using-rust-for-scientific-numerical-applications-learning-from-past-experiences-798665d9f9f0
 tags:
-  - uncategorized
-
+  - C++
+  - FAIR
+  - GPU
+  - Git
+  - Parallel Computing
+  - RSE
 ---
 
 Every experienced programmer knows that both their productivity depends on the abstraction level of the language. The fewer lines of code you write, the fewer bugs you introduce.* However, an increase in abstraction often results in a higher runtime cost (code that needs to run extremely fast is often *very* ugly). Rust [zero-cost abstraction](https://carette.xyz/posts/zero_cost_abstraction/) allows you to write more concise code by using a higher level abstraction without additional computing cost at runtime. *Rust *[*iterators*](https://doc.rust-lang.org/book/ch13-02-iterators.html) are a great example of the power of Rust zero cost abstraction. *It is fair to mention that zero-cost abstraction is also central in C++.*

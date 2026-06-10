@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/from-phd-student-to-auto-tuning-gpu-expert-meet-floris-jan-8c1a55e0aedf
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Community
+  - FAIR
+  - GPU
+  - Optimization
+  - Performance
 ---
 
 Floris-Jan Willemsen has been a PhD student at the Netherlands eScience Center since 2021, working on auto-tuning GPU software as part of the [CORTEX](https://research-software-directory.org/projects/cortex) project under the supervision of Rob van Nieuwpoort (Professor in Computer Science at Leiden University) and Ben van Werkhoven (Assistant Professor at Leiden University and former Research Software Engineer at the eScience Center).

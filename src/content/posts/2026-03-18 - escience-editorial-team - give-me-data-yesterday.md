@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/give-me-data-yesterday-7a3c8124b143
 tags:
-  - uncategorized
-
+  - Benchmarking
+  - Collaboration
+  - Containers
+  - Databases
+  - Docker
+  - Environment
 ---
 
 ![Give Me Data, Yesterday](/assets/give-me-data-yesterday-bd7575b9.png)

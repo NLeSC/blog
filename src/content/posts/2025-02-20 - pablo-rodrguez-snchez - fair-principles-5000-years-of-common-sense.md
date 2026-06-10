@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/fair-principles-5000-years-of-common-sense-ba85086ba79c
 tags:
-  - uncategorized
-
+  - API
+  - Accessibility
+  - FAIR
+  - Git
+  - RSE
+  - Research Software
 ---
 
 The FAIR acronym stands for Findable, Accessible, Interoperable and Reusable. If you are a researcher, certainly you’ve heard about FAIR principles. FAIR data, FAIR software, … It may sound as another extra, new responsibility to take care of. But, is it? We argue it is not extra, and most importantly, it’s definitely not new. Come with us on a journey through the history of knowledge sharing.

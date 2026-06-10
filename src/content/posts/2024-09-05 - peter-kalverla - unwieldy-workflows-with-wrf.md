@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/un-wieldy-workflows-with-wrf-4a4947b88a98
 tags:
-  - uncategorized
-
+  - Community
+  - Environment
+  - Git
+  - Parallel Computing
+  - Python
+  - Research Software
 ---
 
 # **(Un)wieldy workflows with WRF**

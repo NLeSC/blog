@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/twitter-bots-for-science-1cf3f19dcda8
 tags:
-  - uncategorized
-
+  - API
+  - Git
+  - Python
+  - Workflows
 ---
 
 ## How to build a bot to show Covid-19 vaccination progress

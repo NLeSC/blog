@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/henry-the-city-tweaker-8977b3cce10f
 tags:
-  - uncategorized
-
+  - Climate
+  - Collaboration
+  - Git
+  - RSE
 ---
 
 ## Imagining the future of urban planning

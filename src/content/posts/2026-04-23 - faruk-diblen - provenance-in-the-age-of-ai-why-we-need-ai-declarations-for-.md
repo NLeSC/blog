@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/provenance-in-the-age-of-ai-why-we-need-ai-declarations-for-more-transparency-12f2aeea3c94
 tags:
-  - uncategorized
-
+  - Citation
+  - Environment
+  - Ethics
+  - GenAI
+  - Git
+  - Reproducibility
 ---
 
 *In research, if our methodology is not transparent, our results are not verifiable. Using AI to help generate code or synthesize data is dramatically affecting transparency, sustainability and maintenance. But how can we make the AI involvement more transparent and traceable?*

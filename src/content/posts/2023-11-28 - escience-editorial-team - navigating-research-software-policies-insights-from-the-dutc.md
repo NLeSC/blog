@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/navigating-research-software-policies-insights-from-the-dutch-research-community-1157b05d22bd
 tags:
-  - uncategorized
-
+  - 3D
+  - Community
+  - Ethics
+  - Open Science
+  - Open Source
+  - RSE
 ---
 
 # **Navigating research software policies: Insights from the Dutch research community**

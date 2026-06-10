@@ -6,8 +6,12 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - API
+  - Collaboration
+  - Community
+  - FAIR
+  - Git
+  - Open Science
 ---
 
 *Bootstrapping the community of Research Software Engineers in the Netherlands.*

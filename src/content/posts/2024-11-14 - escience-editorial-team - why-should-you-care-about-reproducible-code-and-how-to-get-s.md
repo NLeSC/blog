@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/why-should-you-care-about-reproducible-code-and-how-to-get-started-1e944bb920a4
 tags:
-  - uncategorized
-
+  - Bayesian
+  - Biology
+  - Community
+  - Containers
+  - Environment
+  - Git
 ---
 
 ## On 23 April 2024, the first ‘[National Research Software Day](https://www.esciencecenter.nl/news/national-research-software-day-recap/)’ took place in Hilversum, the Netherlands. During the unconference part of the program, [Eduard Klapwijk](https://www.universiteitleiden.nl/medewerkers/eduard-klapwijk#tab-1) ran the session about the importance of reproducible code.

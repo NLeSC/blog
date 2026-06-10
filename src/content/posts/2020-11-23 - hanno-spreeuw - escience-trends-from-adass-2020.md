@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/escience-trends-from-adass-2020-d83f18b228d4
 tags:
-  - uncategorized
-
+  - Astronomy
+  - Community
+  - Machine Learning
+  - Physics
+  - RSE
+  - Statistics
 ---
 
 # **eScience trends from ADASS 2020**

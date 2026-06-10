@@ -7,11 +7,15 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-magic-of-teaching-about-the-anti-magic-of-generative-ai-9f980acf6623
 tags:
-  - uncategorized
-
+  - GenAI
+  - Git
+  - Health
+  - Image Processing
+  - Machine Learning
+  - Python
 ---
 
-The magic of teaching about the anti-magic of generative AI](/assets/the-magic-of-teaching-about-the-anti-mag-bb4fa257.jpg)
+![The magic of teaching about the anti-magic of generative AI](/assets/the-magic-of-teaching-about-the-anti-mag-bb4fa257.jpg)
 Photo by [Owen Beard](https://unsplash.com/@owenbeard?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)Recently, I taught the pilot workshop [Medical Image Processing in Python](https://www.esciencecenter.nl/event/pilot-medical-image-processing/). The room was full of post-docs, research software engineers and even faculty, but mostly young PhD candidates or freshly minted PhDs. Although the Netherlands eScience Center offers many courses and workshops, most are established. Many are based on existing [Carpentries](https://carpentries.org/) materials that are taught globally. Recognizing a large gap in the existing curriculum in terms of computational medical image processing, the Netherlands eScience Center embraced the idea of starting some sort of workshop about it. Part of the gap, in my opinion, was a lack of a curriculum that addressed generative AI.
 
 A few brave engineers at the Center designed their own workshops. This year, I did just that, and the process was at once terrifying and energizing. On the weekend before the course, I literally had a nightmare that the students would revolt during the workshop. I dreamt about angry PhDs in computer science yelling at me and the other course developer, a biomedical engineer, literally standing up during my MRI lecture, eyes rolling and correcting me about how spin echo MRI sequences were made.

@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/ceci-nest-pas-une-peinture-making-art-with-ai-5491010c372
 tags:
-  - uncategorized
-
+  - API
+  - Collaboration
+  - Deep Learning
+  - FAIR
+  - RSE
+  - Training
 ---
 
 Over time, the model ultimately learns how to discriminate between these two groups (Van Gogh vs. other) and outputs the probability that a new observation belongs to the Van Gogh’s category. To do so, however, discriminative modelling requires that each observation in training must have a label, i.e., all Van Gogh’s paintings are labelled as 1, and non-Van Gogh paintings as 0.

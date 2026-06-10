@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/machine-learning-as-a-tool-for-political-speech-analysis-c8abf5cd8c0d
 tags:
-  - uncategorized
-
+  - Machine Learning
+  - Research Software
+  - Workflows
 ---
 
 The following example of a sentence from Putin’s invasion-speech may clarify what CM annotation of texts involves: ‘The purpose of this operation is to protect people** **[Effect]** who, for eight years now, have been facing humiliation and genocide perpetrated by the Kiev regime. To this end, we will seek to [Causal Link]* **demilitarise (Cause A)** and **de-nazify (Cause B)** Ukraine, as well as **bring to trial those who perpetrated numerous bloody crimes against civilians [Cause C]**’. This example also provides a first indication of the complexity of our research goal, as it shows that:

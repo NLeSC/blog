@@ -6,8 +6,10 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - 3D
+  - Collaboration
+  - Digital Humanities
+  - Git
 ---
 
 ![](/assets/1_-YDWQk9Mzv_xb9zkY6XZVA-92746fca.jpeg)

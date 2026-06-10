@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/molecular-simulations-using-machine-learning-part-3-4dd964ce8b40
 tags:
-  - uncategorized
-
+  - Machine Learning
+  - Physics
+  - Training
 ---
 
 24

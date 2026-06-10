@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/do-you-have-50-000-annotators-47ed4bff7e6e
 tags:
-  - uncategorized
-
+  - Data Science
+  - Git
+  - Open Science
+  - RSE
+  - Reproducibility
+  - Workshop
 ---
 
 # **Do you have 50.000 annotators?**

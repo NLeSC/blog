@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/out-of-office-holiday-mode-activated-c080cc44717b
 tags:
-  - uncategorized
-
+  - Open Science
+  - Research Software
+  - Workflows
 ---
 
 ][eScience Editorial Team]FollowDec 20, 2024[

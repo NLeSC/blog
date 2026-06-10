@@ -6,8 +6,9 @@ author: Elena Ranguelova
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Biology
+  - Collaboration
+  - Computer Vision
 ---
 
 ## My personal view on the differences between Computer Scientists and eScience Research Engineers

@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/creating-a-community-by-integrating-expertise-tools-and-ideas-285ffe1fb707
 tags:
-  - uncategorized
-
+  - Community
+  - Git
+  - Machine Learning
+  - Open Science
+  - RSE
+  - Workflows
 ---
 
 A personal reflection on the first NPLinker eScience workshop for Natural Product Discovery

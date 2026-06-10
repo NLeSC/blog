@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/machine-learning-ai-for-research-use-it-or-refuse-it-43ab2344a7c9
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Deep Learning
+  - Machine Learning
+  - RSE
 ---
 
 ## Machine learning (in particular deep learning) started to become extremely hot 5–10 years ago. Now, this trend has fully reached most academic fields outside computer science as well. But will it also help you with your research question?

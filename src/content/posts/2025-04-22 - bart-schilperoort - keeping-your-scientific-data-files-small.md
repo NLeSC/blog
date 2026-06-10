@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/keeping-your-scientific-data-files-small-e17f1c2469bd
 tags:
-  - uncategorized
-
+  - Climate
+  - Floating Point
+  - Git
+  - NetCDF
+  - Python
+  - RSE
 ---
 
 # **Keeping your scientific data files small**

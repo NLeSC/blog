@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/sharing-matlab-models-with-everyone-499eaf0a2e9e
 tags:
-  - uncategorized
-
+  - Containers
+  - Docker
+  - Git
+  - HDF5
+  - Julia
+  - Linux
 ---
 
 MATLAB is still commonly used in many scientific fields, despite its closed-source nature. While many (technical) universities used to teach coding using MATLAB, more and more are moving away from it, preferring open-source and free alternatives such as Python or Julia. O[ne of the main reasons Julia was developed](https://julialang.org/blog/2012/02/why-we-created-julia/) was because of MATLAB’s proprietary and closed software.

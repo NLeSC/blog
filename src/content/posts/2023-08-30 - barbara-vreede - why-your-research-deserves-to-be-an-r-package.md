@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/why-your-research-deserves-to-be-an-r-package-3737a73501c
 tags:
-  - uncategorized
-
+  - R
+  - RSE
+  - Statistics
+  - Training
+  - Workflows
+  - Workshop
 ---
 
 1

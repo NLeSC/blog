@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/esmvaltool-recipes-for-solid-climate-science-da5b33814f69
 tags:
-  - uncategorized
-
+  - Climate
+  - Community
+  - FAIR
+  - Git
+  - Open Science
+  - RSE
 ---
 
 # **ESMValTool: Recipes for solid climate science**

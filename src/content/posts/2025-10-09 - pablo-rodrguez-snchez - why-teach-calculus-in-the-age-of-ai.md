@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/why-teach-calculus-in-the-age-of-ai-db4327893b3c
 tags:
-  - uncategorized
-
+  - Physics
+  - RSE
 ---
 
 Why would I learn to compute a derivative by hand when Artificial Intelligence can do it for me?

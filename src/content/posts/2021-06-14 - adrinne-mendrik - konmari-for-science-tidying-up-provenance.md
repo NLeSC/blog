@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/konmari-for-science-tidying-up-provenance-aabed5da593
 tags:
-  - uncategorized
-
+  - Open Science
+  - Python
+  - RSE
+  - Workflows
 ---
 
 Subscribe*Remember me for faster sign in

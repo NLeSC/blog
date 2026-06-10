@@ -7,13 +7,17 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/research-ethics-and-authorship-the-technological-solution-70ca7466a0e
 tags:
-  - uncategorized
-
+  - API
+  - Community
+  - Ethics
+  - Git
+  - Health
+  - RSE
 ---
 
 ## Dr. Candace Makeda Moore discusses the potential for distributed version control as a tool to prevent questionable authorship practices.
 
-Research Ethics and Authorship: The Technological Solution](/assets/research-ethics-and-authorship-the-techn-3bc696c2.jpg)
+![Research Ethics and Authorship: The Technological Solution](/assets/research-ethics-and-authorship-the-techn-3bc696c2.jpg)
 Photo by [Annie Spratt](https://unsplash.com/@anniespratt?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)Because I come from a medical background, I am most familiar with standards in this field, although problems related to authorship extend to most scientific fields.
 
 Perhaps at this point it’s worth pointing towards what authorship should actually be, using academic medicine as an example. The International Committee of Medical Journal Editors (ICJME) has [exemplary recommendations](https://www.icmje.org/recommendations/browse/roles-and-responsibilities/defining-the-role-of-authors-and-contributors.html). The spirit of these recommendations is incredibly simple: authors should be involved in the design or analysis as well as the literal writing of research. There is some variation in different fields, and differences from place to place, and of course there can be exceptions with specific kinds of research papers e.g. papers for datasets and/or code. But we probably all agree that in least in principle, an author should be someone who does something significant for the work.

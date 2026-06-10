@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/empirically-evaluating-privacy-in-machine-learning-ii-hypothesis-testing-647806e2985c
 tags:
-  - uncategorized
-
+  - Databases
+  - Differential Privacy
+  - Machine Learning
+  - Privacy
+  - Statistics
+  - Testing
 ---
 
 Using statistics to think like a hacker, so we can avoid them!

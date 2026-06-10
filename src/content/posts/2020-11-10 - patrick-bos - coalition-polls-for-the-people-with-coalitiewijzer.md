@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/coalition-polls-for-the-people-with-coalitiewijzer-68bca83b95e7
 tags:
-  - uncategorized
-
+  - Git
+  - Python
+  - Visualization
 ---
 
 ## Build interactive web apps with polling data, Voilà &amp; Heroku

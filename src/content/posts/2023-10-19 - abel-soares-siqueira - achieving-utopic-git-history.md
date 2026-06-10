@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/achieving-utopic-git-history-4cc2a1fd3107
 tags:
-  - uncategorized
-
+  - Git
+  - RSE
 ---
 
 ## AKA being UGHly

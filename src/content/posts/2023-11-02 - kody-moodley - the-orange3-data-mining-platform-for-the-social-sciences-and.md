@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-orange3-data-mining-platform-as-a-research-tool-2167336a5c0d
 tags:
-  - uncategorized
-
+  - Community
+  - Git
+  - Machine Learning
+  - NLP
+  - Network Analysis
+  - Python
 ---
 
 # *The Orange3 data mining platform for the Social Sciences and Humanities*

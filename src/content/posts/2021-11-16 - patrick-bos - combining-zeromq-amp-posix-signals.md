@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/combining-zeromq-posix-signals-b754f6f29cd6
 tags:
-  - uncategorized
-
+  - API
+  - C++
+  - FAIR
 ---
 
 ## Use ppoll to handle EINTR once and for all

@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/lesson-development-blitz-6a56b3dc8dba
 tags:
-  - uncategorized
-
+  - Community
+  - Git
+  - Testing
+  - Training
 ---
 
 **SubscribeRemember me for faster sign in

@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/tackling-advent-of-code-8d4fb719e2b7
 tags:
-  - uncategorized
-
+  - API
+  - Community
+  - Python
+  - RSE
+  - Security
 ---
 
 By [Ewan Cahen](https://www.esciencecenter.nl/team/ewan-cahen/)

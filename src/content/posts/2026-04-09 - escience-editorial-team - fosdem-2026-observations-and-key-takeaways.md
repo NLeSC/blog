@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/fosdem-2026-observations-and-key-takeaways-6afbfb50dc58
 tags:
-  - uncategorized
-
+  - API
+  - Databases
+  - Git
+  - Machine Learning
+  - Open Source
+  - Performance
 ---
 
 ![FOSDEM 2026: Observations and key takeaways](/assets/fosdem-2026-observations-and-key-takeawa-55dcce06.jpg)

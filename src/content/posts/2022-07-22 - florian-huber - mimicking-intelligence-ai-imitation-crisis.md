@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/welcome-to-the-ai-imitation-crisis-9c61f60503eb
 tags:
-  - uncategorized
-
+  - API
+  - Deep Learning
+  - Git
 ---
 
 ## The next generation language models will still just be enormeous parrot-systems that imitate intelligent behavior. But they will *feel* like much more to us.

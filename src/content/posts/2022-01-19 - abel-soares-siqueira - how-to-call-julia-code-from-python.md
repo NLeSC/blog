@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/how-to-call-julia-code-from-python-8589a56a98f2
 tags:
-  - uncategorized
-
+  - Julia
+  - NumPy
+  - Performance
+  - Python
 ---
 
 ## A three-part series on achieving high performance with high-level code

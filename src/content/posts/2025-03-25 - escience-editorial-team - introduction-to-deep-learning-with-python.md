@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/introduction-to-deep-learning-with-python-ded77718141b
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Community
+  - Deep Learning
+  - Git
+  - Neural Networks
+  - Open Source
 ---
 
 ## Written by [Sven van der Burg](https://www.esciencecenter.nl/team/sven-van-der-burg/), [Carsten Schnober](https://www.esciencecenter.nl/team/carsten-schnober/), [Sarah M. Brown](https://carpentries.org/blog/author/sarah-m-brown/) and [Toby Hodges](https://carpentries.org/blog/author/toby-hodges/)

@@ -6,8 +6,12 @@ author: Sonja Georgievska
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Computer Vision
+  - Data Science
+  - Deep Learning
+  - Git
+  - Neural Networks
+  - Pandas
 ---
 
 ## Why adversarial examples are not scary…but are most likely useful

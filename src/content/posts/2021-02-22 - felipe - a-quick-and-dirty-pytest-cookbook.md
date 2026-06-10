@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/a-quick-and-dirty-pytest-cookbook-58051a2980c3
 tags:
-  - uncategorized
-
+  - Git
+  - Parallel Computing
+  - Python
+  - Testing
 ---
 
 Subscribe*Remember me for faster sign in

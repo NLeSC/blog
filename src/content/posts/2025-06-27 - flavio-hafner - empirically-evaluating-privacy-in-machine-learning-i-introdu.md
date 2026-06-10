@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/empirically-evaluating-privacy-in-machine-learning-i-introduction-de5fe808d186
 tags:
-  - uncategorized
-
+  - Differential Privacy
+  - Health
+  - Machine Learning
+  - Privacy
+  - Statistics
+  - Testing
 ---
 
 Research in the social and health sciences often relies on accessing data sourced from statistical agencies or healthcare organizations. Such data sets contain sensitive information, which requires restrictions on who can access the data. This can slow down not only scientific progress — if data were completely open, more researchers could investigate them — , but also the translation of progress to applications — for instance, machine learning models trained on medical data cannot easily be shared and re-used for personalized treatments.

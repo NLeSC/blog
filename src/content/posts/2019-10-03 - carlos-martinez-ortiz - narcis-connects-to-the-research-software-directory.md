@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/narcis-connects-to-the-research-software-directory-320c82ddbf2f
 tags:
-  - uncategorized
-
+  - FAIR
+  - Git
+  - Research Software
 ---
 
 ## Software now officially listed as a research output

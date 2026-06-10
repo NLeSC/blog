@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/machine-learning-when-it-is-easy-when-it-is-difficult-9de0e1129593
 tags:
-  - uncategorized
-
+  - Deep Learning
+  - Machine Learning
+  - Neural Networks
+  - RSE
+  - Training
 ---
 
 Subscribe*Remember me for faster sign in

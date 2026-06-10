@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/how-can-we-improve-the-communication-between-mathematics-and-life-sciences-30351ccec8df
 tags:
-  - uncategorized
-
+  - Biology
+  - Physics
+  - Science Communication
+  - Software Engineering
+  - Visualization
 ---
 
 When communicating to mathematicians, focus more on the ideas than on the details you would provide for your peers. You can easily underestimate how difficult your own field is for outsiders. For instance, the experimental methods can be left out, as mathematicians will just assume that the data has been properly collected.

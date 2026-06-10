@@ -6,8 +6,12 @@ author: Jurriaan H. Spaaks
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Citation
+  - Git
+  - Optimization
+  - Reproducibility
+  - Research Software
+  - Workflows
 ---
 
 ## Improve the findability, citability, and reproducibility of research software

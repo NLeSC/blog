@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/a-machine-learning-approach-to-laughter-fdbcee3fb000
 tags:
-  - uncategorized
-
+  - API
+  - Machine Learning
 ---
 
 **SubscribeRemember me for faster sign in

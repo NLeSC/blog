@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/parallel-programming-in-python-7fd62c90217d
 tags:
-  - uncategorized
-
+  - 3D
+  - NumPy
+  - Parallel Computing
+  - Performance
+  - Python
+  - RSE
 ---
 
 **SubscribeRemember me for faster sign in

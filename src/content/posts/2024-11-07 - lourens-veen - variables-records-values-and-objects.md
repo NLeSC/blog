@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/variables-records-values-and-objects-971e2a30be6d
 tags:
-  - uncategorized
-
+  - Python
+  - RSE
 ---
 
 14

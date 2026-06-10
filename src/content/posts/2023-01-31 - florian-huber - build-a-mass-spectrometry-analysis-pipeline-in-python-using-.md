@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/build-a-mass-spectrometry-analysis-pipeline-in-python-using-matchms-part-ii-spec2vec-8aa639571018
 tags:
-  - uncategorized
-
+  - FAIR
+  - Machine Learning
+  - Python
+  - RSE
+  - Training
+  - Workflows
 ---
 
 ## After “part I” which gave an introduction on how to import, process, and analyze a tandem mass spectra dataset using Python and matchms, “part II” will add Spec2Vec to the game, a machine learning tool to assess spectrum similarities.

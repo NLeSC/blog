@@ -6,8 +6,12 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Citation
+  - Collaboration
+  - Community
+  - Data Science
+  - Network Analysis
+  - Sustainability
 ---
 
 ![](/assets/1_JEZ2M9ijnm67xFJzxR07dQ-ade48b6c.jpeg)

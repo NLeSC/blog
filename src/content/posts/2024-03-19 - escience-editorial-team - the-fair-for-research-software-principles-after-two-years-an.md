@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-fair-for-research-software-principles-after-two-years-an-adoption-update-ce5d382e5221
 tags:
-  - uncategorized
-
+  - API
+  - Accessibility
+  - Citation
+  - Community
+  - FAIR
+  - Reproducibility
 ---
 
 *By *[*Michelle Barker*](https://orcid.org/0000-0002-3623-172X)*, *[*Leyla Jael Castro*](https://orcid.org/0000-0003-3986-0510)*, *[*Bernadette Fritzsch*](https://orcid.org/0000-0002-0690-7151)*, *[*Daniel S. Katz*](https://orcid.org/0000-0001-5934-7525)*, *[*Carlos Martinez-Ortiz*](https://orcid.org/0000-0001-5565-7577)*, *[*Anna Niehues*](https://orcid.org/0000-0002-9839-5439)*, *[*Alexander Struck*](https://orcid.org/0000-0002-1173-9228)*, *[*Qian Zhang*](https://orcid.org/0000-0003-1549-7358)

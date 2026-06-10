@@ -6,8 +6,12 @@ author: Patrick Bos
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Community
+  - Floating Point
+  - Git
+  - Parallel Computing
+  - Performance
+  - Physics
 ---
 
 ## Searching for tiny bugs that cause big problems

@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/plotting-gridded-data-on-a-web-map-python-and-or-javascript-b38b44dd3c9d
 tags:
-  - uncategorized
-
+  - Climate
+  - Git
+  - NetCDF
+  - Performance
+  - Python
+  - RSE
 ---
 
 Subscribe*Remember me for faster sign in

@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/talking-about-energy-efficient-gpu-computing-at-sc23-c85d75fd3928
 tags:
-  - uncategorized
-
+  - Community
+  - Ethics
+  - Floating Point
+  - GPU
+  - HPC
+  - Optimization
 ---
 
 1

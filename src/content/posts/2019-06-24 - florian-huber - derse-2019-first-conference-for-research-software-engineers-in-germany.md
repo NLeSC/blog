@@ -6,8 +6,12 @@ author: Florian Huber
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Community
+  - Git
+  - RSE
+  - Research Software
+  - Software Engineering
+  - Statistics
 ---
 
 written by

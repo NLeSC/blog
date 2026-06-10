@@ -6,8 +6,12 @@ author: Faruk Diblen
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Data Visualization
+  - Databases
+  - FAIR
+  - GPU
+  - Git
+  - HPC
 ---
 
 *If you are using scientific visualization tools in your work then you should read this post. If you are developing a visualization code for your scientific data then you must* ***definitely*** *read this blog post (you can also jump straight to the* [*demo*](http://nlesc.github.io/spot)*).*

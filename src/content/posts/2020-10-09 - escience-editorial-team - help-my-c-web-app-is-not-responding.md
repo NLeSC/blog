@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/help-my-c-web-app-is-not-responding-b930ca3034ad
 tags:
-  - uncategorized
-
+  - C++
+  - Git
+  - Parallel Computing
+  - Visualization
 ---
 
 Subscribe*Remember me for faster sign in

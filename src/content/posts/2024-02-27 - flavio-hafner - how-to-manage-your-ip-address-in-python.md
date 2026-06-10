@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/how-to-manage-your-ip-address-in-python-75a2c9eda648
 tags:
-  - uncategorized
-
+  - API
+  - Collaboration
+  - Community
+  - Data Science
+  - Linux
+  - Python
 ---
 
 > 

@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/accelerating-the-search-for-dark-matter-4865765ca1ed
 tags:
-  - uncategorized
-
+  - Astronomy
+  - Collaboration
+  - Data Science
+  - Data Visualization
+  - HPC
+  - Machine Learning
 ---
 
 Astronomical observations show that roughly 80% of the mass of the universe is made up of dark matter, a material that cannot be directly observed because emits no light or energy. Although dark matter has never been detected directly, astronomers know it exists because something in the universe is exerting significant gravitational forces on visible matter. Nevertheless, its exact nature remains unknown.**

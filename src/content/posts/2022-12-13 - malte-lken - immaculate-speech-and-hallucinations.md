@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/immaculate-speech-and-hallucinations-ea87e545a9ef
 tags:
-  - uncategorized
-
+  - Git
+  - Machine Learning
+  - Performance
 ---
 
 ## When (not) to use OpenAI’s Whisper to transcribe audio in a social sciences project

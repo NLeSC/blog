@@ -7,8 +7,7 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/why-internships-have-a-large-impact-21f50358bfb8
 tags:
-  - uncategorized
-
+  - RSE
 ---
 
 # **Why internships have a large impact**

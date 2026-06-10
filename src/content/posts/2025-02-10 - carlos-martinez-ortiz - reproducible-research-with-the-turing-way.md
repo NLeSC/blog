@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/reproducible-research-with-the-turing-way-0816c25f2a5b
 tags:
-  - uncategorized
-
+  - Community
+  - Git
+  - Open Science
+  - Open Source
+  - RSE
+  - Research Software
 ---
 
 ## *The Netherlands eScience Center and Turing Way have long been collaborating on the common goal to improve reproducible research practices*

@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/differentiation-without-subtraction-e21b4975f1cf
 tags:
-  - uncategorized
-
+  - 3D
+  - Training
 ---
 
 54

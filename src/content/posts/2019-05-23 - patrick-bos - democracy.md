@@ -6,8 +6,8 @@ author: Patrick Bos
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Pandas
+  - Python
 ---
 
 Dimensional reduction. Who doesn’t love it? Everybody does!

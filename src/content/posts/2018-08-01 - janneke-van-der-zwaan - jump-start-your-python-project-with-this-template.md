@@ -6,8 +6,11 @@ author: Janneke van der Zwaan
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Environment
+  - Git
+  - Python
+  - RSE
+  - Testing
 ---
 
 ## Spend less time creating high quality software

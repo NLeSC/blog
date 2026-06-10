@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/between-pencil-and-paper-65b9650b0284
 tags:
-  - uncategorized
-
+  - Git
+  - RSE
+  - Science Communication
 ---
 
 ## How artistic elements can enrich scientific writing

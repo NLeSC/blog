@@ -6,8 +6,8 @@ author: Patrick Bos
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - C++
+  - RSE
 ---
 
 ## Debugging C++ templates should be less surreal and horrible

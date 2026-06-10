@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/highlights-from-the-european-conference-on-machine-learning-2019-3537900d0557
 tags:
-  - uncategorized
-
+  - Benchmarking
+  - Computer Vision
+  - Deep Learning
+  - Git
+  - Machine Learning
+  - RSE
 ---
 
 ## ML highlights and trends as seen at [ECML-PKDD 2019](https://ecmlpkdd2019.org/) (16–20 September, Würzburg, Germany)

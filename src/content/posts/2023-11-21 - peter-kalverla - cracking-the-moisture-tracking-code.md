@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/cracking-the-moisture-tracking-code-5849b0001911
 tags:
-  - uncategorized
-
+  - Climate
+  - Collaboration
+  - Community
+  - Optimization
+  - Performance
+  - Python
 ---
 
 ## An exclusive interview with our project partners

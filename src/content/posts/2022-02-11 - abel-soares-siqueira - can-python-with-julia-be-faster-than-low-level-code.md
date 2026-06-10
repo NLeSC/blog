@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/can-python-with-julia-be-faster-than-low-level-code-cd71a72fbcf4
 tags:
-  - uncategorized
-
+  - C++
+  - Environment
+  - Julia
+  - Performance
+  - Python
+  - RSE
 ---
 
 ## Part 3 of the series on achieving high performance with high-level code

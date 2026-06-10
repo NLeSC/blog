@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/what-research-software-engineers-can-learn-from-taylor-swift-92bf955a5bb4
 tags:
-  - uncategorized
-
+  - Julia
+  - Research Software
+  - Software Engineering
 ---
 
 14

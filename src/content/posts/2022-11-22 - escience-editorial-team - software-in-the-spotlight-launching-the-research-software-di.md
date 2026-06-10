@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/software-in-the-spotlight-launching-the-research-software-directory-59b6b5a15da5
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Community
+  - FAIR
+  - Git
+  - Health
+  - Image Processing
 ---
 
 The RSD has been in use by the [Netherlands eScience Center](https://www.esciencecenter.nl/) as a prototype for several years. Open source software for research lies at the heart of the mission of the Center. The eScience Center collaborates with researchers across all disciplines to create high-quality open software for academic research. The RSD was initially used to collect the software developed in these collaborations. After ample outside interest, a team of developers from the eScience Center and the [Helmholtz Association](https://www.helmholtz.de/en/) has transformed the RSD into a service that can be used by all researchers and research organizations.

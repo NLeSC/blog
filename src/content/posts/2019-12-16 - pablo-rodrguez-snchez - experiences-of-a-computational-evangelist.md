@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/experiences-of-a-computational-evangelist-4cae135fa829
 tags:
-  - uncategorized
-
+  - Biology
+  - Git
+  - Python
+  - Testing
 ---
 
 Pro tip: make sure that they have installed and set up all they need. The real magic happens when the students go home and try by themselves.

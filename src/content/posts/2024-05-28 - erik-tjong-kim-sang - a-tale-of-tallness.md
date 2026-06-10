@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/a-tale-of-tallness-ade0a82a2380
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Databases
+  - Health
+  - RSE
 ---
 
 In the past two centuries, the Dutch have become the tallest people of the planet. What factors caused this remarkable development? This is the central research question in the work of [Björn Quanjer](https://www.ru.nl/en/people/quanjer-b) of Radboud University of Nijmegen. In May 2024, he completed a comprehensive study involving data of thousands of subjects covering the period 1850–1950.

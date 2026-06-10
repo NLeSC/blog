@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/transparency-in-research-and-football-765a726ab5c9
 tags:
-  - uncategorized
-
+  - Community
+  - FAIR
+  - Linux
+  - Research Software
+  - Sustainability
+  - Workshop
 ---
 
 SubscribeRemember me for faster sign in

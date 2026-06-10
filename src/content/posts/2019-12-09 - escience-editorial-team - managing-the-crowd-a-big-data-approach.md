@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/managing-the-crowd-a-big-data-approach-cf2f053b2235
 tags:
-  - uncategorized
-
+  - 3D
+  - Machine Learning
+  - Neural Networks
+  - Physics
 ---
 
 # **Managing the crowd: a big data approach**

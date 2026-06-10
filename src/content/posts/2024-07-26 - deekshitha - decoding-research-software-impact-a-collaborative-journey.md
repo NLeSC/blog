@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/decoding-research-software-impact-a-collaborative-journey-0db9aa88415e
 tags:
-  - uncategorized
-
+  - Citation
+  - Community
+  - Open Science
+  - RSE
+  - Research Software
+  - Workshop
 ---
 
 # **Decoding Research Software Impact: A Collaborative Journey**

@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/get-up-to-speed-with-software-sustainability-the-wosss19-report-and-a-look-to-the-future-2fd7e6ed492d
 tags:
-  - uncategorized
-
+  - Citation
+  - FAIR
+  - Research Software
+  - Sustainability
+  - Training
+  - Workshop
 ---
 
 The audience discussed topics raised by the introductions, and as part of this they wrote material for the report in a process adapted from the [speed blogging](https://www.software.ac.uk/speed-blogging-and-tips-writing-speed-blog-post) approach. Those who spoke or contributed to the discussions are therefore all authors on the report. There were a number of review cycles after the workshop guided by the report editors (Shoaib, Carlos, Cees and Patrick).

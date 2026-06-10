@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/ewatercycle-anecdotes-of-a-fair-expedition-274d1e8e3bba
 tags:
-  - uncategorized
-
+  - Environment
+  - FAIR
+  - Workflows
 ---
 
 Subscribe*Remember me for faster sign in

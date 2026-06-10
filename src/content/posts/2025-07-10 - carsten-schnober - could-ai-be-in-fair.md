@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/could-ai-be-in-fair-94bbc19602f2
 tags:
-  - uncategorized
-
+  - Community
+  - FAIR
+  - Git
+  - Machine Learning
+  - NLP
+  - Open Science
 ---
 
 *Open Science is driven by FAIR principles. Made for data, adapted for software, how can they survive the current wave of "Artificial Intelligence"? Resistance from those selling it as a solution for all problems is to be expected.*

@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/nl-rse-what-open-science-can-learn-from-open-source-914452152def
 tags:
-  - uncategorized
-
+  - Community
+  - Linux
+  - Open Science
+  - Open Source
+  - Performance
+  - RSE
 ---
 
 *NL-RSE meetups are bimonthly events where the *[*Dutch community for Research Software Engineers*](https://nl-rse.org/)* comes together to learn new skills or hear inspiring talks by experts in the field of Open Science, Open Source, Research Software or Software Engineering. The *[*next NL-RSE meetup*](https://www.eventbrite.com/e/nl-rse-introduction-to-automated-software-testing-tickets-633227900697)* takes place on 15 June in Leiden and will be about automated testing. You can sign up for the meetup *[*here*](https://www.eventbrite.com/e/nl-rse-introduction-to-automated-software-testing-tickets-633227900697)*, and the mailing list *[*here*](https://nl-rse.org/pages/join)*.*

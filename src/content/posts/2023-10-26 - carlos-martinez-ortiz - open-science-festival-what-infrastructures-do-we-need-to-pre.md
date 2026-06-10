@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/open-science-festival-what-infrastructures-do-we-need-to-preserve-research-software-7c181404f310
 tags:
-  - uncategorized
-
+  - Community
+  - Containers
+  - Docker
+  - Environment
+  - GPU
+  - Git
 ---
 
 *written by *[*Luisa Orozco*](https://www.esciencecenter.nl/team/dr-luisa-orozco/)*, *[*Daniela Gawehns*](http://www.linkedin.com/in/danielagawehns/)*, and *[*Carlos Martinez-Ortiz*](https://medium.com/@c.martinez)

@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-dystopian-mirage-bloggings-descent-with-my-involvement-e06f95585471
 tags:
-  - uncategorized
-
+  - Git
+  - Optimization
+  - RSE
+  - Workflows
 ---
 
 # **The Dystopian Mirage: Blogging’s Descent with My Involvement**

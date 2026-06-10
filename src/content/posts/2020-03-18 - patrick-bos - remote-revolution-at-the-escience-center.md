@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/remote-revolution-at-the-escience-center-28db59f86766
 tags:
-  - uncategorized
-
+  - Community
+  - Git
+  - RSE
+  - Research Software
 ---
 
 ## Tools and practices for collaborating from home

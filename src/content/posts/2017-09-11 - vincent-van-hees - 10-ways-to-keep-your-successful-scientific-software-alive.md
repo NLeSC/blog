@@ -6,8 +6,12 @@ author: Vincent van Hees
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Community
+  - Git
+  - NumPy
+  - Python
+  - R
+  - RSE
 ---
 
 Imagine, you invest a lot of time and energy in the development of a piece of scientific software. The work pays off and scientists start to use your software in their research. However, the growing user community also produces a stream of help requests, feature requests, and bug reports. What to do about it?

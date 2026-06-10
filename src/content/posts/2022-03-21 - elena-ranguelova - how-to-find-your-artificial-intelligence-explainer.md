@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/how-to-find-your-artificial-intelligence-explainer-dbb1ac608009
 tags:
-  - uncategorized
-
+  - Deep Learning
+  - Git
+  - Python
+  - Tensors
+  - Visualization
+  - Workshop
 ---
 
 Here, we will use the LRP method to illustrate the principle of determining which features in an input contribute most strongly to the output of a trained DNN model. In this example, the input to the network is an image.** We are interested in figuring out the relevance* of each image pixel to a given image class. This could be the final DNN classification decision for that image (“cat”) or any other class known to the model (e.g. “dog”, “cow”, “bee”, etc. if the model is trained to classify animals). The output relevance is considered a weighted sum of the relevancies of all the **pixels** of the input image. The relevance at the output node in the network graph is decomposed by iterative propagation backward through the network layers until the input layer. The trained model weights are used in this decomposition. Using this *relevance propagation* process, the final *relevance scores map *(*or heatmap*) is obtained. The final relevance map gives us an indication for the DNN’s hidden logic.

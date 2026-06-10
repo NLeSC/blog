@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/how-machine-learning-could-help-simone-to-play-ludo-fab95721580a
 tags:
-  - uncategorized
-
+  - Environment
+  - Git
+  - Machine Learning
 ---
 
 SubscribeRemember me for faster sign in

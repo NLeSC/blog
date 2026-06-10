@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-do-it-yourself-computed-tomography-scanner-e9e666ea4789
 tags:
-  - uncategorized
-
+  - 3D
+  - Collaboration
+  - Git
+  - RSE
 ---
 
 By [Francien Bossema](https://www.esciencecenter.nl/fellowship-programme/francien-bossema/)

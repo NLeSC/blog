@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/summer-is-here-and-so-are-large-language-models-b68b24d16597
 tags:
-  - uncategorized
-
+  - 3D
+  - Health
+  - LLM
+  - Parallel Computing
 ---
 
 Welcome to the technological revolution of 2023, where the landscape of communication and information processing has been forever transformed.

@@ -6,8 +6,9 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Databases
+  - RSE
 ---
 
 ![](/assets/1_b2IqWiEJSVrhQ1bQ2O2CyA-aee9d580.jpeg)

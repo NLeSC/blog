@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/reduce-reuse-recycle-save-the-planet-one-github-action-at-a-time-4ab602255c3f
 tags:
-  - uncategorized
-
+  - Climate
+  - Environment
+  - Git
+  - Machine Learning
+  - Python
+  - RSE
 ---
 
 **

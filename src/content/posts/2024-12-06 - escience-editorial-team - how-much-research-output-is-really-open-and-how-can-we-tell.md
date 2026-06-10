@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/how-much-research-output-is-really-open-and-how-can-we-tell-422013cc93ab
 tags:
-  - uncategorized
-
+  - API
+  - Citation
+  - Community
+  - FAIR
+  - Git
+  - Open Science
 ---
 
 Written by [Esther Plomp](https://estherplomp.github.io/), [Meron Vermaas](https://www.esciencecenter.nl/fellowship-programme/meron-vermaas/), [Carlos Martinez-Ortiz](https://www.esciencecenter.nl/team/dr-carlos-martinez-ortiz/), [Nemo Andrea](https://nemoandrea.github.io/#primarySection/greeterSlider), [Ewan Cahen](https://www.esciencecenter.nl/team/ewan-cahen/), [Felix Weijdema](https://www.uu.nl/medewerkers/FPWeijdema), [Dorien Huijser](https://www.uu.nl/medewerkers/DCHuijser), [Marta Teperek](https://www.openscience.nl/en/marta-teperek), [Bjørn Bartholdy](https://www.tudelft.nl/library/research-data-management/r/support/data-stewardship/contact/bjoern-bartholdy) &amp; [Ana Parrón Cabañero](https://www.universiteitleiden.nl/en/staffmembers/ana-parron-cabanero#tab-1).

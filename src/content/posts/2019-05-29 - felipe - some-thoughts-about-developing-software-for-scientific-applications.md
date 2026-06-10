@@ -6,8 +6,8 @@ author: Felipe
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Agile
+  - RSE
 ---
 
 > …The children would remember for the rest of their lives the august solemnity with which their father, devastated by his prolonged vigil and by the wraith of his imagination, revealed his discovery to them:

@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/parsing-hebrew-and-syriac-morphology-using-deep-learning-cb6832bb6685
 tags:
-  - uncategorized
-
+  - Deep Learning
+  - Git
+  - Machine Learning
+  - Parallel Computing
+  - RSE
 ---
 
 **SubscribeRemember me for faster sign in

@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/use-julia-to-write-code-that-runs-on-any-gpu-3710cc8362da
 tags:
-  - uncategorized
-
+  - API
+  - Floating Point
+  - GPU
+  - Git
+  - Julia
+  - Machine Learning
 ---
 
 # Use Julia to write code that runs on *any* GPU

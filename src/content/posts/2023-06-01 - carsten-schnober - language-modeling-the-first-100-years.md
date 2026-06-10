@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/language-modeling-the-first-100-years-357556816148
 tags:
-  - uncategorized
-
+  - 3D
+  - RSE
+  - Training
 ---
 
 *ChatGPT has become the symbol for a new wave of Artificial Intelligence. New models with even stronger conversational skills are released on a weekly basis, and the world discusses about their impact on humanity. There are utopian and dystopian fantasies, as well as concrete potentials and risks. A view of the history of language modeling helps to understand the present and the future.*

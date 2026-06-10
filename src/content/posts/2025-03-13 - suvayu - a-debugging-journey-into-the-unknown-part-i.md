@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/a-debugging-journey-into-the-unknown-a2fa291bfb35
 tags:
-  - uncategorized
-
+  - API
+  - Environment
+  - Git
+  - Julia
+  - Linux
 ---
 
 *Faced with a buggy library, most people will just give up and wait for a patch to be released. Certainly not our engineers.*

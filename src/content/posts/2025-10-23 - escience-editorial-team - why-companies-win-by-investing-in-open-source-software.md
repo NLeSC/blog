@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/why-companies-win-by-investing-in-open-source-software-8c81bad92d79
 tags:
-  - uncategorized
-
+  - Biology
+  - Community
+  - FAIR
+  - Git
 ---
 
 Why would a for-profit company want to invest in Open-Source Software? Our collaborator, prof. Eric-Jan Wagenmakers will tell you why.

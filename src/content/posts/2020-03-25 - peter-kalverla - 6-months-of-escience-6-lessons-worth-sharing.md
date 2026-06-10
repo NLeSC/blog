@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/6-months-of-escience-6-lessons-worth-sharing-4fc925a1e376
 tags:
-  - uncategorized
-
+  - Citation
+  - Climate
+  - Code Review
+  - Collaboration
+  - Community
+  - FAIR
 ---
 
 ## On the road towards FAIR and reproducible science.

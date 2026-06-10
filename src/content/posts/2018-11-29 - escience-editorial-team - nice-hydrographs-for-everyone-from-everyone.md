@@ -6,8 +6,12 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Community
+  - Containers
+  - Environment
+  - Python
+  - RSE
+  - Reproducibility
 ---
 
 ![](/assets/1_N3tLDW1E26SIaXiq52OOiA-043872bb.jpeg)

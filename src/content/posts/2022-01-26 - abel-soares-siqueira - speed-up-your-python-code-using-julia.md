@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/speed-up-your-python-code-using-julia-f97a6c155630
 tags:
-  - uncategorized
-
+  - Benchmarking
+  - C++
+  - Docker
+  - Git
+  - Julia
+  - Linux
 ---
 
 ## Part two of the series on achieving high performance with high-level code

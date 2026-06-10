@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/co-designing-a-roadmap-for-training-on-research-software-templates-and-code-auditing-ed488ba70cd6
 tags:
-  - uncategorized
-
+  - Community
+  - FAIR
+  - Git
+  - Research Software
+  - Training
 ---
 
 Training materials are most effective when they are created hand-in-hand with the communities who will actually use them.

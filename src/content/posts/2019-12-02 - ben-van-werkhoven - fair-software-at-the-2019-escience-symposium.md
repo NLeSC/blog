@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/fair-software-at-the-2019-escience-symposium-6117f310aa34
 tags:
-  - uncategorized
-
+  - Citation
+  - FAIR
+  - Git
+  - Open Source
+  - Parallel Computing
+  - RSE
 ---
 
 SubscribeRemember me for faster sign in

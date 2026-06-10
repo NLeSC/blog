@@ -6,8 +6,10 @@ author: Johan Hidding
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Citation
+  - Git
+  - Python
+  - RSE
 ---
 
 ## an introduction to Pandoc

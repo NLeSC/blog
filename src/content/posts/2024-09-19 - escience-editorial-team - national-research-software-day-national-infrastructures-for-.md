@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/national-research-software-day-national-infrastructures-for-sustainable-software-f5e20ec3eeff
 tags:
-  - uncategorized
-
+  - API
+  - Accessibility
+  - Collaboration
+  - Environment
+  - Git
+  - Open Science
 ---
 
 *Written by *[*Luisa Orozco*](https://www.esciencecenter.nl/team/luisa-orozco/)*, *[*Daniela Gawehns*](https://danielagawehns.github.io/)*, and *[*Carlos Martinez-Ortiz*](https://www.esciencecenter.nl/team/dr-carlos-martinez-ortiz/)

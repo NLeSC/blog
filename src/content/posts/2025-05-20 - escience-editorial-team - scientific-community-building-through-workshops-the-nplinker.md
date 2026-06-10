@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/scientific-community-building-through-workshops-the-nplinker-escience-experience-651e067a8f75
 tags:
-  - uncategorized
-
+  - Community
+  - Git
+  - Nix
+  - RSE
+  - Workflows
+  - Workshop
 ---
 
 *This blog post is written by Wageningen University &amp; Research Assistant Professor *[*Justin van der Hooft*](https://www.linkedin.com/in/jjjvanderhooft/)*, who participates in the Open eScience Call 2021. His project “A community-supported workflow connecting microbial genes and organisms to their molecular products” aims to facilitate the finding of novel bio-active molecules from nature. It does so by enabling the integrated use of various omics data types.*

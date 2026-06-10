@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/escience-trends-from-adass-2019-f68cd8cca49b
 tags:
-  - uncategorized
-
+  - Astronomy
+  - Containers
+  - Docker
+  - Performance
+  - Workflows
 ---
 
 **SubscribeRemember me for faster sign in

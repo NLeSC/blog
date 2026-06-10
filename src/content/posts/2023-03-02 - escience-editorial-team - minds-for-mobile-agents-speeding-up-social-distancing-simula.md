@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/minds-for-mobile-agents-speeding-up-social-distancing-simulations-62d3fb412ff6
 tags:
-  - uncategorized
-
+  - C++
+  - Environment
+  - Git
+  - Optimization
+  - Performance
+  - R
 ---
 
 ][eScience Editorial Team]·Mar 2, 2023

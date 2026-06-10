@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/c-web-app-with-webassembly-vega-web-worker-and-react-1e5b750c88df
 tags:
-  - uncategorized
-
+  - C++
+  - Containers
+  - Git
+  - Python
+  - Visualization
 ---
 
 Subscribe*Remember me for faster sign in
