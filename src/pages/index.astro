@@ -72,7 +72,7 @@ function authorSlug(name: string): string {
       const featuredSlug = featured.id.replace(/\.md$/, '');
       const featuredCover = getCoverImage(featured.body || '');
       return (
-        <a href={`/posts/${featuredSlug}`} class="group flex flex-col md:flex-row gap-8 mb-16 items-center">
+        <a href={`/posts/${featuredSlug}`} class="group flex flex-row gap-6 md:gap-10 mb-16 items-start">
           <div class="md:w-1/2 flex-shrink-0">
             {featuredCover ? (
               <img src={`/assets/${featuredCover}`} alt="" class="w-full aspect-[4/3] object-cover" loading="eager" />
@@ -92,7 +92,7 @@ function authorSlug(name: string): string {
             <div class="flex items-center gap-2 text-[13px] text-[#6b6b6b]">
               <span>{formatDate(featured.data.date)}</span>
               <span>·</span>
-              <a href={`/authors/${authorSlug(featured.data.author)}`} class="hover:underline">{featured.data.author}</a>
+              <span class="text-[#6b6b6b]">{featured.data.author}</span>
             </div>
           </div>
         </a>
@@ -140,7 +140,7 @@ function authorSlug(name: string): string {
           <a href={`/posts/${slug}`} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] -mx-4 px-4 transition-colors">
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] mb-1.5">
-                <a href={`/authors/${authorSlug(post.data.author)}`} class="font-medium text-[#242424] hover:underline">{post.data.author}</a>
+                <span class="font-medium text-[#242424]">{post.data.author}</span>
                 <span>·</span>
                 <span>{formatDate(post.data.date)}</span>
               </div>
@@ -152,9 +152,9 @@ function authorSlug(name: string): string {
               </p>
             </div>
             {cover ? (
-              <img src={`/assets/${cover}`} alt="" class="w-[112px] h-[112px] sm:w-[152px] sm:h-[152px] object-cover flex-shrink-0" loading="lazy" />
+              <img src={`/assets/${cover}`} alt="" class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] object-cover flex-shrink-0 order-2" loading="lazy" />
             ) : (
-              <div class="w-[112px] h-[112px] sm:w-[152px] sm:h-[152px] flex-shrink-0 bg-[#f2f2f2] flex items-center justify-center">
+              <div class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] flex-shrink-0 bg-[#f2f2f2] flex items-center justify-center order-2">
                 <span class="text-gray-300 text-xs">eScience</span>
               </div>
             )}
