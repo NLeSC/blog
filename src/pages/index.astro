@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('posts', ({ data }) => data.published !== false);
 allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-const posts = allPosts.slice(0, 60); // Show latest 60 on homepage, rest via pagination/search
+const posts = allPosts; // Show all posts on homepage
 
 function formatDate(date: Date): string {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
@@ -48,8 +48,8 @@ function authorSlug(name: string): string {
         <span class="text-[28px] font-bold text-white" style="font-family: Georgia, serif;">e</span>
       </div>
       <div class="flex-1 min-w-0 pt-0.5">
-        <h2 class="text-[22px] font-bold text-[#242424] mb-0.5">Netherlands eScience Center</h2>
-        <p class="text-[15px] text-[#6b6b6b] leading-relaxed mb-2">
+        <h2 class="text-[22px] font-bold text-[#242424] dark:text-white mb-0.5">Netherlands eScience Center</h2>
+        <p class="text-[15px] text-[#6b6b6b] dark:text-[#999] leading-relaxed mb-2">
           We are the Dutch national centre of expertise for research software.
         </p>
         <div class="flex items-center gap-2">
@@ -77,13 +77,13 @@ function authorSlug(name: string): string {
             {featuredCover ? (
               <img src={`/assets/${featuredCover}`} alt="" class="w-full aspect-[4/3] object-cover" loading="eager" />
             ) : (
-              <div class="w-full aspect-[4/3] flex items-center justify-center bg-[#f2f2f2]">
+              <div class="w-full aspect-[4/3] flex items-center justify-center bg-[#f2f2f2] dark:bg-[#333]">
                 <span class="text-gray-300 text-lg">eScience Center</span>
               </div>
             )}
           </div>
           <div class="md:w-1/2">
-            <h1 class="text-[24px] md:text-[30px] font-bold leading-tight text-[#242424] group-hover:underline decoration-2 underline-offset-4 mb-2 font-sans">
+            <h1 class="text-[24px] md:text-[30px] font-bold leading-tight text-[#242424] dark:text-white group-hover:underline decoration-2 underline-offset-4 mb-2 font-sans">
               {featured.data.title}
             </h1>
             <p class="text-[15px] text-[#6b6b6b] leading-relaxed line-clamp-3 mb-3">
@@ -119,7 +119,7 @@ function authorSlug(name: string): string {
               </div>
               <span class="text-[12px] text-[#6b6b6b]">{post.data.author}</span>
             </div>
-            <h2 class="text-[16px] font-bold leading-snug text-[#242424] group-hover:underline decoration-2 underline-offset-4 mb-1 line-clamp-3 font-sans">
+            <h2 class="text-[16px] font-bold leading-snug text-[#242424] dark:text-white group-hover:underline decoration-2 underline-offset-4 mb-1 line-clamp-3 font-sans">
               {post.data.title}
             </h2>
             <p class="text-[13px] text-[#6b6b6b] leading-relaxed line-clamp-2 mb-2">
@@ -137,14 +137,14 @@ function authorSlug(name: string): string {
         const slug = post.id.replace(/\.md$/, '');
         const cover = getCoverImage(post.body || '');
         return (
-          <a href={`/posts/${slug}`} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] -mx-4 px-4 transition-colors">
+          <a href={`/posts/${slug}`} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#1a1a1a] -mx-4 px-4 transition-colors">
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] mb-1.5">
-                <span class="font-medium text-[#242424]">{post.data.author}</span>
+                <span class="font-medium text-[#242424] dark:text-white">{post.data.author}</span>
                 <span>·</span>
                 <span>{formatDate(post.data.date)}</span>
               </div>
-              <h2 class="text-[18px] md:text-[20px] font-bold leading-snug text-[#242424] group-hover:underline decoration-2 underline-offset-4 mb-1.5 line-clamp-2 font-sans">
+              <h2 class="text-[18px] md:text-[20px] font-bold leading-snug text-[#242424] dark:text-white group-hover:underline decoration-2 underline-offset-4 mb-1.5 line-clamp-2 font-sans">
                 {post.data.title}
               </h2>
               <p class="text-[14px] text-[#6b6b6b] leading-relaxed line-clamp-2 hidden sm:block">
@@ -154,7 +154,7 @@ function authorSlug(name: string): string {
             {cover ? (
               <img src={`/assets/${cover}`} alt="" class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] object-cover flex-shrink-0 order-2" loading="lazy" />
             ) : (
-              <div class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] flex-shrink-0 bg-[#f2f2f2] flex items-center justify-center order-2">
+              <div class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] flex-shrink-0 bg-[#f2f2f2] dark:bg-[#333] flex items-center justify-center order-2">
                 <span class="text-gray-300 text-xs">eScience</span>
               </div>
             )}
@@ -163,9 +163,11 @@ function authorSlug(name: string): string {
       })}
     </div>
 
-    <div class="mt-10 text-center text-[13px] text-[#6b6b6b]">
-      Showing latest 60 of {allPosts.length} articles ·{' '}
-      <a href="/search" class="hover:text-[#242424] underline">Search all posts</a>
+    <div class="mt-10 text-center text-[13px] text-[#6b6b6b] dark:text-[#999]">
+      {allPosts.length} articles ·{' '}
+      <a href="/rss.xml" class="hover:text-[#f26522] transition-colors">RSS</a>
+      {' · '}
+      <a href="/search" class="hover:text-[#242424] dark:hover:text-white underline">Search all posts</a>
     </div>
   </div>
 </BaseLayout>
