@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Search">
+  <div class="max-w-[728px] mx-auto px-4 pt-10 pb-20">
+    <h1 class="text-[32px] font-bold text-[#242424] mb-8 font-sans">Search</h1>
+    
+    <div id="search" class="mb-12"></div>
+
+    <script is:inline>
+      // Load Pagefind UI when available
+      const script = document.createElement('script');
+      script.src = '/pagefind/pagefind-ui.js';
+      script.onload = () => {
+        new PagefindUI({
+          element: '#search',
+          showSubResults: true,
+          showImages: false,
+          baseUrl: '/',
+        });
+      };
+      document.head.appendChild(script);
+    </script>
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  </div>
+</BaseLayout>

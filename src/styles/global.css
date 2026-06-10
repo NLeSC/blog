@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  --color-escience-blue: #003388;
+  --color-medium-green: #1A8917;
+  --color-medium-text: #242424;
+  --color-medium-subtle: #6b6b6b;
+  --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Source Serif 4', 'Charter', 'Georgia', serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-medium-text);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Post content — Medium-like reading experience */
+.post-content {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #242424;
+  letter-spacing: -0.003em;
+}
+
+.post-content p {
+  margin-bottom: 1.4em;
+  word-break: break-word;
+}
+
+.post-content h1, .post-content h2, .post-content h3, .post-content h4 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: #242424;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+  line-height: 1.3;
+  letter-spacing: -0.016em;
+}
+
+.post-content h1 { font-size: 2rem; }
+.post-content h2 { font-size: 1.5rem; }
+.post-content h3 { font-size: 1.25rem; }
+
+.post-content a {
+  color: #242424;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.post-content a:hover {
+  color: var(--color-medium-green);
+}
+
+/* Images — wider than the text column on desktop (Medium-style) */
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 2em auto;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .post-content img {
+    max-width: calc(100% + 160px);
+    width: calc(100% + 160px);
+    margin-left: -80px;
+    margin-right: -80px;
+  }
+}
+
+/* Photo captions — closer, smaller, sans-serif, centered */
+.post-content p:has(img) + p {
+  margin-top: 0.5em;
+  margin-bottom: 2.5em;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-align: center;
+  color: #757575;
+  line-height: 1.4;
+}
+
+.post-content p:has(img) + p em,
+.post-content p:has(img) + p i {
+  font-style: normal;
+}
+
+.post-content blockquote {
+  border-left: 3px solid #242424;
+  padding-left: 1.5rem;
+  margin: 2em 0;
+  margin-left: -1.5rem;
+  color: #6b6b6b;
+  font-style: italic;
+}
+
+.post-content pre {
+  background: #f7f7f7;
+  border-radius: 4px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  line-height: 1.5;
+  margin: 1.5em 0;
+}
+
+.post-content code {
+  background: #f2f2f2;
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.85em;
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.post-content pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.post-content strong {
+  font-weight: 700;
+}
+
+.post-content ul, .post-content ol {
+  margin: 1.4em 0;
+  padding-left: 1.5em;
+}
+
+.post-content li {
+  margin-bottom: 0.5em;
+}
+
+.post-content hr {
+  border: none;
+  border-top: 1px solid #f2f2f2;
+  margin: 2em 0;
+}

@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => data.published !== false);
+  const authors = [...new Set(posts.map(p => p.data.author))];
+  return authors.map(author => ({
+    params: { slug: author.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') },
+    props: { author },
+  }));
+}
+
+const { author } = Astro.props;
+const allPosts = await getCollection('posts', ({ data }) => data.published !== false);
+const authorPosts = allPosts
+  .filter(p => p.data.author === author)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+function getThumb(body: string): string | null {
+  const m = body.match(/!\[.*?\]\(\/assets\/([^)]+)\)/);
+  return m ? m[1] : null;
+}
+
+function getExcerpt(body: string, maxLen = 180): string {
+  return body
+    .replace(/!\[.*?\]\(\/assets\/[^)]+\)/g, '')
+    .replace(/\(https?:\/\/[^)]+\)/g, '')
+    .replace(/#{1,6}\s/g, '')
+    .replace(/[_\*\[\]`]/g, '')
+    .replace(/\s+/g, ' ')
+    .slice(0, maxLen)
+    .trim();
+}
+---
+
+<BaseLayout title={`${author} — Posts`}>
+  <div class="max-w-[728px] mx-auto px-4 pt-10 pb-20">
+    <div class="flex items-center gap-4 mb-10">
+      <div class="w-[64px] h-[64px] rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0" style="background: #003388;">
+        {author.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
+      </div>
+      <div>
+        <h1 class="text-[28px] font-bold text-[#242424] font-sans">{author}</h1>
+        <p class="text-[15px] text-[#6b6b6b]">{authorPosts.length} {authorPosts.length === 1 ? 'post' : 'posts'}</p>
+      </div>
+    </div>
+
+    <div class="divide-y divide-[#f2f2f2]">
+      {authorPosts.map((post) => {
+        const slug = post.id.replace(/\.md$/, '');
+        const thumb = getThumb(post.body || '');
+        return (
+          <a href={`/posts/${slug}`} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] -mx-4 px-4 transition-colors">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] mb-1.5">
+                <span>{formatDate(post.data.date)}</span>
+              </div>
+              <h2 class="text-[18px] md:text-[20px] font-bold leading-snug text-[#242424] group-hover:underline decoration-2 underline-offset-4 mb-1.5 line-clamp-2 font-sans">
+                {post.data.title}
+              </h2>
+              <p class="text-[14px] text-[#6b6b6b] leading-relaxed line-clamp-2 hidden sm:block">
+                {getExcerpt(post.body || '')}...
+              </p>
+            </div>
+            {thumb ? (
+              <img src={`/assets/${thumb}`} alt="" class="w-[112px] h-[112px] sm:w-[152px] sm:h-[152px] object-cover flex-shrink-0" loading="lazy" />
+            ) : (
+              <div class="w-[112px] h-[112px] sm:w-[152px] sm:h-[152px] flex-shrink-0 bg-[#f2f2f2] flex items-center justify-center">
+                <span class="text-gray-300 text-xs">eScience</span>
+              </div>
+            )}
+          </a>
+        );
+      })}
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="/" class="text-[14px] text-[#1A8917] hover:underline font-medium">← All posts</a>
+    </div>
+  </div>
+</BaseLayout>

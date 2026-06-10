@@ -1,0 +1,98 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+function formatShortDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+// Find related posts by same author
+const allPosts = await getCollection('posts', ({ data }) => data.published !== false);
+const relatedPosts = allPosts
+  .filter(p => p.data.author === post.data.author && p.id !== post.id)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+// Get first image as thumbnail
+function getThumb(body: string): string | null {
+  const m = body.match(/!\[.*?\]\(\/assets\/([^)]+)\)/);
+  return m ? m[1] : null;
+}
+---
+
+<BaseLayout title={post.data.title}>
+  <article class="max-w-[680px] mx-auto px-4">
+    <header class="pt-10 pb-6">
+      <h1 class="text-[32px] md:text-[40px] font-bold leading-tight text-[#242424] tracking-tight font-sans mb-4">
+        {post.data.title}
+      </h1>
+      
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0" style="background: #003388;">
+          {post.data.author.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
+        </div>
+        <div class="flex flex-col text-[14px]">
+          <a href={`/authors/${post.data.author.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`} class="font-medium text-[#242424] hover:underline">{post.data.author}</a>
+          <div class="flex items-center gap-1.5 text-[#6b6b6b] text-[13px]">
+            <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+            {post.data.source_url && (
+              <>
+                <span>·</span>
+                <a href={post.data.source_url} target="_blank" rel="noopener" class="hover:text-[#242424] transition-colors">Originally on Medium</a>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-content pb-12">
+      <Content />
+    </div>
+
+    <!-- Related posts -->
+    {relatedPosts.length > 0 && (
+      <footer class="border-t border-[#f2f2f2] pt-10 pb-16">
+        <h2 class="text-[20px] font-bold text-[#242424] mb-6 font-sans">
+          More from <a href={`/authors/${post.data.author.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`} class="hover:underline">{post.data.author}</a>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {relatedPosts.map(rp => {
+            const rslug = rp.id.replace(/\.md$/, '');
+            const thumb = getThumb(rp.body || '');
+            return (
+              <a href={`/posts/${rslug}`} class="group block">
+                {thumb ? (
+                  <img src={`/assets/${thumb}`} alt="" class="w-full aspect-[16/10] object-cover mb-3" loading="lazy" />
+                ) : (
+                  <div class="w-full aspect-[16/10] mb-3 bg-[#f2f2f2] flex items-center justify-center">
+                    <span class="text-gray-300 text-xs">eScience</span>
+                  </div>
+                )}
+                <h3 class="text-[15px] font-semibold text-[#242424] leading-snug group-hover:underline decoration-2 underline-offset-3 line-clamp-2 mb-1 font-sans">
+                  {rp.data.title}
+                </h3>
+                <span class="text-[13px] text-[#6b6b6b]">{formatShortDate(rp.data.date)}</span>
+              </a>
+            );
+          })}
+        </div>
+      </footer>
+    )}
+  </article>
+</BaseLayout>
