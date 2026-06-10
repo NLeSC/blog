@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+
 const { title, description, ogImage } = Astro.props;
 ---
 
@@ -33,23 +34,24 @@ const { title, description, ogImage } = Astro.props;
     })();
   </script>
 </head>
-<body class="min-h-screen flex flex-col bg-white dark:bg-[#111] transition-colors">
+<body class="min-h-screen flex flex-col bg-white text-[#242424] dark:bg-[#111] dark:text-[#e5e5e5] transition-colors">
   <!-- Minimal header — Medium style -->
   <header class="border-b border-[#f2f2f2] dark:border-[#333] sticky top-0 bg-white/95 dark:bg-[#111]/95 backdrop-blur-sm z-50">
-    <div class="max-w-[960px] mx-auto px-4 h-14 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2.5 no-underline">
-        <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-[11px]" style="background: #003388;">
+    <div class="max-w-[960px] mx-auto px-4 h-14 flex items-center justify-between gap-3">
+      <a href="/" class="flex items-center gap-2.5 no-underline min-w-0">
+        <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-[11px] flex-shrink-0" style="background: #003388;">
           eS
         </div>
-        <span class="font-semibold text-[15px] text-[#242424] dark:text-white tracking-tight">eScience Center Blog</span>
+        <span class="font-semibold text-[15px] text-[#242424] dark:text-white tracking-tight truncate">eScience Center Blog</span>
       </a>
-      <div class="flex items-center gap-5">
-        <button id="theme-toggle" class="text-[13px] text-[#6b6b6b] hover:text-[#242424] dark:hover:text-white transition-colors cursor-pointer" aria-label="Toggle dark mode" title="Toggle dark mode">
-          <span class="dark:hidden">☀️</span>
-          <span class="hidden dark:inline">🌙</span>
+      <div class="flex items-center gap-3 sm:gap-5 flex-shrink-0">
+        <button id="theme-toggle" class="text-[15px] text-[#6b6b6b] hover:text-[#242424] dark:text-[#aaa] dark:hover:text-white transition-colors cursor-pointer" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="dark:hidden">🌙</span>
+          <span class="hidden dark:inline">☀️</span>
         </button>
-        <a href="/search" class="text-[13px] text-[#6b6b6b] hover:text-[#242424] dark:hover:text-white transition-colors">Search</a>
-        <a href="https://www.esciencecenter.nl" class="text-[13px] text-[#6b6b6b] hover:text-[#242424] dark:hover:text-white transition-colors hidden sm:inline">esciencecenter.nl</a>
+        <a href="/topics" class="text-[13px] text-[#6b6b6b] hover:text-[#242424] dark:text-[#aaa] dark:hover:text-white transition-colors hidden sm:inline">Topics</a>
+        <button data-search-open class="text-[13px] text-[#6b6b6b] hover:text-[#242424] dark:text-[#aaa] dark:hover:text-white transition-colors cursor-pointer">Search</button>
+        <a href="https://www.esciencecenter.nl" class="text-[13px] text-[#6b6b6b] hover:text-[#242424] dark:text-[#aaa] dark:hover:text-white transition-colors hidden sm:inline">esciencecenter.nl</a>
       </div>
     </div>
   </header>
@@ -57,6 +59,25 @@ const { title, description, ogImage } = Astro.props;
   <main class="flex-1">
     <slot />
   </main>
+
+  <dialog id="search-modal" class="search-modal" aria-labelledby="search-modal-title">
+    <div class="search-panel">
+      <div class="search-panel-header">
+        <div>
+          <p class="search-eyebrow">Search the archive</p>
+          <h2 id="search-modal-title">Find posts instantly</h2>
+        </div>
+        <button class="search-close" data-search-close aria-label="Close search">×</button>
+      </div>
+      <label class="search-input-wrap">
+        <span class="sr-only">Search articles</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 0 1 5.16 10.45l4.45 4.44-1.42 1.42-4.44-4.45A6.5 6.5 0 1 1 10.5 4Zm0 2a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Z"/></svg>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Try “machine learning”, “Julia”, or an author…" />
+      </label>
+      <div class="search-meta"><span id="search-count">Start typing to search the archive</span><kbd>Esc</kbd></div>
+      <div id="search-results" class="search-results" role="listbox" aria-label="Search results"></div>
+    </div>
+  </dialog>
 
   <!-- Minimal footer -->
   <footer class="border-t border-[#f2f2f2] dark:border-[#333] mt-12">
@@ -77,6 +98,121 @@ const { title, description, ogImage } = Astro.props;
         localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
       });
     }
+
+    (() => {
+      const modal = document.getElementById('search-modal');
+      const input = document.getElementById('search-input');
+      const results = document.getElementById('search-results');
+      const count = document.getElementById('search-count');
+      if (!modal || !input || !results || !count) return;
+
+      let posts = [];
+      let loadingPromise = null;
+      async function loadSearchIndex() {
+        if (posts.length) return posts;
+        if (!loadingPromise) {
+          count.textContent = 'Loading search index…';
+          results.innerHTML = '';
+          loadingPromise = fetch('/search-index.json')
+            .then((response) => {
+              if (!response.ok) throw new Error(`Search index failed: ${response.status}`);
+              return response.json();
+            })
+            .then((data) => {
+              posts = Array.isArray(data) ? data : [];
+              return posts;
+            })
+            .catch((error) => {
+              console.error(error);
+              count.textContent = 'Search is unavailable';
+              results.innerHTML = '<div class="search-empty">Could not load the search index. Please refresh and try again.</div>';
+              return [];
+            });
+        }
+        return loadingPromise;
+      }
+      const normalize = (value) => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const escapeHtml = (value) => String(value || '').replace(/[&<>"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[char]));
+
+      function render(query = '') {
+        const q = normalize(query.trim());
+        if (!q) {
+          count.textContent = `Start typing to search ${posts.length} posts`;
+          results.innerHTML = posts.slice(0, 6).map(renderPost).join('');
+          return;
+        }
+        const words = q.split(/\s+/).filter(Boolean);
+        const matches = posts
+          .map((post) => {
+            const haystack = normalize([post.title, post.author, post.date, post.tags?.join(' '), post.excerpt].join(' '));
+            if (!words.every((word) => haystack.includes(word))) return null;
+            let score = 0;
+            const title = normalize(post.title);
+            const author = normalize(post.author);
+            if (title.includes(q)) score += 6;
+            if (author.includes(q)) score += 3;
+            if (post.tags?.some((tag) => normalize(tag).includes(q))) score += 2;
+            score += words.reduce((sum, word) => sum + (title.includes(word) ? 2 : 0), 0);
+            return { ...post, score };
+          })
+          .filter(Boolean)
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 10);
+        count.textContent = matches.length ? `${matches.length} result${matches.length === 1 ? '' : 's'}` : 'No matches';
+        results.innerHTML = matches.length
+          ? matches.map(renderPost).join('')
+          : `<div class="search-empty">No posts found. Try a broader term or author name.</div>`;
+      }
+
+      function renderPost(post) {
+        const tags = (post.tags || []).slice(0, 3).map((tag) => `<span>${escapeHtml(tag)}</span>`).join('');
+        return `
+          <a class="search-result" href="${post.url}" role="option">
+            <span class="search-result-title">${escapeHtml(post.title)}</span>
+            <span class="search-result-meta">${escapeHtml(post.author)} · ${escapeHtml(post.date)}</span>
+            <span class="search-result-excerpt">${escapeHtml(post.excerpt)}</span>
+            ${tags ? `<span class="search-result-tags">${tags}</span>` : ''}
+          </a>`;
+      }
+
+      async function openSearch(value = '') {
+        if (typeof modal.showModal === 'function') modal.showModal();
+        else modal.setAttribute('open', '');
+        document.body.classList.add('search-open');
+        input.value = value;
+        await loadSearchIndex();
+        render(value);
+        setTimeout(() => input.focus(), 30);
+      }
+
+      function closeSearch() {
+        if (typeof modal.close === 'function') modal.close();
+        else modal.removeAttribute('open');
+        document.body.classList.remove('search-open');
+      }
+
+      document.querySelectorAll('[data-search-open], a[href="/search"], a[href^="/search?"]').forEach((trigger) => {
+        trigger.addEventListener('click', (event) => {
+          event.preventDefault();
+          const url = trigger instanceof HTMLAnchorElement ? new URL(trigger.href) : null;
+          openSearch(url?.searchParams.get('q') || '');
+        });
+      });
+      document.querySelectorAll('[data-search-close]').forEach((trigger) => trigger.addEventListener('click', closeSearch));
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeSearch();
+      });
+      input.addEventListener('input', () => render(input.value));
+      document.addEventListener('keydown', (event) => {
+        if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+          event.preventDefault();
+          openSearch();
+        }
+      });
+
+      const current = new URL(window.location.href);
+      if (current.pathname === '/search') openSearch(current.searchParams.get('q') || '');
+    })();
   </script>
 </body>
 </html>

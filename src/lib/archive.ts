@@ -1,0 +1,103 @@
+import type { CollectionEntry } from 'astro:content';
+
+export type PostEntry = CollectionEntry<'posts'>;
+
+export function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+export function postSlug(post: PostEntry): string {
+  return post.id.replace(/\.md$/, '');
+}
+
+export function postUrl(post: PostEntry): string {
+  return `/posts/${postSlug(post)}`;
+}
+
+export function authorSlug(name: string): string {
+  return slugify(name);
+}
+
+export function formatDate(date: Date, style: 'short' | 'long' = 'short'): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: style === 'long' ? 'long' : 'short',
+    day: 'numeric',
+  });
+}
+
+export function getCoverImage(body: string): string | null {
+  const imgs = [...body.matchAll(/!\[.*?\]\(\/assets\/([^)]+)\)/g)];
+  if (imgs.length === 0) return null;
+  if (imgs.length >= 2 && imgs[0].index !== undefined && imgs[0].index < 300) {
+    return imgs[1][1];
+  }
+  return imgs[0][1];
+}
+
+export function getExcerpt(body: string, maxLen = 200): string {
+  return body
+    .replace(/!\[.*?\]\(\/assets\/[^)]+\)/g, '')
+    .replace(/\(https?:\/\/[^)]+\)/g, '')
+    .replace(/#{1,6}\s/g, '')
+    .replace(/[_\*\[\]`]/g, '')
+    .replace(/\s+/g, ' ')
+    .slice(0, maxLen)
+    .trim();
+}
+
+export function readTime(body: string): number {
+  const words = body.replace(/<[^>]*>/g, '').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 225));
+}
+
+export function visibleTags(tags: string[] = []): string[] {
+  return tags.filter((tag) => tag && tag.toLowerCase() !== 'uncategorized');
+}
+
+export function buildTopicIndex(posts: PostEntry[]) {
+  const bySlug = new Map<string, { slug: string; name: string; count: number; latest: Date; posts: PostEntry[] }>();
+
+  for (const post of posts) {
+    for (const tag of visibleTags(post.data.tags || [])) {
+      const slug = slugify(tag);
+      if (!slug) continue;
+      const existing = bySlug.get(slug) || { slug, name: tag, count: 0, latest: post.data.date, posts: [] };
+      existing.count += 1;
+      existing.posts.push(post);
+      if (post.data.date > existing.latest) existing.latest = post.data.date;
+      bySlug.set(slug, existing);
+    }
+  }
+
+  return [...bySlug.values()]
+    .map((topic) => ({
+      ...topic,
+      posts: topic.posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+    }))
+    .sort((a, b) => b.count - a.count || b.latest.getTime() - a.latest.getTime());
+}
+
+export function serializePost(post: PostEntry) {
+  const cover = getCoverImage(post.body || '');
+  return {
+    id: post.id,
+    title: post.data.title,
+    author: post.data.author,
+    authorSlug: authorSlug(post.data.author),
+    date: post.data.date.toISOString(),
+    url: postUrl(post),
+    tags: visibleTags(post.data.tags || []),
+    excerpt: getExcerpt(post.body || '', 220),
+    cover: cover ? `/assets/${cover}` : null,
+    readingMinutes: readTime(post.body || ''),
+    source: post.data.source,
+    sourceUrl: post.data.source_url || null,
+  };
+}

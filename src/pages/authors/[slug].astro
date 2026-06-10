@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { getAuthorInfo, getAuthorPic, getAuthorInitials } from '../../lib/authors';
+import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, postUrl } from '../../lib/archive';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => data.published !== false);
@@ -19,26 +20,7 @@ const authorPosts = allPosts
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const authorInfo = getAuthorInfo(author);
-
-function formatDate(date: Date): string {
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-}
-
-function getThumb(body: string): string | null {
-  const m = body.match(/!\[.*?\]\(\/assets\/([^)]+)\)/);
-  return m ? m[1] : null;
-}
-
-function getExcerpt(body: string, maxLen = 180): string {
-  return body
-    .replace(/!\[.*?\]\(\/assets\/[^)]+\)/g, '')
-    .replace(/\(https?:\/\/[^)]+\)/g, '')
-    .replace(/#{1,6}\s/g, '')
-    .replace(/[_\*\[\]`]/g, '')
-    .replace(/\s+/g, ' ')
-    .slice(0, maxLen)
-    .trim();
-}
+const authorTopics = buildTopicIndex(authorPosts).slice(0, 8);
 ---
 
 <BaseLayout title={`${author} — Posts`}>
@@ -64,15 +46,26 @@ function getExcerpt(body: string, maxLen = 180): string {
             {authorInfo.bio}
           </p>
         )}
+        <div class="flex flex-wrap gap-2 mt-4">
+          {authorTopics.map((topic) => (
+            <a href={`/topics/${topic.slug}`} class="inline-flex items-center gap-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#242424] px-3 py-1 text-[12px] text-[#6b6b6b] dark:text-[#aaa] hover:bg-[#003388] hover:text-white transition-colors">
+              <span>{topic.name}</span>
+              <span class="opacity-70">{topic.count}</span>
+            </a>
+          ))}
+        </div>
+        <div class="flex flex-wrap gap-3 mt-4 text-[13px]">
+          <a href={`/api/authors.json#${author.toLowerCase().replace(/\s+/g, '-')}`} class="text-[#1A8917] hover:underline">Archive data</a>
+          <a href={`/search?q=${encodeURIComponent(author)}`} class="text-[#1A8917] hover:underline">Search this author</a>
+        </div>
       </div>
     </div>
 
     <div class="divide-y divide-[#f2f2f2] dark:divide-[#333]">
       {authorPosts.map((post) => {
-        const slug = post.id.replace(/\.md$/, '');
-        const thumb = getThumb(post.body || '');
+        const thumb = getCoverImage(post.body || '');
         return (
-          <a href={`/posts/${slug}`} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#1a1a1a] -mx-4 px-4 transition-colors">
+          <a href={postUrl(post)} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#1a1a1a] -mx-4 px-4 transition-colors">
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] mb-1.5">
                 <span>{formatDate(post.data.date)}</span>
