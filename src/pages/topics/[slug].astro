@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, postUrl } from '../../lib/archive';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => data.published !== false);
+  return buildTopicIndex(posts).map((topic) => ({
+    params: { slug: topic.slug },
+    props: { topic },
+  }));
+}
+
+const { topic } = Astro.props;
+const topicPosts = topic.posts;
+---
+
+<BaseLayout title={`${topic.name} — Topic`} description={`${topic.count} eScience Center Blog posts tagged ${topic.name}.`}>
+  <section class="max-w-[960px] mx-auto px-4 pt-10 pb-16">
+    <div class="max-w-[720px] mb-10">
+      <a href="/topics" class="text-[14px] text-[#1A8917] hover:underline font-medium">← All topics</a>
+      <h1 class="text-[34px] md:text-[48px] font-bold leading-tight tracking-tight text-[#242424] dark:text-white font-sans mt-4 mb-3">
+        {topic.name}
+      </h1>
+      <p class="text-[16px] text-[#6b6b6b] dark:text-[#aaa]">
+        {topic.count} {topic.count === 1 ? 'article' : 'articles'} · Latest {formatDate(topic.latest, 'long')}
+      </p>
+    </div>
+
+    <div class="divide-y divide-[#f2f2f2] dark:divide-[#333]">
+      {topicPosts.map((post) => {
+        const cover = getCoverImage(post.body || '');
+        return (
+          <a href={postUrl(post)} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#1a1a1a] -mx-4 px-4 transition-colors">
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-1.5 text-[13px] text-[#6b6b6b] dark:text-[#999] mb-1.5">
+                <span class="font-medium text-[#242424] dark:text-white">{post.data.author}</span>
+                <span>·</span>
+                <span>{formatDate(post.data.date)}</span>
+              </div>
+              <h2 class="text-[19px] md:text-[22px] font-bold leading-snug text-[#242424] dark:text-white group-hover:underline decoration-2 underline-offset-4 mb-1.5 line-clamp-2 font-sans">
+                {post.data.title}
+              </h2>
+              <p class="text-[14px] text-[#6b6b6b] dark:text-[#aaa] leading-relaxed line-clamp-2 hidden sm:block">
+                {getExcerpt(post.body || '', 180)}...
+              </p>
+            </div>
+            {cover ? (
+              <img src={`/assets/${cover}`} alt="" class="w-[112px] h-[112px] sm:w-[184px] sm:h-[124px] object-cover flex-shrink-0" loading="lazy" />
+            ) : (
+              <div class="w-[112px] h-[112px] sm:w-[184px] sm:h-[124px] flex-shrink-0 bg-[#f2f2f2] dark:bg-[#333] flex items-center justify-center">
+                <span class="text-gray-300 dark:text-[#555] text-xs">eScience</span>
+              </div>
+            )}
+          </a>
+        );
+      })}
+    </div>
+  </section>
+</BaseLayout>

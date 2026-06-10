@@ -3,25 +3,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Search">
-  <div class="max-w-[728px] mx-auto px-4 pt-10 pb-20">
-    <h1 class="text-[32px] font-bold text-[#242424] mb-8 font-sans">Search</h1>
-    
-    <div id="search" class="mb-12"></div>
-
-    <script is:inline>
-      // Load Pagefind UI when available
-      const script = document.createElement('script');
-      script.src = '/pagefind/pagefind-ui.js';
-      script.onload = () => {
-        new PagefindUI({
-          element: '#search',
-          showSubResults: true,
-          showImages: false,
-          baseUrl: '/',
-        });
-      };
-      document.head.appendChild(script);
-    </script>
-    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <div class="max-w-[728px] mx-auto px-4 pt-16 pb-24 text-center">
+    <p class="text-[13px] uppercase tracking-[0.16em] text-[#6b6b6b] dark:text-[#999] mb-3">Archive search</p>
+    <h1 class="text-[34px] md:text-[44px] font-bold text-[#242424] dark:text-white mb-4 font-sans tracking-tight">Search the eScience Center Blog</h1>
+    <p class="text-[16px] text-[#6b6b6b] dark:text-[#aaa] leading-relaxed mb-8">
+      Use the instant search modal to find posts by title, author, topic, or excerpt.
+    </p>
+    <button data-search-open class="inline-flex items-center justify-center rounded-full bg-[#242424] text-white dark:bg-white dark:text-[#111] px-6 py-3 text-[15px] font-medium hover:opacity-90 transition-opacity">
+      Open search
+    </button>
+    <p class="mt-5 text-[13px] text-[#999] dark:text-[#777]">Shortcut: ⌘K / Ctrl K</p>
   </div>
+  <script is:inline>
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => document.querySelector('[data-search-open]')?.click(), 80);
+    });
+  </script>
 </BaseLayout>
