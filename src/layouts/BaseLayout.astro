@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+const { title, description, ogImage } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description || 'eScience Center Blog — Research software engineering, data science, and digital scholarship'} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate" type="application/rss+xml" title="eScience Center Blog" href="/rss.xml" />
+  <meta property="og:title" content={title || 'eScience Center Blog'} />
+  <meta property="og:description" content={description || 'Research software engineering, data science, and digital scholarship'} />
+  <meta property="og:type" content={title ? 'article' : 'website'} />
+  <meta property="og:site_name" content="eScience Center Blog" />
+  <meta property="og:image" content={ogImage || '/header-banner.webp'} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>{title ? `${title} — eScience Center Blog` : 'eScience Center Blog'}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+</head>
+<body class="min-h-screen flex flex-col bg-white">
+  <!-- Minimal header — Medium style -->
+  <header class="border-b border-[#f2f2f2] sticky top-0 bg-white/95 backdrop-blur-sm z-50">
+    <div class="max-w-[728px] mx-auto px-4 h-14 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5 no-underline">
+        <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-[11px]" style="background: #003388;">
+          eS
+        </div>
+        <span class="font-semibold text-[15px] text-[#242424] tracking-tight">eScience Center Blog</span>
+      </a>
+      <div class="flex items-center gap-5">
+        <a href="/search" class="text-[13px] text-[#6b6b6b] hover:text-[#242424] transition-colors">Search</a>
+        <a href="https://www.esciencecenter.nl" class="text-[13px] text-[#6b6b6b] hover:text-[#242424] transition-colors hidden sm:inline">esciencecenter.nl</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <slot />
+  </main>
+
+  <!-- Minimal footer -->
+  <footer class="border-t border-[#f2f2f2] mt-12">
+    <div class="max-w-[728px] mx-auto px-4 py-8 text-center text-[13px] text-[#6b6b6b]">
+      Netherlands eScience Center ·{' '}
+      <a href="https://www.esciencecenter.nl" class="hover:text-[#242424] transition-colors">Website</a>
+      {' · '}
+      <a href="https://blog.esciencecenter.nl" class="hover:text-[#242424] transition-colors">Medium</a>
+    </div>
+  </footer>
+</body>
+</html>
