@@ -99,7 +99,7 @@ Information that is usually contained in a HTML `<header>` region can be include
 ---
 title: A theorem on right angled triangles
 author: Pythagoras of Samos
-date: ~520 BC, a hot summer night
+date: 2019-07-02
 ---
 ```
 
