@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/what-do-entropy-entanglement-cosmology-life-and-fake-news-have-in-common-160fb84e0237
 tags:
-  - uncategorized
-
+  - Environment
+  - Ethics
+  - Physics
+  - RSE
 ---
 
 ## Report on the Information Universe 4 conference

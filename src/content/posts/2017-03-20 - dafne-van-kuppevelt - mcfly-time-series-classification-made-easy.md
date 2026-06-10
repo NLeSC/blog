@@ -6,8 +6,12 @@ author: Dafne van Kuppevelt
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - 3D
+  - Computer Vision
+  - Deep Learning
+  - Git
+  - Machine Learning
+  - Neural Networks
 ---
 
 ## A deep learning approach for time series

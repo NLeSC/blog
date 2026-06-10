@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/how-to-find-your-rubber-duck-using-machine-learning-to-understand-changes-in-the-wadden-sea-7c10da354e24
 tags:
-  - uncategorized
-
+  - Containers
+  - Machine Learning
+  - Neural Networks
 ---
 
 Subscribe*Remember me for faster sign in

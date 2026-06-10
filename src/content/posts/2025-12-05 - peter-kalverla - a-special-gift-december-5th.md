@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/a-special-gift-december-5th-69f12753581d
 tags:
-  - uncategorized
-
+  - Collaboration
+  - FAIR
+  - Git
+  - RSE
+  - Research Software
+  - Workflows
 ---
 
 ## Ode to the research software engineer

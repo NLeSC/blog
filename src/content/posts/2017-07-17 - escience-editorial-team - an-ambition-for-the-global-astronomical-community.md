@@ -6,8 +6,12 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Astronomy
+  - Community
+  - GPU
+  - HPC
+  - Performance
+  - RSE
 ---
 
 *Making the data produced by the rejuvenated Westerbork Telescope more open for, and delivered faster to, the astronomical community*

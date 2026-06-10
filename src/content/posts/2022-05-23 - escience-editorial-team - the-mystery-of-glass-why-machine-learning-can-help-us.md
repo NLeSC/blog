@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-mystery-of-glass-why-machine-learning-can-help-us-c1b9690565a3
 tags:
-  - uncategorized
-
+  - API
+  - Machine Learning
+  - Neural Networks
+  - Performance
 ---
 
 Subscribe*Remember me for faster sign in

@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/molecular-simulations-using-machine-learning-part-2-1d647acd242c
 tags:
-  - uncategorized
-
+  - Machine Learning
+  - Neural Networks
+  - Parallel Computing
+  - Training
 ---
 
 ][Aron]·Apr 13, 2023

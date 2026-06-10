@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/being-a-minority-in-fancy-coding-land-a-windows-user-d853d80a6ef9
 tags:
-  - uncategorized
-
+  - Containers
+  - Git
+  - Linux
+  - R
+  - Workflows
 ---
 
 ## How I slowly went from my imposter-syndrome hiding to accepting what I am. A Windows user, at least most of the time. (Don’t worry, this is NOT one of those Linux vs. Windows posts!)

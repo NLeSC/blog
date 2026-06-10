@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/our-favourite-python-tools-for-research-4647e6cc0681
 tags:
-  - uncategorized
-
+  - C++
+  - Pandas
+  - Parallel Computing
+  - Python
+  - Testing
 ---
 
 [Parallel programming in Python**](/parallel-programming-in-python-7fd62c90217d) by [Johan Hidding](https://medium.com/@jhidding) and [Pablo Rodríguez-Sánchez](https://medium.com/@pab.rod). Have you ever been in a hurry to complete an analysis, but did it take very long to run? In this step-by-step tutorial Johan and Pablo show you how to call in all of your processors for help.

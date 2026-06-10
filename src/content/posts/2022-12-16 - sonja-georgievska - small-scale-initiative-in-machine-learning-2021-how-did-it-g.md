@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/small-scale-initiative-in-machine-learning-2021-how-did-it-go-9978a70b5b1
 tags:
-  - uncategorized
-
+  - Deep Learning
+  - Machine Learning
 ---
 
 ![Small-scale initiative in Machine Learning 2021: how did it go?](/assets/small-scale-initiative-in-machine-learni-467f4e1a.jpg)

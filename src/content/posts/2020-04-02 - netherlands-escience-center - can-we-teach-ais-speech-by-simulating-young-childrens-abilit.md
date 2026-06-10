@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/can-we-teach-ais-speech-by-simulating-young-children-s-ability-to-learn-spoken-language-7cd9d33943
 tags:
-  - uncategorized
-
+  - GPU
+  - Machine Learning
+  - Neural Networks
+  - Parallel Computing
+  - Performance
+  - RSE
 ---
 
 **8

@@ -6,8 +6,12 @@ author: Sonja Georgievska
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Community
+  - Deep Learning
+  - GPU
+  - Machine Learning
+  - Neural Networks
+  - Performance
 ---
 
 > Let us simplify before we try to explain

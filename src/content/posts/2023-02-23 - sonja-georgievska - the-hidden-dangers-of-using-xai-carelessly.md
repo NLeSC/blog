@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-hidden-dangers-of-using-xai-carelessly-88f1d5fc3432
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Training
 ---
 
 This means that in general, we can’t use the SHAP values of pre-processed features to represent the importance of the original features. (In general*: to be precise, specific variants of SHAP, like [BShap](https://arxiv.org/pdf/1908.08474.pdf), do allow for specific *affine* transformations of the features — like transforming Celsius to Fahrenheit — a property called *affine scale invariance.)*

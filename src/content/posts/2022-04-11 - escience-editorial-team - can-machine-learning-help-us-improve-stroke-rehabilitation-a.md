@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/can-machine-learning-help-us-improve-stroke-rehabilitation-a-step-towards-personalized-therapy-386efb3caf05
 tags:
-  - uncategorized
-
+  - Machine Learning
+  - RSE
+  - Research Software
+  - Training
 ---
 
 **SubscribeRemember me for faster sign in

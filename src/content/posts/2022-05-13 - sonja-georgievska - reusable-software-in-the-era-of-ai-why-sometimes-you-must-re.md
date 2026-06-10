@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/reusable-software-in-the-era-of-ai-why-sometimes-you-must-reinvent-the-wheel-306036754bec
 tags:
-  - uncategorized
-
+  - Deep Learning
+  - Machine Learning
+  - Neural Networks
+  - Python
+  - Training
 ---
 
 ][Sonja Georgievska]·May 13, 2022

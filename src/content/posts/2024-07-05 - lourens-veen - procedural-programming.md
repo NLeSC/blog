@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/procedural-programming-f1d8cdef7540
 tags:
-  - uncategorized
-
+  - Python
+  - RSE
 ---
 
 The Engineering Corner

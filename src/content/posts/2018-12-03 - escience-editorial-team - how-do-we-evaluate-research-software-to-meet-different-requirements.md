@@ -6,8 +6,12 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Citation
+  - Community
+  - Environment
+  - FAIR
+  - RSE
+  - Reproducibility
 ---
 
 ![](/assets/1_mOfFxGkE0FP-eQ30xoYxlQ-533fe1a4.jpeg)

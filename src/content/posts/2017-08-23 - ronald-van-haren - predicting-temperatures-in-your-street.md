@@ -6,8 +6,12 @@ author: Ronald van Haren
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Climate
+  - Collaboration
+  - FAIR
+  - Git
+  - Health
+  - Physics
 ---
 
 The next big thing in weather forecasting

@@ -6,8 +6,11 @@ author: Felipe
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - C++
+  - Git
+  - Performance
+  - RSE
+  - Reproducibility
 ---
 
 > “So comes snow after fire, and even dragons have their endings.”  

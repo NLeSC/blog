@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/storyboards-for-science-communication-85e399e5c1b5
 tags:
-  - uncategorized
-
+  - API
+  - Databases
+  - Git
+  - Python
+  - RSE
+  - Science Communication
 ---
 
 ![Storyboards for science communication](/assets/storyboards-for-science-communication-9276e748.png)

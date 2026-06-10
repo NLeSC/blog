@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/is-scientific-software-the-new-land-grab-25e5e76cc323
 tags:
-  - uncategorized
-
+  - Containers
+  - Environment
+  - Open Source
+  - Reproducibility
+  - Research Software
+  - Workflows
 ---
 
 3

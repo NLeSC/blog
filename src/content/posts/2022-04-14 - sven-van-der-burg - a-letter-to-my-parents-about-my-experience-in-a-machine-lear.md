@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/a-letter-to-my-parents-about-my-experience-in-a-machine-learning-consultancy-project-aa5520d63329
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Git
+  - Health
+  - Machine Learning
+  - RSE
 ---
 
 **SubscribeRemember me for faster sign in

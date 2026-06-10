@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/amsterdam-as-seen-by-a-weather-model-b609a340cde4
 tags:
-  - uncategorized
-
+  - 3D
+  - Climate
+  - Git
+  - Physics
+  - Python
+  - RSE
 ---
 
 ## Visualizing local climate zones in 3D with the Cityblocks package

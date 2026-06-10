@@ -6,8 +6,11 @@ author: Lourens Veen
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Citation
+  - Collaboration
+  - Databases
+  - Health
+  - RSE
 ---
 
 The Beastie Boys were [Licensed to Ill](https://en.wikipedia.org/wiki/Licensed_to_Ill), James Bond had a [licence to kill](https://en.wikipedia.org/wiki/Licence_to_Kill). I want a license to science.

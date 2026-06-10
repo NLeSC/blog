@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/a-mathematician-in-quarantine-4555cfbf9f60
 tags:
-  - uncategorized
-
+  - Biology
+  - Git
+  - Health
+  - Nix
 ---
 
 ## Flattening the curve, and why you should stay at home

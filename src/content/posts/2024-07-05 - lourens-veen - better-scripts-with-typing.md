@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/dynamic-types-static-types-oh-my-py-25c9743b72c4
 tags:
-  - uncategorized
-
+  - Python
+  - RSE
 ---
 
 1

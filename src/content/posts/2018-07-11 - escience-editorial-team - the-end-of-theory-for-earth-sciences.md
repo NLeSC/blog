@@ -6,8 +6,12 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Astronomy
+  - Climate
+  - Community
+  - Data Science
+  - Environment
+  - Git
 ---
 
 “The end of theory.” This is the title of an [article](https://www.wired.com/2008/06/pb-theory/) in Wired Magazine 10 years ago. No theory needed, the data deluge allows us to extract any knowledge by exploring data. This new empiricism received lots of attention and criticism. I came across it a few years ago when I started to immerse myself into the world of big data, artificial intelligence and computing. Having a background in climate research, I thought I knew all about computation and data. I was wrong.

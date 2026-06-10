@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-data-science-centre-digital-expertise-hub-at-uva-444787a3fe6b
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Community
+  - Data Science
+  - Git
+  - RSE
+  - Training
 ---
 
 # **The Data Science Centre: Digital expertise Hub at UvA**

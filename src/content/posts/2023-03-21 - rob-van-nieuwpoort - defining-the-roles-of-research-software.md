@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/defining-the-roles-of-research-software-21535a43f23
 tags:
-  - uncategorized
-
+  - Data Science
+  - Environment
+  - Git
+  - Health
+  - Machine Learning
+  - NLP
 ---
 
 SubscribeRemember me for faster sign in

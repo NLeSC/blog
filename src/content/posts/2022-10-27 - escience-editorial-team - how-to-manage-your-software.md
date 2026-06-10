@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/how-to-manage-your-software-327c8ac8a937
 tags:
-  - uncategorized
-
+  - Community
+  - Parallel Computing
+  - RSE
+  - Research Software
+  - Training
+  - Workshop
 ---
 
 Maaike:* The [SMP working group](https://www.esciencecenter.nl/national-guidelines-for-software-management-plans/) comprised five experts in research software, representing different research organizations in the Netherlands, and different roles within those organizations, including research support staff, policy makers and research software engineers (RSEs).

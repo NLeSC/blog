@@ -7,8 +7,7 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/causal-inference-in-jasp-the-process-module-b8c01abfb2fb
 tags:
-  - uncategorized
-
+  - Julia
 ---
 
 By [Malte Lüken](https://www.esciencecenter.nl/team/malte-luken/), [Julia M. Rohrer](https://juliarohrer.com/), [Thijs Vroegh](https://www.esciencecenter.nl/team/thijs-vroegh/), [Johnny van Doorn](https://www.uva.nl/en/profile/d/o/j.b.vandoorn/j.b.vandoorn.html), and [Eric-Jan Wagenmakers](https://www.uva.nl/en/profile/w/a/e.m.wagenmakers/e.m.wagenmakers.html)

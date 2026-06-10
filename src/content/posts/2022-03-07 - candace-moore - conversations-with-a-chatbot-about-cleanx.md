@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/conversations-with-a-chatbot-about-cleanx-83455a5b1b87
 tags:
-  - uncategorized
-
+  - Health
+  - RSE
 ---
 
 # **Conversations with a chatbot about CleanX**

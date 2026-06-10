@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/investing-in-people-anticipating-the-future-of-research-software-ba973331796e
 tags:
-  - uncategorized
-
+  - Citation
+  - Collaboration
+  - Community
+  - Git
+  - Research Software
+  - Sustainability
 ---
 
 *Authored by *[*Kim Hartley*](https://www.researchsoft.org/people/)* and *[*Michelle Barker*](https://www.researchsoft.org/people/)

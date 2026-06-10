@@ -6,8 +6,11 @@ author: Hanno Spreeuw
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Community
+  - Health
+  - RSE
+  - Sustainability
 ---
 
 ![](/assets/1_iKLnA1ZxrXtILMGgGC-yZA-93ca433e.jpeg)

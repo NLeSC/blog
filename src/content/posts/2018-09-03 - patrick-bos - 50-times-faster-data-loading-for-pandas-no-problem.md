@@ -6,8 +6,12 @@ author: Patrick Bos
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - C++
+  - Data Science
+  - Git
+  - NumPy
+  - Pandas
+  - Performance
 ---
 
 ## Loading irregular data into Pandas using C++

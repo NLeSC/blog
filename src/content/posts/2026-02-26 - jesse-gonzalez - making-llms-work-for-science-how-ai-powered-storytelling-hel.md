@@ -7,11 +7,15 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/making-llms-work-for-science-how-ai-powered-storytelling-helps-researchers-communicate-their-639cc6664dc2
 tags:
-  - uncategorized
-
+  - 3D
+  - API
+  - Citation
+  - Community
+  - Environment
+  - Git
 ---
 
-Making LLMs Work for Science: How AI-Powered Storytelling Helps Researchers Communicate Their Software](/assets/making-llms-work-for-science-how-ai-powe-ddd498d7.png)
+![Making LLMs Work for Science: How AI-Powered Storytelling Helps Researchers Communicate Their Software](/assets/making-llms-work-for-science-how-ai-powe-ddd498d7.png)
 Welcome page on the storytelling application.*Authors: *[*Jesse González*](https://www.esciencecenter.nl/team/jesse-gonzalez/)*, *[*Pablo Rodríguez*](https://www.esciencecenter.nl/team/pablo-rodriguez-sanchez/)*, *[*Kody Moodley*](https://www.esciencecenter.nl/team/kody-moodley/)*
 Application:* [https://nlesc.github.io/data-storytelling](https://nlesc.github.io/data-storytelling/)
 

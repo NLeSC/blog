@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/using-c-in-a-web-app-with-webassembly-efd78c08469
 tags:
-  - uncategorized
-
+  - 3D
+  - C++
+  - Performance
+  - Python
+  - RSE
+  - Research Software
 ---
 
 ][eScience Editorial Team]·Oct 9, 2020

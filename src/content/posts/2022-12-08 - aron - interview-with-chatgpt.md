@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/interview-with-chatgpt-c17b87214b9c
 tags:
-  - uncategorized
-
+  - LLM
+  - Training
 ---
 
 # **Interview with chatGPT**

@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/my-experience-of-getting-codechecked-39cf612cfd35
 tags:
-  - uncategorized
-
+  - Community
+  - Git
+  - R
+  - Reproducibility
+  - Workflows
 ---
 
 6

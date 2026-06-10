@@ -6,8 +6,9 @@ author: Atze van der Ploeg
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Astronomy
+  - FPGA
+  - GPU
 ---
 
 ## The (dis)advantages of Field Programmable Gate Arrays

@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/literate-programming-in-science-1669094541a7
 tags:
-  - uncategorized
-
+  - API
+  - C++
+  - Databases
+  - Environment
+  - FAIR
+  - Git
 ---
 
 ![Literate Programming in Science](/assets/literate-programming-in-science-bca09353.jpg)

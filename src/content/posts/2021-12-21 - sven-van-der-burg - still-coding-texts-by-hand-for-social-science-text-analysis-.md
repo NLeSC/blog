@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/still-coding-texts-by-hand-for-social-science-text-analysis-7e1cdbf691be
 tags:
-  - uncategorized
-
+  - Community
+  - Environment
+  - Open Source
+  - Privacy
+  - Python
+  - RSE
 ---
 
 ][Sven van der Burg]·Dec 21, 2021

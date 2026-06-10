@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/pandemic-proof-shaping-the-future-of-scientific-exchange-8eec8444d021
 tags:
-  - uncategorized
-
+  - API
+  - Accessibility
+  - Climate
+  - Containers
+  - Environment
+  - Git
 ---
 
 ][Peter Kalverla]·Sep 21, 2021Subscribe*

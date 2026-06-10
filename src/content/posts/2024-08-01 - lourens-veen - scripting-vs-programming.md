@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/scripting-vs-programming-8d7d276f3ba3
 tags:
-  - uncategorized
-
+  - C++
+  - Containers
+  - Environment
+  - Git
+  - Python
+  - RSE
 ---
 
 ][Lourens Veen]·Apr 26, 2023

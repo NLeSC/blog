@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/machine-learning-machinery-for-quantum-chemistry-e6c497368e7d
 tags:
-  - uncategorized
-
+  - Git
+  - Machine Learning
+  - Neural Networks
+  - Parallel Computing
+  - RSE
 ---
 
 Machine learning techniques are impacting all areas of science, and molecular simulations are not spared. This blog post shows how to make use of the tools and techniques developed for machine learning to facilitate high-accuracy electronic structure calculations.

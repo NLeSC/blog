@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/from-pandemic-response-to-package-development-52aba8e249c3
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Data Science
+  - Environment
+  - Git
+  - Health
+  - Python
 ---
 
 By [Fenne Riemslagh](https://www.esciencecenter.nl/team/fenne-riemslagh/)

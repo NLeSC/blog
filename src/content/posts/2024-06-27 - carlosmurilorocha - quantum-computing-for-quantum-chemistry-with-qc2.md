@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/quantum-computing-for-quantum-chemistry-with-qc2-69ee18ef2969
 tags:
-  - uncategorized
-
+  - API
+  - Community
+  - Environment
+  - Git
 ---
 
 Q*uantum Computing is a rapidly evolving field that has the potential to transform the way we approach complex computational problems. Quantum Chemistry stands out as a prime application area, with anticipated impacts ranging from the development of new materials to novel drugs.*

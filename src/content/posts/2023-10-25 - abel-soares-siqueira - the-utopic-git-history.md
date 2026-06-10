@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-utopic-git-history-d44b81c09593
 tags:
-  - uncategorized
-
+  - 3D
+  - Git
+  - Parallel Computing
+  - Visualization
+  - Workflows
 ---
 
 *If you love this article and can’t wait to read more about The Utopic Git History, please see *[*this follow-up article*](/achieving-utopic-git-history-4cc2a1fd3107?sk=88f3dac86d55ac1833f66165bc6634c2)* by Abel.*

@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/decorators-in-r-ec84eaeca3e3
 tags:
-  - uncategorized
-
+  - Git
+  - Python
 ---
 
 Let’s see some examples:

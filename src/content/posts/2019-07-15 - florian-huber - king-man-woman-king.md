@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/king-man-woman-king-9a7fd2935a85
 tags:
-  - uncategorized
-
+  - Benchmarking
+  - FAIR
+  - Git
+  - NLP
+  - RSE
+  - Testing
 ---
 
 ## Some of the best known examples used to explain the power of prominent Natural Language Processing tools (like Word2Vec) only seem to work with some cheating.

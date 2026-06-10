@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/enabling-best-practices-for-sustainable-software-in-the-natural-engineering-sciences-ss-nes-0fe81f2995d2
 tags:
-  - uncategorized
-
+  - API
+  - Citation
+  - Collaboration
+  - Community
+  - Git
+  - Open Science
 ---
 
 # **Enabling best practices for sustainable software in the Natural &amp; Engineering sciences (SS-NES)**

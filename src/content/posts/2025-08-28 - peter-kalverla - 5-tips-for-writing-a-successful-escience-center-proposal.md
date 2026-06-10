@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/5-tips-for-writing-a-successful-escience-center-proposal-1247bc44a5fd
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Community
+  - Sustainability
+  - Workflows
 ---
 
 22

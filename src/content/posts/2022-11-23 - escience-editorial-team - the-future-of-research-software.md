@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-future-of-research-software-602878378c5f
 tags:
-  - uncategorized
-
+  - Astronomy
+  - Collaboration
+  - Community
+  - Environment
+  - Ethics
+  - Research Software
 ---
 
 SubscribeRemember me for faster sign in

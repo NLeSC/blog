@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/a-different-game-7e1a1c5797c8
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Community
+  - Deep Learning
+  - GPU
+  - Git
+  - Linux
 ---
 
 3

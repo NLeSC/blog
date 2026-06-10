@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/solving-the-mystery-of-the-missing-symbols-part-ii-acc122e11a96
 tags:
-  - uncategorized
-
+  - 3D
+  - API
+  - Git
+  - Nix
 ---
 
 ## *This is the conclusion to the story I *[*wrote about*](https://medium.com/escience-center/a-debugging-journey-into-the-unknown-a2fa291bfb35)* earlier.*

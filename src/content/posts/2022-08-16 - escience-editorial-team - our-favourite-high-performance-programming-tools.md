@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/our-favourite-high-performance-programming-tools-d11c5eaa68a8
 tags:
-  - uncategorized
-
+  - C++
+  - FPGA
+  - GPU
+  - Performance
 ---
 
 **SubscribeRemember me for faster sign in

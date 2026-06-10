@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/bring-your-own-backend-e3c6762cb460
 tags:
-  - uncategorized
-
+  - API
+  - Collaboration
+  - Git
+  - Machine Learning
+  - Python
+  - RSE
 ---
 
 *A pattern for sustainable research software collaboration*

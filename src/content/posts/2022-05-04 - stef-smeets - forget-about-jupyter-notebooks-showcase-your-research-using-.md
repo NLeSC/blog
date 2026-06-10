@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/forget-about-jupyter-notebooks-showcase-your-research-using-dashboards-5d13451ba374
 tags:
-  - uncategorized
-
+  - 3D
+  - API
+  - Git
+  - Optimization
+  - Performance
+  - Python
 ---
 
 SubscribeRemember me for faster sign in

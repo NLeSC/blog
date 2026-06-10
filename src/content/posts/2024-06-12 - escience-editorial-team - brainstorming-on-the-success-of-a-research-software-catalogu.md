@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/brainstorming-on-the-success-of-a-research-software-catalogue-b3bfa185d519
 tags:
-  - uncategorized
-
+  - API
+  - Collaboration
+  - Community
+  - Git
+  - RSE
+  - Reproducibility
 ---
 
 # *Brainstorming on the success of a research software catalogue*

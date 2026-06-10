@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/beyond-research-e220eb18f8b4
 tags:
-  - uncategorized
-
+  - Collaboration
+  - RSE
+  - Training
 ---
 
 # **Beyond research**

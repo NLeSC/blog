@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-bike-and-the-laptop-c7f32eddd07d
 tags:
-  - uncategorized
-
+  - Environment
+  - RSE
+  - Training
 ---
 
 Ironically, I don’t have such a clear and well-defined memory of how I learned to program and efficiently use my personal computer. Not my dad, nor anyone, seems to have been my mentor. I had to learn by myself. Too often, I had these “Eureka”* moments… shortly followed by a *“how in the world has nobody told me about this before?”.*

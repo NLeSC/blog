@@ -7,8 +7,7 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/pythons-timeit-find-the-fastest-code-in-no-time-23d6092b5c72
 tags:
-  - uncategorized
-
+  - Python
 ---
 
 ![Python’s timeit: Find the fastest code in no time](/assets/pythons-timeit-find-the-fastest-code-in--d3174fda.jpg)

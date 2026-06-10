@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/a-single-rule-for-better-talks-816bb3d422ae
 tags:
-  - uncategorized
-
+  - FAIR
+  - RSE
 ---
 
 **SubscribeRemember me for faster sign in

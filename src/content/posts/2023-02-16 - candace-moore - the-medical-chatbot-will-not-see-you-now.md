@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-medical-chatbot-will-not-see-you-now-b2c5d67c7029
 tags:
-  - uncategorized
-
+  - 3D
+  - Community
+  - FAIR
+  - Health
+  - Machine Learning
+  - RSE
 ---
 
 ## Dr. Candace Makeda Moore, RSE and medical doctor, lays out what she believes the potential pitfalls and problems of AI chatbots in medicine are: closed source, discrimination, (ir)reproducibility and hype

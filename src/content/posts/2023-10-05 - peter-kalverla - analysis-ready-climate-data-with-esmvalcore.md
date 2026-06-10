@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/easy-ipcc-powered-by-esmvalcore-19a0b6366ea7
 tags:
-  - uncategorized
-
+  - Climate
+  - Git
+  - Statistics
+  - Workflows
 ---
 
 ## **The “Easy IPCC” blog done differently**

@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/nano-publish-your-research-with-python-b81aa54eb1a2
 tags:
-  - uncategorized
-
+  - FAIR
+  - Git
+  - Python
+  - RSE
+  - Workflows
 ---
 
 ## Using nanopub, a high-level, user-friendly python interface to the nanopublication network

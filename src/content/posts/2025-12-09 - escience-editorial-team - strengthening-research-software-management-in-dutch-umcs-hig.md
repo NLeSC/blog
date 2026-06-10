@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/strengthening-research-software-management-in-dutch-umcs-highlights-from-the-second-dreams-ee2c8d12f243
 tags:
-  - uncategorized
-
+  - Citation
+  - Collaboration
+  - Community
+  - Git
+  - Health
+  - Open Science
 ---
 
 # **Strengthening Research Software Management in Dutch UMCs: Highlights from the Second DReaMS Community Meetup**

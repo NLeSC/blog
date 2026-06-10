@@ -6,8 +6,12 @@ author: Maarten van Meersbergen
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Citation
+  - Collaboration
+  - Physics
+  - RSE
+  - Training
+  - Visualization
 ---
 
 ## With some help, its algorithms can be trained to find you the good stuff

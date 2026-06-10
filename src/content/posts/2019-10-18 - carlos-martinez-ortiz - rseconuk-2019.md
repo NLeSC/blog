@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/rseconuk-2019-ca25d595e353
 tags:
-  - uncategorized
-
+  - Community
+  - RSE
+  - Workflows
+  - Workshop
 ---
 
 ][Carlos Martinez-Ortiz]·Oct 18, 2019

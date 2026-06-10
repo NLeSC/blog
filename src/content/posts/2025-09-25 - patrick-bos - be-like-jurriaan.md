@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/be-like-jurriaan-ac9e8926d1b3
 tags:
-  - uncategorized
-
+  - Environment
+  - Git
+  - Open Source
+  - Python
+  - RSE
+  - Workflows
 ---
 
 ## Write copy-pasteable READMEs for developers

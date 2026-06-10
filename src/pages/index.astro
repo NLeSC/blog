@@ -37,12 +37,12 @@ function authorSlug(name: string): string {
 
 <BaseLayout>
   <!-- Publication header banner -->
-  <div class="max-w-[728px] mx-auto px-4 pt-8 pb-6">
+  <div class="max-w-[960px] mx-auto px-4 pt-8 pb-6">
     <img src="/header-banner.webp" alt="eScience Center Blog" class="w-full h-auto" />
   </div>
 
   <!-- Publication profile -->
-  <div class="max-w-[728px] mx-auto px-4 pb-10">
+  <div class="max-w-[960px] mx-auto px-4 pb-10">
     <div class="flex items-start gap-4">
       <div class="w-[64px] h-[64px] rounded-lg flex items-center justify-center flex-shrink-0" style="background: #FFC017;">
         <span class="text-[28px] font-bold text-white" style="font-family: Georgia, serif;">e</span>
@@ -65,31 +65,35 @@ function authorSlug(name: string): string {
     </div>
   </div>
 
-  <div class="max-w-[728px] mx-auto px-4 pb-12">
-    <!-- Featured post -->
+  <div class="max-w-[960px] mx-auto px-4 pb-12">
+    <!-- Featured post — side-by-side on desktop -->
     {(() => {
       const featured = posts[0];
       const featuredSlug = featured.id.replace(/\.md$/, '');
       const featuredCover = getCoverImage(featured.body || '');
       return (
-        <a href={`/posts/${featuredSlug}`} class="group block mb-16">
-          {featuredCover ? (
-            <img src={`/assets/${featuredCover}`} alt="" class="w-full aspect-[2/1] object-cover mb-5" loading="eager" />
-          ) : (
-            <div class="w-full aspect-[2/1] mb-5 flex items-center justify-center bg-[#f2f2f2]">
-              <span class="text-gray-300 text-lg">eScience Center</span>
+        <a href={`/posts/${featuredSlug}`} class="group flex flex-col md:flex-row gap-8 mb-16 items-center">
+          <div class="md:w-1/2 flex-shrink-0">
+            {featuredCover ? (
+              <img src={`/assets/${featuredCover}`} alt="" class="w-full aspect-[4/3] object-cover" loading="eager" />
+            ) : (
+              <div class="w-full aspect-[4/3] flex items-center justify-center bg-[#f2f2f2]">
+                <span class="text-gray-300 text-lg">eScience Center</span>
+              </div>
+            )}
+          </div>
+          <div class="md:w-1/2">
+            <h1 class="text-[24px] md:text-[30px] font-bold leading-tight text-[#242424] group-hover:underline decoration-2 underline-offset-4 mb-2 font-sans">
+              {featured.data.title}
+            </h1>
+            <p class="text-[15px] text-[#6b6b6b] leading-relaxed line-clamp-3 mb-3">
+              {getExcerpt(featured.body || '', 280)}...
+            </p>
+            <div class="flex items-center gap-2 text-[13px] text-[#6b6b6b]">
+              <span>{formatDate(featured.data.date)}</span>
+              <span>·</span>
+              <a href={`/authors/${authorSlug(featured.data.author)}`} class="hover:underline">{featured.data.author}</a>
             </div>
-          )}
-          <h1 class="text-[28px] md:text-[34px] font-bold leading-tight text-[#242424] group-hover:underline decoration-2 underline-offset-4 mb-2 font-sans">
-            {featured.data.title}
-          </h1>
-          <p class="text-[15px] text-[#6b6b6b] leading-relaxed line-clamp-2 mb-3">
-            {getExcerpt(featured.body || '', 280)}...
-          </p>
-          <div class="flex items-center gap-2 text-[13px] text-[#6b6b6b]">
-            <span>{formatDate(featured.data.date)}</span>
-            <span>·</span>
-            <a href={`/authors/${authorSlug(featured.data.author)}`} class="hover:underline">{featured.data.author}</a>
           </div>
         </a>
       );

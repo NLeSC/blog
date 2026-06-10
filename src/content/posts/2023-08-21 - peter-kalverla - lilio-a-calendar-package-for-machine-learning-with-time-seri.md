@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/lilio-a-calendar-package-for-machine-learning-with-time-series-data-5c197830f4ce
 tags:
-  - uncategorized
-
+  - Climate
+  - Community
+  - Git
+  - Machine Learning
+  - Pandas
+  - R
 ---
 
 ## Designed with the S2S community, available for everyone

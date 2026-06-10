@@ -6,8 +6,9 @@ author: Lourens Veen
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - API
+  - Health
+  - Open Source
 ---
 
 ## Or why the GNU General Public License is open for business

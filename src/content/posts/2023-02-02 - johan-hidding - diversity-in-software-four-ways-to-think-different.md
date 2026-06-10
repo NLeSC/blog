@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/diversity-in-software-four-ways-to-think-different-ee4eaf72af79
 tags:
-  - uncategorized
-
+  - Databases
+  - Julia
+  - Python
+  - RSE
 ---
 
 ![Diversity in Software: four ways to think different](/assets/diversity-in-software-four-ways-to-think-4a16eeee.jpg)

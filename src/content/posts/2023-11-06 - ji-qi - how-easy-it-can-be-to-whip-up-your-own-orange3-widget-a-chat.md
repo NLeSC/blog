@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/how-easy-it-can-be-to-whip-up-your-own-orange3-widget-a-chatbot-adventure-with-huggingchat-ded982ac0ef4
 tags:
-  - uncategorized
-
+  - API
+  - Git
+  - Pandas
+  - Python
+  - RSE
 ---
 
 4

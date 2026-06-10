@@ -7,8 +7,7 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/writing-non-questionable-fortran-part-1-fc5edc7115ee
 tags:
-  - uncategorized
-
+  - Git
 ---
 
 Luckily gfortran (I’ll stick to gfortran, although many commercial/non-open compilers have similar flags, but named differently) has compiler flags available that disallow such legacy behaviour. The following two compiler flags should solve the issues that we are having with the example.

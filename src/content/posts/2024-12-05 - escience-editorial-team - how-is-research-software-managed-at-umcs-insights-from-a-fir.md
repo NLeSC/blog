@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/how-is-research-software-managed-at-umcs-insights-from-a-first-meetup-4181e9626a60
 tags:
-  - uncategorized
-
+  - Collaboration
+  - FAIR
+  - Git
+  - Health
+  - Privacy
+  - RSE
 ---
 
 Written by eScience Center Fellow [Thomas Pronk](https://www.esciencecenter.nl/fellowship-programme/thomas-pronk/)

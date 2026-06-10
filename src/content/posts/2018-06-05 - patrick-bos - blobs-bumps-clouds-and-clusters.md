@@ -6,8 +6,8 @@ author: Patrick Bos
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Astronomy
+  - Physics
 ---
 
 ## Statistical fluke or scientific evidence?

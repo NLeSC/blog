@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/workshop-machine-learning-for-research-2020-did-it-work-4c178f9dbb14
 tags:
-  - uncategorized
-
+  - Deep Learning
+  - GPU
+  - Machine Learning
+  - Python
+  - RSE
+  - Training
 ---
 
 ## Evaluating our one-week hands-on workshop on applying machine learning to research.

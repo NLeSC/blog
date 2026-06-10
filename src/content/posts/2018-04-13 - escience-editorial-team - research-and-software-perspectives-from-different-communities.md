@@ -6,8 +6,11 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Digital Humanities
+  - Git
+  - RSE
+  - Research Software
 ---
 
 Last week the Principal Investigators collaborating with the eScience Center’s team came together to share experiences on collaborative research projects.

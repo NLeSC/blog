@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/some-things-that-scientists-can-learn-from-the-arts-5af4921bf9ff
 tags:
-  - uncategorized
-
+  - Data Visualization
+  - Health
+  - RSE
+  - Training
+  - Visualization
 ---
 
 Subscribe*Remember me for faster sign in

@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/studying-political-symbolism-in-turkish-tv-dramas-with-machine-learning-3938ef40a376
 tags:
-  - uncategorized
-
+  - Computer Vision
+  - Git
+  - Machine Learning
+  - Neural Networks
+  - Parallel Computing
+  - Performance
 ---
 
 # **Studying political symbolism in Turkish TV dramas with machine learning**

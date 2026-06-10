@@ -6,8 +6,12 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Agile
+  - Collaboration
+  - Git
+  - RSE
+  - Research Software
+  - Software Engineering
 ---
 
 ![](/assets/1_4cOctoypHHDbrgkQ1CGUvA-30a9a8fb.jpeg)

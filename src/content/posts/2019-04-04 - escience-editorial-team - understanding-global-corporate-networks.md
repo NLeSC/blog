@@ -6,8 +6,10 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Data Science
+  - Network Analysis
+  - RSE
 ---
 
 ![](/assets/1_7zTznpyO2ZqFmgwCc_Y5Ug-92e253f8.jpeg)

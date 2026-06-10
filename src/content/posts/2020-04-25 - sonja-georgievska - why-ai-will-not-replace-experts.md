@@ -7,8 +7,7 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/ai-will-not-steal-your-job-heres-why-d59231eac0ef
 tags:
-  - uncategorized
-
+  - Health
 ---
 
 Subscribe*Remember me for faster sign in

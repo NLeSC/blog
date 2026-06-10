@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/researchers-are-not-born-engineers-why-are-they-expected-to-know-how-to-code-1eeb5c3d03c0
 tags:
-  - uncategorized
-
+  - FAIR
+  - Git
+  - R
+  - RSE
+  - Reproducibility
+  - Research Software
 ---
 
 Subscribe*Remember me for faster sign in

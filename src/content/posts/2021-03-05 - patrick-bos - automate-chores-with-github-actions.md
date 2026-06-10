@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/automate-chores-with-github-actions-73153a6c85d3
 tags:
-  - uncategorized
-
+  - API
+  - Git
+  - Performance
+  - Python
+  - RSE
+  - Security
 ---
 
 ## How I keep my Heroku web-app’s data up-to-date automatically

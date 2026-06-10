@@ -6,8 +6,12 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - 3D
+  - Astronomy
+  - Climate
+  - Data Visualization
+  - Health
+  - Machine Learning
 ---
 
 Scientific visualization impacts all research disciplines. Understanding our past, dealing with the challenges of climate change, discovering dark matter, and analyzing human behavior are all areas where scientific visualization is applied to gain scientific insight.

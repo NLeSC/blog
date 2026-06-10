@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/10-examples-of-embedding-julia-in-c-c-66282477e62c
 tags:
-  - uncategorized
-
+  - C++
+  - Environment
+  - Git
+  - Julia
 ---
 
 Subscribe*Remember me for faster sign in

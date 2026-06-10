@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/optimizing-plasma-sources-through-numerical-simulation-a530f4623cdb
 tags:
-  - uncategorized
-
+  - C++
+  - Collaboration
+  - Community
+  - Physics
+  - Testing
 ---
 
 ![Optimizing plasma sources through numerical simulation](/assets/optimizing-plasma-sources-through-numeri-d4fbc88f.png)

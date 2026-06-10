@@ -7,8 +7,7 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/the-story-map-6c1ed940bd70
 tags:
-  - uncategorized
-
+  - RSE
 ---
 
 A framework for story-building

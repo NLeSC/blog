@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/can-mathematical-models-predict-the-future-c362a0fbced2
 tags:
-  - uncategorized
-
+  - Health
+  - RSE
+  - Visualization
+  - Weather
 ---
 
 Top highlight

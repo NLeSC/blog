@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/using-machine-learning-to-tell-apart-rain-snow-hail-and-fog-from-cell-tower-data-6ab856c99f8b
 tags:
-  - uncategorized
-
+  - Machine Learning
+  - Neural Networks
+  - Research Software
 ---
 
 # **Using machine learning to tell apart rain, snow, hail and fog from cell tower data**

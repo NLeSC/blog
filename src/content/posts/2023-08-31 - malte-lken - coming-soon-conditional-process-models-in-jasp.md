@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/coming-soon-conditional-process-models-in-jasp-627b67b2c0aa
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Community
+  - Research Software
 ---
 
 By [Malte Lüken](https://www.esciencecenter.nl/team/malte-luken/), [Thijs Vroegh](https://www.esciencecenter.nl/team/thijs-vroegh/), [Johnny van Doorn](https://www.uva.nl/en/profile/d/o/j.b.vandoorn/j.b.vandoorn.html), and [Eric-Jan Wagenmakers](https://www.uva.nl/en/profile/w/a/e.m.wagenmakers/e.m.wagenmakers.html)

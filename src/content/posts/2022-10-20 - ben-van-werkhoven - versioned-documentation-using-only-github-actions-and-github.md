@@ -7,8 +7,8 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/versioned-documentation-using-only-github-actions-and-github-pages-1825296e31aa
 tags:
-  - uncategorized
-
+  - Git
+  - Workflows
 ---
 
 SubscribeRemember me for faster sign in

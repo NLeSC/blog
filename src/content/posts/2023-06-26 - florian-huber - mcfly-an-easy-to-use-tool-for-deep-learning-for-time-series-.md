@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/mcfly-an-easy-to-use-tool-for-deep-learning-for-time-series-classification-b2ee6b9419c2
 tags:
-  - uncategorized
-
+  - Deep Learning
+  - Git
+  - Performance
+  - Training
+  - Visualization
 ---
 
 ## A new mcfly 3.0 release is out. See how it works and how it can help you to apply deep learning to time series classification.

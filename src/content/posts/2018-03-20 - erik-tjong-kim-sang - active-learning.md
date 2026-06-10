@@ -6,8 +6,11 @@ author: Erik Tjong Kim Sang
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Image Processing
+  - Machine Learning
+  - Performance
+  - RSE
+  - Training
 ---
 
 ![](/assets/1_ip7UM0nLXChqg8vw6hivcg-bf510538.jpeg)

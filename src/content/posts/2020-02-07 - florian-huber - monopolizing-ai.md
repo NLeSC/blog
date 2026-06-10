@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/monopolizing-ai-8c87e00b854d
 tags:
-  - uncategorized
-
+  - Community
+  - Computer Vision
+  - Deep Learning
+  - GPU
+  - Git
+  - Machine Learning
 ---
 
 ## The field of machine learning and AI is facing an increasing divide.

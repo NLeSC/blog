@@ -7,8 +7,11 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/how-to-ensure-that-others-can-run-your-code-4c7672524a69
 tags:
-  - uncategorized
-
+  - Git
+  - Julia
+  - Open Source
+  - Python
+  - RSE
 ---
 
 6

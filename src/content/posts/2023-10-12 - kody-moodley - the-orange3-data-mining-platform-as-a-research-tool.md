@@ -6,8 +6,12 @@ author: Kody Moodley
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - 3D
+  - Community
+  - Git
+  - Machine Learning
+  - NLP
+  - Network Analysis
 ---
 
 ## Why aren’t more SSH researchers using and extending the platform?

@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/kernel-tuner-tutorial-at-supercomputing-2021-d97444d6961a
 tags:
-  - uncategorized
-
+  - Bayesian
+  - Benchmarking
+  - Environment
+  - GPU
+  - Git
+  - Optimization
 ---
 
 SubscribeRemember me for faster sign in

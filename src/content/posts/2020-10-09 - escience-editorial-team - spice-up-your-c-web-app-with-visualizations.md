@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/spice-up-your-c-web-app-with-visualizations-bcc1e888ec25
 tags:
-  - uncategorized
-
+  - C++
+  - Git
+  - Python
+  - Visualization
 ---
 
 Subscribe*Remember me for faster sign in

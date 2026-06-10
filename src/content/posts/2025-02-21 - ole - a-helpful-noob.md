@@ -7,11 +7,15 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/a-helpful-noob-540229f13ac0
 tags:
-  - uncategorized
-
+  - 3D
+  - Community
+  - Git
+  - Linux
+  - Machine Learning
+  - Python
 ---
 
-A Helpful Noob](/assets/a-helpful-noob-a2f448b4.jpg)
+![A Helpful Noob](/assets/a-helpful-noob-a2f448b4.jpg)
 Photo by [Keiteu Ko](https://unsplash.com/@keiteu_ko?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ## Introduction

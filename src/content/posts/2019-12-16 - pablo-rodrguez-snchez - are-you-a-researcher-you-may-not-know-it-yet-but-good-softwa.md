@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/you-dont-know-it-yet-but-software-engineering-is-just-what-you-need-7666d5e36fc9
 tags:
-  - uncategorized
-
+  - Biology
+  - Git
+  - Open Source
+  - Testing
 ---
 
 Subscribe*Remember me for faster sign in

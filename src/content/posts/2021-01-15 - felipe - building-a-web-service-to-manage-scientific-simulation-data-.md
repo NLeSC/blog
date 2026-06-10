@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/building-a-web-service-to-manage-scientific-simulation-data-using-graphql-a0bbf1c3f6e9
 tags:
-  - uncategorized
-
+  - 3D
+  - API
+  - Databases
+  - Docker
+  - Git
+  - Open Source
 ---
 
 Therefore, the [Ceiba](https://github.com/nlesc-nano/ceiba) web service needs to handle two kinds of requests by the client: read-only queries and mutations on the datasets. These “queries” and “mutations” can be easily describe with [GraphQL](https://graphql.org/).

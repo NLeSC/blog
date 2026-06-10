@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/how-not-to-use-deep-learning-in-science-e984b02a4df0
 tags:
-  - uncategorized
-
+  - Deep Learning
+  - Neural Networks
+  - RSE
 ---
 
 Subscribe*Remember me for faster sign in

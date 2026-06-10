@@ -6,8 +6,12 @@ author: eScience Editorial Team
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - 3D
+  - Collaboration
+  - Digital Humanities
+  - Git
+  - Machine Learning
+  - Training
 ---
 
 ![](/assets/1_vCZPyakBoyLx5EKtnc1Xvw-fd410d83.jpeg)

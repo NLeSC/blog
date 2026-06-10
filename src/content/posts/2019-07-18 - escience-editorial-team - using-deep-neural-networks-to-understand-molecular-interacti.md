@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/using-deep-neural-networks-to-understand-molecular-interactions-a4be5501c91c
 tags:
-  - uncategorized
-
+  - 3D
+  - Biology
+  - Collaboration
+  - Community
+  - Deep Learning
+  - Git
 ---
 
 # **Using deep neural networks to understand molecular interactions**

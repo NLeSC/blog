@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/fast-forward-merges-on-github-752f900f45e8
 tags:
-  - uncategorized
-
+  - Git
+  - Nix
+  - RSE
+  - Visualization
 ---
 
 *The year is 2025 CE and GitHub.com still can’t do “fast-forward” merges via its web-interface. But *you* can; I’ll show you how.*

@@ -6,8 +6,10 @@ author: Johan Hidding
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - GPU
+  - Parallel Computing
+  - Physics
+  - RSE
 ---
 
 ![](/assets/0_kgHps8C6sIPJ87U5-21014e83.webp)

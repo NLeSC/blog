@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/ditching-docker-hub-serve-research-software-with-ghcr-zenodo-2e47b8c93d88
 tags:
-  - uncategorized
-
+  - Astronomy
+  - Containers
+  - Docker
+  - Git
+  - RSE
+  - Research Software
 ---
 
 ## Or pay the price… that Docker Hub may charge you

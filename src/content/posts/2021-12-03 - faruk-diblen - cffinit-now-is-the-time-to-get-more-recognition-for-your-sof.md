@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/cffinit-now-is-the-time-to-get-more-recognition-for-your-software-e2e6ef617f8e
 tags:
-  - uncategorized
-
+  - Citation
+  - Git
+  - Python
 ---
 
 Use [cffinit](https://citation-file-format.github.io/cff-initializer-javascript/#/) to create a CITATION.cff file. For more details on using cffinit see [the tutorial on The Turing Way’s website](https://the-turing-way.netlify.app/communication/citable/citable-cffinit.html).

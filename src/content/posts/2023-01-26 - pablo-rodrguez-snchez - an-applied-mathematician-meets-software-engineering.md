@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/an-applied-mathematician-meets-software-engineering-987e94c5b0e7
 tags:
-  - uncategorized
-
+  - Biology
+  - Git
+  - Parallel Computing
+  - RSE
+  - Software Engineering
+  - Workshop
 ---
 
 Doing this involved using numerical differentiation to extract information such as instantaneous speed, acceleration, or curvature. Still technical, but way easier to interpret than the data the machine returned by default. I presented the idea to my colleagues. Some of them liked it, while others received it with a bit of skepticism. This is understandable: most people are usually not keen to hear about differentiation and parameterized curves on a coffee break.

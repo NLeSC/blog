@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/research-software-is-critical-to-the-future-of-ai-driven-research-8a408eea6879
 tags:
-  - uncategorized
-
+  - Collaboration
+  - Community
+  - FAIR
+  - GenAI
+  - Git
+  - Machine Learning
 ---
 
 *By Michelle Barker, Kim Hartley, Daniel S. Katz, Richard Littauer, Qian Zhang, Shurui Zhou, Jyoti Bhogal*

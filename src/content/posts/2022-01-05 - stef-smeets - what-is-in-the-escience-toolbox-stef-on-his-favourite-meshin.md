@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/what-is-in-the-escience-toolbox-stef-on-his-favourite-meshing-library-ecccdeaff8eb
 tags:
-  - uncategorized
-
+  - 3D
+  - API
+  - Git
+  - NumPy
+  - Python
+  - Workflows
 ---
 
 # **What is in the eScience toolbox: Stef on his favourite meshing library**

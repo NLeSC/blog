@@ -7,8 +7,9 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/automatic-differentiation-from-scratch-23d50c699555
 tags:
-  - uncategorized
-
+  - Julia
+  - Performance
+  - Python
 ---
 
 A surprisingly simple and elegant way to teach your computer how to perform derivatives, with some Julia (and Python) examples

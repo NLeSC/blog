@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/evidence-for-the-importance-of-research-software-1cb4a49077f3
 tags:
-  - uncategorized
-
+  - Astronomy
+  - Collaboration
+  - Community
+  - FAIR
+  - Open Science
+  - Python
 ---
 
 ● [Recognising the importance of software in research: Research Software Engineers (RSEs), a UK example — Study ](https://op.europa.eu/en/publication-detail/-/publication/fd0f6775-e0dd-11e9-9c4e-01aa75ed71a1)is a case study that discusses the current challenges faced by RSEs and policy conclusions to further help support RSEs and to contribute to the progress of open science in Europe.

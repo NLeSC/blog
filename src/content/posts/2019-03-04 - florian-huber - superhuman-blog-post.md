@@ -6,8 +6,10 @@ author: Florian Huber
 published: true
 source: medium
 tags:
-  - uncategorized
-
+  - Machine Learning
+  - Performance
+  - RSE
+  - Training
 ---
 
 **#demystifyAI series** (this small series aims at putting important AI-related aspects into perspective)

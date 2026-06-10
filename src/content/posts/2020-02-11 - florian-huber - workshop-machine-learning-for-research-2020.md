@@ -7,8 +7,12 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/workshop-machine-learning-for-research-2020-39c4fc8218e8
 tags:
-  - uncategorized
-
+  - Bayesian
+  - Deep Learning
+  - GPU
+  - Machine Learning
+  - Neural Networks
+  - Physics
 ---
 
 ## For one full week we worked with 6 research teams from different disciplines to explore if and how machine learning could help them answer their research question(s). Here is a brief summary of what we did, how it went, and what we learned.

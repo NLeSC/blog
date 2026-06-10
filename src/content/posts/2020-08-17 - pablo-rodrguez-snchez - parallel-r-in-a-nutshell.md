@@ -7,8 +7,10 @@ published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/parallel-r-in-a-nutshell-4391d45b5461
 tags:
-  - uncategorized
-
+  - Linux
+  - Parallel Computing
+  - Performance
+  - RSE
 ---
 
 ][Pablo Rodríguez-Sánchez]·Aug 17, 2020
