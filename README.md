@@ -1,8 +1,22 @@
 # eScience Center Blog
 
-The Netherlands eScience Center blog — 253 articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://blog.esciencecenter.nl), now a standalone Astro site.
+The Netherlands eScience Center blog — 275 articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://blog.esciencecenter.nl), now a standalone Astro site.
 
 **Live:** [nlesc-blogging.github.io/blog](https://nlesc-blogging.github.io/blog)
+
+---
+
+## Implemented features
+
+- Astro static site generated from markdown posts.
+- Medium-style homepage with featured article, image cards, and full archive feed.
+- Responsive article pages with wide images, captions, reading time, tags, and source links.
+- Author archive pages with bios, profile photos, and post lists.
+- Topic/tag archive pages plus homepage topic discovery.
+- Client-side search across posts.
+- RSS feed and JSON endpoints for posts, authors, and topics.
+- Dark mode support.
+- GitHub Pages deployment via Actions.
 
 ---
 
