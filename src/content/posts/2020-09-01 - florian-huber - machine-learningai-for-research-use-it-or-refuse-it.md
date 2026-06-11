@@ -12,7 +12,7 @@ tags:
 
 Clearly, machine learning is a broad and complex field. So there is no simple answer to whether it makes sense to aim for applying machine learning for your specific problem. If you have never applied machine learning tools yourself, honestly, the best you can do is grab your data and your research question and sit together with someone with plenty of hands-on experience in machine learning, preferably on related topics (or join [events such as this one](https://blog.esciencecenter.nl/workshop-machine-learning-for-research-2020-39c4fc8218e8)). But if you don’t have the luxury to know such a person, try this short guide (and better not what you see in the cartoon below).
 
-[image]
+![](/assets/1_QAhUoMJk3ocCBlzK1TKvzQ-e23d3602.jpeg)
 
 Machine learning (deep learning in particular) is often expected to do near-magical things with data and/or techniques that are hardly suitable for such wonders.\[cartoon by Florian Huber, CC BY 4.0 \]
 
@@ -24,7 +24,7 @@ To start, try getting a clear idea of what a machine learning solution would hav
 
 The clearest answer I can give is when you come with a **mission critical task**. That’s essentially anything that should never go wrong and where no final human inspection takes place. In those cases: **forget about AI**. Sure, there is autonomous driving, clearly a mission critical application. But AI systems failing in unexpected ways have drastically reset expectations in that area (see [this blog post](https://www.nytimes.com/2019/07/17/business/self-driving-autonomous-cars.html) or [one of mine on the same topic](https://medium.com/every-day-a-datapoint/autonomous-cars-an-outdated-vision-3a44aadad839)). So, that’s only confirming my point: don’t use AI for it.
 
-[image]
+![](/assets/1_0AUMKnSlAFbXwcv5Zb1mhg-d2e730c4.png)
 
 Simple flowchart to decide if machine learning could potentially be of interest. Even if the answer is yes, that of course still doesn’t mean it will really make sense for a particular problem/data combination. Hopefully the second flowchart below can then help you further. \[by Florian Huber, CC BY 4.0, see https://zenodo.org/record/4010272 for high-res pdf\]
 
@@ -47,7 +47,7 @@ It is important to notice that this point of *“outperforming current measures�
 Now we reach the difficult part.  
 If you have never applied any machine learning yourself, this seems near-impossible to answer. The second best thing you can do (first best thing again is: **talk to someone experienced with machine learning!**), is to search for related work where machine learning was applied. This is tedious, and you might have to dig your way through mountains of jargon and unnecessarily complex and incomprehensible papers. Going through this pain, however, will hopefully give you a more **realistic** picture of what you can obtain with the type and amount of data you have. Otherwise, those incredibly shiny results that make the headlines can easily cause unrealistic expectations. As an orientation, have a look at the flowchart below:
 
-[image]
+![](/assets/1__QCfQGtoFsL6_S9Wk5v2vg-7761de7e.png)
 
 Quick check if you are onto something with you machine learning idea. Don’t forget, it’s a flowchart, not an expert. If you come across any question where your answer is neither Yes or No, but “I don’t know”, you unfortunately have to suffer a bit more and read another 5 related blog posts, tutorials, or papers (the latter if you like suffering). Or, maybe I repeat myself…, just talk to someone with more experience in machine learning. Hint: People that have experience with machine learning tend to drink coffee. If they don’t, they drink tea. Asking someone with machine learning experience to discuss an idea over a cup of coffee/tea will probably help to finish this flowchart. \[by Florian Huber, CC BY 4.0, see https://zenodo.org/record/4010272 for high-res pdf\]
 

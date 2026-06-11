@@ -1,4 +1,16 @@
+import { slugify } from './archive';
+import { sitePath } from './urls';
+
 // Author bios and profile pictures
+const authorPictureFiles = import.meta.glob('/public/authors/*.{jpg,jpeg,png,webp}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
+const knownAuthorPictures = new Set(
+  Object.keys(authorPictureFiles).map((path) => path.split('/').pop() || '')
+);
+
 // Pictures live in public/authors/<slug>.jpg — if missing, initials are shown
 // Format: slug is lowercase, spaces → hyphens, special chars removed
 
@@ -95,14 +107,16 @@ const authors: Record<string, AuthorInfo> = {
 
 // Get author info by display name
 export function getAuthorInfo(name: string): AuthorInfo | null {
-  const slug = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  const slug = slugify(name);
   return authors[slug] || null;
 }
 
 // Get author picture path
-export function getAuthorPic(name: string): string {
-  const slug = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-  return `/authors/${slug}.jpg`;
+export function getAuthorPic(name: string): string | null {
+  const slug = slugify(name);
+  const candidates = [`${slug}.webp`, `${slug}.jpg`, `${slug}.jpeg`, `${slug}.png`];
+  const match = candidates.find((file) => knownAuthorPictures.has(file));
+  return match ? sitePath(`/authors/${match}`) : null;
 }
 
 // Get author initials for fallback

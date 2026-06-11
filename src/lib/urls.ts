@@ -1,0 +1,11 @@
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+export function sitePath(path = '/'): string {
+  if (/^[a-z][a-z0-9+.-]*:/i.test(path) || path.startsWith('//')) return path;
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  return `${base}${normalized}` || normalized;
+}
+
+export function assetPath(filename: string): string {
+  return sitePath(`/assets/${filename}`);
+}

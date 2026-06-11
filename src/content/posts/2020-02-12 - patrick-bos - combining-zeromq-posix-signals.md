@@ -10,7 +10,7 @@ tags:
 
 ## Use ppoll to handle EINTR once and for all
 
-[image]
+![](/assets/0_9673x3EO1AadXhPS-8582ce0f.webp)
 
 What my first experience trying to send out signals was like. Can anybody hear me? Photo by Jason Rosewell on Unsplash
 
@@ -38,7 +38,7 @@ Everything was coming along nicely. With lots of valuable input from the team, I
 
 The first version had some, let’s say, [sub-optimal implementation choices](https://en.wikipedia.org/wiki/Spaghetti_code) (which I take full responsibility for). Also, in our final version, we wanted to make a few user-facing design changes. So we got together, made a better design and I started coding version two.
 
-[image]
+![](/assets/0_h49Fzwhw4IyLttce-96e6ecef.webp)
 
 The redesign team at CERN past summer. So young. So naive (speaking for myself at least).
 
@@ -54,7 +54,7 @@ In principle, you can do it by sending a terminate signal over the messenger, wh
 
 To get out of this swamp, there are several other possibilities, like making the messenger a singleton class like the `JobManager` or the ZeroMQ context (yeah, now the skeletons come popping out of the closet), but I just couldn't bear making yet another one of those.
 
-[image]
+![](/assets/0_wNTLScaDrD53gnLf-f331d8a7.webp)
 
 Honestly, my closet isn’t big enough to hold all the skeletons…
 
@@ -126,7 +126,7 @@ While this will certainly reduce the odds of going into a blocking call when `SI
 
 So this way of interleaving POSIX and ZeroMQ calls and checks will never be enough, there will always be a possibility that your blocking call will hang.
 
-[image]
+![](/assets/0_kpJXLkNFcTnvN0Om-fc5127c6.webp)
 
 Haaaaaaaaaang. Haaaaaaaaaaaaang.
 
@@ -182,7 +182,7 @@ After a two week hiatus, I came back, tried to implement `zmq_ppoll` by simply c
 
 Luckily, the `zmq_poll` implementation is really flexible, and already includes a `select` -based path next to the `poll` -based one. We modify that to take a `sigmask` and Bob's your uncle.
 
-[image]
+![](/assets/0_AnAinknYq39MUSLc-37df9805.png)
 
 I’m your uncle! https://itkonekt.com/2018/12/17/robert-c-martin-uncle-bob/
 
@@ -228,7 +228,7 @@ Lol, you thought that would be it, but no, it’s still not that simple (I’m t
 
 We leave the latter problems to be solved as an exercise for the reader.
 
-[image]
+![](/assets/0_Y4MItKsAbWEe8uMM-9a23482a.webp)
 
 The reader.
 
@@ -240,7 +240,7 @@ So stay tuned for the release of `zmq_ppoll`!
 
 If you have any questions or other thoughts, let me know in the comments or on [Twitter](https://twitter.com/egpbos) or [Reddit](https://www.reddit.com/r/cpp/comments/f2r1i6/combining_zeromq_posix_signals_use_ppoll_to/)! Having spent so much time on this stuff, I guess sunk cost fallacy demands of me that I spend even more time on it by discussing it with as many people as possible;) Also, I guess I’m kind of a mental masochist. Figuring out this stuff has been extremely frustrating, but also extremely satisfying. So throw your problems at me, I’m hungry for more!
 
-[image]
+![](/assets/0_rV5RjZZhWGP2x-2D-5a5d4e32.webp)
 
 My happy face (not mine, but close enough), thinking about solving even more complex messaging problems.
 

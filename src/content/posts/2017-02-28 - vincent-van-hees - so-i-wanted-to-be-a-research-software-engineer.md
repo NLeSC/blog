@@ -12,7 +12,7 @@ Rewind to 2008. I loved science. I loved technology. I wanted to combine the two
 
 Before I begin, some background about myself. I worked 8+ years as developer of software in the scientific disciplines of physical activity and sleep. A field that has made a radical shift to rely on wearable acceleration sensor data instead of traditional survey data. Some of my work includes: [automated signal calibration](http://jap.physiology.org/content/117/7/738.long), [removing the gravitational component from acceleration signals](http://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0061691), [estimating human energy expenditure](http://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0022922), and [estimating human sleep](http://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0142533).
 
-[image]
+![](/assets/1_vjpqYnxIjZTm9CFdKmoajA-027fa581.jpeg)
 
 The wrist worn accelerometer with which most of the data I worked with was collected. The accelerometer was selected because it comes with open source software (copyright: https://www.geneactiv.org GENEActiv TM)
 
@@ -26,7 +26,7 @@ The wrist worn accelerometer with which most of the data I worked with was colle
 6. **Technology myths.** In recent decades, hundreds of conference proceedings have been published by the technology research community with strong claims about the potential of machine learning for accelerometer data classification. Although, the enthusiasm of those publications is understandable form a computer science perspective, they did not live up to the requirements of the physical activity and sleep researchers: A large number of those optimistic statements were not accompanied by reproducible research, were limited to unrepresentative study populations, had a too low sample size, or had an unrealistically easy classification task. Not surprisingly technological research is not always taken serious by the scientists. A conclusion from this may be that a too positive pitch of your new scientific technology can decrease the trust of scientists in your work, especially if reality does not live up to the pitch. Therefore, a close collaboration between scientific technology developers and end-users seems essential.
 7. **Career path.** As a developer of scientific methods you tend to be sucked into a facilitating role because the goal of the work is to enhance the work of scientists. Their cooperation and approval of a method is needed for the success of the method. This makes it difficult to prove yourself as an independent scientist, because the more you focus on your own academic output the less time you have to listen to and help the scientist, which in turn is essential for your own output.
 8. **Computing resources.** During my PhD research I had unlimited access to a computing cluster. It felt to me as having access was normal, while during my time as a post-doc at a different university I had to organise this myself. Senior scientists are not always aware of the need for computing infrastructure at the start of a project and it is important to know your infrastructure requirements and communicate them on time.
-[image]
+![](/assets/1_gacey_PXHSpAqnEH9H4CAQ-90b2a278.jpeg)
 
 BodyMedia’s proprietary software made scientists dependent on their services for reproducible research
 
@@ -38,7 +38,7 @@ In 2015 I joined the [Netherlands eScience Center](http://www.esciencecenter.nl/
 - Scientific software is recognized as scientifc output.
 - The collaboration between research software engineers and scientists is at the core of each project.
 - The work has made me aware that there are many scientific software developers facing the exact same challenges as I did. For example, organised in national organisations like the [Dutch Techcentre for the Life Sciences](https://www.dtls.nl/) and the international [Research Software Engineer](https://www.software.ac.uk/research-software-engineers) community.
-[image]
+![](/assets/1_CIx_bdUv8DDerZ7FKMLeFg-c21be9b9.jpeg)
 
 Discussions between research software engineers (me in brown sweater on the right) and scientists about opportunities and challenges in improving data analytics in science ( ©Copyright: Hucopix, http://hucopix.com, 2017)
 

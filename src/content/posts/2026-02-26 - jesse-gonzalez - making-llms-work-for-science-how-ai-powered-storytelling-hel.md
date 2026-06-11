@@ -15,15 +15,20 @@ tags:
   - Git
 ---
 
-![Making LLMs Work for Science: How AI-Powered Storytelling Helps Researchers Communicate Their Software](/assets/making-llms-work-for-science-how-ai-powe-ddd498d7.png)
-Welcome page on the storytelling application.*Authors: *[*Jesse González*](https://www.esciencecenter.nl/team/jesse-gonzalez/)*, *[*Pablo Rodríguez*](https://www.esciencecenter.nl/team/pablo-rodriguez-sanchez/)*, *[*Kody Moodley*](https://www.esciencecenter.nl/team/kody-moodley/)*
+Large language models get a lot of attention in research for what they might replace. We wanted to explore what they can enable: better, faster scientific communication that actually reaches the right audiences.
+
+![](/assets/1_d1EFyNcb4difLC1_5QkMvg-a2755dce.png)
+
+Welcome page on the storytelling application.
+
+*Authors:* [*Jesse González*](https://www.esciencecenter.nl/team/jesse-gonzalez/)*,* [*Pablo Rodríguez*](https://www.esciencecenter.nl/team/pablo-rodriguez-sanchez/)*,* [*Kody Moodley*](https://www.esciencecenter.nl/team/kody-moodley/)*  
 Application:* [https://nlesc.github.io/data-storytelling](https://nlesc.github.io/data-storytelling/)
 
 There’s an ongoing conversation in the research community about large language models. Most of it focuses on risks: hallucinations, bias, the worry that generated text might replace genuine scholarly work. Those concerns are valid and worth taking seriously.
 
 But there’s another side to this conversation that doesn’t get enough attention. LLMs can be genuinely useful tools when they’re pointed at the right problems, with the right constraints and the right human oversight. Scientific communication is one of those problems.
 
-At the [Netherlands eScience Center](https://www.esciencecenter.nl/), we build research software across four scientific domains: Environment &amp; Sustainability**, **Life Sciences**, **Natural Sciences** &amp; **Engineering** and** Social Sciences &amp; Humanities**. This means hundreds of projects, each of them representing months or years of collaborative work with research teams across the country and internationally, all catalogued in the [Research Software Directory](https://research-software-directory.org/). The software is solid, sometimes groundbreaking. But communicating that work to different audiences (the public, academic peers, funders, workshop participants) takes time that most research teams simply don’t have. There’s a persistent gap between the research software we produce and the stories we tell about it.
+At the [Netherlands eScience Center](https://www.esciencecenter.nl/), we build research software across four scientific domains: **Environment & Sustainability**, **Life Sciences**, **Natural Sciences** & **Engineering** and **Social Sciences & Humanities**. This means hundreds of projects, each of them representing months or years of collaborative work with research teams across the country and internationally, all catalogued in the [Research Software Directory](https://research-software-directory.org/). The software is solid, sometimes groundbreaking. But communicating that work to different audiences (the public, academic peers, funders, workshop participants) takes time that most research teams simply don’t have. There’s a persistent gap between the research software we produce and the stories we tell about it.
 
 We built a tool to close that gap. And in doing so, we learned some things about what it actually looks like when LLMs serve science instead of the other way around.
 
@@ -33,9 +38,13 @@ The first thing you see when you open the [Data Storytelling app](https://github
 
 The idea was simple: before you read a single word about a piece of software, you should already have a sense of the research domain it belongs to. Visuals create that context faster than text ever could.
 
-Floating projects retrieved via the Research Software DirectoryThe entire application is one long scroll. As you move down, you pass through the domains, each with its own custom 3D scene built in *Three.js*. Each 3D scene is peppered with floating cards. Actual projects from the Research Software Directory, fetched live from the API. You hover over one, it glows and scales up. You click it and boom, a modal with the full project details. Description, DOI, metadata, links.
+![](/assets/1_jHWTVqw8VvdPdCDGuCnAZA-1ec471a4.gif)
 
-And tucked inside that modal? A tab labelled “**Generate Story.**” That’s where the real magic happens.
+Floating projects retrieved via the Research Software Directory
+
+The entire application is one long scroll. As you move down, you pass through the domains, each with its own custom 3D scene built in *Three.js*. Each 3D scene is peppered with floating cards. Actual projects from the Research Software Directory, fetched live from the API. You hover over one, it glows and scales up. You click it and boom, a modal with the full project details. Description, DOI, metadata, links.
+
+And tucked inside that modal? A tab labelled “ **Generate Story.**” That’s where the real magic happens.
 
 ## The communication bottleneck in research software
 
@@ -47,9 +56,7 @@ The version for the general public needs to be warm, accessible, maybe open with
 
 Same project. Four different pieces of writing. And you need to do this for a hundred projects.
 
-> 
-
-This is where good research software becomes invisible. Not because the work isn’t worth communicating, but because the communication itself is a bottleneck.
+> This is where good research software becomes invisible. Not because the work isn’t worth communicating, but because the communication itself is a bottleneck.
 
 The software ships, the README gets written, maybe a tweet goes out, and that’s it. Months of collaborative work, reduced to a paragraph.
 
@@ -59,7 +66,11 @@ This is also precisely the kind of problem where LLMs can be a real asset to res
 
 The generator pulls related software from the same research domain via the RSD API, without any extra effort from the user. So if you’re generating a story about a climate modelling tool, **it already knows about the other environmental software in the ecosystem and can reference them**.
 
-Project &amp; Software InformationYou can also upload documents. PDFs, text files, markdown. Research proposals work great for this. The app extracts the text (up to 10,000 characters worth), folds it into the prompt, and the output goes from generic to grounded in specifics.
+![](/assets/1_w9zVYbuhgtBu_JsNujBL3g-231cdb75.png)
+
+Project & Software Information
+
+You can also upload documents. PDFs, text files, markdown. Research proposals work great for this. The app extracts the text (up to 10,000 characters worth), folds it into the prompt, and the output goes from generic to grounded in specifics.
 
 For custom projects (things not in the RSD) there’s an “Own Project” button in the top navigation. Pop in a title, description, some reference URLs, upload whatever context you’ve got, pick your audience, and off you go. Same six templates, same quality, no RSD dependency.
 
@@ -67,9 +78,15 @@ For custom projects (things not in the RSD) there’s an “Own Project” butto
 
 The story generator ships with six prompt templates. I want to be specific about what these are, because “prompt template” sounds trivial and these are anything but.
 
-Generating the story given the selected audience.Each one is 500-plus words of careful instructions, closer to a creative brief than a prompt. They specify structure, tone, section order, word count targets, what to emphasise, what to skip. Here’s what each does:
+![](/assets/1_CE8C0Vl-iE0Xjfy3E71HVw-084e4c64.gif)
 
-**Academic** (1,500 to 2,000 words). Formal. Structured. Abstract up front, methodology section, validation results, related work comparison, citation placeholders in `[Author, Year]` format.
+Generating the story given the selected audience.
+
+Each one is 500-plus words of careful instructions, closer to a creative brief than a prompt. They specify structure, tone, section order, word count targets, what to emphasise, what to skip. Here’s what each does:
+
+**Communications** (roughly 800 to 1,200 words). Tells the model to write like a science journalist.
+
+**Academic** (1,500 to 2,000 words). Formal. Structured. Abstract up front, methodology section, validation results, related work comparison, citation placeholders in \`\[Author, Year\]\` format.
 
 **Internal Review** (1,000 to 1,500 words). This is the honest one. The prompt tells the model to be “candid about challenges and risks” and to include resource analysis with FTE estimates.
 
@@ -85,9 +102,7 @@ The difference between a good and a mediocre generated story almost never comes 
 
 Building and using this tool surfaced a few insights about how LLMs can genuinely serve researchers, rather than just generate noise.
 
-> 
-
-Nobody needs another text generator.
+> Nobody needs another text generator.
 
 Researchers need a tool that adapts to the audience and understands the difference between writing for a review committee and writing for the general public. The real value is in the gap between generate some text about this software and generate an internal review with risk assessment and FTE estimates in the right tone, because once you add that kind of specificity to prompts, LLMs stop being gimmicks and start being useful.
 
@@ -99,15 +114,13 @@ And honestly, context matters more than model sophistication. Running the same p
 
 Let me be clear about what this tool does and doesn’t do.
 
-It doesn’t replace the science communicator who knows that a particular project has a funny origin story, or that the lead developer gave a brilliant conference talk last month, or that “digital bridges*” works better for this audience than* “computational pipelines.”* Those things require human judgment, institutional memory, and taste. No model provides that.
+It doesn’t replace the science communicator who knows that a particular project has a funny origin story, or that the lead developer gave a brilliant conference talk last month, or that “ *digital bridges* ” works better for this audience than *“computational pipelines.”* Those things require human judgment, institutional memory, and taste. No model provides that.
 
 That’s the pattern we think works for LLMs in science more broadly. Not autonomous generation. Not replacing experts. Instead: structured tools that handle well-defined tasks with rich context and human oversight. Tools that make researchers more effective at the parts of their job that aren’t their core expertise but still matter, like communicating their work to the people who need to hear about it.
 
 The conversation about LLMs in research is often framed as a threat. We think it’s more productive to ask: **where can these tools genuinely help, and what does it take to use them responsibly?** For me, scientific communication turned out to be a great answer.
 
-> 
-
-A hundred projects, six audience types, one tool. The stories were always there. We just needed a better way to start telling them.
+> A hundred projects, six audience types, one tool. The stories were always there. We just needed a better way to start telling them.
 
 ## Under the bonnet tech stack (for the curious ones)
 
@@ -115,7 +128,7 @@ A few technical choices that I think are interesting, even if they’re invisibl
 
 **No backend.** The Gemini API gets called straight from the browser. No server, no proxy, no infrastructure to babysit. You deploy it as a static site and walk away. The tradeoff? Users bring their own API key, stored in localStorage, never sent anywhere except to Google. For a research-oriented audience that already juggles API keys for half a dozen services, this felt like a reasonable ask.
 
-**Svelte 5 runes everywhere**. The whole app runs on Svelte 5’s new reactivity system: *`$state`, `$derived`, `$effect`*. When AI-generated text streams in, only the story display component re-renders. Not the 3D scene. Not the navigation. Not the settings panel. For something that’s running WebGL animations, parsing SSE streams, and managing modal state all at once, that granularity needs to be optional.
+**Svelte 5 runes everywhere**. The whole app runs on Svelte 5’s new reactivity system: *\`$state\`, \`$derived\`, \`$effect\`*. When AI-generated text streams in, only the story display component re-renders. Not the 3D scene. Not the navigation. Not the settings panel. For something that’s running WebGL animations, parsing SSE streams, and managing modal state all at once, that granularity needs to be optional.
 
 **Scroll velocity drives the 3D**. This is the detail I’m most proud of. The scroll store doesn’t just track how far down the page you are. It measures how **fast** you’re scrolling and in which direction. That velocity feeds into the *Three.js* scenes. Scroll fast and the camera pulls back, particles scatter wider, everything feels like it’s accelerating with you. Scroll slow and things settle into a gentle rotation. It’s the kind of thing you won’t notice unless you’re looking for it, which is the point. The best interactions are the ones you feel rather than see.
 
@@ -123,4 +136,4 @@ A few technical choices that I think are interesting, even if they’re invisibl
 
 — -
 
-* The Data Storytelling application is open source at [https://github.com/NLeSC/data-storytelling](https://github.com/NLeSC/data-storytelling). Built at the Netherlands eScience Center, and the Google Gemini API. We’d love to hear how other research organisations approach this challenge. Contributions and conversations welcome.
+- The Data Storytelling application is open source at [https://github.com/NLeSC/data-storytelling](https://github.com/NLeSC/data-storytelling). Built at the Netherlands eScience Center, and the Google Gemini API. We’d love to hear how other research organisations approach this challenge. Contributions and conversations welcome.

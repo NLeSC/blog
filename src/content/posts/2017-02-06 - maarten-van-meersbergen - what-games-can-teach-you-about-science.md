@@ -12,7 +12,7 @@ If you know me at all, you have probably heard me talk about computer games at l
 
 Many of the younger generation of readers might not realize this, but when I grew up in the late 20th century, games were considered a complete waste of time by anyone and everyone. Even if the entire reason for your complete English vocabulary (I am not a native speaker) was gained from playing games like King’s Quest and Space Quest, and your analytical thinking was stimulated as well. Anyway, enough ranting about my childhood issues, let’s get to the point.
 
-[image]
+![](/assets/1_vJnXbj2xAmkwMKfjraOPDw-d5bd3260.png)
 
 King’s quest, by Sierra Online. Where I had to learn English to survive.
 
@@ -22,7 +22,7 @@ In 2017, the video games market has changed from having an overabundance of ‘c
 
 The first of the hugely successful Indie titles is, by now, a legend. Minecraft took the world by storm in 2010. This game singlehandedly showed the large production companies that they had been wrong all along, instead of having set goals, a lot of people wanted to express their creativity in games. They wanted a digital sandbox. Sales of this game with procedurally generated content and the ugliest graphics of any game in 10 years went through the roof. Minecraft is now the second most sold game in history, after Tetris. And, as a further measure of success, the Intellectual Property was bought by Microsoft for 2.5 Billion Dollars in 2014.
 
-[image]
+![](/assets/1_r-luqA5NbzVzH5ziw3W2AQ-a0ac21f9.jpeg)
 
 Creativity and architecture in the sandbox of Minecraft, by Mojang.
 
@@ -34,7 +34,7 @@ In 2014 I found this little game called Kerbal Space Program, a side project of 
 
 I’ve always been interested in space, science fiction was my first real love in literature, and science is obviously my thing. It was *perfect*.
 
-[image]
+![](/assets/1_IQRFPF0oYsVQOymkwHysQQ-55282d32.jpeg)
 
 “Just a simple Hohmann Transfer to Tylo”, a Screenshot from Kerbal Space Program, by Squad
 
@@ -50,7 +50,7 @@ Even though this game was perfect at the start, I had no idea it would get so mu
 
 While the underlying physics of Kerbal Space Program’s aerodynamics had seemed decent up until now, the addition of the mods called “Ferram Aerospace Research” and “Deadly Reentry” taught me I was wrong there too. Gone was everything I had learned about rocket flight trajectories and the ins and outs of Single Stage To Orbit space-plane construction (a plane that can boost itself into space from a horizontal launch, without dropping any components in the process). These mods introduced a working model of aerodynamics that made the original hide in a corner in shame.
 
-[image]
+![](/assets/1_SIXzLhRMuafEKrYrQMvaGw-75d36b16.png)
 
 Designing spaceplanes with Ferram Aerospace Research, a Screenshot from Kerbal Space Program, by Squad
 
@@ -64,7 +64,7 @@ And then there was “Realism Overhaul”, oh my. A collection of mods dedicated
 
 Realism overhaul and the things Kerbal can teach you do not stop here, but in the interest of keeping things short, I will break off this tangent and allow you to experience these wonders on your own. And, if you will not take my word for it, please heed the words of the immortal Randall Munroe:
 
-[image]
+![](/assets/1_z3unaHOG6jxnZ4icWb9yqA-18b8bb40.png)
 
 [https://imgs.xkcd.com/comics/orbital\_mechanics\_2x.png](https://imgs.xkcd.com/comics/orbital_mechanics_2x.png)
 

@@ -10,7 +10,7 @@ tags:
 
 ## A list of resources to kick-start your workshop
 
-[image]
+![](/assets/1_p95hvrDkUook7FWGAp57cA-03f1cda9.png)
 
 I wanted to organize a workshop on image processing for PhDs in the medical domain. I usually use [Software Carpentry lessons](https://software-carpentry.org/lessons/) in my workshops, but there are no lessons on image processing. Before starting to re-invent the wheel, I thought I should ask the Software Carpentry community if anybody had given a workshop like that recently.
 

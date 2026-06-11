@@ -14,7 +14,7 @@ tags:
 
 SPARQL! In the world of linked data, [SPARQL queries](https://www.w3.org/TR/rdf-sparql-query/) are used extensively as the query language to extract data from a [triple store](https://ontotext.com/knowledgehub/fundamentals/what-is-rdf-triplestore/) (a special type of database for storing linked data): they are our main tool to interact with linked data.
 
-[image]
+![](/assets/1_AAfUPXTqK7n7GFxLRUm8IA-22c7fd43.jpeg)
 
 A SPARQL query
 
@@ -22,7 +22,7 @@ But writing SPARQL queries is not the most trivial of tasks. Most researchers wh
 
 Enter [***grlc***](https://github.com/CLARIAH/grlc) — grlc (pronounced ‘garlic’) is a tool which *“automatically builds Web APIs using SPARQL queries stored in git repositories”*. What this means in practice is that you can store your [SPARQL queries on GitHub](https://github.com/albertmeronyo/lodapi/) and then you can run your queries on your favourite programming language (Python, Javascript, etc.) using a Web API (including [swagger](https://swagger.io/) documentation) just as easily as loading data from a web page.
 
-[image]
+![](/assets/1_a3nAq2OlHti-wvFN3TGLVw-cbf7c688.jpeg)
 
 Grlc — from GitHub to data
 
@@ -32,7 +32,7 @@ Grlc — from GitHub to data
 
 Within the [Netherlands eScience Center](https://www.esciencecenter.nl/), we are promoting the use of *grlc* in our projects which have a linked data component. So far, it has been used within the [*CandyGene*](https://www.esciencecenter.nl/project/prediction-of-candidate-genes-for-traits-using-interoperable-genome-annotat) and [*DataQuality*](https://www.esciencecenter.nl/project/data-quality-in-a-distributed-learning-environment) projects. In both cases, the Web API is used to load data on a [Jupyter](http://jupyter.org/) notebook to visualize the results of the queries. This enables researchers to interact with data in triple stores without having to type a single line of SPARQL.
 
-[image]
+![](/assets/1_ZgE1l17dt7laWb5bca6K-g-bba2c7c4.jpeg)
 
 Loading data via grlc into Jupyter notebooks — these plots were created from data loaded via a grlc Web API.
 

@@ -10,13 +10,13 @@ tags:
 
 ## a bi-directional Literate Programming tool
 
-[image]
+![](/assets/1_tzRmbKxAvetqVm7znEY8Sw-a155b882.jpeg)
 
 © Alessandra Sequeira, Entanglement ( http://sinapsisequeira.blogspot.com/ )
 
 I present *enTangleD* ([github.io pages](https://entangled.github.io/)), a tool for pain free literate programming.
 
-[image]
+![](/assets/1_8eN_G62FYBlXK3FUDIheAA-045cab11.jpeg)
 
 Donald Knuth
 
@@ -32,7 +32,7 @@ Literate programming goes much further than that. A literate program is a progra
 
 An example of how a woven literate program looks can be found in my numerical code to compute cosmological structure formation [“Computing the adhesion model using C++ and CGAL”](https://jhidding.github.io/adhesion-code/) ([DOI:10.5281/zenodo.1477535](https://doi.org/10.5281/zenodo.1477536)).
 
-[image]
+![](/assets/1_pctd-x7jhr6iOnt-QmCIeg-6a025195.png)
 
 Screenshot of woven literate code.
 
@@ -48,7 +48,7 @@ There is a practical issue with this form of literate programming. We’re havin
 
 ## Literate programming in Markdown
 
-[image]
+![](/assets/1_Vcp-iI0RG5iIsgZxrSK4AA-3fd6c180.jpeg)
 
 © Alessandra Sequeira, Inner Foliage ( http://sinapsisequeira.blogspot.com/ )
 
@@ -96,7 +96,7 @@ The system of references allows us to decompose a program into literary parts, p
 
 ## enTangleD
 
-[image]
+![](/assets/1_s724R83u1MtKlug5I9wL0w-ac82b154.jpeg)
 
 © Alessandra Sequeira, Inner Shadow ( http://sinapsisequeira.blogspot.com/ )
 

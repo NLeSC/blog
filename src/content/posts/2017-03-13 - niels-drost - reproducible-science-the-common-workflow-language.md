@@ -8,7 +8,7 @@ tags:
   - uncategorized
 ---
 
-[image]
+![](/assets/1_96JM9gX9m59kS6_fLFcSxg-241fed94.png)
 
 Screenshot of the eWaterCycle forecast workflow, as produced by Cylc
 
@@ -46,7 +46,7 @@ Of course, a format itself does not help if it is then not also supported by wor
 
 ### eScience Center Workflow Roadmap
 
-[image]
+![](/assets/1_pM42ttzN8djK227GKWtc4g-1fed2da5.png)
 
 Netherlands eScience Center Workflow Roadmap, with a CWL based workflow with support for containers in the middle.
 

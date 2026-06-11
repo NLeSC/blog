@@ -10,7 +10,7 @@ tags:
 
 Anyone involved in software development has probably heard someone say “testable code is better code”. While I was a bit skeptical at first, I now have to admit that I agree. One of the reasons it may have taken me a bit longer to get convinced is that I mostly write GPU code, in languages such as CUDA and OpenCL.
 
-[image]
+![](/assets/1_OtfM8fdvOaIT3OlaUfZBjw-2f2797dc.jpeg)
 
 First of all, you don’t see a lot of GPU code that is thoroughly tested. And while, there are many articles and blogs on how to write good unit tests or how to apply unit testing effectively, none of them focus specifically on testing GPU code. Today, I write unit tests for every bit of GPU code that I write. And since there aren’t that many resources on testing GPU code, I’ll explain how I managed to make testing part of my GPU coding practice.
 
@@ -47,7 +47,7 @@ Testing in general involves three steps:
 2\. Execute the system under test  
 3\. Check the behavior of the system under test
 
-[image]
+![](/assets/1_fosmxReXyy9S3J3J9fdPPA-fbb981ff.jpeg)
 
 This may sound very simple, but when we’re talking about GPU code and executing it, things tend to get messy rather quickly. You can see this when we specify everything that needs to happen when our system under test consists of GPU code:
 
@@ -75,7 +75,7 @@ Finally, in the example above we use `numpy.allclose` to compare the GPU output 
 
 To summarize, we take another look at our list of steps required to test GPU code, using [Kernel Tuner](http://github.com/benvanwerkhoven/kernel_tuner) as a framework for testing GPU code, the list becomes:
 
-[image]
+![](/assets/1_fW4l25XYSf0AjYg27X3HbA-fb2622ee.png)
 
 ### Testing device functions
 
@@ -85,7 +85,7 @@ Now that we have an easy way to test GPU kernels from Python, you may be wonderi
 
 The hardest part of testing GPU code is designing a good test case. Actually, designing the testcase is all about choosing what data you put into the code. It’s very easy to just generate some random data, but for many codes using only random data is far too unrealistic. You have to keep in mind what assumptions are in the code about valid ranges for input data.
 
-[image]
+![](/assets/1_n2fyfhTfBwGjbZJa43iptw-5979f48b.jpeg)
 
 I ran into a problem like this myself once, when a kernel executed correctly only when one of its inputs was sorted. Testing only with randomly generated data did not reveal a race condition that I had introduced in the code. The bug only surfaced when I started testing with more realistic data.
 

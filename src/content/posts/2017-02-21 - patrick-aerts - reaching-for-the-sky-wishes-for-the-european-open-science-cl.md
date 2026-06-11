@@ -8,7 +8,7 @@ tags:
   - uncategorized
 ---
 
-[image]
+![](/assets/1_1SX9Hrianxyy7q60kuWd5A-1530a87a.jpeg)
 
 ‘The cloud’ is one of the hottest tech topics of our time. It’s therefore no surprise that European Commission has also jumped on the bandwagon. Big time! Last year, the European Commission launched the outline of a multi-year and multi-billion Euro plan for the development and implementation of a [European Open Science Cloud](http://europa.eu/rapid/press-release_IP-16-1408_en.htm).
 

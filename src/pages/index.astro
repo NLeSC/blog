@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, postUrl } from '../lib/archive';
+import { assetPath, sitePath } from '../lib/urls';
 
 const allPosts = await getCollection('posts', ({ data }) => data.published !== false);
 allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
@@ -11,12 +12,12 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
 
 <BaseLayout>
   <!-- Publication header banner -->
-  <div class="max-w-[960px] mx-auto px-4 pt-8 pb-6">
-    <img src="/header-banner.webp" alt="eScience Center Blog" class="w-full h-auto" />
+  <div class="max-w-[960px] mx-auto px-4 pt-8 pb-6 animate-enter">
+    <img src={sitePath("/header-banner.webp")} alt="eScience Center Blog" class="w-full h-auto" />
   </div>
 
   <!-- Publication profile -->
-  <div class="max-w-[960px] mx-auto px-4 pb-10">
+  <div class="max-w-[960px] mx-auto px-4 pb-10 animate-enter" style="--enter-delay: 70ms">
     <div class="flex items-start gap-4">
       <div class="w-[64px] h-[64px] rounded-lg flex items-center justify-center flex-shrink-0" style="background: #FFC017;">
         <span class="text-[28px] font-bold text-white" style="font-family: Georgia, serif;">e</span>
@@ -31,9 +32,9 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
             <span class="font-medium text-[#242424]">{allPosts.length}</span> articles
           </span>
           <span class="text-[#6b6b6b]">·</span>
-          <a href="/rss.xml" class="text-[13px] text-[#6b6b6b] hover:text-[#f26522] transition-colors">RSS</a>
+          <a href={sitePath("/rss.xml")} class="text-[13px] text-[#6b6b6b] hover:text-[#f26522] transition-colors">RSS</a>
           <span class="text-[#6b6b6b]">·</span>
-          <a href="/search" class="text-[13px] text-[#6b6b6b] hover:text-[#242424] transition-colors">Search</a>
+          <a href={sitePath("/search")} class="text-[13px] text-[#6b6b6b] hover:text-[#242424] transition-colors">Search</a>
         </div>
       </div>
     </div>
@@ -41,7 +42,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
 
   <div class="max-w-[960px] mx-auto px-4 pb-12">
     <!-- Topic discovery — turns Medium tags into archive navigation -->
-    <section class="mb-10 rounded-3xl border border-[#e6e6e6] dark:border-[#333] bg-[#fafafa] dark:bg-[#151515] p-5 md:p-6">
+    <section class="mb-10 rounded-3xl animate-enter border border-[#e6e6e6] dark:border-[#333] bg-[#fafafa] dark:bg-[#151515] p-5 md:p-6">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-5">
         <div>
           <p class="text-[12px] uppercase tracking-[0.16em] text-[#6b6b6b] dark:text-[#999] mb-2">Knowledge map</p>
@@ -49,11 +50,11 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
             Browse the archive by topic
           </h2>
         </div>
-        <a href="/topics" class="text-[14px] text-[#1A8917] hover:underline font-medium">All topics →</a>
+        <a href={sitePath("/topics")} class="text-[14px] text-[#1A8917] hover:underline font-medium">All topics →</a>
       </div>
       <div class="flex flex-wrap gap-2">
         {topics.map((topic) => (
-          <a href={`/topics/${topic.slug}`} class="inline-flex items-center gap-2 rounded-full bg-white dark:bg-[#222] border border-[#e6e6e6] dark:border-[#333] px-3 py-1.5 text-[13px] text-[#4a4a4a] dark:text-[#bbb] hover:border-[#003388] hover:text-[#003388] dark:hover:text-white transition-colors">
+          <a href={sitePath(`/topics/${topic.slug}`)} class="inline-flex items-center gap-2 rounded-full bg-white dark:bg-[#222] border border-[#e6e6e6] dark:border-[#333] px-3 py-1.5 text-[13px] text-[#4a4a4a] dark:text-[#bbb] hover:border-[#003388] hover:text-[#003388] dark:hover:text-white transition-colors">
             <span>{topic.name}</span>
             <span class="text-[#999] dark:text-[#777]">{topic.count}</span>
           </a>
@@ -67,10 +68,10 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
       const featuredSlug = featured.id.replace(/\.md$/, '');
       const featuredCover = getCoverImage(featured.body || '');
       return (
-        <a href={`/posts/${featuredSlug}`} class="group flex flex-col md:flex-row gap-4 md:gap-10 mb-10 md:mb-16 items-stretch md:items-start">
+        <a href={sitePath(`/posts/${featuredSlug}`)} class="group flex flex-col md:flex-row gap-4 md:gap-10 mb-10 md:mb-16 items-stretch md:items-start animate-enter" style="--enter-delay: 150ms">
           <div class="w-full md:w-1/2 flex-shrink-0">
             {featuredCover ? (
-              <img src={`/assets/${featuredCover}`} alt="" class="w-full aspect-[16/10] md:aspect-[4/3] object-cover" loading="eager" />
+              <img src={assetPath(featuredCover)} alt="" class="w-full aspect-[16/10] md:aspect-[4/3] object-cover fade-in-image" loading="eager" />
             ) : (
               <div class="w-full aspect-[16/10] md:aspect-[4/3] flex items-center justify-center bg-[#f2f2f2] dark:bg-[#333]">
                 <span class="text-gray-300 text-lg">eScience Center</span>
@@ -96,13 +97,13 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
 
     {/* 3-article grid — Medium-style row */}
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-12">
-      {posts.slice(1, 4).map((post) => {
+      {posts.slice(1, 4).map((post, index) => {
         const slug = post.id.replace(/\.md$/, '');
         const cover = getCoverImage(post.body || '');
         return (
-          <a href={`/posts/${slug}`} class="group block">
+          <a href={sitePath(`/posts/${slug}`)} class="group block animate-enter" style={`--enter-delay: ${210 + index * 55}ms`}>
             {cover ? (
-              <img src={`/assets/${cover}`} alt="" class="w-full aspect-[16/10] object-cover mb-3" loading="lazy" />
+              <img src={assetPath(cover)} alt="" class="w-full aspect-[16/10] object-cover mb-3 fade-in-image" loading="lazy" />
             ) : (
               <div class="w-full aspect-[16/10] mb-3 bg-[#f2f2f2] flex items-center justify-center">
                 <span class="text-gray-300 text-sm">eScience Center</span>
@@ -128,11 +129,11 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
 
     {/* Remaining posts — feed list */}
     <div class="divide-y divide-[#f2f2f2]">
-      {posts.slice(4).map((post) => {
+      {posts.slice(4).map((post, index) => {
         const slug = post.id.replace(/\.md$/, '');
         const cover = getCoverImage(post.body || '');
         return (
-          <a href={`/posts/${slug}`} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#1a1a1a] -mx-4 px-4 transition-colors">
+          <a href={sitePath(`/posts/${slug}`)} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#1a1a1a] -mx-4 px-4 transition-colors animate-enter" style={`--enter-delay: ${Math.min(360 + index * 28, 720)}ms`}>
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] mb-1.5">
                 <span class="font-medium text-[#242424] dark:text-white">{post.data.author}</span>
@@ -147,7 +148,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
               </p>
             </div>
             {cover ? (
-              <img src={`/assets/${cover}`} alt="" class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] object-cover flex-shrink-0 order-2" loading="lazy" />
+              <img src={assetPath(cover)} alt="" class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] object-cover flex-shrink-0 order-2 fade-in-image" loading="lazy" />
             ) : (
               <div class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] flex-shrink-0 bg-[#f2f2f2] dark:bg-[#333] flex items-center justify-center order-2">
                 <span class="text-gray-300 text-xs">eScience</span>
@@ -160,9 +161,9 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
 
     <div class="mt-10 text-center text-[13px] text-[#6b6b6b] dark:text-[#999]">
       {allPosts.length} articles ·{' '}
-      <a href="/rss.xml" class="hover:text-[#f26522] transition-colors">RSS</a>
+      <a href={sitePath("/rss.xml")} class="hover:text-[#f26522] transition-colors">RSS</a>
       {' · '}
-      <a href="/search" class="hover:text-[#242424] dark:hover:text-white underline">Search all posts</a>
+      <a href={sitePath("/search")} class="hover:text-[#242424] dark:hover:text-white underline">Search all posts</a>
     </div>
   </div>
 </BaseLayout>

@@ -8,7 +8,7 @@ tags:
   - uncategorized
 ---
 
-[image]
+![](/assets/1_bhrYc7NjpacyJ64gwFACSQ-aa6a14d8.png)
 
 This year I was lucky enough to be able to travel to the city of Vancouver to attend the SIGGRAPH 2018 conference, the annual conference on computer graphics convened by the ACM SIGGRAPH organization. What I learned there was most of all that I want to go every year! What a great source of knowledge and inspiration!
 
@@ -26,7 +26,7 @@ I hope this will give you some insight into the SIGGRAPH conference and what it 
 
 Many courses were offered at the conference, with a wide range of topics related to computer graphics, machine learning, animation and more. The full list can be found [here](https://s2018.siggraph.org/conference/conference-overview/courses/). I’ve attended two of these; *Introduction to the Vulkan Graphics API* and [*Introduction to DirectX Raytracing*](http://intro-to-dxr.cwyman.org/). The website of the second is quite comprehensive so in the interest of not making this blog *too* extensive, I’ll leave that to you to explore if you want.
 
-[image]
+![](/assets/1_g8BdoXVRbTApuzEOjUYKRQ-edf396b8.png)
 
 ### Introduction to the Vulkan Graphics API
 
@@ -62,7 +62,7 @@ Here’s a selection of the fast-forwards to the talks I attended, please let me
 - [**Water surface wavelets**](https://www.youtube.com/embed/CV_14aUBxsI?start=3459&end=3490&autoplay=1)
 - [**TempoGAN**](https://www.youtube.com/embed/CV_14aUBxsI?start=3490&end=3525&autoplay=1) **(Deep learning smoke)**
 
-[image]
+![](/assets/1_1hJampYm5dmZzf0_O8hRRQ-eb31375d.png)
 
 some of the posters at the siggraph 2018 conference
 
@@ -83,7 +83,7 @@ Not only because physics simulations and animation are rapidly approaching reali
 
 ## Birds of a Feather sessions
 
-[image]
+![](/assets/1_r5jZBdvOEhy10nH2Pqyg2Q-2bdc044a.png)
 
 These sessions focus on bringing communities together and stimulate the sharing of knowledge. This is (mostly) done by showing applications that make use of certain libraries, as well as presenting the updates to said libraries and planned future work and attempting to involve the audience in discussions on the future direction of the library or field.
 
@@ -104,7 +104,7 @@ Talks on medical domain applications of 3D. Here’s some links to excellent exa
 
 The consortium for open standards in 3d graphics and much more, the Khronos Group organized its own sessions which were filled with discussions and presentations on the current state of OpenGL and Vulkan, WebGL (2.0) and more. I managed to catch a few of these, most notably:
 
-[image]
+![](/assets/1_sk5bXLmgG-2jhtLBDgkHzQ-a4e828ba.png)
 
 - [**WebGL: Latest techniques**](https://www.youtube.com/embed/FCAM-3aAzXg?start=7335&end=7553&autoplay=1)
 - [**Uber**](https://www.youtube.com/embed/FCAM-3aAzXg?start=8677&end=9009&autoplay=1) **’s** [**Vis.gl**](http://vis.gl/) [**Deck.gl**](http://deck.gl/) [**Kepler.gl**](http://kepler.gl/) [**Nebula.gl**](https://neb.gl/)
@@ -121,7 +121,7 @@ These are not really my core business so I couldn’t attend a lot of these, but
 
 ## Talks
 
-[image]
+![](/assets/1_p77ONGFKyvZKJjbVGRWGlQ-b4e7c46e.png)
 
 Not necessarily scientific talks, these elaborate on the full range of computer graphics and interactive techniques, including case studies, academic research, technical developments, improved pipeline tools, education and curriculum, professional development, or social commentary.
 
@@ -142,7 +142,7 @@ An inspiring presentation by the executive creative director of Industrial Light
 
 It was amazing to be present at this monumental moment for 3D graphics. Real-time ray tracing was always “the future” and even though a lot of deep learning trickery is still needed for denoising the images, being able to have a working implementation of this already is an astounding achievement. The links below bring you directly to the most inspiring and interesting moments in the presentation on YouTube:
 
-[image]
+![](/assets/1_XWFlmYkdpAQ-hLKcMXZ3TQ-0ed1d48f.png)
 
 ## And then there was… computer animation festival
 

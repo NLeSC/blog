@@ -10,7 +10,7 @@ tags:
 
 ***A crash course in machine learning; only high-school level of math is required before reading.***
 
-[image]
+![](/assets/0_gkZdPqJd5cZmoPeP-42c6d9ad.webp)
 
 Photo by Element5 Digital on Unsplash
 
@@ -22,43 +22,43 @@ So far so good. For simplicity, it is convenient to imagine that you can represe
 
 In the following plots, assume that your good points are the check-marks and your bad points are the crosses.
 
-[image]
+![](/assets/1_2UduKkf8td0c97TDb011BQ-24c9dbf3.png)
 
 The problem of classification then becomes one of drawing a line (or curve) in the graph such that all good points are on one side of the curve and all bad points are on the other side. How difficult can it be? Here.
 
-[image]
+![](/assets/1_iTOMTOe1ePrbBsR1s5I3xg-bce9b1d7.png)
 
 Congratulations! You have reached machine learning, level 0.0.
 
 Let’s go to level 0.1. You want to try your fresh ML model in practice on new points. How well will it predict on new points? Suddenly, the new points are on the wrong side of the line!
 
-[image]
+![](/assets/1_lpiKpseZ0J6Y3Z2ghBq4jg-41b795c1.png)
 
 What happened? You trained the model on too few data points. Or someone cherry-picked the points on which you train. Or you did not use a generic enough data-set for training. Anyway, after seeing the new points you wish you had used a circle instead of a line.
 
-[image]
+![](/assets/1_Bb-sfqrHrRQOhLS7RDVgyw-3dbc70a3.png)
 
 Or you don’t wish anything, because, remember, your data in reality is not a point in a 2-dimensional plane and you could not see that. If data objects were points in a 2-dimensional plane, there would have never been need for machine learning. In reality you need much more features to represent your data, but we cannot plot 10-dimensional plots.
 
 Level 0.2 is when your good and bad points look something like this (but remember, you would not know that, because your data is not really in 2D).
 
-[image]
+![](/assets/1_rIwRK7l0w4iRQEu8Hxz7sw-033c6ae7.png)
 
 Should I draw a line? Should I draw a circle? But then I have too many errors. (underfitting).
 
-[image]
+![](/assets/1_8nQdld5t2XinIJOfvl3TYQ-47e83c92.png)
 
 Are those points errors indeed or were they wrongly labeled in the first place by e.g. the lab staff? How am I supposed to know? How are the staff supposed to know, if they have to rely on lab technology for labeling?
 
 Hey, should I draw a wild curve that splits all points exactly?
 
-[image]
+![](/assets/1_gSEEUQPFbMeGJNHytZBbCg-d1f8fb14.png)
 
 But how am I sure that the curve will split properly all new points that I haven’t seen, that it will not *over-fit* on the training data? I tried lots of methods (SVM, neural networks, random forests…) and still I don’t get good results on my test points, even though I kept some of the training data as a “control” dataset during training.
 
 Wait. Why would I draw curves? Every time I have a new point for which I don’t know whether it is good or bad, I can just look into the neighborhood and label my point as the neighbors (“k-nearest neighbors method”).
 
-[image]
+![](/assets/1_Q9eWWK4bH5y4imz682tQgg-d1bb9c85.png)
 
 But how many neighbors should I look at? One, two, three? They all have different labels. And what is a neighbor by the way? Yes, in 2D it is easy but my points are not in 2D actually.
 
@@ -68,19 +68,19 @@ A-ha. Features. Why are we still talking about features when everybody knows tha
 
 It used to be so, when all you were doing was classifying images. On the [ImageNet](http://www.image-net.org/) dataset. On the input you put a picture of a robot or a man. On the output you tell the network what the picture is. In-between the network tries to adapt its “weights” by seeing many examples of robots or men and using calculus methods. Ultimately it finds which weights are best to go from a picture to a label with as few mistakes as possible.
 
-[image]
+![](/assets/0_fo3bHw6SDRfaGHBO-d057219a.png)
 
 That would be level 1.0. We opened a new chapter: deep learning.
 
 Level 1.1 is when your input is not a picture or text, or anything else for which off-the-shelve neural networks exist. It is some kind of a special object of type X and there are no neural network architectures that can handle it.
 
-[image]
+![](/assets/1_vGInRnL95lhk9W2kKutX5g-2ced40d6.png)
 
 What do you do? Do you try to convert your object into a picture, or a sequence, or? But then what is the best way to convert it so that the neural network can do its job? And what kind of neural network? And how do you best design this conversion, or features, for your neural network? Oh no, features again! Maybe I can try to design a new type of neural network to address my original objects of type X. You wish. That’s level 5.
 
 Level 1.2 is when you are not trying to classify, but instead to map your input object to an arbitrary representation of it that suits your problem. From object X at the input to object X’ at the output. Lots of practical problems are of this type.
 
-[image]
+![](/assets/1_RkUVolMiiYiVg0x4EI25_Q-63f07cef.png)
 
 Then you need to figure out what the network should learn. It is easy when you classify, the network needs to learn the label *good* or *bad*. In the general case, learning to map from X to X’, you want the output to be as close to X’ as possible. Nice, what’s the problem? The problem is what you mean by “close”. We are back to the “neighbours” problem (see level 0.2). Remember, what works in a 2D space, does not work in an arbitrary space (in math, or ML, this is called “ [the curse of dimensionality](https://en.wikipedia.org/wiki/Curse_of_dimensionality) ”).
 

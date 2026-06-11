@@ -8,7 +8,7 @@ tags:
   - uncategorized
 ---
 
-[image]
+![](/assets/1_FsiN9x7UpByRq7voZnb7eg-c73b4bd5.jpeg)
 
 We think it is important that as many academic researchers as possible benefit from what we do.
 
@@ -44,7 +44,7 @@ I am convinced that blogs on our work contribute in a similar way to a better un
 
 References to [GitHub](https://github.com/NLeSC/), [videos](https://www.youtube.com/netherlandsesciencecenter), our [eScience Technology Platform](http://estep.esciencecenter.nl/), data sets — you name it. It’s all possible in a blog post. If we introduce a new tool, it’s a great place to quickly share our enthusiasm, a download link to the software, a screencapture, and link to other relevant blogs or websites.
 
-[image]
+![](/assets/1_KB2xSkgK6oQEdvwH3ECrZw-b9529570.jpeg)
 
 It would be difficult to enrich the above piece of text with a link to GitHub or a nice video, or maybe add some additional content after publication.
 
@@ -56,7 +56,7 @@ Maybe we write a blog, and one week later make major progress, or gain a new ins
 
 Adding information to information in the form of feedback is also an important benefit of blogs, so here comes reason #4. Blogs are not a goal in itself — we want to hear your comments, know whether you learned something, want to add or share something, whether you got inspired.
 
-[image]
+![](/assets/1_xoxpAr_2BRFETxplmLWutA-c1f98750.jpeg)
 
 Our mission is to work together with researchers to develop the digital tools best suited to help them answer their research questions. In developing those digital tools it is essential to understand the struggles of researchers, to be able to look from the perspective of researchers. So let us know what you want to hear from us, whether you find our blogs useful.
 
