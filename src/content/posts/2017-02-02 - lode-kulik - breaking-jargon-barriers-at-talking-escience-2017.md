@@ -8,13 +8,13 @@ tags:
   - uncategorized
 ---
 
-[image]
+![](/assets/1_irNnyEX0lJaUbYyoGjXmHg-7432c0b6.jpeg)
 
 From the humanities to computer science: Our team of eScience Research Engineers and eScience Principal Investigators
 
 **What do ecology, psychology and medical science have in common? And what digital technologies do we need to engage in those shared challenges, how do we bridge gaps between disciplines, and how do we combine expertise from different domains with expertise from computer and data science?**
 
-[image]
+![](/assets/1_d_vwW9J0npk3yuoUbuaVag-d78a9eb5.jpeg)
 
 Rob van Nieuwpoort, Ronald van Haren, Lars de Ridder and Anand Gavai from the eScience Center discuss the future of multi-scale modelling
 
@@ -24,7 +24,7 @@ On Monday 30 January our team of eScience Research Engineers and eScience Princi
 
 Starting the day with a talkshow illustrated the potential as well as the difficulty of bringing such diverse fields of research together. Ecologists and meteorologists discussed the possibilities of sharing data. Communication challenges also quickly became apparent when psychologists and computer scientists started talking about language (“are we talking about human language or programming language?”) and different interpretations of concepts (“what is the difference between text mining and natural language processing?”).
 
-[image]
+![](/assets/1_Bzhr7X9boon-XZj7FIgGGA-2e095585.jpeg)
 
 It shows the value of organizing a day like this, where we can try to work on shared understandings, break the jargon barrier, and inspire each other with unexpected perspectives.
 
@@ -43,7 +43,7 @@ The topics were discussed in in-depth sessions, after which each in-depth group 
 
 ## Why are these topics so relevant today?
 
-[image]
+![](/assets/1_UR7VKbV1BWaoWrCg4PHMkg-842267d3.jpeg)
 
 eScience Technical Lead Willem van Hage pitches for deep learning in science
 
@@ -57,7 +57,7 @@ What do we need to make progress with the application of Deep Learning in scient
 
 We need MOOCS and not books — we need online material that can change as the field changes. And we need access and examples of how to gain access to infrastructure with specific support — for example with GPU clusters but also with high-speed networks.
 
-[image]
+![](/assets/1_UUpG16t9t9Nv0_zBPmBqoQ-b68efb5d.jpeg)
 
 eScience Research Engineers and eScience Principal Investigators talking about the future of data analytics
 
@@ -69,7 +69,7 @@ However, there are so many methods available that we are blinded by the complexi
 
 A course of action could be to start bringing those diverse fields of expertise together, to develop the communication between those fields. Not only between technical and scientific aspects but also between these and methodological aspects. We need communication beyond documented coding — collaborating with each other, also on an international scale, and with companies.
 
-[image]
+![](/assets/1_G2o5y9u_-LElDAlz3BvDpw-8747d838.jpeg)
 
 eScience Coordinator Adriënne Mendrik pitches for visualization
 
@@ -85,7 +85,7 @@ Visualization is very difficult to generalize. Each research question requires a
 
 A symposium would be a great way to show domain scientists the potential of translating their complex data into a ‘simplified’ visualization that helps to interpret the data and inspire other researchers.
 
-[image]
+![](/assets/1__wn0938lnjoWnSV-gJuFjg-2e15e069.jpeg)
 
 eScience Coordinator Lars Ridder pitching for multi-scale modelling
 
@@ -99,7 +99,7 @@ There’s a good case for multi-scale modelling. The questions we asked ourselve
 
 There are many more questions than answers at this moment. That’s why we really need a workshop to work this out. We want to bring together scientists from different domains to sit together and see what the properties of their multi-scale models are and extract generic aspects that we can solve as eScience Center.
 
-[image]
+![](/assets/1_PfUaD7k4gaiM_hFPVUjukQ-d5551c6e.jpeg)
 
 eScience Principal Investigator Chris de Graaf pitching for data integration
 
@@ -111,13 +111,13 @@ There are four things to consider: different formats, different modalities of da
 
 Data integration challenges can be illustrated by the following two ‘billion dollar research questions’: 1) How can you use allele and gene information to predict the size and also the robustness of crops or plants? 2) How can we combine biological activity and chemical structure information to predict polypharmacological action of drug molecules on multiple protein targets? We tried to find some common themes between the research questions
 
-[image]
+![](/assets/1_z3Zme-T2tNf83s47wdsOSQ-cd65895b.jpeg)
 
 We realized initially that we have different problems. Namely, for the polypharmacological question we had the problem that there were certain data integration tools not available that we need to invest in, while for the crop prediction the whole infrastructure and ontology has to be developed and there are a lot of epistemological questions to deal with. We realized when moving to a cell based system, polypharmacological questions would have a similar problem in terms of infrastructure and ontology.
 
 That’s why we need a symposium where we want to have case studies presented that reflect not only the challenges of this essential work but also the success stories of the science to convince people of the urgency of tackling this challnge — based on the different aspects of data integration we will come to discussion groups. And then in the end, if we get to speak the same language on either one of those elements, that will be a big success.
 
-[image]
+![](/assets/1_-JR2X2SQJpuPUEgOd778AA-5639babc.jpeg)
 
 eScience Research Engineers and eScience Principal Investigators talking about streaming data
 

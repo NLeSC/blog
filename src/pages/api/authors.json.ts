@@ -1,6 +1,7 @@
 import { getCollection } from 'astro:content';
 import { authorSlug, buildTopicIndex, serializePost } from '../../lib/archive';
 import { getAuthorInfo } from '../../lib/authors';
+import { sitePath } from '../../lib/urls';
 
 export async function GET() {
   const posts = await getCollection('posts', ({ data }) => data.published !== false);
@@ -18,7 +19,7 @@ export async function GET() {
       return {
         name,
         slug: authorSlug(name),
-        url: `/authors/${authorSlug(name)}`,
+        url: sitePath(`/authors/${authorSlug(name)}`),
         bio: getAuthorInfo(name)?.bio || null,
         postCount: sorted.length,
         latestPostDate: sorted[0]?.data.date.toISOString() || null,
@@ -26,7 +27,7 @@ export async function GET() {
           name: topic.name,
           slug: topic.slug,
           count: topic.count,
-          url: `/topics/${topic.slug}`,
+          url: sitePath(`/topics/${topic.slug}`),
         })),
         posts: sorted.map(serializePost),
       };

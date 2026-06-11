@@ -14,7 +14,57 @@ tags:
   - Visualization
 ---
 
-Subscribe*Remember me for faster sign in
+*By* [*Stefan Verhoeven*](https://orcid.org/0000-0002-5821-2060)*,* [*Faruk Diblen*](https://orcid.org/0000-0002-0989-929X)*,* [*Jurriaan H. Spaaks*](https://orcid.org/0000-0002-7064-4069)*,* [*Adam Belloum*](https://orcid.org/0000-0001-6306-6937)*, and* [*Christiaan Meijer*](https://orcid.org/0000-0002-5529-5761)*.*
+
+In a [previous blog post](https://medium.com/@eScienceCenter/using-c-in-a-web-app-with-webassembly-efd78c08469), we compiled the C++ algorithm into WebAssembly. In the current blog post, we will create a web application using [React](https://reactjs.org/). The web application will have a web form that allows us to change the parameters of the algorithm.
+
+We feel your pain: there are too many things to learn, too many skills to get, but too little time available — which reminds me of our extraordinary friend [Napoleon Dynamite](https://www.imdb.com/title/tt0374900/). This blog post will guide you through the process of making a React web application without getting lost.
+
+![](/assets/0_XHTFs5--uJCCcQuI-9cccbcb9.png)
+
+If you haven’t met Napoleon yet, click here to see how he was struggling with his skills. Screenshot from Napoleon Dynamite movie.
+
+## React web application
+
+The web application we developed so far needs to update the entire page to display the results. Even for small changes in the web page, this has to happen. Thanks to modern web browsers and JavaScript, Single Page Applications (SPAs) can update only required elements in the web page. We will use one of the most popular web frameworks, React, to develop the SPA. We chose React over vanilla JavaScript because building a web application is made easier by letting React deal with all the magic behind the scenes. [This blog post](https://www.freecodecamp.org/news/do-we-still-need-javascript-frameworks-42576735949b/) may help you to understand why we made this choice.
+
+The form in the web application will collect the user inputs and uses them to initialize the algorithm. When the form is submitted, a WebAssembly code starts the calculation and the result is rendered. With this architecture, the application only needs cheap static file hosting to host the HTML, JavaScript, and WebAssembly files. The algorithm will be running in the web browser on the end-user’s machine instead of a server.
+
+### The HTML code
+
+To render the React application we need an HTML element as a container. We will give it the identifier **container** which will use later when we implement the **React** application.
+
+We will keep the HTML code very minimal. The code will contain three essential elements:
+
+- **<head>** element to set the title and to load the required external dependencies (JavaScript libraries).
+
+- **<div>** element to display the result
+
+- **<script>** elements to load the Javascript application and the `NewtonRaphson` class.
+
+**Note:** We use the same `newtonraphson.js` and `newtonraphson.wasm` files as in the [first post](https://github.com/NLESC-JCER/run-cpp-on-web/blob/master/webassembly/README.md) of this series. Make sure you download [newtonraphson.js](https://github.com/NLESC-JCER/run-cpp-on-web/blob/master/react/newtonraphson.js) and [newtonraphson.wasm](https://github.com/NLESC-JCER/run-cpp-on-web/blob/master/react/newtonraphson.wasm) files from GitHub.
+
+The complete HTML code will look like this:
+
+### JavaScript code (React)
+
+Similarly, we will split the JavaScript code into sections and build up the React application from React components.
+
+Let’s start with the header part. We will define a JavaScript function that returns the header element which will be rendered by the web browser when the user visits the page.
+
+The return statement of this function looks weird, right? It is indeed not HTML. React uses a syntax extension called [JSX](https://reactjs.org/docs/introducing-jsx.html) to describe the UI. With the magical conversion of [Babel](https://babeljs.io/docs/en/next/babel-standalone.html) we can convert JSX into JavaScript code. After this conversion the generated JavaScript code will look like:
+
+In order for the header element to be rendered we need to tell **ReactDOM** which element it should render and where it should be displayed. Do you still remember the **container** `div` we defined in the HTML part?
+
+The complete code should look like this:
+
+When the page is rendered, the generated HTML code will be like:
+
+## Adding the web form
+
+The web application in our example should have a form with `tolerance` and `initial_guess` input fields, as well as a submit button. The form in JSX can be written in the following way:
+
+The form tag has an `onSubmit` property, which is set to a function ( `handleSubmit`) that will handle the form submission. The input tag has a `value` property to set the variable ( `tolerance` and `initial_guess`) and it also has an `onChange` property to set the function ( `onToleranceChange` and `onGuessChange`) which will be triggered when the user changes the value.
 
 Let’s implement the `value` and `onChange` for the `tolerance` input. To store the value we will use the [React useState hook](https://reactjs.org/docs/hooks-state.html).
 
@@ -36,9 +86,14 @@ We can combine the heading, form and result components and all the states and `h
 
 Like before, we also need to host the files in a web server with
 
+```hs
 python3 -m http.server 8000
-![Interact with your C++ web app using React forms](/assets/interact-with-your-c-web-app-using-react-fb84c1c4.gif)
-The final page if everything works.*Visit [http://localhost:8000/app.html](http://localhost:8000/app.html) to see the root answer, or go to [GitHub pages](https://nlesc-jcer.github.io/run-cpp-on-web/react/app.html) to see a hosted version of the example app.
+```
+![](/assets/0_smvfh5MifrSGsY10-8c73001a.gif)
+
+The final page if everything works.
+
+Visit [http://localhost:8000/app.html](http://localhost:8000/app.html) to see the root answer, or go to [GitHub pages](https://nlesc-jcer.github.io/run-cpp-on-web/react/app.html) to see a hosted version of the example app.
 
 ## Extra notes
 
@@ -52,9 +107,9 @@ We went over JSX, props, state, and components, which together constitute the co
 
 In other blogs of the series that might be of interest we cover
 
-* [Using C++ in a web app with WebAssembly](https://medium.com/@eScienceCenter/using-c-in-a-web-app-with-webassembly-efd78c08469): How to turn C++ code into a web app.
-* [Help! My C++ web app is not responding](https://medium.com/@eScienceCenter/help-my-c-web-app-is-not-responding-b930ca3034ad): How to use web workers to perform computations without blocking the user interface.
-* [Spice up your C++ web app with visualizations](https://medium.com/@eScienceCenter/spice-up-your-c-web-app-with-visualizations-bcc1e888ec25): Plotting data from the C++ web app using web visualization.
+- [Using C++ in a web app with WebAssembly](https://medium.com/@eScienceCenter/using-c-in-a-web-app-with-webassembly-efd78c08469): How to turn C++ code into a web app.
+- [Help! My C++ web app is not responding](https://medium.com/@eScienceCenter/help-my-c-web-app-is-not-responding-b930ca3034ad): How to use web workers to perform computations without blocking the user interface.
+- [Spice up your C++ web app with visualizations](https://medium.com/@eScienceCenter/spice-up-your-c-web-app-with-visualizations-bcc1e888ec25): Plotting data from the C++ web app using web visualization.
 
 We’ll wrap up the series in a [final blog](https://medium.com/@eScienceCenter/c-web-app-with-webassembly-vega-web-worker-and-react-1e5b750c88df) that combines the topics of the whole series in a full-featured web application.
 
@@ -64,6 +119,6 @@ This blog was written by the Generalization Team of the Netherlands eScience Cen
 
 If you enjoyed this article, leave a comment and give us a clap!
 
-*These blogs were written as part of the “Passing XSAMS” project. To learn more about the project, check out its *[*project page*](https://www.esciencecenter.nl/projects/passing-xsams/)*.*
+*These blogs were written as part of the “Passing XSAMS” project. To learn more about the project, check out its* [*project page*](https://www.esciencecenter.nl/projects/passing-xsams/)*.*
 
-*Thank you to our proof reader *[*Daan Boer*](https://github.com/DAANBOER)*.*
+*Thank you to our proof reader* [*Daan Boer*](https://github.com/DAANBOER)*.*

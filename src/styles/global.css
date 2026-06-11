@@ -1,6 +1,67 @@
 @import "tailwindcss";
 @custom-variant dark (&:is(.dark, .dark *));
 
+
+/* Subtle editorial entry motion */
+@keyframes editorial-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes editorial-image-reveal {
+  from {
+    opacity: 0;
+    transform: scale(1.012);
+    filter: saturate(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: saturate(1);
+  }
+}
+
+.animate-page {
+  animation: editorial-enter 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-enter {
+  animation: editorial-enter 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--enter-delay, 0ms);
+}
+
+.fade-in-image,
+.post-content img {
+  background: #f6f6f6;
+  animation: editorial-image-reveal 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.dark .fade-in-image,
+.dark .post-content img {
+  background: #1f1f1f;
+}
+
+.search-modal[open] .search-panel {
+  animation: editorial-enter 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 @theme {
   --color-escience-blue: #003388;
   --color-medium-green: #1A8917;
@@ -460,4 +521,26 @@ body.dark {
   .search-results {
     padding-inline: 0.5rem;
   }
+}
+
+
+.post-content .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.4rem 0;
+}
+
+.post-content .mermaid-diagram {
+  margin: 2rem auto;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid #ededed;
+  border-radius: 14px;
+  background: #fafafa;
+  text-align: center;
+}
+
+.dark .post-content .mermaid-diagram {
+  border-color: #333;
+  background: #171717;
 }

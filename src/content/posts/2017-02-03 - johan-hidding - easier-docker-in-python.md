@@ -8,11 +8,11 @@ tags:
   - uncategorized
 ---
 
-[image]
+![](/assets/1_68X2g8ziJ_aHdtiHqajr3Q-d11b7e7e.jpeg)
 
 [Docker](https://www.docker.com/) is a tool that creates a stack of virtual environments on top of a running Linux kernel. This allows you to run tools (and web services) in an encapsulated environment. I use Docker to call binary codes from Python in the context of a broader scientific/computational workflow. Using docker containers for this makes it infinitely easier to share the results of such a workflow. There is a [Python module](https://docker-py.readthedocs.io/en/stable/) for the API, but this is not the easiest to use, certainly not as easy as the docker command-line.
 
-[image]
+![](/assets/1_ChkdKbYyM7mIITvaUkHaDw-d1d6674b.jpeg)
 
 Exterminate!
 

@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check:content": "node scripts/check-content.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "new-post": "node scripts/new-post.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
@@ -18,7 +19,10 @@
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.5",
+    "mermaid": "^11.15.0",
     "pagefind": "^1.5.2",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
     "satori": "^0.26.0",
     "tailwindcss": "^4.3.0"
   }

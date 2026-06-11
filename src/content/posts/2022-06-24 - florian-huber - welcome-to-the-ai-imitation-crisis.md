@@ -30,7 +30,7 @@ I am not aware of any mayor progress towards a general artifical intelligence in
 
 Imagine you want to throw away a toy pet that you have at home and that no one plays with anymore. You pick it up with the intention to throw it away… but then … oh no… it looks at you with all its cuteness…
 
-[image]
+![](/assets/1_R6VYtoKbGvbJ-rH4epKEUg-ffede344.jpeg)
 
 If the new google chatbot would be built into such a stuffed animal… how could you say no to it? ( https://www.peakpx.com )
 

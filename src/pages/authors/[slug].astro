@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { getAuthorInfo, getAuthorPic, getAuthorInitials } from '../../lib/authors';
 import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, postUrl } from '../../lib/archive';
+import { assetPath, sitePath } from '../../lib/urls';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => data.published !== false);
@@ -20,22 +21,25 @@ const authorPosts = allPosts
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const authorInfo = getAuthorInfo(author);
+const authorPic = getAuthorPic(author);
 const authorTopics = buildTopicIndex(authorPosts).slice(0, 8);
 ---
 
 <BaseLayout title={`${author} — Posts`}>
   <div class="max-w-[728px] mx-auto px-4 pt-10 pb-20">
     <div class="flex items-start gap-5 mb-10">
-      <img
-        src={getAuthorPic(author)}
-        alt={author}
-        class="w-[72px] h-[72px] rounded-full object-cover bg-[#003388] flex-shrink-0"
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-        loading="lazy"
-      />
-      <div class="w-[72px] h-[72px] rounded-full items-center justify-center text-white text-2xl font-bold flex-shrink-0 hidden" style="background: #003388;">
-        {getAuthorInitials(author)}
-      </div>
+      {authorPic ? (
+        <img
+          src={authorPic}
+          alt={author}
+          class="w-[72px] h-[72px] rounded-full object-cover bg-[#003388] flex-shrink-0 fade-in-image"
+          loading="lazy"
+        />
+      ) : (
+        <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0" style="background: #003388;">
+          {getAuthorInitials(author)}
+        </div>
+      )}
       <div class="pt-1">
         <h1 class="text-[28px] font-bold text-[#242424] dark:text-white font-sans">{author}</h1>
         <p class="text-[15px] text-[#6b6b6b] dark:text-[#999]">
@@ -48,15 +52,15 @@ const authorTopics = buildTopicIndex(authorPosts).slice(0, 8);
         )}
         <div class="flex flex-wrap gap-2 mt-4">
           {authorTopics.map((topic) => (
-            <a href={`/topics/${topic.slug}`} class="inline-flex items-center gap-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#242424] px-3 py-1 text-[12px] text-[#6b6b6b] dark:text-[#aaa] hover:bg-[#003388] hover:text-white transition-colors">
+            <a href={sitePath(`/topics/${topic.slug}`)} class="inline-flex items-center gap-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#242424] px-3 py-1 text-[12px] text-[#6b6b6b] dark:text-[#aaa] hover:bg-[#003388] hover:text-white transition-colors">
               <span>{topic.name}</span>
               <span class="opacity-70">{topic.count}</span>
             </a>
           ))}
         </div>
         <div class="flex flex-wrap gap-3 mt-4 text-[13px]">
-          <a href={`/api/authors.json#${author.toLowerCase().replace(/\s+/g, '-')}`} class="text-[#1A8917] hover:underline">Archive data</a>
-          <a href={`/search?q=${encodeURIComponent(author)}`} class="text-[#1A8917] hover:underline">Search this author</a>
+          <a href={sitePath(`/api/authors.json#${author.toLowerCase().replace(/\s+/g, '-')}`)} class="text-[#1A8917] hover:underline">Archive data</a>
+          <a href={sitePath(`/search?q=${encodeURIComponent(author)}`)} class="text-[#1A8917] hover:underline">Search this author</a>
         </div>
       </div>
     </div>
@@ -78,7 +82,7 @@ const authorTopics = buildTopicIndex(authorPosts).slice(0, 8);
               </p>
             </div>
             {thumb ? (
-              <img src={`/assets/${thumb}`} alt="" class="w-[112px] h-[112px] sm:w-[152px] sm:h-[152px] object-cover flex-shrink-0" loading="lazy" />
+              <img src={assetPath(thumb)} alt="" class="w-[112px] h-[112px] sm:w-[152px] sm:h-[152px] object-cover flex-shrink-0" loading="lazy" />
             ) : (
               <div class="w-[112px] h-[112px] sm:w-[152px] sm:h-[152px] flex-shrink-0 bg-[#f2f2f2] dark:bg-[#333] flex items-center justify-center">
                 <span class="text-gray-300 dark:text-[#555] text-xs">eScience</span>
@@ -90,7 +94,7 @@ const authorTopics = buildTopicIndex(authorPosts).slice(0, 8);
     </div>
 
     <div class="mt-12 text-center">
-      <a href="/" class="text-[14px] text-[#1A8917] hover:underline font-medium">← All posts</a>
+      <a href={sitePath("/")} class="text-[14px] text-[#1A8917] hover:underline font-medium">← All posts</a>
     </div>
   </div>
 </BaseLayout>

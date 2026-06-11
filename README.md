@@ -17,6 +17,7 @@ The Netherlands eScience Center blog — 275 articles on research software engin
 - RSS feed and JSON endpoints for posts, authors, and topics.
 - Dark mode support.
 - GitHub Pages deployment via Actions.
+- Math notation via LaTeX and Mermaid diagram rendering in markdown.
 
 ---
 
@@ -24,13 +25,13 @@ The Netherlands eScience Center blog — 275 articles on research software engin
 
 ### 1. Create the markdown file
 
-Drop a `.md` file into `src/content/posts/`. Name it like this:
+Use the helper command so filenames only encode the date and title; author names live in frontmatter where special characters are safe:
 
-```
-YYYY-MM-DD - author-slug - post-slug.md
+```sh
+bun run new-post "Why We Build Tools" --author "Jesse Gonzalez" --tags "RSE,Tools,Open Source"
 ```
 
-Example: `2026-06-10 - jesse-gonzalez - why-we-build-tools.md`
+This creates `src/content/posts/YYYY-MM-DD - why-we-build-tools.md` with `published: false` for review. You can also create markdown files manually using the same filename convention.
 
 ### 2. Frontmatter (required)
 
@@ -78,7 +79,7 @@ The site rebuilds automatically on push to `main`. To preview locally: `bun run 
 2. **Images in `/assets/`.** Don't hotlink external images — download them and commit to `public/assets/`. Use descriptive filenames: `why-we-build-tools-diagram.png` not `IMG_4829.jpg`.
 3. **No HTML in body.** Markdown only. Astro renders it safely.
 4. **Frontmatter before body.** The `---` block must be the first thing in the file.
-5. **File naming convention.** `YYYY-MM-DD - author-slug - post-slug.md`. The date in the filename must match the `date` field in frontmatter.
+5. **File naming convention.** `YYYY-MM-DD - post-slug.md`. The date in the filename should match the `date` field in frontmatter; keep author names in metadata only.
 6. **Alt text on every image.** Accessibility matters: `![Diagram showing the RSE role spectrum](/assets/rse-spectrum.png)`.
 7. **Editing existing posts.** Edit the `.md` file directly. Rebuild and the changes go live.
 8. **Deleting a post.** Remove the file, or set `published: false` to hide without deleting.

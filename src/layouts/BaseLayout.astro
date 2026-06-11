@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { sitePath } from '../lib/urls';
 
 const { title, description, ogImage } = Astro.props;
 ---
@@ -10,13 +11,14 @@ const { title, description, ogImage } = Astro.props;
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description || 'eScience Center Blog — Research software engineering, data science, and digital scholarship'} />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="alternate" type="application/rss+xml" title="eScience Center Blog" href="/rss.xml" />
+  <link rel="icon" type="image/svg+xml" href={sitePath("/favicon.svg")} />
+  <link rel="alternate" type="application/rss+xml" title="eScience Center Blog" href={sitePath("/rss.xml")} />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous" />
   <meta property="og:title" content={title || 'eScience Center Blog'} />
   <meta property="og:description" content={description || 'Research software engineering, data science, and digital scholarship'} />
   <meta property="og:type" content={title ? 'article' : 'website'} />
   <meta property="og:site_name" content="eScience Center Blog" />
-  <meta property="og:image" content={ogImage || '/header-banner.webp'} />
+  <meta property="og:image" content={ogImage || sitePath("/header-banner.webp")} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -38,7 +40,7 @@ const { title, description, ogImage } = Astro.props;
   <!-- Minimal header — Medium style -->
   <header class="border-b border-[#f2f2f2] dark:border-[#333] sticky top-0 bg-white/95 dark:bg-[#111]/95 backdrop-blur-sm z-50">
     <div class="max-w-[960px] mx-auto px-4 h-14 flex items-center justify-between gap-3">
-      <a href="/" class="flex items-center gap-2.5 no-underline min-w-0">
+      <a href={sitePath("/")} class="flex items-center gap-2.5 no-underline min-w-0">
         <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-[11px] flex-shrink-0" style="background: #003388;">
           eS
         </div>
@@ -49,14 +51,14 @@ const { title, description, ogImage } = Astro.props;
           <span class="dark:hidden">🌙</span>
           <span class="hidden dark:inline">☀️</span>
         </button>
-        <a href="/topics" class="text-[13px] text-[#6b6b6b] hover:text-[#242424] dark:text-[#aaa] dark:hover:text-white transition-colors hidden sm:inline">Topics</a>
+        <a href={sitePath("/topics")} class="text-[13px] text-[#6b6b6b] hover:text-[#242424] dark:text-[#aaa] dark:hover:text-white transition-colors hidden sm:inline">Topics</a>
         <button data-search-open class="text-[13px] text-[#6b6b6b] hover:text-[#242424] dark:text-[#aaa] dark:hover:text-white transition-colors cursor-pointer">Search</button>
         <a href="https://www.esciencecenter.nl" class="text-[13px] text-[#6b6b6b] hover:text-[#242424] dark:text-[#aaa] dark:hover:text-white transition-colors hidden sm:inline">esciencecenter.nl</a>
       </div>
     </div>
   </header>
 
-  <main class="flex-1">
+  <main class="flex-1 animate-page">
     <slot />
   </main>
 
@@ -89,7 +91,7 @@ const { title, description, ogImage } = Astro.props;
     </div>
   </footer>
 
-  <script is:inline>
+  <script define:vars={{ searchIndexUrl: sitePath('/search-index.json'), searchPath: sitePath('/search') }}>
     const toggle = document.getElementById('theme-toggle');
     if (toggle) {
       toggle.addEventListener('click', () => {
@@ -98,6 +100,33 @@ const { title, description, ogImage } = Astro.props;
         localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
       });
     }
+
+
+
+    (() => {
+      async function initMermaidBlocks() {
+        const blocks = Array.from(document.querySelectorAll('pre > code.language-mermaid, code.language-mermaid'));
+        if (!blocks.length) return;
+        const { default: mermaid } = await import('mermaid');
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
+          securityLevel: 'strict',
+        });
+        blocks.forEach((code, index) => {
+          const pre = code.closest('pre');
+          const source = code.textContent || '';
+          const container = document.createElement('div');
+          container.className = 'mermaid-diagram';
+          container.textContent = source;
+          container.id = `mermaid-${index}`;
+          if (pre) pre.replaceWith(container);
+          else code.replaceWith(container);
+        });
+        await mermaid.run({ nodes: document.querySelectorAll('.mermaid-diagram') });
+      }
+      initMermaidBlocks().catch((error) => console.error('Mermaid rendering failed', error));
+    })();
 
     (() => {
       const modal = document.getElementById('search-modal');
@@ -113,7 +142,7 @@ const { title, description, ogImage } = Astro.props;
         if (!loadingPromise) {
           count.textContent = 'Loading search index…';
           results.innerHTML = '';
-          loadingPromise = fetch('/search-index.json')
+          loadingPromise = fetch(searchIndexUrl)
             .then((response) => {
               if (!response.ok) throw new Error(`Search index failed: ${response.status}`);
               return response.json();
@@ -191,7 +220,7 @@ const { title, description, ogImage } = Astro.props;
         document.body.classList.remove('search-open');
       }
 
-      document.querySelectorAll('[data-search-open], a[href="/search"], a[href^="/search?"]').forEach((trigger) => {
+      document.querySelectorAll('[data-search-open], a[href$="/search"], a[href*="/search?"]').forEach((trigger) => {
         trigger.addEventListener('click', (event) => {
           event.preventDefault();
           const url = trigger instanceof HTMLAnchorElement ? new URL(trigger.href) : null;
@@ -211,7 +240,7 @@ const { title, description, ogImage } = Astro.props;
       });
 
       const current = new URL(window.location.href);
-      if (current.pathname === '/search') openSearch(current.searchParams.get('q') || '');
+      if (current.pathname === new URL(searchPath, window.location.origin).pathname) openSearch(current.searchParams.get('q') || '');
     })();
   </script>
 </body>

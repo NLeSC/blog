@@ -22,7 +22,7 @@ During the morning session, Lily Knibbeler highlighted the importance of [Delphe
 
 During his keynote speech, Steven Claeyssens noted how libraries themselves are changing and drifting towards being more inclusive for machines. This brought up the topic of the quality of OCR ([optical character recognition](https://en.wikipedia.org/wiki/Optical_character_recognition)) technology. It is an issue the community at large acknowledges and is actively working on; it is also an issue where one of our engineers, [Janneke](https://www.esciencecenter.nl/profile/dr.-janneke-van-der-zwaan), has a personal interest (which she expressed during her [Flash presentation](#7d00)). The last keynote speech by Hein van den Berg focused on detailed definitions of concept schemas and their importance to understand concept drift.
 
-[image]
+![](/assets/1_AASpN8mEA0hBKxlmvacFiw-0d5fa319.jpeg)
 
 Lunch time was occupied by interesting conversations as well as a number of demos scattered across the room.
 
@@ -48,6 +48,6 @@ From the final words of Joris van Eijnattten during his last minutes as KB fello
 
 It is clear that there are still many interesting challenges in this community, and I for one would be very excited to continue collaborating with everyone in this field.
 
-[image]
+![](/assets/1_Q4uNpqEcwTFD39dn3-mniA-1a67b0fe.jpeg)
 
 Closing remarks by Joris van Eijnattten

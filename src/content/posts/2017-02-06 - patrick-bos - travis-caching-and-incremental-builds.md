@@ -8,7 +8,7 @@ tags:
   - uncategorized
 ---
 
-[image]
+![](/assets/1_eCqVHpbrSZqs3AeGMUhY3Q-17430e5f.jpeg)
 
 *Update (Aug 7, 2018): added a section at the bottom with new configuration settings and an added time-out step for extending build times beyond the 50 minute limit to bootstrap your build cache.*
 

@@ -1,5 +1,6 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
+import { sitePath } from '../lib/urls';
 
 export async function GET() {
   const posts = await getCollection('posts', ({ data }) => data.published !== false);
@@ -8,7 +9,7 @@ export async function GET() {
   return rss({
     title: 'eScience Center Blog',
     description: 'Research software engineering, data science, and digital scholarship — by the Netherlands eScience Center',
-    site: 'https://macbook-air-3.tail33436f.ts.net',
+    site: 'https://nlesc-blogging.github.io/blog',
     items: posts.map(post => {
       const slug = post.id.replace(/\.md$/, '');
       // Get first paragraph as description
@@ -24,7 +25,7 @@ export async function GET() {
       return {
         title: post.data.title,
         description: excerpt + '...',
-        link: `/posts/${slug}`,
+        link: sitePath(`/posts/${slug}`),
         pubDate: post.data.date,
         author: post.data.author,
       };

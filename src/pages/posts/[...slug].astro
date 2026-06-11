@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getAuthorInfo, getAuthorPic, getAuthorInitials } from '../../lib/authors';
 import { authorSlug, formatDate, formatDate as formatArchiveDate, getCoverImage, postUrl, readTime, slugify, visibleTags } from '../../lib/archive';
+import { assetPath, sitePath } from '../../lib/urls';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -17,6 +18,7 @@ const { Content } = await render(post);
 
 const authorPathSlug = authorSlug(post.data.author);
 const authorInfo = getAuthorInfo(post.data.author);
+const authorPic = getAuthorPic(post.data.author);
 const tags = visibleTags(post.data.tags || []);
 const minutes = readTime(post.body || '');
 const sourceSlug = post.id.replace(/\.md$/, '').split('/').pop() || post.id;
@@ -38,27 +40,29 @@ const relatedPosts = allPosts
 ---
 
 <BaseLayout title={post.data.title}>
-  <article class="max-w-[680px] mx-auto px-4">
-    <header class="pt-10 pb-6">
+  <article class="max-w-[680px] mx-auto px-4 animate-page">
+    <header class="pt-10 pb-6 animate-enter">
       <h1 class="text-[32px] md:text-[40px] font-bold leading-tight text-[#242424] tracking-tight font-sans mb-6 dark:text-white">
         {post.data.title}
       </h1>
 
       <div class="flex items-start gap-4 mb-6">
-        <a href={`/authors/${authorPathSlug}`} class="flex-shrink-0">
-          <img
-            src={getAuthorPic(post.data.author)}
-            alt={post.data.author}
-            class="w-12 h-12 rounded-full object-cover bg-[#003388]"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-            loading="lazy"
-          />
-          <div class="w-12 h-12 rounded-full items-center justify-center text-white text-sm font-bold flex-shrink-0 hidden" style="background: #003388;">
-            {getAuthorInitials(post.data.author)}
-          </div>
+        <a href={sitePath(`/authors/${authorPathSlug}`)} class="flex-shrink-0">
+          {authorPic ? (
+            <img
+              src={authorPic}
+              alt={post.data.author}
+              class="w-12 h-12 rounded-full object-cover bg-[#003388] fade-in-image"
+              loading="lazy"
+            />
+          ) : (
+            <div class="w-12 h-12 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0" style="background: #003388;">
+              {getAuthorInitials(post.data.author)}
+            </div>
+          )}
         </a>
         <div class="flex flex-col gap-1 pt-0.5">
-          <a href={`/authors/${authorPathSlug}`} class="font-medium text-[#242424] hover:underline dark:text-white">
+          <a href={sitePath(`/authors/${authorPathSlug}`)} class="font-medium text-[#242424] hover:underline dark:text-white">
             {post.data.author}
           </a>
           {authorInfo?.bio && (
@@ -83,7 +87,7 @@ const relatedPosts = allPosts
       {tags.length > 0 && (
         <div class="flex flex-wrap gap-2">
           {tags.map((tag: string) => (
-            <a href={`/topics/${slugify(tag)}`} class="inline-block px-3 py-1 text-[12px] rounded-full bg-[#f2f2f2] text-[#6b6b6b] hover:bg-[#003388] hover:text-white transition-colors dark:bg-[#333] dark:text-[#aaa] dark:hover:bg-[#003388] dark:hover:text-white">
+            <a href={sitePath(`/topics/${slugify(tag)}`)} class="inline-block px-3 py-1 text-[12px] rounded-full bg-[#f2f2f2] text-[#6b6b6b] hover:bg-[#003388] hover:text-white transition-colors dark:bg-[#333] dark:text-[#aaa] dark:hover:bg-[#003388] dark:hover:text-white">
               {tag}
             </a>
           ))}
@@ -91,7 +95,7 @@ const relatedPosts = allPosts
       )}
     </header>
 
-    <div class="post-content pb-12">
+    <div class="post-content pb-12 animate-enter" style="--enter-delay: 120ms">
       <Content />
     </div>
 
@@ -123,7 +127,7 @@ const relatedPosts = allPosts
             return (
               <a href={postUrl(rp)} class="group block">
                 {thumb ? (
-                  <img src={`/assets/${thumb}`} alt="" class="w-full aspect-[16/10] object-cover mb-3" loading="lazy" />
+                  <img src={assetPath(thumb)} alt="" class="w-full aspect-[16/10] object-cover mb-3 fade-in-image" loading="lazy" />
                 ) : (
                   <div class="w-full aspect-[16/10] mb-3 bg-[#f2f2f2] dark:bg-[#333] flex items-center justify-center">
                     <span class="text-gray-300 dark:text-[#555] text-xs">eScience</span>

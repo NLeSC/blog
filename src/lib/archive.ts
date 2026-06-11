@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { assetPath, sitePath } from './urls';
 
 export type PostEntry = CollectionEntry<'posts'>;
 
@@ -17,7 +18,7 @@ export function postSlug(post: PostEntry): string {
 }
 
 export function postUrl(post: PostEntry): string {
-  return `/posts/${postSlug(post)}`;
+  return sitePath(`/posts/${postSlug(post)}`);
 }
 
 export function authorSlug(name: string): string {
@@ -95,7 +96,7 @@ export function serializePost(post: PostEntry) {
     url: postUrl(post),
     tags: visibleTags(post.data.tags || []),
     excerpt: getExcerpt(post.body || '', 220),
-    cover: cover ? `/assets/${cover}` : null,
+    cover: cover ? assetPath(cover) : null,
     readingMinutes: readTime(post.body || ''),
     source: post.data.source,
     sourceUrl: post.data.source_url || null,

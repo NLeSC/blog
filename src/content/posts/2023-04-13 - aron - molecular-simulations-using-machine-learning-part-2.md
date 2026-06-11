@@ -13,11 +13,85 @@ tags:
   - Training
 ---
 
-][Aron]·Apr 13, 2023
+*In this post, I will walk through the process of designing a model used in molecular simulations, from essential to state of the art. This is the second part of a series on using machine learning for molecular simulations. It is relatively self-contained if you haven’t read* [*the first part*](https://blog.esciencecenter.nl/molecular-simulations-using-machine-learning-part-1-e8624a82f680?sk=8c9902b39588261826ab77e3e24f8766)*.*
 
-Subscribe*Remember me for faster sign in
+![](/assets/0_GVOnfCp1wScCos1_-b1c8ae9b.webp)
 
-Note that if the intermediate layers were not* equivariant, there would be no way to guarantee invariance at the final layer. Furthermore, it also already makes the model more data efficient, as one training sample automatically teaches it about all the different orderings of that same sample.
+Photo by BoliviaInteligente on Unsplash
+
+We will design a model that approximates a potential used in molecular simulations. We will start from the simplest possible model, and reason our way step by step towards the essentials of the current state of the art models. This at the same time roughly follows the historical development of these models, although we will not attempt to be precise in this regard.
+
+The principles we use to arrive at a good model are quite general. Although they will lead to different models in different applications, I hope this can be helpful for scientists in different fields thinking about applying machine learning to their own field.
+
+### Quick recap
+
+The figure below summarizes part 1 in a bit more detail. We saw how quantum mechanics was simplified into Density Functional Theory describing electrons, and Molecular Dynamics describing the atomic nuclei. The clouds in the figure indicate a-priori unknown ingredients that arose from these approximations: the density functional and the interatomic potential.
+
+![](/assets/1_zwvn0X4z6_mG4zyQ4acULw-036d0626.png)
+
+We will focus on the interatomic potential: a single function depending on the positions of all the nuclei. The same principles that we use to derive a model for this also apply to the density functional, but the details will be different, because its inputs are different.
+
+## Simplest machine learning model
+
+When designing a machine learning model, it is useful to start from the very basic question: what should go into it, and what should come out.
+
+Well, we want the model to compute a potential, which is a single number, depending on the coordinates of all nuclei. So if we have N nuclei in 3-dimensional space, the model should take 3N numbers and turn them into a single number.
+
+![](/assets/1_jCcxDmDEo7BTHXhrdDLR_g-832dfe19.png)
+
+The simplest machine learning model: a linear model.
+
+The simplest possible machine learning model that meets this requirement would be multiplication by a 1 by 3N matrix W: M(x) = W x. This would multiply every one of the 3N inputs with a weight, and sum them all up. These weights are the trainable parameters. These are initially set to random values, and updated during training by correcting the errors the model makes. That part will remain the same throughout.
+
+This model has many undesirable properties, the most problematic one being that it is way too simple. A more precise way of saying this is that it is linear. This means that if we multiply all of the inputs by 2, the output will be multiplied by 2 as well. Or if we add 3 to say input x₁, the output will be the original output plus 3 w₁, where w₁ is the corresponding weight. In reality of course the effect of this change of one coordinate on the potential depends in a complicated way on its relationships to the coordinates of other particles. This model will never be able to capture that, no matter how much data you throw at it.
+
+## Deep learning
+
+Removing this restriction takes us from machine learning to deep learning. The simplest neural network is basically a sequence of the simpler models from above, intermingled with nonlinear functions called activation functions. (Without these, the end result would still be linear!)
+
+![](/assets/1_MNG8au1e0VGNe723I3Fv1A-338974de.png)
+
+The simplest deep learning model: a fully connected neural network.
+
+The simplest example of this class of models has one hidden layer: it takes the 3N inputs to say 100 numbers by a matrix multiplication, and applicaties an activation function to each one separately. Then through a second matrix multiplication it takes those to the one number we need as an output.
+
+There are many different activation functions, conceptually the only important thing is that they are nonlinear. A simple often used example is the ReLU, which is 0 if its input is negative, and otherwise just passes on the input unchanged.
+
+The effect of adding just one of these hidden layers is profound. In a sense, this immediately fixes the problem with the previous model. That is, this model can approximate anything now, given enough parameters. This statement is known as the *universal approximation theorem*. However, that is quite a theoretical result. It doesn’t say how large the hidden layer should be, how much data is necessary, or even if it’s possible to find the right parameters through training at all, only that they exist.
+
+To address all of these other concerns, we need to specialise the model further to our particular application. In other words, we want our model to not only take into account just the *size* of the in- and outputs, but also its *structure*. As a first example, although the model above has the correct number of 3N inputs, it is not aware at all that actually these have the structure of N triplets of coordinates.
+
+To elaborate on this and make it more precise, we’ll look at the concept of equivariance. For a book and lectures on exploiting the structure of our data that is much more detailed, but also quite technical, see [https://geometricdeeplearning.com/](https://geometricdeeplearning.com/), and [this paper](https://www.nature.com/articles/s42256-021-00418-8) for applications specifically to molecules.
+
+### Equivariance
+
+Equivariance means that if we *first* transform the input and *then* apply the model to it, we get the same result as when we *first* apply the model, and *then* apply a similar transformation to the output. It is a property that a model can have for some transformations but not for others. For example if this is true for a model M when the transformations are rotations, we say that M is rotation equivariant or equivariant with respect to rotations, illustrated in the figure below.
+
+![](/assets/1_Ez5PyIJRW8XGHQdlBjxxkQ-a83a4fc2.png)
+
+Example of equivariance of a hypothetical model M that just detects edges. No matter if we first apply the model and then rotate the result, or first rotate the input and then apply the model, we end up with the same result.
+
+Note that the definition refers to a *similar* transformation on the output, not necessarily exactly the same as we applied to the input. In fact, usually the output of the model will be of a different shape than the input, so we cannot even do the exact same transformation. The important part is that we know a-priori what the transformation on the output is, and it depends only on what transformation we did on the input.
+
+A special case of equivariance is *invariance*, which is when this similar transformation is actually the identity. In other words, if we transform the input, the output will remain unchanged. For a simple example of this, if the hypothetical model in the image above were just a classifier saying whether the image is a cat or a dog, we’d expect it to be invariant: for both inputs on the left of the image, the outputs on the right should be “cat”.
+
+Requiring the model to be equivariant with respect to some transformation imposes some constraints on it, it decreases the freedom in the model, or the number of parameters. So as long as the equivariances we impose are also satisfied by the true solution we are trying to approximate with the model, it makes it more data efficient and easier to train. If we didn’t impose equivariance, the model could potentially have learned it from the data, but that would require more data, more time and more parameters. If we know this property beforehand, clearly it pays off to enforce it, preventing the model from the get go to make mistakes of this kind.
+
+There are many different transformations that the true interatomic potential must be equivariant to. We will discuss these one by one and use them to refine our model.
+
+### Permutations
+
+In turning the positions of all nuclei into a 3N-dimensional input vector, we had to implicitly decide an order: which particle is the first particle, which is the second, etc. Clearly this is just a choice of labelling; if we pick a different order for the exact same configuration of particles, the potential shouldn’t change. So we want our model to be *invariant* with respect to permutations.
+
+Currently it is not, it has no idea that the output should be the same, and so it would have to learn that by seeing lots of examples of identical configurations that are labelled differently, but with the same training label. Clearly this is a huge waste of time, and we want to avoid this.
+
+There are several common functions that do not depend on the order of their arguments, i.e. that are permutation invariant, such as the sum, or the mean, or the maximum. We will just take the sum, as it preserves more information than the maximum. So the very simplest permutation-invariant model would just take all of the nuclei’s positions and sum them. (Actually this would still leave us with 3 coordinates, so we’d need a 1 by 3 matrix at the end to turn it into a single number.)
+
+This is of course again much too simple, in fact even more so than what we started with. We can improve the situation while still taking permutations into account by having only the *last* layer be invariant, and adding *equivariant* layers in between.
+
+Any function that does exactly the same to every nucleus will be equivariant with respect to permutations: if we reorder the inputs, the outputs will be the same as the original, except that they are also reordered in exactly the same way. For this function we can use what we ended up with in the previous section: a fully connected neural network. So that takes a nucleus’s 3 coordinates, and does several matrix multiplications and activation functions on it to end up with a different amount of numbers for each atom, that we can choose.
+
+Note that if the intermediate layers were *not* equivariant, there would be no way to guarantee invariance at the final layer. Furthermore, it also already makes the model more data efficient, as one training sample automatically teaches it about all the different orderings of that same sample.
 
 Another important consequence of this is that, unlike the fully connected level, we now have a model that works regardless of how many nuclei there are. This is great, because it will allow us to train the model on a small system, and then use it on a larger system.
 
@@ -29,11 +103,15 @@ We can relax this restriction and at the same time incorporate another physical 
 
 The physical principle is locality: what happens at some point x only depends on things close to x. More concretely in this case, the Coulomb potential between two particles at a distance r decreases as 1/r. This means that the interaction between two nuclei that are very far from each other doesn’t have any significant contribution to the potential.
 
-So for nuclei closer to each other than some cutoff distance r_c, we want to take their interaction into account, and we can connect them by an edge. Those that are further away are not connected by an edge. This way we turn the original point cloud input into a graph.
+So for nuclei closer to each other than some cutoff distance r\_c, we want to take their interaction into account, and we can connect them by an edge. Those that are further away are not connected by an edge. This way we turn the original point cloud input into a graph.
 
 We then extend the operation that previously did the same to all nuclei, to allow it to depend on an atom’s neighbours as well. However, the number of neighbours will be different for different nuclei, and if we allow this to make the output shapes of each atom different things will quickly grow out of hand. So we need a way to combine the neighbours in such a way as to keep the shape independent of the number of neighbours. Furthermore we again have the issue of permutation invariance, now at a smaller local scale. The solution to both problems is the same: we sum over the features of the neighbours.
 
-Illustration of message passing in a graph neural network. An atom c receives “messages” from its neighbours n and updates its state using those. The neighbours at the same time do the same. Multiple steps of this allow the message to propagate further.This is another permutation equivariant operation, now on graph inputs. It is called message passing, because it can be thought of as all of an atom’s neighbours passing messages to the central atom, who adds them all up. Doing this multiple times for all nuclei increases the region to which an atom is sensitive, because in the second step it can indirectly receive messages from its neighbours’ neighbours.
+![](/assets/1_6pHDwX0OUPtuHWqbD0vUJw-f0843c46.png)
+
+Illustration of message passing in a graph neural network. An atom c receives “messages” from its neighbours n and updates its state using those. The neighbours at the same time do the same. Multiple steps of this allow the message to propagate further.
+
+This is another permutation equivariant operation, now on graph inputs. It is called message passing, because it can be thought of as all of an atom’s neighbours passing messages to the central atom, who adds them all up. Doing this multiple times for all nuclei increases the region to which an atom is sensitive, because in the second step it can indirectly receive messages from its neighbours’ neighbours.
 
 At the end we have to sum over all nuclei again to obtain something invariant to permutations. These types of models are called Graph Neural Networks (GNNs).
 
@@ -53,7 +131,11 @@ That does the job, but it is again quite restrictive. Note the parallel here wit
 
 For an example of something that is missed in this approach, consider a central atom with two two of its neighbours. The vectors pointing from the central atom to those two neighbours make up a certain angle to each other. If you think about it, this angle is also invariant with respect to all of the transformations. And it might well be a useful feature that has an effect on the potential that we want the model to represent. But there is no way to reconstruct this angle just from the absolute value of the differences in positions. Had we not thrown away that much information so early on, we *would* be able to recover this angle: it’s related to the inner product between the two vectors.
 
-The angle φ is invariant to translations, rotations and reflections.We could of course add these angles to the input “by hand” and stick to imposing invariance from the start, and there are models that do this. But there are many more features that we are throwing away. A more systematic approach would again be to only impose invariance in the final layer, and keep the others equivariant.
+![](/assets/1_a_4d0GaMmdDN6ZJ8s81Rqg-6d8dab71.png)
+
+The angle φ is invariant to translations, rotations and reflections.
+
+We could of course add these angles to the input “by hand” and stick to imposing invariance from the start, and there are models that do this. But there are many more features that we are throwing away. A more systematic approach would again be to only impose invariance in the final layer, and keep the others equivariant.
 
 ### Higher representations/orbitals
 

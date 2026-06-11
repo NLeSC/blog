@@ -18,13 +18,13 @@ In this blog post we share some experiences of our essential skills workshops so
 
 *Note: On 6 November 2017 the workshop* [*Research Data Handling*](https://www.eventbrite.nl/e/research-data-handling-registration-35594667609) *will be held (you can still register).*
 
-[image]
+![](/assets/1_RxEy7Gvsc3CVfhQuMAFnkQ-cc0df229.jpeg)
 
 ### Demagification of essential skills
 
 The workshops covered the topics of Github, Shell and Python, giving the participants the basic knowledge of these topics. So, were participants experts in Python after the training? Of course not — it takes years of practice to become an expert in any of these topics. Why then run such a short workshop? Well, our aim is for participants to have a good basis to start learning by themselves after the workshop.
 
-[image]
+![](/assets/1_9RMXrTRWLqKKsDXsw8zmCw-78b7b330.jpeg)
 
 Mateusz Kuzak demagifies digital science
 
@@ -44,7 +44,7 @@ The workshops were attended by 15–20 people, which enabled the various instruc
 
 After the workshops, participants shared their feedback on the workshops through a short suvey. Overall, participants indicated that having attended the workshops will really help them to do much of their work in a more efficient way. Also the hands-on approach, insteading of lecturing, was highly appreciated. Furthermore, the Python workshop participants appreciated the use of Jupyter Notebooks and the introduction into data analysis with Pandas. Also the introduction to [Make](https://www.gnu.org/software/make/) in the Shell & Task Automation course was positively reviewed and could perhaps receive some more attention in the future.
 
-[image]
+![](/assets/1_wt6Hj-laynLpbqVuoMdpvw-46f7b3a1.jpeg)
 
 For the Python course, various participants suggested to split up the workshop in two levels: a Beginner and an Intermediate/Advanced Python workhop. Perhaps the most positive reviews were probably coming from the workshop on Version control with Git & GitHub. One participant wrote:
 

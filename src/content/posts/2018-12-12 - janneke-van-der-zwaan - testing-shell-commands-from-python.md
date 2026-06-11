@@ -8,7 +8,7 @@ tags:
   - uncategorized
 ---
 
-[image]
+![](/assets/1_N20Y3NBxkdLlHLvJpOtxEQ-2b975963.jpeg)
 
 What to do with these shells?
 

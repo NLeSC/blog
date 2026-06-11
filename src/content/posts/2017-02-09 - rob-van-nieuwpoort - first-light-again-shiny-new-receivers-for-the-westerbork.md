@@ -8,25 +8,25 @@ tags:
   - uncategorized
 ---
 
-[image]
+![](/assets/1_IW6Wn8RsaEyQRhYbFMMDkA-8d49b3c8.jpeg)
 
 Radio Telescopes at Westerbork by Johan Wieland
 
 Great news! The new and improved Westerbork telescope in the northeast of the Netherlands [has seen first light](http://www.astron.nl/first-image-apertif-new-life-westerbork-radio-telescope)! If you are into radio astronomy, or if you have visited the second world war nazi camp and monument at Westerbork, you may be familiar with this instrument, which was built in 1970. The telescope is situated right next to the former transit camp. During the Second World War, Romani and Dutch Jews were assembled there, for transport to other Nazi concentration camps. The famous Anne Frank (from the diary) was kept here for a while.
 
-[image]
+![](/assets/1_ZOtMneXEYlp6asnBzuEojw-af2965fd.jpeg)
 
 A rebuilt barrack at Dutch Nazi camp Westerbork. Anne Frank stayed in this barrack from August till early September 1944, before she was taken to Auschwitz and then Bergen-Belsen. Picture from Wikipedia, courtesy Blacknight
 
 Today, you can visit the remains of the camp, which now is a monument. From the site, you can see the telescope, or actually telescopes, because the instrument consists of 14 separate dishes, 25 meters in diameter each. The total distance between the dishes is 2.7 kilometers, or 1.7 miles if you insist on using archaic units. The telescope actually is pretty old already. In fact, it is older than I am (I was built in ‘75). Nevertheless, this instrument has helped doing great science, and has led to many remarkable discoveries.
 
-[image]
+![](/assets/1_Mix7BRS8y2WHMX1eQfWiRw-88ec3984.jpeg)
 
 The Westerbork synthesis radio telescope. And typical Dutch weather:-) Picture made by me on a day the telescope was open for the public. Normally, cars are not allowed here, because they cause interference.
 
 Of course, technology does not stand still, and modern, more sensitive instruments were developed and built during the four decades (!) that this telescope has been operational. So, the beast was becoming a bit old and grumpy. Not to worry! We are Dutch, and don’t like to waste anything (some say we are cheapskates). So, recently, the receivers that are in the focal points of the dishes were upgraded with brand new ones. Originally, each dish contained only a single sensor, basically producing a single pixel. The new receiver, called APERTIF, actually is an array of sensors, called a Focal Plane Array (FPA). Compare it to a modern sensor in a camera, which produces several megapixels at once. So, this gives us more sensitivity, but especially a much larger window on the sky. We can see more at the same time. This is important if you want to make a survey, searching for objects that you don’t know yet, or which appear suddenly (like supernovae, pulsars, or signals from little green men).
 
-[image]
+![](/assets/1_pIoP_Vd-PXzaiskRPe9XeA-f89960ed.png)
 
 Focal Plane arrays rock! Picture courtesy ASTRON.
 
