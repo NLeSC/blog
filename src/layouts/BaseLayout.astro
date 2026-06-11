@@ -103,32 +103,6 @@ const { title, description, ogImage, noindex } = Astro.props;
     }
 
 
-
-    (() => {
-      async function initMermaidBlocks() {
-        const blocks = Array.from(document.querySelectorAll('pre > code.language-mermaid, code.language-mermaid'));
-        if (!blocks.length) return;
-        const { default: mermaid } = await import('mermaid');
-        mermaid.initialize({
-          startOnLoad: false,
-          theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
-          securityLevel: 'strict',
-        });
-        blocks.forEach((code, index) => {
-          const pre = code.closest('pre');
-          const source = code.textContent || '';
-          const container = document.createElement('div');
-          container.className = 'mermaid-diagram';
-          container.textContent = source;
-          container.id = `mermaid-${index}`;
-          if (pre) pre.replaceWith(container);
-          else code.replaceWith(container);
-        });
-        await mermaid.run({ nodes: document.querySelectorAll('.mermaid-diagram') });
-      }
-      initMermaidBlocks().catch((error) => console.error('Mermaid rendering failed', error));
-    })();
-
     (() => {
       const modal = document.getElementById('search-modal');
       const input = document.getElementById('search-input');
@@ -243,6 +217,36 @@ const { title, description, ogImage, noindex } = Astro.props;
       const current = new URL(window.location.href);
       if (current.pathname === new URL(searchPath, window.location.origin).pathname) openSearch(current.searchParams.get('q') || '');
     })();
+  </script>
+
+  <script>
+    import mermaid from 'mermaid';
+
+    async function initMermaidBlocks() {
+      const blocks = Array.from(document.querySelectorAll('pre[data-language="mermaid"] > code, pre > code.language-mermaid, code.language-mermaid'));
+      if (!blocks.length) return;
+
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
+        securityLevel: 'strict',
+      });
+
+      blocks.forEach((code, index) => {
+        const pre = code.closest('pre');
+        const source = code.textContent || '';
+        const container = document.createElement('div');
+        container.className = 'mermaid-diagram';
+        container.textContent = source;
+        container.id = `mermaid-${index}`;
+        if (pre) pre.replaceWith(container);
+        else code.replaceWith(container);
+      });
+
+      await mermaid.run({ nodes: document.querySelectorAll('.mermaid-diagram') });
+    }
+
+    initMermaidBlocks().catch((error) => console.error('Mermaid rendering failed', error));
   </script>
 </body>
 </html>
