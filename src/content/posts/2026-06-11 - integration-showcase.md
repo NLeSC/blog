@@ -99,15 +99,15 @@ The blog can embed external media when needed. This example intentionally uses a
   allowfullscreen>
 </iframe>
 
-## External page embed
+## Interactive iframe embed
 
-A generic iframe can also embed simple external content where allowed by the remote site.
+Generic website iframes are often blocked by `X-Frame-Options` or `frame-ancestors` policies, so this example uses an Observable embed that explicitly allows framing.
 
 <iframe
-  src="https://www.esciencecenter.nl/"
-  title="Netherlands eScience Center website"
+  src="https://observablehq.com/embed/@d3/bar-chart/2?cells=chart"
+  title="Observable D3 bar chart embed"
   loading="lazy"
-  style="width: 100%; min-height: 360px; border: 1px solid #e5e5e5; border-radius: 12px;">
+  style="width: 100%; min-height: 460px; border: 1px solid #e5e5e5; border-radius: 12px;">
 </iframe>
 
 ## Table
