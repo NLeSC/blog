@@ -1,9 +1,10 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
+import { isListedPost } from '../lib/archive';
 import { sitePath } from '../lib/urls';
 
 export async function GET() {
-  const posts = await getCollection('posts', ({ data }) => data.published !== false);
+  const posts = (await getCollection('posts')).filter(isListedPost);
   posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
   return rss({

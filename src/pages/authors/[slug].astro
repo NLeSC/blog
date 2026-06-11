@@ -2,11 +2,11 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { getAuthorInfo, getAuthorPic, getAuthorInitials } from '../../lib/authors';
-import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, postUrl } from '../../lib/archive';
+import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, isListedPost, postUrl } from '../../lib/archive';
 import { assetPath, sitePath } from '../../lib/urls';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts', ({ data }) => data.published !== false);
+  const posts = (await getCollection('posts')).filter(isListedPost);
   const authors = [...new Set(posts.map(p => p.data.author))];
   return authors.map(author => ({
     params: { slug: author.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') },
@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 }
 
 const { author } = Astro.props;
-const allPosts = await getCollection('posts', ({ data }) => data.published !== false);
+const allPosts = (await getCollection('posts')).filter(isListedPost);
 const authorPosts = allPosts
   .filter(p => p.data.author === author)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());

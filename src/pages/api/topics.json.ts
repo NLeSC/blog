@@ -1,9 +1,9 @@
 import { getCollection } from 'astro:content';
-import { buildTopicIndex, serializePost } from '../../lib/archive';
+import { buildTopicIndex, isListedPost, serializePost } from '../../lib/archive';
 import { sitePath } from '../../lib/urls';
 
 export async function GET() {
-  const posts = await getCollection('posts', ({ data }) => data.published !== false);
+  const posts = (await getCollection('posts')).filter(isListedPost);
   const data = buildTopicIndex(posts).map((topic) => ({
     name: topic.name,
     slug: topic.slug,

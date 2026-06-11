@@ -1,10 +1,10 @@
 import { getCollection } from 'astro:content';
-import { authorSlug, buildTopicIndex, serializePost } from '../../lib/archive';
+import { authorSlug, buildTopicIndex, isListedPost, serializePost } from '../../lib/archive';
 import { getAuthorInfo } from '../../lib/authors';
 import { sitePath } from '../../lib/urls';
 
 export async function GET() {
-  const posts = await getCollection('posts', ({ data }) => data.published !== false);
+  const posts = (await getCollection('posts')).filter(isListedPost);
   const byAuthor = new Map<string, typeof posts>();
 
   for (const post of posts) {
