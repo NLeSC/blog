@@ -17,7 +17,14 @@ The Netherlands eScience Center blog — 275 articles on research software engin
 - RSS feed and JSON endpoints for posts, authors, and topics.
 - Dark mode support.
 - GitHub Pages deployment via Actions.
-- Math notation via LaTeX and Mermaid diagram rendering in markdown.
+- Rich technical writing support in post bodies:
+  - standard markdown: headings, links, blockquotes, lists, tables, code blocks, and inline code;
+  - repository-managed images from `public/assets/`;
+  - raw HTML for editorial affordances such as `<details>` / `<summary>`;
+  - iframe embeds for videos and interactive content, including YouTube and Observable-style embeds;
+  - math notation via inline and block LaTeX;
+  - Mermaid diagrams from fenced `mermaid` code blocks.
+- Unlisted direct-link posts for integration/showcase pages that build but stay out of public listings, RSS, APIs, topics, authors, and search.
 
 ---
 
@@ -55,17 +62,53 @@ tags:
 | `tags` | no | List of keywords. Defaults to `["uncategorized"]` if omitted |
 | `source` | no | `"medium"` (default) or omit for original posts |
 | `source_url` | no | Link to original if cross-posted |
-| `published` | no | `false` to hide from the site. Defaults to `true` |
+| `published` | no | `false` to hide from the site entirely. Defaults to `true` |
+| `unlisted` | no | `true` keeps the direct URL generated but excludes the post from homepage, search, feeds, APIs, topic pages, and author pages |
 
 ### 3. Body content
 
-Write standard markdown. Images go in `public/assets/` and are referenced as:
+Write markdown, plus supported rich content when needed. Images go in `public/assets/` and are referenced as root-relative paths:
 
 ```markdown
 ![Alt text](/assets/my-image.png)
 ```
 
-No HTML in body content — markdown only.
+Supported body content includes:
+
+- normal markdown paragraphs, headings, links, blockquotes, lists, tables, and code fences;
+- inline code with backticks;
+- syntax-highlighted code blocks with language fences, e.g. ```` ```python ````;
+- inline math with `$...$` and block math with `$$...$$`;
+- Mermaid diagrams with fenced `mermaid` blocks;
+- raw HTML for small editorial elements such as `<details>` / `<summary>`;
+- iframe embeds for videos or interactive figures, as long as the provider allows framing.
+
+Example Mermaid diagram:
+
+````markdown
+```mermaid
+graph LR
+  Markdown --> Astro
+  Astro --> HTML
+  HTML --> Pages
+```
+````
+
+Example embed:
+
+```html
+<iframe
+  src="https://observablehq.com/embed/@d3/bar-chart/2?cells=chart"
+  title="Observable D3 bar chart embed"
+  loading="lazy">
+</iframe>
+```
+
+Use the unlisted integration showcase post as a reference for supported content patterns:
+[`src/content/posts/2026-06-11 - integration-showcase.md`](src/content/posts/2026-06-11%20-%20integration-showcase.md).
+
+Contributors can also view the live showcase to see what is possible:
+[https://nlesc-blogging.github.io/blog/posts/2026-06-11---integration-showcase/](https://nlesc-blogging.github.io/blog/posts/2026-06-11---integration-showcase/).
 
 ### 4. Rebuild
 
@@ -77,7 +120,7 @@ The site rebuilds automatically on push to `main`. To preview locally: `bun run 
 
 1. **One post per file.** No multi-post markdown files.
 2. **Images in `/assets/`.** Don't hotlink external images — download them and commit to `public/assets/`. Use descriptive filenames: `why-we-build-tools-diagram.png` not `IMG_4829.jpg`.
-3. **No HTML in body.** Markdown only. Astro renders it safely.
+3. **HTML is allowed when it adds value.** Keep it minimal and purposeful: embeds, `<details>`, and small semantic elements are fine. Avoid large custom layouts inside posts unless there is a strong editorial reason.
 4. **Frontmatter before body.** The `---` block must be the first thing in the file.
 5. **File naming convention.** `YYYY-MM-DD - post-slug.md`. The date in the filename should match the `date` field in frontmatter; keep author names in metadata only.
 6. **Alt text on every image.** Accessibility matters: `![Diagram showing the RSE role spectrum](/assets/rse-spectrum.png)`.
@@ -85,6 +128,8 @@ The site rebuilds automatically on push to `main`. To preview locally: `bun run 
 8. **Deleting a post.** Remove the file, or set `published: false` to hide without deleting.
 9. **Author pages.** Author pages are auto-generated from the `author` field. Use consistent author names across posts (e.g. always "Jesse Gonzalez", never mix "Jesse Gonzalez" and "J. Gonzalez").
 10. **Tags are freeform.** No controlled vocabulary — but prefer existing tags for discoverability. Check `/search` to see what's already in use.
+11. **Embeds depend on provider policy.** Some websites block iframes with `X-Frame-Options` or `Content-Security-Policy`; test embeds locally before publishing.
+12. **Use unlisted posts for smoke tests or private demos.** Set `unlisted: true` and keep `published: true` when a page should build and be reachable directly, but not appear in listings or feeds.
 
 ---
 
