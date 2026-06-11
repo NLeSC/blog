@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, postUrl } from '../lib/archive';
+import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, isListedPost, postUrl } from '../lib/archive';
 import { assetPath, sitePath } from '../lib/urls';
 
-const allPosts = await getCollection('posts', ({ data }) => data.published !== false);
+const allPosts = (await getCollection('posts')).filter(isListedPost);
 allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const posts = allPosts; // Show all posts on homepage
 const topics = buildTopicIndex(allPosts).slice(0, 8);

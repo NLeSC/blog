@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getAuthorInfo, getAuthorPic, getAuthorInitials } from '../../lib/authors';
-import { authorSlug, formatDate, formatDate as formatArchiveDate, getCoverImage, postUrl, readTime, slugify, visibleTags } from '../../lib/archive';
+import { authorSlug, formatDate, formatDate as formatArchiveDate, getCoverImage, isListedPost, postUrl, readTime, slugify, visibleTags } from '../../lib/archive';
 import { assetPath, sitePath } from '../../lib/urls';
 
 export async function getStaticPaths() {
@@ -24,7 +24,7 @@ const minutes = readTime(post.body || '');
 const sourceSlug = post.id.replace(/\.md$/, '').split('/').pop() || post.id;
 
 // Find related posts by shared topics first, then same author
-const allPosts = await getCollection('posts', ({ data }) => data.published !== false);
+const allPosts = (await getCollection('posts')).filter(isListedPost);
 const tagSet = new Set(tags.map((tag: string) => slugify(tag)));
 const relatedPosts = allPosts
   .filter(p => p.id !== post.id)
@@ -39,7 +39,7 @@ const relatedPosts = allPosts
   .map(({ post }) => post);
 ---
 
-<BaseLayout title={post.data.title}>
+<BaseLayout title={post.data.title} noindex={post.data.unlisted}>
   <article class="max-w-[680px] mx-auto px-4 animate-page">
     <header class="pt-10 pb-6 animate-enter">
       <h1 class="text-[32px] md:text-[40px] font-bold leading-tight text-[#242424] tracking-tight font-sans mb-6 dark:text-white">

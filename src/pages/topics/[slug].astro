@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, postUrl } from '../../lib/archive';
+import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, isListedPost, postUrl } from '../../lib/archive';
 import { assetPath, sitePath } from '../../lib/urls';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('posts', ({ data }) => data.published !== false);
+  const posts = (await getCollection('posts')).filter(isListedPost);
   return buildTopicIndex(posts).map((topic) => ({
     params: { slug: topic.slug },
     props: { topic },

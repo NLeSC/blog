@@ -1,8 +1,10 @@
 import { getCollection } from 'astro:content';
+import { isListedPost } from '../lib/archive';
 import { sitePath } from '../lib/urls';
 
 export async function GET() {
-  const posts = (await getCollection('posts', ({ data }) => data.published !== false))
+  const posts = (await getCollection('posts'))
+    .filter(isListedPost)
     .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
     .map((post) => ({
       title: post.data.title,

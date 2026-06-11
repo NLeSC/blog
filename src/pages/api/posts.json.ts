@@ -1,8 +1,8 @@
 import { getCollection } from 'astro:content';
-import { serializePost } from '../../lib/archive';
+import { isListedPost, serializePost } from '../../lib/archive';
 
 export async function GET() {
-  const posts = await getCollection('posts', ({ data }) => data.published !== false);
+  const posts = (await getCollection('posts')).filter(isListedPost);
   const data = posts
     .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
     .map(serializePost);

@@ -9,6 +9,7 @@ const posts = defineCollection({
     date: z.coerce.date(),
     author: z.string().nullable().optional().transform(v => (v && v.trim()) ? v.trim() : 'eScience Center'),
     published: z.boolean().nullable().optional().transform(v => v !== false),
+    unlisted: z.boolean().nullable().optional().transform(v => v === true),
     source: z.string().nullable().optional().transform(v => v || 'medium'),
     source_url: z.string().nullable().optional(),
     tags: z.array(z.string()).nullable().optional().transform(v => v || ['uncategorized']),

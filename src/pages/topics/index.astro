@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { buildTopicIndex, formatDate } from '../../lib/archive';
+import { buildTopicIndex, formatDate, isListedPost } from '../../lib/archive';
 import { sitePath } from '../../lib/urls';
 
-const posts = await getCollection('posts', ({ data }) => data.published !== false);
+const posts = (await getCollection('posts')).filter(isListedPost);
 const topics = buildTopicIndex(posts);
 const featuredTopics = topics.slice(0, 24);
 ---

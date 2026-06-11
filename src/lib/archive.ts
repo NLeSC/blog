@@ -62,6 +62,10 @@ export function visibleTags(tags: string[] = []): string[] {
   return tags.filter((tag) => tag && tag.toLowerCase() !== 'uncategorized');
 }
 
+export function isListedPost(post: PostEntry): boolean {
+  return post.data.published !== false && post.data.unlisted !== true;
+}
+
 export function buildTopicIndex(posts: PostEntry[]) {
   const bySlug = new Map<string, { slug: string; name: string; count: number; latest: Date; posts: PostEntry[] }>();
 
