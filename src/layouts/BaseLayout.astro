@@ -48,9 +48,21 @@ const { title, description, ogImage, noindex } = Astro.props;
         <span class="font-semibold text-[15px] text-[#242424] dark:text-white tracking-tight truncate">eScience Center Blog</span>
       </a>
       <div class="flex items-center gap-3 sm:gap-5 flex-shrink-0">
-        <button id="theme-toggle" class="text-[15px] text-[#6b6b6b] hover:text-[#242424] dark:text-[#aaa] dark:hover:text-white transition-colors cursor-pointer" aria-label="Toggle dark mode" title="Toggle dark mode">
-          <span class="dark:hidden">🌙</span>
-          <span class="hidden dark:inline">☀️</span>
+        <button id="theme-toggle" class="inline-flex h-8 w-8 items-center justify-center rounded-full text-[#6b6b6b] hover:bg-[#f7f7f7] hover:text-[#242424] dark:text-[#aaa] dark:hover:bg-[#1f1f1f] dark:hover:text-white transition-colors cursor-pointer" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="h-4 w-4 dark:hidden" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.35 15.35A8.5 8.5 0 0 1 8.65 3.65 7 7 0 1 0 20.35 15.35Z" />
+          </svg>
+          <svg class="hidden h-4 w-4 dark:block" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="m4.93 4.93 1.41 1.41" />
+            <path d="m17.66 17.66 1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="m6.34 17.66-1.41 1.41" />
+            <path d="m19.07 4.93-1.41 1.41" />
+          </svg>
         </button>
         <a href={sitePath("/topics")} class="text-[13px] text-[#6b6b6b] hover:text-[#242424] dark:text-[#aaa] dark:hover:text-white transition-colors hidden sm:inline">Topics</a>
         <button data-search-open class="text-[13px] text-[#6b6b6b] hover:text-[#242424] dark:text-[#aaa] dark:hover:text-white transition-colors cursor-pointer">Search</button>
