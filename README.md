@@ -73,6 +73,23 @@ Write markdown, plus supported rich content when needed. Images go in `public/as
 ![Alt text](/assets/my-image.png)
 ```
 
+For images that need a visible caption, use a semantic HTML `<figure>` block. This is the preferred pattern for new posts because it keeps the alt text and the caption separate:
+
+```html
+<figure>
+  <img src="/assets/my-image.png" alt="Short accessibility description of the image" />
+  <figcaption>Caption shown under the image. Credit/source links are allowed.</figcaption>
+</figure>
+```
+
+Caption rules:
+
+- `alt` describes the image for screen readers; it is not the caption.
+- `<figcaption>` is the visible editorial caption under the image.
+- Keep captions short and factual, Medium-style.
+- Put credits/source links in the caption when needed.
+- Avoid the old export pattern where caption text is pasted as a normal paragraph directly after an image; use `<figure>` instead.
+
 Supported body content includes:
 
 - normal markdown paragraphs, headings, links, blockquotes, lists, tables, and code fences;
