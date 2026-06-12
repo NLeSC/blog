@@ -26,7 +26,10 @@ But this problem can be solved. In this tutorial, we show how you as a researche
 Before we jump into it, it is important to highlight that web scraping and IP rotation need to respect the law and should only be a last resort. For instance, before you scrape data from a website, you should ask the data owner whether they are willing to make them available to you through a data sharing agreement. If you nevertheless decide to scrape the data, you should get approval from the ethical review board at your university. Moreover, do only scrape data that are publicly available on the web and do not send excessive number of requests to the website in a given time.
 
 ![How to manage your IP address in Python](/assets/how-to-manage-your-ip-address-in-python-00102567.jpg)
-Photo by [Glenn Carstens-Peters](https://unsplash.com/@glenncarstenspeters?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)For rotating the IP address, we will use a VPN service. [Here](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-vpn#:~:text=A%20VPN%2C%20which%20stands%20for,and%20firewalls%20on%20the%20internet.) you can read more about what a VPN service is—in short, the service has a bunch of remote servers, and connecting your computer to one of these servers changes your IP address.
+
+Photo by [Glenn Carstens-Peters](https://unsplash.com/@glenncarstenspeters?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+For rotating the IP address, we will use a VPN service. [Here](https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-vpn#:~:text=A%20VPN%2C%20which%20stands%20for,and%20firewalls%20on%20the%20internet.) you can read more about what a VPN service is—in short, the service has a bunch of remote servers, and connecting your computer to one of these servers changes your IP address.
 
 ## What you need
 

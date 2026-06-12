@@ -16,7 +16,10 @@ tags:
 Welcome to the technological revolution of 2023, where the landscape of communication and information processing has been forever transformed.
 
 ![Summer is here, and so are large language models.](/assets/summer-is-here-and-so-are-large-language-d532273d.jpg)
-Photo by [Google DeepMind](https://unsplash.com/@deepmind?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)The early months of this year have been dominated by the extraordinary rise of ChatGPT and other large language models. These remarkable AI-powered systems have become the driving force behind an unprecedented level of automation and efficiency in generating summaries and content. In fact, the emergence of ChatGPT has been so influential that it has rendered the traditional practice of crafting personal summary blogs unnecessary. With its unparalleled capabilities, ChatGPT now stands as the ultimate tool to effortlessly generate comprehensive and insightful summaries, paving the way for a new era of intelligent content creation.
+
+Photo by [Google DeepMind](https://unsplash.com/@deepmind?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+The early months of this year have been dominated by the extraordinary rise of ChatGPT and other large language models. These remarkable AI-powered systems have become the driving force behind an unprecedented level of automation and efficiency in generating summaries and content. In fact, the emergence of ChatGPT has been so influential that it has rendered the traditional practice of crafting personal summary blogs unnecessary. With its unparalleled capabilities, ChatGPT now stands as the ultimate tool to effortlessly generate comprehensive and insightful summaries, paving the way for a new era of intelligent content creation.
 
 The paragraph above was written by ChatGPT. **Other entries on our blog are still written by humans though, and good ones too. So below are our favourite blogs on large language models:
 

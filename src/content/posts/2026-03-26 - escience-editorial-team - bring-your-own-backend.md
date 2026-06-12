@@ -20,7 +20,10 @@ tags:
 By [Stefan Verhoeven](https://www.esciencecenter.nl/team/stefan-verhoeven-bsc/).
 
 ![Bring Your Own Backend](/assets/bring-your-own-backend-58215f84.png)
-Image source [https://www.pnnl.gov/news-media/new-nationwide-modeling-points-widespread-racial-disparities-urban-heat-stress](https://www.pnnl.gov/news-media/new-nationwide-modeling-points-widespread-racial-disparities-urban-heat-stress)As a research software engineer (RSE) working at the Netherlands eScience Center, I work on projects together with domain scientists at universities and research institutes.
+
+Image source [https://www.pnnl.gov/news-media/new-nationwide-modeling-points-widespread-racial-disparities-urban-heat-stress](https://www.pnnl.gov/news-media/new-nationwide-modeling-points-widespread-racial-disparities-urban-heat-stress)
+
+As a research software engineer (RSE) working at the Netherlands eScience Center, I work on projects together with domain scientists at universities and research institutes.
 
 For example, currently I am working on the [Urban-M4 project,](https://research-software-directory.org/projects/urban-m4) where we are trying to improve a weather model by telling it the properties of buildings in a city. As part of this project, I built a web-based application called [streetscapes-explorer](https://github.com/Urban-M4/Urban-M5) to create, review and edit segmented street view images. My engineering colleagues and project partners worked on the machine learning models and data processing pipelines that powered the backend of the web application.
 

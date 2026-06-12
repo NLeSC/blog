@@ -18,6 +18,7 @@ tags:
 In that earlier post, we were investigating why the MingW-w64 build of DuckDB fails to export the C-API symbols in the final DLL. We identified that the issue was introduced by the commit [d1ea1538](https://github.com/duckdb/duckdb/commit/d1ea1538c9217fb536485f1500f04a0b55b1e584). However, we could not ascertain the underlying reason for the problem. To take this further, let us try to isolate which part of the change was the cause.
 
 ![Solving the mystery of the missing symbols! (part II)](/assets/solving-the-mystery-of-the-missing-symbo-41382a82.jpg)
+
 Photo by [Tomas Martinez](https://unsplash.com/@tomasmartinez?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ## A dead-end

@@ -14,6 +14,7 @@ tags:
 ---
 
 ![Diversity in Software: four ways to think different](/assets/diversity-in-software-four-ways-to-think-4a16eeee.jpg)
+
 Photo by [Steve Johnson](https://unsplash.com/@steve_j?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 # Diversity in Software: four ways to think different

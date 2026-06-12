@@ -24,7 +24,10 @@ The [Weather Research and Forecasting model](https://www.mmm.ucar.edu/models/wrf
 Given its large user base, one might think this must be an exemplary model to work with. And perhaps it is, in comparison to other models in the scene. But as I’m working with WRF again after several years, I’m reminded of my struggles in keeping my workflows organized.
 
 ![(Un)wieldy workflows with WRF](/assets/unwieldy-workflows-with-wrf-b6e59d0c.jpg)
-Photo by [Bernd 📷 Dittrich](https://unsplash.com/@hdbernd?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)To try and tackle this issue once and for all, we experimented with different solutions, including a simple shell script, as well as [Snakemake](https://snakemake.readthedocs.io/en/stable/), a python-based workflow management tool often used in bioinformatics. Both approaches turn out to have their own merits and quirks.
+
+Photo by [Bernd 📷 Dittrich](https://unsplash.com/@hdbernd?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+To try and tackle this issue once and for all, we experimented with different solutions, including a simple shell script, as well as [Snakemake](https://snakemake.readthedocs.io/en/stable/), a python-based workflow management tool often used in bioinformatics. Both approaches turn out to have their own merits and quirks.
 
 Overall, we did get a better grip on the antipatterns that prevented us from keeping a nice and orderly workflow. From this, we extracted some best practices for managing complex (WRF) modelling workflows. This blogpost documents our journey and the lessons learned, in the hope that it will be useful for other WRF users and those who struggle with managing their experiments.
 

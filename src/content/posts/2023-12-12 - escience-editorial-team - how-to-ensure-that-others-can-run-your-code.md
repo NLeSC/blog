@@ -23,7 +23,10 @@ By [Julian Gonggrijp](https://juliangonggrijp.com/)
 *This is the last eScience Center blog post of 2023, but fear not! We will be back in January with lots more interesting writing from our Center.*
 
 ![How to ensure that others can run your code](/assets/how-to-ensure-that-others-can-run-your-c-4f7aaef5.jpg)
-Photo by [ThisisEngineering RAEng](https://unsplash.com/@thisisengineering?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)Imagine the following scenario. You need to analyze your research data. As is often the case in research, your analysis is going to be similar to, but not quite the same as, previous research. You look for existing software that can do the job for you, but nothing suits your situation. You decide this will be a good opportunity to brush up on your Python-fu. You sit down at your laptop, crack your knuckles and start hacking.
+
+Photo by [ThisisEngineering RAEng](https://unsplash.com/@thisisengineering?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+Imagine the following scenario. You need to analyze your research data. As is often the case in research, your analysis is going to be similar to, but not quite the same as, previous research. You look for existing software that can do the job for you, but nothing suits your situation. You decide this will be a good opportunity to brush up on your Python-fu. You sit down at your laptop, crack your knuckles and start hacking.
 
 The analysis is far from trivial; so is writing the code. You learn several new things along the way, some of which are interesting, gain a few grey hairs, spend two very late “afternoons” with a colleague to squash a notorious bug. Ten weeks and several hundred lines of code later, though, you manage to make it work. You toast with your colleague, present your analysis at a conference and get very positive responses. Your own software is a great success!
 
@@ -53,6 +56,7 @@ Let us be honest: it is *infuriating* that code never runs out of the box. We ca
 While this is no excuse by itself, creating infrastructure that makes code easy to run is notoriously difficult. Code is run by other code, and that other code has to be extremely flexible in order to cater to all the possible applications. This by itself already requires highly specialized skills. On top of that, the software landscape is constantly moving because people keep finding new use cases for code, so everyone is constantly struggling to keep their own code compatible with somebody else’s code. Between all that effort, attention tends to be drawn away from keeping the software usable. There have been many honourable attempts at improving this situation, some of them quite successful — I will mention a few below — but even those projects cannot escape the constant struggle to keep their infrastructure current. Making running code as easy as a double-click remains elusive for now.
 
 ![How to ensure that others can run your code](/assets/how-to-ensure-that-others-can-run-your-c-5683b09b.jpg)
+
 Photo by [Sigmund](https://unsplash.com/@sigmund?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ## Six things that should be documented for any code

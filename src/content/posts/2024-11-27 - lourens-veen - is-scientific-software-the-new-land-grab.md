@@ -53,6 +53,7 @@ Setting up a workflow system in the cloud is one thing (especially if you pull a
 So, will a system like this actually be useful? We have some existing workflow systems in science that are well used in particular communities, like [KNIME](https://en.wikipedia.org/wiki/KNIME), so it’ll likely be of some use, but I don’t see this being the great solution to reusing scientific software. I do see something else, however: lock-in.
 
 ![Is scientific software the new land grab?](/assets/is-scientific-software-the-new-land-grab-420cacda.jpg)
+
 Photo by [Jametlene Reskp](https://unsplash.com/@reskp?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ## The next landgrab

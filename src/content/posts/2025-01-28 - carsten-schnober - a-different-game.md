@@ -22,6 +22,7 @@ tags:
 *To build complex software, highly skilled programmers are essential. But only effective collaboration enables them to achieve big things in the world of modern software engineering.*
 
 ![A Different Game](/assets/a-different-game-f432a766.jpg)
+
 Photo by [Ruben Leija](https://unsplash.com/@rleija_?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ## From Programmer to Software Engineer

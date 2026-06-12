@@ -20,7 +20,10 @@ tags:
 *Want to know more of what Justin’s team is doing?! Check his team’s *[*website*](https://vdhooftcompmet.github.io/)*.*
 
 ![Scientific Community Building through Workshops: the NPLinker eScience experience](/assets/scientific-community-building-through-wo-0741307b.jpeg)
-Photo by [Adrian Lange](https://unsplash.com/pt-br/@vollkornapfel?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/Wk902ZLaA7M?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)
+
+Photo by [Adrian Lange](https://unsplash.com/pt-br/@vollkornapfel?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/Wk902ZLaA7M?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopy
+
+Text)
 
 Motivation for the workshop**
 

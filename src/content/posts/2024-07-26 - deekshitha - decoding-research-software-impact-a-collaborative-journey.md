@@ -24,7 +24,10 @@ tags:
 *Authors: Deekshitha¹, Carlos Martinez Ortiz¹, Rena Bakhshi¹, Jason Maassen¹, Rob van Nieuwpoort², Slinger Jansen³, Ton Smeele³, Andrew Treloar⁴, Louise Bezuidenhout², Maarten Schermer³, Laurents Sesink⁵, Pui-Kei Fung³, and Colette Bos¹*
 
 ![Decoding Research Software Impact: A Collaborative Journey](/assets/decoding-research-software-impact-a-coll-f6a11552.jpg)
-Photo by [Soliman Cifuentes](https://unsplash.com/@aleexcif?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)In this session, participants collaborated on the topic of research software impact. Participants took the perspective of policymakers, funders, researchers and Research Software Engineers (RSEs) to explore perspectives of research software impact in four 15-minute rounds, in which participants attempted to answer a set of questions from the perspective they were exploring. After each round, the participants changed groups to cover a different perspective. This workshop aimed to define the impact of research software from the perspectives of these 4 stakeholders. Here the term impact refers to the difference the research software makes to the research process or community.
+
+Photo by [Soliman Cifuentes](https://unsplash.com/@aleexcif?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+In this session, participants collaborated on the topic of research software impact. Participants took the perspective of policymakers, funders, researchers and Research Software Engineers (RSEs) to explore perspectives of research software impact in four 15-minute rounds, in which participants attempted to answer a set of questions from the perspective they were exploring. After each round, the participants changed groups to cover a different perspective. This workshop aimed to define the impact of research software from the perspectives of these 4 stakeholders. Here the term impact refers to the difference the research software makes to the research process or community.
 
 Measuring the impact of research software is the main focus of Deekshitha’s PhD study. Currently, there is a lack of sufficient methods to accurately measure research software impact. Her study seeks to develop an impact model that will enable all stakeholders of research software to measure its impact effectively and ensure recognition for the individuals behind its development. During the sessions, four questions were discussed (from different perspectives):
 
@@ -40,6 +43,7 @@ From the researcher’s and RSEs perspective, we have identified six goals, as s
 The figure below illustrates the goals and the factors that help measure their impact and interdependencies. The first branch represents the goals (Answer to question 1), the second connection illustrates how to measure those goals (impact factors and their connection with goals- Answer to questions 2 and 3), and the third branch shows their prioritization value (Answer to question 4) along with the corresponding group (Researchers and RSEs; National and Institutional; no other group identified for Funders). This prioritization resulted from discussions with the workshop participants and the value starts from one. For example, in Figure 1, there are three impact factors grouped under Researchers. Based on the discussion, we found that the impact factor ‘citations’ has higher priority compared to other factors, so it is ranked 1 in the category for Researchers. Grey-colored boxes in front of the impact factors indicate the groups they belong to (eg: Researchers and RSEs). Additionally, impact factors unrelated to the goals (or we couldn’t find a relation with identified goals) are presented in separate black-colored boxes (see Figure 2 and Figure 3).
 
 ![Decoding Research Software Impact: A Collaborative Journey](/assets/decoding-research-software-impact-a-coll-a82b0191.png)
+
 Figure 1: Researchers/RSEs perspective
 
 ## Funders perspective
@@ -47,6 +51,7 @@ Figure 1: Researchers/RSEs perspective
 Funders like NWO, SURF, and eScience Center who support research software projects, prioritize demonstrating value for money and aligning with international strategic goals like Open Science. By emphasizing research software impact, funders can act as change agents, influencing research and ensuring it aligns with broader institutional objectives. Selecting projects with significant impact enhances the funders' image and showcases their commitment to supporting valuable and innovative research. Furthermore, funders contribute to research and educational institutions by funding unique and impactful software, thus enhancing their overall value.
 
 ![Decoding Research Software Impact: A Collaborative Journey](/assets/decoding-research-software-impact-a-coll-d9d7efe8.png)
+
 Figure 2: Funders perspective
 
 ## Policy makers perspective
@@ -56,6 +61,7 @@ Policy makers and funders play distinct yet interconnected roles within governan
 In terms of policy making, we realized there should be a distinction between national and international policies to ensure alignment with the institutional mission and purpose, maintain the independence and sovereignty of research institutes, and adequately consider risk assessment, marketability, and valorization. Figure 3 shows goals, impact factors, and their groups with priority values from the policymakers' perspective.
 
 ![Decoding Research Software Impact: A Collaborative Journey](/assets/decoding-research-software-impact-a-coll-a6d8bab9.png)
+
 Figure 3: Policy makers perspective
 
 ## Take home message

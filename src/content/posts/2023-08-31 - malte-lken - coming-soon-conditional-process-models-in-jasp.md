@@ -17,6 +17,7 @@ By [Malte Lüken](https://www.esciencecenter.nl/team/malte-luken/), [Thijs Vroeg
 *This post is also published on the JASP *[*blog*](https://jasp-stats.org/blog/)*.*
 
 ![Coming Soon: Conditional Process Models in JASP](/assets/coming-soon-conditional-process-models-i-28f59e63.jpg)
+
 Photo by [Huma Kabakci](https://unsplash.com/@humakabakci?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 ![Coming Soon: Conditional Process Models in JASP](/assets/coming-soon-conditional-process-models-i-1571ecc2.jpg)
 Many students, teachers and researchers use the popular [PROCESS](https://www.processmacro.org/) macro for SPSS (Hayes, 2022a, 2022b) to estimate conditional process models involving mediation and moderation effects. Recently, however, these models were also criticized because they make causal assumptions, which do not hold in many applied settings (Bullock et al., 2010, Rohrer et al., 2022). The popularity and criticism warrant a new module to make conditional process models easily accessible to the JASP community. Moreover, the module should provide a better understanding of the underlying causal assumptions for users and tools to explicitly test them. The JASP Team and the [Netherlands eScience Center](https://www.esciencecenter.nl/) are currently working on such an endeavor, and we give a short teaser in this blog post.

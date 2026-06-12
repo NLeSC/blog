@@ -14,7 +14,10 @@ tags:
 Why would I learn to compute a derivative by hand when Artificial Intelligence can do it for me?
 
 ![Why teach calculus in the age of AI](/assets/why-teach-calculus-in-the-age-of-ai-603e031b.jpg)
-Photo by [Shubham Sharan](https://unsplash.com/@shubhamsharan?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)If you’re reading this, you’ve probably taken a calculus course before. How was it? Chances are you found it frustrating or, at least, complicated.
+
+Photo by [Shubham Sharan](https://unsplash.com/@shubhamsharan?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+If you’re reading this, you’ve probably taken a calculus course before. How was it? Chances are you found it frustrating or, at least, complicated.
 
 You may remember one of the most feared parts of calculus courses: the computation of derivatives and integrals. For most students, this is the first time they face a mathematical problem whose solution is not a number, but a much more complicated object: a function. Computing derivatives and integrals involves memorizing tables, applying complicated composition rules and avoiding sneaky arithmetic errors. In short, it is hard.
 

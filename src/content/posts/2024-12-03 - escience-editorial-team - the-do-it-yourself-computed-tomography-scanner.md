@@ -18,7 +18,10 @@ By [Francien Bossema](https://www.esciencecenter.nl/fellowship-programme/francie
 Researchers developed a method to use existing X-ray imaging facilities for Computed Tomography (CT) scanning
 
 ![The ‘do-it-yourself’ Computed Tomography scanner](/assets/the-do-it-yourself-computed-tomography-s-69f18984.jpg)
-Photo by [Cara Shelton](https://unsplash.com/@socalcaral?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)This is a cross-post from our fellow [Dr. Francien Bossema](https://www.linkedin.com/in/francien-bossema-a587b012a/). Originally published on the [CWI website](https://www.cwi.nl/en/news/the-do-it-yourself-ct-scanner/).
+
+Photo by [Cara Shelton](https://unsplash.com/@socalcaral?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+This is a cross-post from our fellow [Dr. Francien Bossema](https://www.linkedin.com/in/francien-bossema-a587b012a/). Originally published on the [CWI website](https://www.cwi.nl/en/news/the-do-it-yourself-ct-scanner/).
 
 More information on our Fellowship programme [here](https://www.esciencecenter.nl/fellowship-programme/).
 

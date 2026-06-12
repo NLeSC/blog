@@ -114,6 +114,25 @@ const { title, description, ogImage, noindex } = Astro.props;
       });
     }
 
+    (() => {
+      const captionPattern = /^(Image source|Image credit|Photo credit|Photo by|Source:|Figure\s+\d+[:.]?)/i;
+      document.querySelectorAll('.post-content p').forEach((imageParagraph) => {
+        const nonWhitespaceNodes = Array.from(imageParagraph.childNodes).filter((node) => node.textContent?.trim() || node.nodeType !== Node.TEXT_NODE);
+        if (nonWhitespaceNodes.length !== 1 || !(nonWhitespaceNodes[0] instanceof HTMLImageElement)) return;
+
+        const next = imageParagraph.nextElementSibling;
+        const figure = document.createElement('figure');
+        figure.appendChild(nonWhitespaceNodes[0]);
+        imageParagraph.replaceWith(figure);
+
+        if (!(next instanceof HTMLParagraphElement) || !captionPattern.test((next.textContent || '').trim())) return;
+        const caption = document.createElement('figcaption');
+        while (next.firstChild) caption.appendChild(next.firstChild);
+        figure.appendChild(caption);
+        next.remove();
+      });
+    })();
+
 
     (() => {
       const modal = document.getElementById('search-modal');

@@ -18,50 +18,46 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
 
   <!-- Publication profile -->
   <div class="max-w-[960px] mx-auto px-4 pb-10 animate-enter" style="--enter-delay: 70ms">
-    <div class="flex items-start gap-4">
-      <div class="w-[64px] h-[64px] rounded-lg flex items-center justify-center flex-shrink-0" style="background: #FFC017;">
-        <span class="text-[28px] font-bold text-white" style="font-family: Georgia, serif;">e</span>
-      </div>
-      <div class="flex-1 min-w-0 pt-0.5">
-        <h2 class="text-[22px] font-bold text-[#242424] dark:text-white mb-0.5">Netherlands eScience Center</h2>
-        <p class="text-[15px] text-[#6b6b6b] dark:text-[#999] leading-relaxed mb-2">
-          We are the Dutch national centre of expertise for research software.
-        </p>
-        <div class="flex items-center gap-2">
-          <span class="text-[13px] text-[#6b6b6b]">
-            <span class="font-medium text-[#242424]">{allPosts.length}</span> articles
-          </span>
-          <span class="text-[#6b6b6b]">·</span>
-          <a href={sitePath("/rss.xml")} class="text-[13px] text-[#6b6b6b] hover:text-[#f26522] transition-colors">RSS</a>
-          <span class="text-[#6b6b6b]">·</span>
-          <a href={sitePath("/search")} class="text-[13px] text-[#6b6b6b] hover:text-[#242424] transition-colors">Search</a>
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+      <div class="flex items-start gap-4 min-w-0">
+        <div class="w-[64px] h-[64px] rounded-lg flex items-center justify-center flex-shrink-0" style="background: #FFC017;">
+          <span class="text-[28px] font-bold text-white" style="font-family: Georgia, serif;">e</span>
+        </div>
+        <div class="flex-1 min-w-0 pt-0.5">
+          <h2 class="text-[22px] font-bold text-[#242424] dark:text-white mb-0.5">Netherlands eScience Center</h2>
+          <p class="text-[15px] text-[#6b6b6b] dark:text-[#999] leading-relaxed mb-2">
+            We are the Dutch national centre of expertise for research software.
+          </p>
+          <div class="flex items-center gap-2">
+            <span class="text-[13px] text-[#6b6b6b] dark:text-[#999]">
+              <span class="font-medium text-[#242424] dark:text-white">{allPosts.length}</span> articles
+            </span>
+            <span class="text-[#6b6b6b] dark:text-[#999]">·</span>
+            <a href={sitePath("/rss.xml")} class="text-[13px] text-[#6b6b6b] dark:text-[#999] hover:text-[#f26522] transition-colors">RSS</a>
+            <span class="text-[#6b6b6b] dark:text-[#999]">·</span>
+            <a href={sitePath("/search")} class="text-[13px] text-[#6b6b6b] dark:text-[#999] hover:text-[#242424] dark:hover:text-white transition-colors">Search</a>
+          </div>
         </div>
       </div>
+
+      <nav class="md:w-[360px] md:pt-1" aria-label="Popular topics">
+        <div class="flex items-center justify-between gap-3 mb-2">
+          <p class="text-[11px] uppercase tracking-[0.14em] text-[#999] dark:text-[#777]">Popular topics</p>
+          <a href={sitePath("/topics")} class="text-[12px] text-[#6b6b6b] dark:text-[#999] hover:text-[#003388] dark:hover:text-white transition-colors whitespace-nowrap">All →</a>
+        </div>
+        <div class="flex flex-wrap gap-1.5">
+          {topics.slice(0, 6).map((topic) => (
+            <a href={sitePath(`/topics/${topic.slug}`)} class="inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] dark:border-[#333] px-2.5 py-1 text-[12px] text-[#6b6b6b] dark:text-[#aaa] hover:border-[#003388] hover:text-[#003388] dark:hover:text-white transition-colors">
+              <span>{topic.name}</span>
+              <span class="text-[#aaa] dark:text-[#777]">{topic.count}</span>
+            </a>
+          ))}
+        </div>
+      </nav>
     </div>
   </div>
 
   <div class="max-w-[960px] mx-auto px-4 pb-12">
-    <!-- Topic discovery — turns Medium tags into archive navigation -->
-    <section class="mb-10 rounded-3xl animate-enter border border-[#e6e6e6] dark:border-[#333] bg-[#fafafa] dark:bg-[#151515] p-5 md:p-6">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-5">
-        <div>
-          <p class="text-[12px] uppercase tracking-[0.16em] text-[#6b6b6b] dark:text-[#999] mb-2">Knowledge map</p>
-          <h2 class="text-[24px] md:text-[30px] font-bold leading-tight text-[#242424] dark:text-white font-sans">
-            Browse the archive by topic
-          </h2>
-        </div>
-        <a href={sitePath("/topics")} class="text-[14px] text-[#1A8917] hover:underline font-medium">All topics →</a>
-      </div>
-      <div class="flex flex-wrap gap-2">
-        {topics.map((topic) => (
-          <a href={sitePath(`/topics/${topic.slug}`)} class="inline-flex items-center gap-2 rounded-full bg-white dark:bg-[#222] border border-[#e6e6e6] dark:border-[#333] px-3 py-1.5 text-[13px] text-[#4a4a4a] dark:text-[#bbb] hover:border-[#003388] hover:text-[#003388] dark:hover:text-white transition-colors">
-            <span>{topic.name}</span>
-            <span class="text-[#999] dark:text-[#777]">{topic.count}</span>
-          </a>
-        ))}
-      </div>
-    </section>
-
     <!-- Featured post — side-by-side on desktop -->
     {(() => {
       const featured = posts[0];

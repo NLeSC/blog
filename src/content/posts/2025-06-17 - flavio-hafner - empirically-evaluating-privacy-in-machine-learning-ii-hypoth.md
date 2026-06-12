@@ -58,6 +58,7 @@ In other words, the adversary rejects H0 in favor of H1 if the score is above th
 We can visualize this trade-off with the [Receiver Operating Characteristic curve](https://en.wikipedia.org/wiki/Receiver_operating_characteristic), or ROC curve:
 
 ![Empirically evaluating privacy in machine learning II: Hypothesis testing](/assets/empirically-evaluating-privacy-in-machin-921b027b.jpeg)
+
 Figure 1: The blue line is an ROC curve. The distinguishing between H0 and H1 becomes easier as the True Positive Rate increases and the False Positive Rate decreases, thus moving North-West n the figure.In the figure above, the blue line defines the trade-off between the False Positive Rate `FPR` and the True Positive Rate `TPR` for a given prediction model. Lowering the `FPR` comes at the cost of a lower `TPR`, and vice-versa.
 
 Moreover, the red arrow indicates the direction in which it becomes easier to distinguish between H0 and H1, meaning a lower `FPR` and a higher `TPR`: An ideal decision rule gives an `FPR` of 0 and a `TPR` of 1. On the other hand, the dotted line indicates the performance of a decision rule that randomly rejects or does not reject H0.
@@ -69,6 +70,7 @@ The ROC curve is a standard tool in machine learning for binary classification �
 To start, let’s flip the y-axis in the above figure, and recognize that `1-TPR` is the False Negative Rate `FNR`. Thus, we have a curve in the `FPR-FNR` space:
 
 ![Empirically evaluating privacy in machine learning II: Hypothesis testing](/assets/empirically-evaluating-privacy-in-machin-57b92446.jpeg)
+
 Figure 2: The blue line is an ROC’ curve, which is the ROC curve with a flipped y-axis. The hypothesis test gets easier as we move South-West.This figure shows the same information as the previous figure. Importantly, the hypothesis test is easier the closer the blue `ROC` curve follows the two axes— in other words, the more convex the curve is.
 
 ### Differential privacy puts constraints on the best possible ROC curve**
@@ -76,6 +78,7 @@ Figure 2: The blue line is an ROC’ curve, which is the ROC curve with a flippe
 Next, [Kairouz et al (2015)](https://arxiv.org/abs/1311.0776) show that if an algorithm satisfies `(epsilon, delta)` differential privacy, then the adversary’s success in the hypothesis testing problem is bounded by a function of `epsilon` and `delta`. Specifically, this bound can be drawn in the `FPR-FNR` space as follows:
 
 ![Empirically evaluating privacy in machine learning II: Hypothesis testing](/assets/empirically-evaluating-privacy-in-machin-281169dd.jpeg)
+
 Figure 3: The performance boundaries of a hypothesis test for two differentially private mechanisms: The blue is from a mechanism that is (epsilon1, delta) differentially private. The red is from a mechanism that is (epsilon2, delta) differentially private. The latter allows for a more convex ROC’ curve of the adversary, and therefore provides less privacy than the first mechanism.First, the blue line indicates the best possible performance any adversary can achieve in the hypothesis testing problem when the data satisfy `(epsilon1, delta)` differential privacy. This means the `ROC'` curve from the previous figure, cannot cross the blue line — for any* adversarial decision rule. As before, the dotted line shows the performance of a decision rule that is completely random.
 
 Second, the figure illustrates that the parameter `delta` defines the intercepts of the line on both the `FPR` and `FNR` axes. Intuitively, `delta` defines an area where the adversary’s trade-off is not bounded — for instance, they can lower the `FNR` without increasing the `FPR`.

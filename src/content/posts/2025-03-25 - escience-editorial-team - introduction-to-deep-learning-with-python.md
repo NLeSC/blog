@@ -20,7 +20,10 @@ tags:
 Engineers and instructors at the eScience Center have developed lots of open source lesson materials for the workshops we teach. One example is the lesson material for [*Introduction to Deep Learning*](https://carpentries-lab.github.io/deep-learning-intro/)*, *which was recently accepted into the peer-reviewed lesson material collection in the [Carpentries Lab](https://carpentries-lab.org/). In this post you can read more about the lesson and its development.
 
 ![Introduction to Deep Learning with Python](/assets/introduction-to-deep-learning-with-pytho-6c0721f9.jpg)
-Photo by [Scott Webb](https://unsplash.com/@scottwebb?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)The Carpentries Lab was set up as a space for peer-reviewed lessons developed by [the Carpentries community](https://carpentries.org/about-us/). Designed to complement [The Carpentries Incubator](https://carpentries-incubator.org/), where the community collaborates on the development of new lessons on a wide range of topics, the Lab is a platform for open peer-review of community-developed lessons and for hosting the lessons that have passed through that review process.
+
+Photo by [Scott Webb](https://unsplash.com/@scottwebb?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+The Carpentries Lab was set up as a space for peer-reviewed lessons developed by [the Carpentries community](https://carpentries.org/about-us/). Designed to complement [The Carpentries Incubator](https://carpentries-incubator.org/), where the community collaborates on the development of new lessons on a wide range of topics, the Lab is a platform for open peer-review of community-developed lessons and for hosting the lessons that have passed through that review process.
 
 The text below was originally published on [the Carpentries blog](https://carpentries.org/blog/2025/03/carpentries-lab-introduction-to-deep-learning-with-python/).
 

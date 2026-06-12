@@ -20,7 +20,10 @@ The FAIR acronym stands for Findable, Accessible, Interoperable and Reusable. If
 By [Javier de la Cueva](https://javierdelacueva.es/), with [Pablo Rodríguez-Sánchez](https://pabrod.github.io/) as coauthor.
 
 ![FAIR principles: 5000 years of common sense](/assets/fair-principles-5000-years-of-common-sen-e12a18c3.jpg)
-Photo by [Paul Melki](https://unsplash.com/@paulmelki?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)The [seminal paper](https://www.nature.com/articles/sdata201618) where the FAIR guiding principles were stated was published in the year 2016. If you are a researcher, most certainly you would have heard about FAIR principles, FAIR data or FAIR research software.
+
+Photo by [Paul Melki](https://unsplash.com/@paulmelki?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+The [seminal paper](https://www.nature.com/articles/sdata201618) where the FAIR guiding principles were stated was published in the year 2016. If you are a researcher, most certainly you would have heard about FAIR principles, FAIR data or FAIR research software.
 
 The [backronym](https://en.wikipedia.org/wiki/Backronym) FAIR stands for Findable, Accessible, Interoperable and Reusable. In many forums, FAIR principles are understood as a new added responsibility to take care of by science and data practitioners. Contrary to this idea, we argue that to comply with the FAIR guiding principles is not a novel requirement. Indeed, the ideas behind the FAIR guiding principles are no less than 5000 years old, and can be traced back to the first libraries.
 

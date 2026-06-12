@@ -124,4 +124,5 @@ Compressing your netCDF data can reduce your disk usage significantly, which all
 For many others, where storage space is a constraint, storing your floating point numbers as 16-bit integers is a predictable way of compressing your data further. Other lossy algorithms are available, but are generally too complex to use for most users.
 
 ![Keeping your scientific data files small](/assets/keeping-your-scientific-data-files-small-e8dca7c8.jpg)
+
 Photo by [Jason Pofahl](https://unsplash.com/@jasonpofahlphotography?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)

@@ -50,6 +50,7 @@ According to the definition, a mechanism `M` is `f`-differentially private if it
 The definition is best illustrated with this figure from Dong et al (2022):
 
 ![Empirically evaluating privacy in machine learning III: functional &amp; gaussian differential privacy](/assets/empirically-evaluating-privacy-in-machin-741bba85.png)
+
 Figure 1: Functional differential privacy. The solid line is a trade-off function for `f` differential privacy. Only the dashed line above the solid line satisfies f-differential privacy. Source: Dong et al (2022).The figure has the same x- and y-axes as the figures in the previous blog post: On the x-axis is the false positive rate, or type I error; on the y-axis is the false negative rate, or type II error.
 
 The solid line is the trade-off function `f`. The other lines represent trade-off functions from differentially private mechanisms. Among them, only the dashed line that never crosses the solid line is `f`-DP; the other lines do not always lie above the line defined by `f`, and thus do not satisfy `f`-differential privacy. For reference, the kinked line could have come from an `(epsilon, delta)` -differentially private mechanism we discussed in the previous post.
@@ -67,6 +68,7 @@ This contrasts with `(epsilon,delta)` differential privacy, where composition ca
 A special case of `f`-differential privacy is Gaussian differential privacy. In this definition, the trade-off function is defined over two unit-variance normal distributions — one with mean 0, the other with mean `mu`. In other words, under H0, the private mechanism generates a standard normal distribution, and under H1, it generates a normal distribution with mean `mu` and variance 1. This is shown in the following figure:
 
 ![Empirically evaluating privacy in machine learning III: functional &amp; gaussian differential privacy](/assets/empirically-evaluating-privacy-in-machin-4c7801e8.jpeg)
+
 Figure 2: Two normal distributions. Under H0, X is generated with mean 0 and standard deviation 1. Under H1, X is generated with mean mu and standard deviation 1.While this definition makes assumptions about the functional form of the distribution, it is very useful:
 
 * It summarizes the adversary’s trade-off between false positives and false negatives with a single parameter, `mu`. This makes it easy to describe and interpret privacy guarantees.
@@ -86,7 +88,10 @@ Since each parameter update is differentially private, one can view the trained 
 Building on the previous figure, the following figure illustrates the trade-off between false positives and false negatives under Gaussian differential privacy.
 
 ![Empirically evaluating privacy in machine learning III: functional &amp; gaussian differential privacy](/assets/empirically-evaluating-privacy-in-machin-5f7a6d2f.jpeg)
-Figure 3: The likelihood-ratio test with normal distributions. If `X` is higher than t, H0 is rejected in favor of H1, and vice-versa. The blue and green areas show the false positive and false negative rates, respectively.*The red line indicates a decision threshold. In particular, when conducting a hypothesis test, the [Neyman-Pearson lemma](https://en.wikipedia.org/wiki/Neyman%E2%80%93Pearson_lemma) says that the best test statistic is the likelihood ratio test: Given a sample `X`, the likelihood ratio test compares the likelihood that the sample was generated under H1 vs H0. From the figure above, we see that because the likelihood ratio of H1 vs H0 is increasing in `X`, the null hypothesis is rejected if `X` is above some threshold `t`, indicated in red.
+
+Figure 3: The likelihood-ratio test with normal distributions. If `X` is higher than t, H0 is rejected in favor of H1, and vice-versa. The blue and green areas show the false positive and false negative rates, respectively.*The red line indicates a decision threshold. In particular, when conducting a hypothesis test, the [Neyman-Pearson lemma](https://en.wikipedia.org/wiki/Neyman%E2%80%93
+
+Pearson_lemma) says that the best test statistic is the likelihood ratio test: Given a sample `X`, the likelihood ratio test compares the likelihood that the sample was generated under H1 vs H0. From the figure above, we see that because the likelihood ratio of H1 vs H0 is increasing in `X`, the null hypothesis is rejected if `X` is above some threshold `t`, indicated in red.
 
 Given the decision threshold, we can derive the False Positive and the False Negative rates:
 
@@ -99,6 +104,7 @@ Now that we have an analytical expression for both `FPR` and `FNR`, we can deriv
 Again, an illustration makes this easier to understand:
 
 ![Empirically evaluating privacy in machine learning III: functional &amp; gaussian differential privacy](/assets/empirically-evaluating-privacy-in-machin-f52a391d.jpeg)
+
 Figure 4: The trade-off function for Gaussian differential privacy. Phi is the standard normal distribution. alpha is the false positive rate. beta is the false negative rate. a lower mu means more privacy.First, for a given false positive rate `alpha`, the false negative rate is at least as large as the the green area. In line with the definition of a trade-off function, lowering the false positive rate makes the red area smaller, and pulls the boundary of the green area to the right, thus increasing the false negative rate.
 
 Second, a lower `mu` is associated with more privacy: as `mu` decreases, it pulls the boundaries either the false positive or false negative rate (or both) closer to the center, thereby making it harder to distinguish between the distributions generated by H0 and H1.
@@ -106,6 +112,7 @@ Second, a lower `mu` is associated with more privacy: as `mu` decreases, it pull
 Dong et al (2022) also illustrate the trade-off function for some values of `mu`:
 
 ![Empirically evaluating privacy in machine learning III: functional &amp; gaussian differential privacy](/assets/empirically-evaluating-privacy-in-machin-7dce8395.png)
+
 Figure 5: Example trade-off functions for different values of mu. Source: Dong et al (2022).Here, for instance `G_{0.5}` is the trade-off function for Gaussian differential privacy with `mu=0.5` . Reasonable privacy is given for `mu=0.5`, whereas for `mu=6` the trade-off function almost coincides with the x- and y-axis, thus giving virtually no privacy.
 
 ### Connections between definitions of privacy

@@ -22,7 +22,10 @@ tags:
 Like an artisan chef can improvise a delicious meal, so too can a scientist create new insights from raw data and exploratory analysis. But to run a successful restaurant with personnel and a consistent menu, our chef resorts to writing down his recipes. Similarly, we scientists must make an effort if we want our results to be consistent and widely reusable.
 
 ![ESMValTool: Recipes for solid climate science](/assets/esmvaltool-recipes-for-solid-climate-sci-9ecc0726.jpg)
-Photo by [Pylyp Sukhenko](https://unsplash.com/@novokayn?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)This is where [ESMValTool ](https://esmvaltool.org/)comes into play. Designed to ease and automate the analysis of large ensembles of climate model outputs, ESMValTool defines a clear and plain scientific [“recipe” format](https://docs.esmvaltool.org/projects/ESMValCore/en/latest/recipe/overview.html). This not only helps to make workflows scientifically robust, but also provides a way to easily share and build upon each others’ work. Even if you’re not a climate scientist, there are valuable lessons to draw from ESMValTool’s approach to FAIR and open science.
+
+Photo by [Pylyp Sukhenko](https://unsplash.com/@novokayn?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)This is where [ESMValTool ](https://esmvaltool.org/)comes into play. Designed to ease and automate the analysis of large ensembles of climate model outputs, ESMValTool defines a clear and plain scientific [“recipe” format](https://docs.esmvaltool.org/projects/ESMVal
+
+Core/en/latest/recipe/overview.html). This not only helps to make workflows scientifically robust, but also provides a way to easily share and build upon each others’ work. Even if you’re not a climate scientist, there are valuable lessons to draw from ESMValTool’s approach to FAIR and open science.
 
 In this blogpost, we’ll explore four aspects of ESMValTool that may be worth your while. Starting with its take on analysis-ready data and its rich suite of pre-processor functions, we’ll set the stage for a broader discussion on how standardization helps making research easy and FAIR and the crucial role of a community in setting itself up for success.
 

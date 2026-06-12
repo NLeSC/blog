@@ -140,6 +140,10 @@ body.dark {
 }
 
 /* Images — wider than the text column on desktop (Medium-style) */
+.post-content figure {
+  margin: 2.1em auto 2.7em;
+}
+
 .post-content img {
   max-width: 100%;
   height: auto;
@@ -147,12 +151,56 @@ body.dark {
   display: block;
 }
 
+.post-content figure > img {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.post-content figcaption {
+  max-width: 100%;
+  margin: 0.8rem auto 0;
+  color: #6b6b6b;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.45;
+  letter-spacing: -0.004em;
+  text-align: center;
+}
+
+.dark .post-content figcaption {
+  color: #aaa;
+}
+
+.post-content figcaption a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.post-content figcaption a:hover {
+  color: #242424;
+}
+
+.dark .post-content figcaption a:hover {
+  color: #fff;
+}
+
 @media (min-width: 768px) {
+  .post-content figure,
   .post-content img {
     max-width: calc(100% + 160px);
     width: calc(100% + 160px);
     margin-left: -80px;
     margin-right: -80px;
+  }
+
+  .post-content figure > img {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 

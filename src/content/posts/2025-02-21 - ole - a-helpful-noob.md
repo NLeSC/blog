@@ -16,6 +16,7 @@ tags:
 ---
 
 ![A Helpful Noob](/assets/a-helpful-noob-a2f448b4.jpg)
+
 Photo by [Keiteu Ko](https://unsplash.com/@keiteu_ko?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ## Introduction

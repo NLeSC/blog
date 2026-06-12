@@ -18,6 +18,7 @@ Q*uantum Computing is a rapidly evolving field that has the potential to transfo
 In this blog, we introduce [qc2](https://github.com/qc2nl/qc2), a user-friendly, modular software designed to seamlessly integrate traditional quantum chemistry codes with modern quantum computing Software Development Kits (SDKs).
 
 ![Quantum Computing for Quantum Chemistry with qc2](/assets/quantum-computing-for-quantum-chemistry--f78b0228.jpg)
+
 Photo by [Michael Dziedzic](https://unsplash.com/@lazycreekimages?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 ![Quantum Computing for Quantum Chemistry with qc2](/assets/quantum-computing-for-quantum-chemistry--59e5e045.png)
 However, despite recent advances in both hardware and software, the path to fully error-corrected, utility-scale quantum computations may still take a while. For the moment, as we navigate in the [Noisy Intermediate-Scale Quantum (NISQ) era](https://arxiv.org/abs/1801.00862) towards [Quantum Utility](https://www.ibm.com/quantum/blog/what-is-quantum-utlity), we need to learn how to make the most out of the available algorithms that run on as-yet error-prone, imperfect hardware: the so-called [NISQ algorithms](https://arxiv.org/abs/2101.08448).

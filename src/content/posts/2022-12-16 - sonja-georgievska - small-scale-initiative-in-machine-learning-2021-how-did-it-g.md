@@ -12,6 +12,7 @@ tags:
 ---
 
 ![Small-scale initiative in Machine Learning 2021: how did it go?](/assets/small-scale-initiative-in-machine-learni-467f4e1a.jpg)
+
 Photo by ["My Life Through A Lens"](https://unsplash.com/@bamagal?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 # Small-scale initiative in Machine Learning 2021: how did it go?

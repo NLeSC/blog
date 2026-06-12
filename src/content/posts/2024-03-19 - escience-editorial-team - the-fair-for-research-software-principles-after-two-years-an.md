@@ -22,7 +22,10 @@ Click [here](https://zenodo.org/doi/10.5281/zenodo.10816031) for citation inform
 The [FAIR for Research Software (FAIR4RS) Principles](https://doi.org/10.1038/s41597-022-01710-x) aim to promote and encourage the findability, accessibility, interoperability, and reusability (FAIR) of research software. The FAIR4RS Principles were [released](https://doi.org/10.15497/RDA00068) in 2022, with a number of organisations already [planning adoption](https://doi.org/10.5281/zenodo.6258366) at that time. Adoption and implementation of the FAIR4RS Principles can increase the transparency, reproducibility, and reusability of research by providing research software that can be executed, replicated, built-upon, combined, reinterpreted, reimplemented, and/or used in different settings and by third-parties.
 
 ![The FAIR for Research Software Principles after two years: an adoption update](/assets/the-fair-for-research-software-principle-04751d5e.jpg)
-Photo by [Astrid Schaffner](https://unsplash.com/@familyschaffner) on [Unsplash](https://unsplash.com/)This blog post provides an update on initiatives that are working to implement the principles across five areas of cultural change: policies, incentives, communities, training and infrastructure. It is noted that while many activities are increasing aspects of the FAIRness of research software, more work is still needed to make it easier to embrace the FAIR4RS Principles in their entirety.
+
+Photo by [Astrid Schaffner](https://unsplash.com/@familyschaffner) on [Unsplash](https://unsplash.com/)
+
+This blog post provides an update on initiatives that are working to implement the principles across five areas of cultural change: policies, incentives, communities, training and infrastructure. It is noted that while many activities are increasing aspects of the FAIRness of research software, more work is still needed to make it easier to embrace the FAIR4RS Principles in their entirety.
 
 A framework for tracking adoption**
 
@@ -49,7 +52,10 @@ It should be noted that while the many activities listed here support increasing
 This reflects that the FAIR4RS Principles are aspirational and high-level, and do not contain detailed guidance on how to achieve them. This is because specific technologies and tools are always changing, while the principles are intended to be long-lasting. Consequently, additional work is needed to make it simpler for people wanting to follow the FAIR4RS Principles to know how to practically do so. The following initiatives are assisting in achieving this, with some of these initiatives specifically addressing the range of [opportunities for future work](https://doi.org/10.1038/s41597-022-01710-x) identified in 2022 by the FAIR4RS Working Group, which developed the FAIR4RS Principles. These opportunities include “metadata and identifier authority, metadata vocabularies and metadata properties, software identifiers, domain-relevant community standards for software and identification targets”. Whilst some of the initiatives identified in the infrastructure section below are contributing to this, more work still needs to be done.
 
 ![The FAIR for Research Software Principles after two years: an adoption update](/assets/the-fair-for-research-software-principle-5c22575d.jpg)
-Photo by [Alexander Abero](https://unsplash.com/@alexabero?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)**1. Policies that encourage implementation:**
+
+Photo by [Alexander Abero](https://unsplash.com/@alexabero?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+**1. Policies that encourage implementation:**
 
 * The [Netherlands eScience Center](https://www.esciencecenter.nl/) and the [Dutch Research Council](https://www.nwo.nl/en) (NWO) formed a working group that developed [national guidelines for software management plans](https://doi.org/10.5281/zenodo.7589725). Research institutions such as the University of Groningen’s Digital Competence Center link to this resource in its guidance for its researchers on [research software management plans](https://www.rug.nl/digital-competence-centre/research-data/research-software-management/research-software-management-plan?lang=en).
 * The [Software Management Plan Template](https://www.esciencecenter.nl/download/51726/?tmstv=1695732347) of the Netherlands eScience Center has been updated to align and address the FAIR4RS Principles, and emphasises that open science, software quality, and software sustainability are key elements in eScience Center projects. A total of 13 eScience Center projects (11 under the Open eScience call 2023 (OEC2023) and 2 under the Software Sustainability call 2023 (SS2023)) are now using this template.
@@ -83,7 +89,10 @@ This includes curation of resources on how to influence policy change, such as [
 * The Alliance’s [National Research Software Strategy 2023](https://zenodo.org/records/10214741) recommends FAIR4RS as a key element underlying training &amp; support initiatives for research software, which will be included in the forthcoming national training framework and resourced appropriately.
 
 ![The FAIR for Research Software Principles after two years: an adoption update](/assets/the-fair-for-research-software-principle-b266afe9.jpg)
-Photo by [Niklas Ohlrogge](https://unsplash.com/@ohlrogge) on [Unsplash](https://unsplash.com/)**5. Infrastructure that provide supporting tools:**
+
+Photo by [Niklas Ohlrogge](https://unsplash.com/@ohlrogge) on [Unsplash](https://unsplash.com/)
+
+**5. Infrastructure that provide supporting tools:**
 
 * FAIR-IMPACT’s release of [Metrics for automated FAIR software assessment in a disciplinary context](https://zenodo.org/doi/10.5281/zenodo.10047400) defines 17 metrics that can be used to automate the assessment of research software against the FAIR4RS Principles, and provides examples of how these might be implemented in one exemplar disciplinary context of the social sciences. The FAIR-IMPACT project will work to implement the metrics as practical tests by extending existing assessment tools such as F-UJI.
 * Horizon Europe’s [European Virtual Institute for Research Software Excellence](https://everse.software/) (EVERSE) aims to create a framework for research software and code excellence, that are collaboratively designed and championed by the research communities. EVERSE will also continue the work of FAIR-IMPACT by developing and implementing processes and tools that support the assessment and verification of code quality, based on established best practices and standards across scientific communities.

@@ -24,7 +24,10 @@ tags:
 As the name implies, the main use of Graphics Processing Units is to process and render things to your screen, such as images, videos, or video games. Almost any device that has a display will have a GPU, although this can also come in the form of a chip integrated in the CPU instead of a separate graphics card. When using applications such as Google Maps, YouTube, or Netflix, the GPU renders the image/video to the screen more quickly and efficiently compared to the CPU. This can result in lower power consumption and a better user experience.
 
 ![Use Julia to write code that runs on any GPU](/assets/use-julia-to-write-code-that-runs-on-any-f2817526.jpg)
-Photo by [Dimitris Chapsoulas](https://unsplash.com/@synesthe2ia?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)To be able to render things to screen quickly, GPUs are able to do a lot of computations in parallel. Besides just graphics rendering, doing many computations in parallel can also come in use elsewhere, such as in (scientific) numerical models, and especially relevant recently, machine learning.
+
+Photo by [Dimitris Chapsoulas](https://unsplash.com/@synesthe2ia?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+To be able to render things to screen quickly, GPUs are able to do a lot of computations in parallel. Besides just graphics rendering, doing many computations in parallel can also come in use elsewhere, such as in (scientific) numerical models, and especially relevant recently, machine learning.
 
 Before the release of Nvidia’s CUDA platform in 2007, people would use routines designed for graphics processing (like [shaders](https://en.wikipedia.org/wiki/Shader)), for non-graphics purposes [such as numerical solvers for the Navier-Stokes equations](https://doi.org/10.1145/882262.882363). However, with CUDA, and soon after also OpenCL, it became more straightforward to write General Purpose GPU code.
 

@@ -68,6 +68,7 @@ bar()
 baz()As you can see, if you run this, the code does exactly the same. There is something funny though. In principle, Python could see when it reads the part `foo([1], 1)` that it is not correct. `[1]` is a list, and the function `foo `needs an int. Nevertheless, Python will happily accept the definition of `baz`, and it won’t crash until you actually *run *`baz`, in turn calling `foo`and trying to add a list and an `int`. It’s only then that Python realizes that the values are the wrong type and can no longer add them, so it dutifully generates a `TypeError`.
 
 ![Better scripts with typing](/assets/better-scripts-with-typing-df0ab36b.jpg)
+
 Photo by [Mark König](https://unsplash.com/@markkoenig?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ### Static vs. Dynamic typing

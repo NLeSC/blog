@@ -111,7 +111,10 @@ scp user@hpc.example.com:/home/user/job_output.txt ~/Desktop/Finally, if you wan
 
 scp -r user@hpc.example.com:/home/user/job_output/ ~/Desktop/
 ![How to run a containerized Agent-Based Model on HPC](/assets/how-to-run-a-containerized-agent-based-m-0680d40a.jpg)
-Photo by [Lightsaber Collection](https://unsplash.com/@lightsabercollection?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)Conclusion**
+
+Photo by [Lightsaber Collection](https://unsplash.com/@lightsabercollection?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+Conclusion**
 
 To wrap up our containerization journey, we have covered some solid ground in getting your NetLogo models up and running on HPC systems. Containerization, much like the cake tin, provides a reliable and consistent environment for your applications, ensuring they perform as expected regardless of the computing setup. From creating our container image using Apptainer to running the job scripts to transfer files to the HPC cluster and running job, we have laid out all the steps. Whether you are diving into ABM or tackling real-world problems, containerization on HPC enables you to handle complex computational tasks.
 

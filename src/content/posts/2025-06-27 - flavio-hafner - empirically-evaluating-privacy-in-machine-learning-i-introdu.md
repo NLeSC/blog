@@ -18,7 +18,10 @@ tags:
 Research in the social and health sciences often relies on accessing data sourced from statistical agencies or healthcare organizations. Such data sets contain sensitive information, which requires restrictions on who can access the data. This can slow down not only scientific progress — if data were completely open, more researchers could investigate them — , but also the translation of progress to applications — for instance, machine learning models trained on medical data cannot easily be shared and re-used for personalized treatments.
 
 ![Empirically evaluating privacy in machine learning I: Introduction](/assets/empirically-evaluating-privacy-in-machin-4e61e1c6.jpg)
-Photo by [National Cancer Institute](https://unsplash.com/@nci?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)Differential privacy is one technology that aims to solve this problem. Intuitively, it is a method that adds calibrated noise to the data, and so prevents a malevolent actor from learning sensitive attributes about any person in the underlying data. But because statistical noise makes statistical inference harder, there is an inherent trade-off between statistical utility and privacy — making differential privacy challenging to deploy in practice ([Cummings &amp; Sarathy, 2023](https://arxiv.org/abs/2406.12103)).
+
+Photo by [National Cancer Institute](https://unsplash.com/@nci?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+Differential privacy is one technology that aims to solve this problem. Intuitively, it is a method that adds calibrated noise to the data, and so prevents a malevolent actor from learning sensitive attributes about any person in the underlying data. But because statistical noise makes statistical inference harder, there is an inherent trade-off between statistical utility and privacy — making differential privacy challenging to deploy in practice ([Cummings &amp; Sarathy, 2023](https://arxiv.org/abs/2406.12103)).
 
 In addition, using differential privacy in machine learning has its own challenges. First, often it’s impossible to have reasonable privacy and utility at the same time. Second, differential privacy for machine learning makes strong assumptions about the capabilities of the malevolent actor. Third, implementing it in software is not straightforward, and there is evidence of bugs ([Cummings et al, 2023](https://arxiv.org/abs/2304.06929); [Nasr et al, 2023](https://arxiv.org/abs/2302.07956); [Ponomareva et al, 2023](https://arxiv.org/abs/2303.00654)).
 
@@ -34,6 +37,7 @@ Despite this, most resources in this topic are in research articles. The goal of
 * The fourth blog post discusses some recent papers that audit machine learning models and make use of Gaussian differential privacy. It is aimed at an audience similar to the third post.
 
 ![Empirically evaluating privacy in machine learning I: Introduction](/assets/empirically-evaluating-privacy-in-machin-6ef4dfa5.jpg)
+
 Photo by [Tobias Tullius](https://unsplash.com/@tobiastu?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ## A short introduction with an example
@@ -75,7 +79,10 @@ We can construct neighboring databases by varying person `i`‘s sensitive attri
 What does differential privacy promise? Let’s continue with the example of undeclared income. Suppose the researcher publishes the finding that 50% of people have some undeclared income. In response, the tax agency improves their enforcement, finds the people that do not declare income, and fines them.
 
 ![Empirically evaluating privacy in machine learning I: Introduction](/assets/empirically-evaluating-privacy-in-machin-c531cffb.jpg)
-Photo by [The New York Public Library](https://unsplash.com/@nypl?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)Pick one person, Bob, who is a tax dodger and who participated in the original survey of the researcher. Because of better enforcement, he gets caught by the tax office and needs to pay a fine. Does differential privacy guarantee that Bob is not being penalized for his behavior?
+
+Photo by [The New York Public Library](https://unsplash.com/@nypl?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+Pick one person, Bob, who is a tax dodger and who participated in the original survey of the researcher. Because of better enforcement, he gets caught by the tax office and needs to pay a fine. Does differential privacy guarantee that Bob is not being penalized for his behavior?
 
 No. Recall that differential privacy guarantees a similar distribution of outcomes under two neighboring databases. Releasing the survey result does impact Bob’s utility, but it does so independently of whether Bob is in the data or not: Even if Bob did not participate in the original survey, the tax office would have learned that many people do not declare their income, and started stronger enforcement, possibly leading to Bob being caught and fined.
 

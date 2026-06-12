@@ -22,7 +22,10 @@ By [Justin van der Hooft](https://vdhooftcompmet.github.io/)
 *This blog post is written by Wageningen University &amp; Research Assistant Professor Justin van der Hooft who participates in the Netherlands eScience Center’s *[*Open eScience Call 2021*](https://www.esciencecenter.nl/open-escience-call-2021/)*. His project, “A community-supported workflow connecting microbial genes, and organisms to their molecular products”, aims to facilitate the finding of novel bioactive molecules from nature. It does so by enabling the integrated use of various omics data types.*
 
 ![Creating a Community by Integrating Expertise, Tools and Ideas](/assets/creating-a-community-by-integrating-expe-7878c100.jpeg)
-Photo by [Adrian Lange](https://unsplash.com/pt-br/@vollkornapfel?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/Wk902ZLaA7M?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)
+
+Photo by [Adrian Lange](https://unsplash.com/pt-br/@vollkornapfel?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/Wk902ZLaA7M?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopy
+
+Text)
 
 ### Motivation for the workshop**
 

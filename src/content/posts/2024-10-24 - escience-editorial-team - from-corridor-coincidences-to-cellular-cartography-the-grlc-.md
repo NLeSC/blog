@@ -20,6 +20,7 @@ tags:
 This is the story of [grlc](https://grlc.io/), a tool that transforms complex linked data queries into user-friendly web interfaces. We interviewed grlc’s developers [Albert Meroño-Peñuela](https://github.com/albertmeronyo) and [Carlos Martinez-Ortiz](https://www.esciencecenter.nl/team/dr-carlos-martinez-ortiz/), to explore grlc’s origins, development, and real-world impact. We’ll also hear from [Bruce Herr](https://github.com/bherr2), a user from the [HuBMAP](https://hubmapconsortium.org/) software project who’s putting grlc to work in groundbreaking research. The story is a testament to the power of open-source collaboration and the unexpected journeys of software tools.
 
 ![From Corridor Coincidences to Cellular Cartography: The grlc Story](/assets/from-corridor-coincidences-to-cellular-c-cec5731c.jpg)
+
 Photo by [Steve Richey](https://unsplash.com/@steverichey?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ## Part 1: In Conversation with grlc Developers

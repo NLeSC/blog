@@ -52,7 +52,10 @@ My personal opinion is that a [NoSQL database](https://en.wikipedia.org/wiki/NoS
 ## Putting all together
 
 ![Building a Web Service to Manage Scientific Simulation Data Using GraphQL](/assets/building-a-web-service-to-manage-scienti-33d7f19d.jpg)
-Photo by [frank mckenna](https://unsplash.com/@frankiefoto?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)[Docker containers](https://www.docker.com/) are the perfect way to ship our web service. We just need to write a [Dockerfile](https://github.com/nlesc-nano/insilico-server/blob/master/Dockerfile) with the recipe to install and start the service together with the [mongo container](https://hub.docker.com/_/mongo).
+
+Photo by [frank mckenna](https://unsplash.com/@frankiefoto?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)[Docker containers](https://www.docker.com/) are the perfect way to ship our web service. We just need to write a [Dockerfile](https://github.com/nlesc-nano/insilico-server/blob/master/
+
+Dockerfile) with the recipe to install and start the service together with the [mongo container](https://hub.docker.com/_/mongo).
 
 If you want to deploy the Ceiba web service to a remote server you need to follow these steps:
 

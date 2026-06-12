@@ -18,7 +18,10 @@ tags:
 MATLAB is still commonly used in many scientific fields, despite its closed-source nature. While many (technical) universities used to teach coding using MATLAB, more and more are moving away from it, preferring open-source and free alternatives such as Python or Julia. O[ne of the main reasons Julia was developed](https://julialang.org/blog/2012/02/why-we-created-julia/) was because of MATLAB’s proprietary and closed software.
 
 ![Sharing MATLAB models with everyone](/assets/sharing-matlab-models-with-everyone-e5b6ed0c.jpg)
-Photo by [Iván Díaz](https://unsplash.com/@ivvndiaz?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)However, for those with a vested interest in the language, such as a large legacy code base, [it is still important to be able to share your models](https://medium.com/escience-center/how-to-ensure-that-others-can-run-your-code-4c7672524a69). Just sharing MATLAB code is not that useful as it requires the users to have a MATLAB license. For [a project](https://research-software-directory.org/projects/ecoextreml) with the University of Twente, we work on [a MATLAB land-surface model](https://github.com/EcoExtreML/STEMMUS_SCOPE/). We wanted to make the model open-source and available for anyone to run, as well as allow interaction with the model through a [Basic Model Interface](https://bmi.readthedocs.io), a standardized interface for numerical models.
+
+Photo by [Iván Díaz](https://unsplash.com/@ivvndiaz?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)However, for those with a vested interest in the language, such as a large legacy code base, [it is still important to be able to share your models](https://medium.com/escience-center/how-to-ensure-that-others-can-run-your-code-4c7672524a69). Just sharing MATLAB code is not that useful as it requires the users to have a MATLAB license. For [a project](https://research-software-directory.org/projects/ecoextreml) with the University of Twente, we work on [a MATLAB land-surface model](https://github.com/Eco
+
+ExtreML/STEMMUS_SCOPE/). We wanted to make the model open-source and available for anyone to run, as well as allow interaction with the model through a [Basic Model Interface](https://bmi.readthedocs.io), a standardized interface for numerical models.
 
 One option would be to try GNU Octave, a language that is mostly compatible with MATLAB. The key word being *mostly**. For us, the difference in execution time was too large. The second option is to make use of MATLAB Runtime.
 
@@ -82,4 +85,5 @@ While it’s certainly more difficult than with many other programming languages
 If you enjoyed this story, have a look at the blogpost “[How to ensure that others can run your code](https://medium.com/escience-center/how-to-ensure-that-others-can-run-your-code-4c7672524a69)” by Julian Gonggrijp, which touches on many reasons why* *you would want to make sure others can run your code (and how).
 
 ![Sharing MATLAB models with everyone](/assets/sharing-matlab-models-with-everyone-c9e37c82.jpg)
+
 Photo by [Josh Campbell](https://unsplash.com/@j0shuadcampbell?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)*** Octave does not support all MATLAB functions, so the code will have to be modified to support both MATLAB and Octave. Octave can also be an order of magnitude slower than MATLAB, which can be problematic.

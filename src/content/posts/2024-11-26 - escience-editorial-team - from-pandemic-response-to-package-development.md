@@ -20,6 +20,7 @@ By [Fenne Riemslagh](https://www.esciencecenter.nl/team/fenne-riemslagh/)
 We had the pleasure of sitting down with [Kirsten Bulsink](http://www.linkedin.com/in/kirsten-bulsink), a data scientist at the Dutch National Institute for Public Health and the Environment ([RIVM](http://www.rivm.nl)). Our discussion covered her journey from pandemic response to R-package development and how the Netherlands eScience Center played a part in creating a crucial part of tooling at RIVM. Her story demonstrates the importance of collaborative work in research.
 
 ![From Pandemic Response to Package Development](/assets/from-pandemic-response-to-package-develo-32f8ae64.jpg)
+
 Photo by [Eran Menashri](https://unsplash.com/@chesnutt?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)Q: Can you tell us about your background and current role at RIVM?**
 
 A: I’ve been working at RIVM for a little over three years now. My background is in psychology, with a master’s in neuroscience. During my Research Master’s, I discovered my passion for data analysis and finding answers through data. This led me to pursue a minor in data science.
@@ -43,7 +44,10 @@ The package, which now serves as a core tool for epidemiological pipelines at RI
 For example, during the COVID-19 pandemic, we used analysis methods to process data on positive cases, calculate the number of cases over time, and generate reports. Now, we use the package for monitoring and reporting on various infectious diseases like [sexually transmitted infections](https://www.rivm.nl/soa/cijfers-en-rapportages-soa) and [respiratory infections](https://www.rivm.nl/luchtweginfecties/actuele-cijfers), not just COVID-19.
 
 ![From Pandemic Response to Package Development](/assets/from-pandemic-response-to-package-develo-64e59eb1.jpg)
-Photo by [Fahim Muntashir](https://unsplash.com/@f12r?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)**How did the R-packaging workshop help professionalize your package?**
+
+Photo by [Fahim Muntashir](https://unsplash.com/@f12r?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)**
+
+How did the R-packaging workshop help professionalize your package?**
 
 After joining the workshop at the Netherlands eScience Center, I organized a session for my team to share what I had learned. While my colleagues had already done a great job, the workshop helped us improve consistency in managing dependencies. We also enhanced our documentation. The package improvements made it easier for others to use the package. Installation became smoother, and users no longer had to figure out why they needed to install extra packages.
 
@@ -60,6 +64,7 @@ Our first main goal was to internally demonstrate that we had a high-quality pro
 We reached out to the eScience Center training team for support, and they connected us with [Pablo Rodríguez Sánchez](https://www.esciencecenter.nl/team/pablo-rodriguez-sanchez/) (one of the eScience Center’s Research Software Engineers (RSEs) and main author of the R-packaging course, ed.) to consult during our hackathon. This collaboration was very valuable in guiding our efforts and providing expert insights.
 
 ![From Pandemic Response to Package Development](/assets/from-pandemic-response-to-package-develo-f8e29e49.jpg)
+
 Photo by [Mika Baumeister](https://unsplash.com/@kommumikation?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)**Q: What were the outcomes of the hackathons?**
 
 We had two hackathons. In the first one, we focused on testing and documentation. We increased our test coverage and improved our package documentation, including creating a vignette with examples.

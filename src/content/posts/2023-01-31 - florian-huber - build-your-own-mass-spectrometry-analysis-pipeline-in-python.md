@@ -61,6 +61,7 @@ from rdkit.Chem import Drawfor i, smiles in enumerate([x[0].get("smiles") for x 
     m = Chem.MolFromSmiles(smiles)
     Draw.MolToFile(m, f"compound_{i}.png")
 ![Build your own mass spectrometry analysis pipeline in Python using matchms — part I](/assets/build-your-own-mass-spectrometry-analysi-b73e3c5e.png)
+
 Figure 4.** Compounds of the highest 9 Cosine scores within the dataset with respect to spectrums[5], the first being the spectrum of interest itself (hence named “query compound”).
 
 ### Alternative: Get best matches above ‘min_match’ threshold
@@ -98,6 +99,7 @@ plt.title("Modified Cosine spectra similarities")
 plt.xlabel("Spectrum #ID")
 plt.ylabel("Spectrum #ID")
 ![Build your own mass spectrometry analysis pipeline in Python using matchms — part I](/assets/build-your-own-mass-spectrometry-analysi-b0ee4396.png)
+
 Figure 5.** Modified Cosine scores for all possible pairs between the first 50 imported spectrums. As to be expected, the diagonal is always =1 (score for spectrum with itself). But also several other very high Modified Cosine scores stick out suggesting highly related spectra.Now, let’s accept Modified Cosine scores for a minimum number of matching peaks (min_match).
 
 min_match = 5plt.figure(figsize=(6,6), dpi=150)**plt.imshow(scores_array[:50, :50]["ModifiedCosine_score"] \
@@ -107,6 +109,7 @@ plt.title("Modified Cosine spectra similarities (min_match=5)")
 plt.xlabel("Spectrum #ID")
 plt.ylabel("Spectrum #ID")
 ![Build your own mass spectrometry analysis pipeline in Python using matchms — part I](/assets/build-your-own-mass-spectrometry-analysi-5d737491.png)
+
 Figure 6.** Modified Cosine scores for all possible pairs between the first 50 imported spectrums (with ≥ 5 matching peaks!).There’s for instance a bright spot far outside the diagonal for `spectrums[11]` so let’s have a look at that one!
 
 min_match = 5sorted_matches = scores.scores_by_query(spectrums[11], name="ModifiedCosine_score", sort=True)**best_matches = [x for x in sorted_matches if x[1]["ModifiedCosine_matches"] &gt;= min_match][:10]
@@ -135,6 +138,7 @@ Out[]:[(1., 151),
  'CCC(C)[C@H](NS(=O)(=O)c1ccc(C)cc1)C(=O)N2CCC(CC2)C(=O)N3CCC(CC3)C(=O)OC']OK, smiles, nice. But let’s better move on and have a look at how those compounds actually look like (as above, plotted using rdkit):
 
 ![Build your own mass spectrometry analysis pipeline in Python using matchms — part I](/assets/build-your-own-mass-spectrometry-analysi-f6234fec.png)
+
 Figure 7.** Compounds of the highest 9 modified Cosine scores within the dataset with respect to spectrums[11], the first being the spectrum of interest itself (hence “query compound”).I wouldn’t dare calling myself a natural product expert. But those chemical structures clearly do look more consistent to what we saw in Figure 4…
 
 > 

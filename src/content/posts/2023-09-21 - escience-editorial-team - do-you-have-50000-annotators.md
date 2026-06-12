@@ -20,7 +20,10 @@ tags:
 *Written by eScience Center Fellow, *[*Daniela Gawehns*](https://www.esciencecenter.nl/fellows/daniela-gawehns/)
 
 ![Do you have 50.000 annotators?](/assets/do-you-have-50000-annotators-9925b35a.jpeg)
-Photo by [Shutterstock](https://www.shutterstock.com/image-photo/business-people-diverse-brainstorm-meeting-concept-388995775)During ICT.open 2023, I organized a workshop for 40 computer scientists on reproducibility in computer science. This is a short summary of the main results and how I experienced the workshop as a moderator.
+
+Photo by [Shutterstock](https://www.shutterstock.com/image-photo/business-people-diverse-brainstorm-meeting-concept-388995775)
+
+During ICT.open 2023, I organized a workshop for 40 computer scientists on reproducibility in computer science. This is a short summary of the main results and how I experienced the workshop as a moderator.
 
 The workshop was part of [my fellowship project](https://www.esciencecenter.nl/fellowship-programme/) at the eScience Center to find out how people in the computer sciences understand reproducibility. The idea behind the project is that communities of researchers differ in how they understand the term reproducibility. Before providing tools, guidance or incentives on how to make research outputs more reproducible, we need to figure out what people understand as reproducible research.
 

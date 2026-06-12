@@ -15,6 +15,7 @@ tags:
 A surprisingly simple and elegant way to teach your computer how to perform derivatives, with some Julia (and Python) examples
 
 ![Automatic differentiation from scratch](/assets/automatic-differentiation-from-scratch-b0c3396d.jpg)
+
 Photo by [Crissy Jarvis](https://unsplash.com/@crissyjarvis?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ## First, a disclaimer

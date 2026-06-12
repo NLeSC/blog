@@ -19,7 +19,10 @@ By [Ewan Cahen](https://www.esciencecenter.nl/team/ewan-cahen/)
 [*Advent of Code 2024*](https://adventofcode.com/2024)* has started this week! If you are not familiar with Advent of Code, it’s an annual coding challenge created by Eric Wastl. It’s like an *[*advent calendar*](https://en.wikipedia.org/wiki/Advent_calendar)* for coding challenges containing 25 daily programming puzzles, released once a day between December 1–25. You can still join this year’s edition, and even join our Dutch research community leaderboard when you sign up *[*here*](https://forms.office.com/e/fr8wAeNRin)*.*
 
 ![Tackling Advent of Code](/assets/tackling-advent-of-code-b3260b36.jpg)
-Photo by [Markus Spiske](https://unsplash.com/@markusspiske?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)Whether you’re new to Advent of Code or if you want to brush up on your programming skills, below you can find a list of useful tricks, data structures and algorithms that are often needed when solving the challenges. Some of these are accompanied with links on how to use them in a few popular programming languages.
+
+Photo by [Markus Spiske](https://unsplash.com/@markusspiske?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+Whether you’re new to Advent of Code or if you want to brush up on your programming skills, below you can find a list of useful tricks, data structures and algorithms that are often needed when solving the challenges. Some of these are accompanied with links on how to use them in a few popular programming languages.
 
 Note, the list is rather large. We recommend only picking a few items where you think your knowledge is lacking.
 
@@ -34,6 +37,7 @@ In almost every exercise, you are given input, presented as plain text, that you
 * (advanced) use regular expressions to parse the input ([Python](https://www.w3schools.com/python/python_regex.asp),[ R](https://www.datacamp.com/tutorial/regex-r-regular-expressions-guide),[ Java](https://www.w3schools.com/java/java_regex.asp))
 
 ![Tackling Advent of Code](/assets/tackling-advent-of-code-f19971cc.jpg)
+
 Photo by [Chris Liverani](https://unsplash.com/@chrisliverani?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ### Integer division and modular arithmetic
@@ -47,6 +51,7 @@ You’ll also have to use modular arithmetic, where you want to know the remaind
 Sometimes, you need to handle large integers (especially when multiplying numbers). In some languages, where there are several integer types of several sizes, you need to prevent[ integer overflow](https://www.acunetix.com/blog/web-security-zone/what-is-integer-overflow/). This is sometimes a problem when working with [32 bit integers](https://en.wikipedia.org/wiki/32-bit_computing). Usually, using 64 bit integers (keyword: `long`) is sufficient for Advent of Code. In Python, this is [not needed](https://docs.python.org/3/c-api/long.html#integer-objects), as it supports arbitrary large integers. For R, have a look at [this package](https://www.stats.bris.ac.uk/R/web/packages/bit64/index.html) for 64 bit integers. For Java, use the[ long type](https://www.w3schools.com/java/java_data_types.asp) or, if that is not sufficient, use the [BigInteger](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigInteger.html) class.
 
 ![Tackling Advent of Code](/assets/tackling-advent-of-code-72c97208.jpg)
+
 Photo by [Joshua Sortino](https://unsplash.com/@sortino?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ### Data structures

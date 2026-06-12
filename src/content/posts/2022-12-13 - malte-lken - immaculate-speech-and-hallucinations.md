@@ -17,6 +17,7 @@ tags:
 Using Whisper off-the-shelf in this case might bias the results because it tends to “polish” the structure and coherence of the speech in the transcription. It is also known to sometimes insert* common words when nothing was said, which is called “hallucination”. Thus, Whisper could artificially create, alter, or even remove the effect to be investigated.
 
 ![Immaculate Speech and Hallucinations](/assets/immaculate-speech-and-hallucinations-c3c9df4f.jpg)
+
 Photo by [Miguel Henriques](https://unsplash.com/@miguel_photo?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ### Other Scenarios Where Whisper Can Be Useful

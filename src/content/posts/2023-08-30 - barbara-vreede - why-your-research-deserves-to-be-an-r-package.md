@@ -32,6 +32,7 @@ Let me now ask you about your own work: do you want it to be reused?
 You know what you have to do now, right?
 
 ![Why your research deserves to be an R package](/assets/why-your-research-deserves-to-be-an-r-pa-bebe4eaf.jpg)
+
 Photo by [Kira auf der Heide](https://unsplash.com/@kadh?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ### But making a package… isn’t that complicated?
@@ -75,6 +76,7 @@ Writing down the logic of your functions — what goes in? What comes out? Exact
 This is where you go from scripting to software engineering.
 
 ![Why your research deserves to be an R package](/assets/why-your-research-deserves-to-be-an-r-pa-921434e2.jpg)
+
 Photo by [RetroSupply](https://unsplash.com/@retrosupply?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ### Packaged code is more robust, and developing it is more efficient.

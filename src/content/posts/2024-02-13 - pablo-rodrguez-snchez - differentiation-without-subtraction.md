@@ -16,7 +16,10 @@ tags:
 A surprising application of complex numbers
 
 ![Differentiation without subtraction](/assets/differentiation-without-subtraction-e61cb215.jpg)
-Photo by [charlesdeluvio](https://unsplash.com/@charlesdeluvio?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)Some time ago I came across one of those ideas that makes you wonder: *“why nobody told me about this before?”*
+
+Photo by [charlesdeluvio](https://unsplash.com/@charlesdeluvio?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+Some time ago I came across one of those ideas that makes you wonder: *“why nobody told me about this before?”*
 
 Those of you with mathematical training certainly remember the [Taylor series](https://en.wikipedia.org/wiki/Taylor_series). For those who do not, and yet want to keep reading, this [visual simulation ](https://www.geogebra.org/m/CeW2gCzH)may be helpful.
 

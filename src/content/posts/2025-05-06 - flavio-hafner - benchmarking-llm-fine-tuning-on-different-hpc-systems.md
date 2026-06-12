@@ -24,6 +24,7 @@ Authors: Flavio Hafner (Netherlands eScience center), Mattie Niznik (Princeton R
 We have developed a benchmark that compares the compute performance of fine-tuning LLMs on multiple high-performance computing (HPC) systems, including systems designed for working with sensitive data. In this blog post, we introduce the benchmark, describe the lessons learned developing it and make it [open-source](https://github.com/odissei-benchmarks/torchtune-gpu-benchmark) so that it can be used and improved by others.
 
 ![Benchmarking LLM fine-tuning on different HPC systems](/assets/benchmarking-llm-fine-tuning-on-differen-61f6f9dd.jpg)
+
 Photo by [Nana Dua](https://unsplash.com/@nanadua11?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
 ### Our use case

@@ -17,7 +17,10 @@ tags:
 In the first part of this series we looked at the physics of simulating molecules, and went from quantum mechanics to something that is more efficient to solve, namely density functional theory and molecular dynamics. These both required the introduction of an unknown potential. In the second part we looked at designing a machine learning model tailored to approximating this potential.
 
 ![Molecular Simulations using Machine Learning, Part 3](/assets/molecular-simulations-using-machine-lear-202fe83c.jpg)
-Photo by [D koi](https://unsplash.com/@dkoi?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)In this final part we will discuss what goes into training this model, in particular how to obtain the training data. And we will conclude with some caveats.
+
+Photo by [D koi](https://unsplash.com/@dkoi?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+In this final part we will discuss what goes into training this model, in particular how to obtain the training data. And we will conclude with some caveats.
 
 It’s possible to read this without having read the previous parts, but I would recommend at least reading [part 2](/molecular-simulations-using-machine-learning-part-2-1d647acd242c), and [part 1](https://medium.com/escience-center/molecular-simulations-using-machine-learning-part-1-e8624a82f680) only if you’re interested in the physical background.
 
