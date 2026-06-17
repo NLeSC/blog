@@ -237,6 +237,6 @@ Can you think of another use for decorators? Please feel free to leave a comment
 
 ## Acknowledgments
 
-I want to express my gratitude to for his useful suggestions.
+I want to express my gratitude to [Patrick Bos](https://medium.com/u/1382ec3ac71f?source=post_page---user_mention--ec84eaeca3e3---------------------------------------) for his useful suggestions.
 
 This entry appears in [R-bloggers.com](https://r-bloggers.com/)

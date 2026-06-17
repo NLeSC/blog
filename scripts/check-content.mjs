@@ -33,6 +33,10 @@ for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
     }
   }
 
+  if (/\b(?:gratitude|thanks?)\s+to\s+for\b/i.test(text)) {
+    add(errors, file, 'possible dropped imported link or mention text (found "to for")');
+  }
+
   for (const match of text.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g)) {
     const [, alt, src] = match;
     if (!alt.trim()) add(warnings, file, `image has empty alt text: ${src}`);
