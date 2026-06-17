@@ -16,6 +16,17 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
+const DEFAULT_LICENSE = {
+  name: 'CC BY-SA 4.0',
+  url: 'https://creativecommons.org/licenses/by-sa/4.0/',
+  badgeUrl: 'https://creativecommons.org/wp-content/themes/vocabulary-theme/vocabulary/svg/cc/license_badges/big/by_sa.svg',
+};
+
+const frontmatterLicense = post.data.license;
+const license = typeof frontmatterLicense === 'string'
+  ? { name: frontmatterLicense }
+  : (frontmatterLicense ?? DEFAULT_LICENSE);
+
 const authorPathSlug = authorSlug(post.data.author);
 const authorInfo = getAuthorInfo(post.data.author);
 const authorPic = getAuthorPic(post.data.author);
@@ -95,9 +106,33 @@ const relatedPosts = allPosts
       )}
     </header>
 
-    <div class="post-content pb-12 animate-enter" style="--enter-delay: 120ms">
+    <div class="post-content pb-8 animate-enter" style="--enter-delay: 120ms">
       <Content />
     </div>
+
+    <!-- License -->
+    <section class="border-t border-[#f2f2f2] dark:border-[#333] pt-8 pb-8" aria-labelledby="post-license-heading">
+      <h2 id="post-license-heading" class="sr-only">Post license</h2>
+      <p class="text-[14px] text-[#6b6b6b] dark:text-[#999] leading-relaxed mb-3">
+        Unless otherwise stated, this post is licensed under{' '}
+        {license.url ? (
+          <a href={license.url} target="_blank" rel="license noopener" class="text-[#1A8917] hover:underline font-medium">
+            {license.name}
+          </a>
+        ) : (
+          <span class="font-medium text-[#242424] dark:text-white">{license.name}</span>
+        )}.
+      </p>
+      {license.badgeUrl && (
+        license.url ? (
+          <a href={license.url} target="_blank" rel="license noopener" class="inline-block">
+            <img src={license.badgeUrl} alt={`${license.name} license badge`} class="h-8 w-auto" loading="lazy" />
+          </a>
+        ) : (
+          <img src={license.badgeUrl} alt={`${license.name} license badge`} class="h-8 w-auto" loading="lazy" />
+        )
+      )}
+    </section>
 
     <!-- Suggest changes -->
     <div class="border-t border-[#f2f2f2] dark:border-[#333] pt-8 pb-12">
