@@ -1,6 +1,5 @@
 ---
 title: "Integration showcase: Markdown, LaTeX, Mermaid, and embeds"
-date: 2026-06-11
 author: "eScience Editorial Team"
 published: true
 unlisted: true

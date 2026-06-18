@@ -2,13 +2,13 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getAuthorInfo, getAuthorPic, getAuthorInitials } from '../../lib/authors';
-import { authorSlug, formatDate, formatDate as formatArchiveDate, getCoverImage, isListedPost, postUrl, readTime, slugify, visibleTags } from '../../lib/archive';
+import { authorSlug, comparePostsByDateDesc, formatDate, formatDate as formatArchiveDate, getCoverImage, isListedPost, postDate, postSlug, postUrl, readTime, slugify, visibleTags } from '../../lib/archive';
 import { assetPath, sitePath } from '../../lib/urls';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
   return posts.map(post => ({
-    params: { slug: post.id.replace(/\.md$/, '') },
+    params: { slug: postSlug(post) },
     props: { post },
   }));
 }
@@ -32,7 +32,7 @@ const authorInfo = getAuthorInfo(post.data.author);
 const authorPic = getAuthorPic(post.data.author);
 const tags = visibleTags(post.data.tags || []);
 const minutes = readTime(post.body || '');
-const sourceSlug = post.id.replace(/\.md$/, '').split('/').pop() || post.id;
+const sourceSlug = postSlug(post).split('/').pop() || post.id;
 
 // Find related posts by shared topics first, then same author
 const allPosts = (await getCollection('posts')).filter(isListedPost);
@@ -45,7 +45,7 @@ const relatedPosts = allPosts
     return { post: candidate, score: sharedTopics * 4 + sameAuthor };
   })
   .filter(({ score }) => score > 0)
-  .sort((a, b) => b.score - a.score || b.post.data.date.getTime() - a.post.data.date.getTime())
+  .sort((a, b) => b.score - a.score || postDate(b.post).getTime() - postDate(a.post).getTime())
   .slice(0, 3)
   .map(({ post }) => post);
 ---
@@ -80,7 +80,7 @@ const relatedPosts = allPosts
             <p class="text-[13px] text-[#6b6b6b] leading-relaxed dark:text-[#999]">{authorInfo.bio}</p>
           )}
           <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] dark:text-[#999]">
-            <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date, 'long')}</time>
+            <time datetime={postDate(post).toISOString()}>{formatDate(postDate(post), 'long')}</time>
             <span>·</span>
             <span>{minutes} min read</span>
             {post.data.source_url && (
@@ -140,7 +140,7 @@ const relatedPosts = allPosts
         Found a typo or want to suggest an improvement?
         {' '}
         <a
-          href={`https://github.com/nlesc-blogging/blog/issues/new?title=Fix:%20${encodeURIComponent(post.data.title)}&body=Issue%20with%20post:%20/posts/${post.id.replace(/\.md$/, '')}%0A%0A**Suggested%20change:**%0A%0A`}
+          href={`https://github.com/nlesc-blogging/blog/issues/new?title=Fix:%20${encodeURIComponent(post.data.title)}&body=Issue%20with%20post:%20/posts/${postSlug(post)}%0A%0A**Suggested%20change:**%0A%0A`}
           target="_blank"
           rel="noopener"
           class="text-[#1A8917] hover:underline font-medium"
@@ -171,7 +171,7 @@ const relatedPosts = allPosts
                 <h3 class="text-[15px] font-semibold text-[#242424] dark:text-white leading-snug group-hover:underline decoration-2 underline-offset-3 line-clamp-2 mb-1 font-sans">
                   {rp.data.title}
                 </h3>
-                <span class="text-[13px] text-[#6b6b6b] dark:text-[#999]">{formatArchiveDate(rp.data.date)}</span>
+                <span class="text-[13px] text-[#6b6b6b] dark:text-[#999]">{formatArchiveDate(postDate(rp))}</span>
               </a>
             );
           })}

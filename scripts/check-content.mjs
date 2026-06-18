@@ -5,7 +5,7 @@ import { join, relative } from 'node:path';
 const root = process.cwd();
 const postsDir = join(root, 'src/content/posts');
 const assetsDir = join(root, 'public/assets');
-const requiredFrontmatter = ['title', 'date', 'author'];
+const requiredFrontmatter = ['title', 'author'];
 const warnings = [];
 const errors = [];
 
@@ -21,6 +21,14 @@ function add(kind, file, message) {
 }
 
 for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
+  const name = relative(postsDir, file);
+  if (!/^\d{4}-\d{2}-\d{2} - [^/]+\.md$/.test(name)) {
+    add(errors, file, 'filename must use "YYYY-MM-DD - post-slug.md"');
+  }
+  if (/^\d{4}-\d{2}-\d{2} - .+ - .+\.md$/.test(name)) {
+    add(errors, file, 'filename should not include author; keep author in frontmatter only');
+  }
+
   const text = readFileSync(file, 'utf8');
   const frontmatter = text.match(/^---\n([\s\S]*?)\n---/);
   if (!frontmatter) {
@@ -30,6 +38,9 @@ for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
       if (!new RegExp(`^${field}:`, 'm').test(frontmatter[1])) {
         add(errors, file, `missing required frontmatter field: ${field}`);
       }
+    }
+    if (/^date:/m.test(frontmatter[1])) {
+      add(errors, file, 'date belongs in the filename, not frontmatter');
     }
   }
 

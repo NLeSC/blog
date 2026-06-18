@@ -1,0 +1,162 @@
+---
+layout: post
+title: "What do entropy, entanglement, cosmology, life, and fake news have in common?"
+author: Patrick Bos
+published: true
+source: medium
+source_url: https://blog.esciencecenter.nl/what-do-entropy-entanglement-cosmology-life-and-fake-news-have-in-common-160fb84e0237
+tags:
+  - Environment
+  - Ethics
+  - Physics
+  - RSE
+---
+
+## Report on the Information Universe 4 conference
+
+*(Answer to the above question below obligatory excruciatingly long-winded intro!)*
+
+In the past week, I have rediscovered writing. Writing really hurts, you know… I’m pretty sure there should be workplace regulations for pen and paper safety, with regular mandatory hand massages against cramps and such.
+
+I guess my hand injuries came from overuse, because I filled up two entire notepads with my notes on all the talks at the [Information Universe 4](https://informationuniverse.astro.rug.nl/2022) conference.
+
+![](/assets/1_f0wzoo1aElRAGFM7raSpdQ-31db1055.jpeg)
+
+My trusty notepads! As a professional pen-athlete, I should probably have gone with pro materials, though. Moleskine or other brands. Please contact my manager if you want to sponsor my next note-taking event!
+
+This perhaps seemingly (over)eagerness had two reasons:
+
+1. I had to write in the dark, so I was struggling to keep words and lines separated.
+2. I really wanted to understand everything, since I had promised my colleague, Hanno, I would report on this conference, so there was a lot to write about.
+
+So, here it is, Hanno! I hope it’ll convince you (and others) to join the next edition, because it was really a joy.
+
+## Information!
+
+So, as I asked in the title, *what do entropy, entanglement, cosmology, life, and fake news have in common?* The answer is: **information**.
+
+*“What do you mean, information?”*, you may demand sternly. This was also the topic of many Q&A sessions and coffee breaks. Two main definitions seem to be those of:
+
+1. context-free information in the information theoretical and/or statistical sense; and
+2. something like “meaning” and communication of meaning.
+
+To communicate meaning, you need some encoding scheme of information (like an alphabet), and a commonly understood standard (like a language). This is probably what most people think of when they talk about information: stuff you can read about, knowledge.
+
+However, the underlying truth that you’re trying to communicate about is there independent of your messages. Such truths for instance describe the exact state of a bunch of molecules at a certain time: where they are, how fast they move, in what directions, what type of molecules they are, etc., etc.
+
+Buckets (or canisters, or tubs, or vast intergalactic expanses) of molecules are typically described by statistical physics and thermodynamics, but the kind of statistical description about states of things can be generalized to anything. The unit of information of this kind is the bit.
+
+## The fundamental building block of the Universe?
+
+Now, when you write down the equations of how all this information builds up in a system you get something called [*Shannon entropy*](https://en.wikipedia.org/wiki/Entropy_\(information_theory\)). To be honest, I’m not sure whether I like the word “information” in this context, because it’s actually more about probability. [*Surprisal*](https://en.wikipedia.org/wiki/Information_content) seems like a much better word to me. But I digress.
+
+It turns out that there are several ways information entropy can describe our Universe in ways that solve some of the biggest problems in cosmological physics: these theories naturally unify gravity and quantum physics and explain the mysteries of Dark Matter and Dark Energy.
+
+At the conference two such theories were presented and discussed:
+
+### Entropic gravity
+
+The theory of [entropic or emergent gravity](https://en.wikipedia.org/wiki/Entropic_gravity) by Erik Verlinde and collaborators, in a little over a decade, seems to have moved from wild theoretical speculation into the realm of serious possibility. In several talks, **observational tests** were discussed that interestingly seem to match old alternative theories of gravity like MOND as well.
+
+Also super interesting was new work by **Manus Visser** on how even Newton’s first and second laws (that describe mass inertia and how anything moves at all) can be explained from entropic principles!
+
+The math was beyond me, honestly, which is a problem with all of entropic gravity, being based on the information entropy of the entanglement of primordial particles on (or beyond?) opposite parts of the horizon of some kind of anti-de Sitter (AdS) space that supposedly corresponds to our own (conformal space? CF) Universe by means of [AdS/CFT correspondence](https://en.wikipedia.org/wiki/AdS/CFT_correspondence).
+
+![](/assets/0_m3Y7nx8w5CXl6A4k-eec512af.jpg)
+
+No, really, I’m asking: am I right?
+
+Still, the predictions are impressive, elegant, enticing and certainly warrant further attention.
+
+### Wolfram’s Physics project
+
+Stephen Wolfram (yes, the Mathematica guy) presented the [Wolfram theory of physics](https://www.wolframphysics.org/).
+
+The Wolfram Universe starts from a description of space itself as a graph of “space-element” nodes connected to other nodes. Updates to the cells and connections in this graph — representing the passing of time — can be made according to certain rules. Such cell update schemes were inspired by [cellular automata](https://en.wikipedia.org/wiki/Cellular_automaton) (which you can very nicely simulate in Mathematica, try it today!).
+
+Wolfram claimed (I wouldn’t say explained, although I’m sure they try on their website) that when you make this graph big enough and use the right set of update rules, you again get an emergent theory of physics.
+
+The most interesting part of his talk was that he had some very specific **predictions for things that could be observed** if indeed we live in a Wolfram Universe (did you try Mathematica yet btw? great product…). One was that the 3-dimensional nature of the spacetime we experience isn’t necessarily fixed in the Wolfriverse and we could observe flashes of other-dimensionality somehow. Another thing would be a specific radiation pattern from near the event horizon of a black hole.
+
+## New cosmological probes and the “Hubble tension”
+
+As you may have noticed from the above, my interest piques when information universe theorists start thinking about observability. Theory should be about our actual Universe and it should be falsifiable by observational or experimental probes and tests. Luckily, the conference provided in this area as well.
+
+### New observations
+
+Henk Hoekstra gave a great overview of the Euclid project, which combines a (hopefully soon to be launched) space telescope with ground-based telescope observations to create a new, high resolution map of all the stuff in our local corner of the Universe. “ *All the stuff* ” includes dark matter. Of course, we cannot **see** that *stuff* (hence the name), but using intricate statistical modeling of tiny distortions of light by the gravity of the *stuff* — a phenomenon known as (weak) gravitational lensing — we can deduce where it’s located.
+
+Knowing that is really important for understanding all the processes going on and the objects and structures that we see in our neighborhood. Without this knowledge, we simply cannot test our theories.
+
+### A new probe: strong gravitational lensing of transients
+
+A related promising new idea is to use strong gravitational lensing of quasars and even supernovae.
+
+To understand strong lensing, take a look at a light source through the bottom of a wine glass:
+
+![](/assets/0_Lz8LuSIrVwhxRN6i-227f25ea.png)
+
+Left: DIY strong gravitational lensing. Right: natural lensing by a big galaxy cluster (center) of a background object (blue arcs). From https://laser.physics.sunysb.edu/\_samantha/journal/index.html, by Samantha Scibelli.
+
+The light of an object is bent around a heavy foreground object from multiple sides, giving us two (or more) views on a single background object! The light from those two images travelled along different paths, with different distances.
+
+Now, quasars and supernovae are both *transients*: objects that change color or brightness over time. If their light travels different distances, we can measure their time-dependent light pattern twice (or more). The punchline is that the differences in the light patterns from the multiple images can tell us something about the Universe! By travelling different distances, or travelling through different environments, their patterns will often be slightly different.
+
+Kind of a long story, but the bottom line is that this is really promising as a completely **new probe** of the physics of our Universe, one that is **independent of other observational probes** we have used up to now.
+
+Why is that important?
+
+### The Hubble tension
+
+There’s a fight!
+
+One of the most important cosmological parameters that describe our Universe as a whole is the [Hubble constant](https://en.wikipedia.org/wiki/Hubble%27s_law). This constant can be measured in several ways. Simplifying a bit, we can say that there are two classes of observations: those from the *early-time universe* (most prominently: the [cosmic microwave background](https://en.wikipedia.org/wiki/Cosmic_microwave_background) (CMB), popularly described as the echo of the Big Bang) and those from the *late-time universe* (now and just a few billion years ago, e.g. supernova distances).
+
+For years, different Hubble constant measurements seemed to be converging to a single value (within the error margins). However, with measurements becoming more and more precise (error margins becoming smaller), it now turns out that CMB measurements do not agree at all with late-time measurements!
+
+![](/assets/1_OKk2JYML7HLFAjzVejBH0Q-32f1b2d9.jpeg)
+
+This so-called **“Hubble tension”** has grown over the last decade into a serious crisis. Obviously, scientists love a good crisis, because it means that there’s something new to learn just lurking beyond the horizon! The talks by Leon Koopmans, Tamara Davis and Nikki Arendse provided many perspectives on this issue, but no solution has been found yet.
+
+Improving our understanding of our surroundings in the ways presented by e.g. Job Feldbrugge (who uses analytical models to simplify and better understand the complex universe around us) and Yan-Chuan Cai (who improves modelling of one of the most essential astronomical tools: the redshift as used to estimate distances to objects) will certainly play a role as well.
+
+## Life, fake news, philosophy and more
+
+So far, I’ve only highlighted more or less a third of this conference. The joy of this conference, though, is that not only are we (astro)physicists infused with information theory, but we get to sample from a wide buffet of fields that use information theory in some way too. To be able to have so many world experts in different fields in one place must lead to some really cool cross-domain thoughts and ideas. And it did. Some random highlights:
+
+### Philosophy
+
+Seth Lloyd talked about how Spinoza’s ethics is very suitable for thinking about how we can define ethically “good” computation. This was a really interesting talk from one of the founders of quantum computing. **“Should we fear** [**artificial general intelligence**](https://en.wikipedia.org/wiki/Artificial_general_intelligence) **(AGI)?”** was one of his leading questions. Based on Spinoza, Lloyd argued that because…
+
+1. joy comes from increasing one’s understanding of the Universe (or God, which is the same to him) and
+2. individuals can never understand more on their own than together
+
+…it will be in any intelligence’s interest to cooperate. This goes for us humans, when we work together, but also goes for AGI and anything in between that allows us to increase our intelligence (tools like books, computers, AI, etc.). So: no, we needn’t fear AGI at all… at least, as long as they are Spinozans.
+
+One interesting random cross-connection from this talk is that Wolfram’s set of all the possible update rules — a concept they call the [Ruliad](https://writings.stephenwolfram.com/2021/11/the-concept-of-the-ruliad/), and which describes all possible Universes — was described in a very similar way to Spinoza’s God. Maybe the similarity is just due to the nature of things that explain everything always everywhere, though.
+
+### Life
+
+Some speakers discussed what life is, whether we should define it at all, how it could have come about, and also how it connects to things like AGI. The talks ranged from quite generic and understandable to very technical, like the talk by David Eric Smith.
+
+Although it was challenging for me to follow due to lots of jargon, Smith argued convincingly, based on (micro)biological evidence, that ribosomes, the molecules that fold proteins out of RNA, must have come before the actual RNA/DNA that would become the basic information carrier of all life as we know it.
+
+Digging into this chain of events on how life could have started is a fascinating feat of micro-archaeology, if one may call it that... And one may, if one is to follow the definition of life that Charley Lineweaver gives. He states that essentially biology is a **historical** science. All other definitions of life are problematic and may exclude things like viruses and even humans (we need to eat; how self-sustaining are we?) or include such things as tornados and stars (“systems far from equilibrium”). The study of life is simply a study of how some subset of things we call “living” happened to come about. He contrasts this to physics which tries to uncover time-invariant truths about reality.
+
+### Fake news
+
+Finally, one talk that really hit home for me was the one by Ruurd Oosterwoud on countering disinformation using evidence-based, data-driven solutions.
+
+Using such solutions may seem like the obvious thing to do, but unfortunately, politically driven solutions often are far from effective. This is no big surprise, because many simply have not been rigorously tested at all. The problem we face is hugely complex, though, with many different actors through many different media with many different motivations and stakes.
+
+Solutions like fact-checking create merely a ripple in the huge lake of false information that floods us from all sides. And this doesn’t even include yet aspects like intent: do people truly believe what they say or are they actively trying to disrupt any fact-based discussion?
+
+Oosterwoud presented a number of ways in which we can actually start measuring what works and what doesn’t. One cool example was a website where school children were given the assignment to come up with a fake news item themselves and get as many visitors to it as possible. This gives both the children themselves and researchers insights into successful tactics, which may eventually lead to counter-strategies that actually work.
+
+## Conclusion
+
+You really missed out Hanno!
+
+Apart from the content and the great discussions over coffee, the conference was held in the DOT full-dome planetarium. Some of the speakers made use of this to show some beautiful full-dome movies or interactive shows.
+
+It’s one of the most inspiring conferences for technically inclined, but broadly interested people.

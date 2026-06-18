@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { getAuthorInfo, getAuthorPic, getAuthorInitials } from '../../lib/authors';
-import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, isListedPost, postUrl } from '../../lib/archive';
+import { buildTopicIndex, comparePostsByDateDesc, formatDate, getCoverImage, getExcerpt, isListedPost, postDate, postUrl } from '../../lib/archive';
 import { assetPath, sitePath } from '../../lib/urls';
 
 export async function getStaticPaths() {
@@ -18,7 +18,7 @@ const { author } = Astro.props;
 const allPosts = (await getCollection('posts')).filter(isListedPost);
 const authorPosts = allPosts
   .filter(p => p.data.author === author)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  .sort((a, b) => comparePostsByDateDesc(a, b));
 
 const authorInfo = getAuthorInfo(author);
 const authorPic = getAuthorPic(author);
@@ -72,7 +72,7 @@ const authorTopics = buildTopicIndex(authorPosts).slice(0, 8);
           <a href={postUrl(post)} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#1a1a1a] -mx-4 px-4 transition-colors">
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] mb-1.5">
-                <span>{formatDate(post.data.date)}</span>
+                <span>{formatDate(postDate(post))}</span>
               </div>
               <h2 class="text-[18px] md:text-[20px] font-bold leading-snug text-[#242424] dark:text-white group-hover:underline decoration-2 underline-offset-4 mb-1.5 line-clamp-2 font-sans">
                 {post.data.title}
