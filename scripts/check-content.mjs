@@ -6,6 +6,8 @@ const root = process.cwd();
 const postsDir = join(root, 'src/content/posts');
 const assetsDir = join(root, 'public/assets');
 const requiredFrontmatter = ['title', 'date', 'author'];
+const reservedTopLevelRoutes = new Set(['api', 'authors', 'posts', 'search', 'topics', 'rss.xml']);
+const legacyRedirects = new Map();
 const warnings = [];
 const errors = [];
 
@@ -29,6 +31,29 @@ for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
     for (const field of requiredFrontmatter) {
       if (!new RegExp(`^${field}:`, 'm').test(frontmatter[1])) {
         add(errors, file, `missing required frontmatter field: ${field}`);
+      }
+    }
+
+    const sourceUrlMatch = frontmatter[1].match(/^source_url:\s*(.+)$/m);
+    if (sourceUrlMatch) {
+      const sourceUrl = sourceUrlMatch[1].trim().replace(/^['"]|['"]$/g, '');
+      try {
+        const legacyPath = new URL(sourceUrl).pathname.replace(/^\/+|\/+$/g, '');
+        if (legacyPath) {
+          const topLevel = legacyPath.split('/')[0];
+          if (reservedTopLevelRoutes.has(topLevel)) {
+            add(errors, file, `legacy redirect path conflicts with existing route: /${legacyPath}`);
+          }
+
+          const existing = legacyRedirects.get(legacyPath);
+          if (existing) {
+            add(errors, file, `duplicate legacy redirect path /${legacyPath} also used by ${relative(root, existing)}`);
+          } else {
+            legacyRedirects.set(legacyPath, file);
+          }
+        }
+      } catch {
+        add(errors, file, `invalid source_url: ${sourceUrl}`);
       }
     }
   }

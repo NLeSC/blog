@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import { postUrl } from '../lib/archive';
+import { legacyRedirectPath } from '../lib/legacy-redirects';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+
+  return posts
+    .map((post) => ({ post, legacyPath: legacyRedirectPath(post) }))
+    .filter((entry): entry is { post: typeof posts[number]; legacyPath: string } => Boolean(entry.legacyPath))
+    .map(({ post, legacyPath }) => ({
+      params: { legacySlug: legacyPath },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const targetPath = postUrl(post);
+const targetUrl = new URL(targetPath, Astro.site).href;
+const title = `Redirecting to ${post.data.title}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta http-equiv="refresh" content={`0; url=${targetUrl}`} />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href={targetUrl} />
+  </head>
+  <body>
+    <main>
+      <h1>{title}</h1>
+      <p>
+        This old blog URL has moved to
+        <a href={targetPath}>{post.data.title}</a>.
+      </p>
+    </main>
+  </body>
+</html>
