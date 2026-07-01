@@ -38,7 +38,7 @@ Use the helper command so filenames only encode the date and title; author names
 bun run new-post "Why We Build Tools" --author "Jesse Gonzalez" --tags "RSE,Tools,Open Source"
 ```
 
-This creates `src/content/posts/YYYY-MM-DD - why-we-build-tools.md` with `published: false` for review. You can also create markdown files manually using the same filename convention.
+This creates `content/posts/YYYY-MM-DD - why-we-build-tools.md` with `published: false` for review. You can also create markdown files manually using the same filename convention.
 
 ### 2. Frontmatter (required)
 
@@ -122,7 +122,7 @@ Example embed:
 ```
 
 Use the unlisted integration showcase post as a reference for supported content patterns:
-[`src/content/posts/2026-06-11 - integration-showcase.md`](src/content/posts/2026-06-11%20-%20integration-showcase.md).
+[`content/posts/2026-06-11 - integration-showcase.md`](content/posts/2026-06-11%20-%20integration-showcase.md).
 
 Contributors can also view the live showcase to see what is possible:
 [https://nlesc-blogging.github.io/blog/posts/2026-06-11---integration-showcase/](https://nlesc-blogging.github.io/blog/posts/2026-06-11---integration-showcase/).
@@ -153,8 +153,9 @@ The site rebuilds automatically on push to `main`. To preview locally: `bun run 
 ## Project structure
 
 ```
+content/
+├── posts/            ← All blog posts (markdown + frontmatter)
 src/
-├── content/posts/    ← All blog posts (markdown + frontmatter)
 ├── pages/            ← Route pages (index, posts/[slug], authors/[slug], search)
 ├── layouts/          ← Base layout (header, footer, OG metadata)
 ├── styles/           ← Global CSS (Tailwind + post-content typography)

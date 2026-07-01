@@ -7,7 +7,7 @@ This blog is an Astro site backed by Markdown. The goal is to keep the reading e
 Posts live in:
 
 ```txt
-src/content/posts/
+content/posts/
 ```
 
 Each post is a Markdown file with frontmatter:

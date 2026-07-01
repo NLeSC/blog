@@ -3,7 +3,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
 const root = process.cwd();
-const postsDir = join(root, 'src/content/posts');
+const postsDir = join(root, 'content/posts');
 const assetsDir = join(root, 'public/assets');
 const requiredFrontmatter = ['title', 'author'];
 const warnings = [];

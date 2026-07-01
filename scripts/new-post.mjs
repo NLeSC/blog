@@ -38,7 +38,7 @@ const tags = option('tags')
   .map((tag) => tag.trim())
   .filter(Boolean);
 
-const postsDir = join(process.cwd(), 'src', 'content', 'posts');
+const postsDir = join(process.cwd(), 'content', 'posts');
 mkdirSync(postsDir, { recursive: true });
 const filePath = join(postsDir, `${date} - ${slug}.md`);
 if (existsSync(filePath)) {

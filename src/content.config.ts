@@ -11,7 +11,7 @@ const licenseSchema = z.union([
 ]).nullable().optional();
 
 const posts = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/posts" }),
+  loader: glob({ pattern: "**/*.md", base: "./content/posts" }),
   schema: z.object({
     layout: z.string().optional(),
     title: z.string().nullable().optional().transform(v => v || 'Untitled'),
