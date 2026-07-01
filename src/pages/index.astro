@@ -12,38 +12,39 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
 
 <BaseLayout>
   <!-- Publication header banner -->
-  <div class="max-w-[960px] mx-auto px-4 pt-6 md:pt-8 pb-6 animate-enter">
-    <img src={sitePath("/header-banner.webp")} alt="eScience Center Blog" class="w-full h-auto rounded-[22px] border border-[#f0f0f0] dark:border-[#2a2a2a] shadow-[0_18px_60px_rgba(0,0,0,0.08)]" />
+  <div class="max-w-[960px] mx-auto px-4 pt-8 pb-6 animate-enter">
+    <img src={sitePath("/header-banner.webp")} alt="eScience Center Blog" class="w-full h-auto" />
   </div>
 
   <!-- Publication profile -->
-  <div class="max-w-[960px] mx-auto px-4 pb-8 md:pb-10 animate-enter" style="--enter-delay: 70ms">
-    <div class="rounded-[24px] border border-[#f2f2f2] dark:border-[#252525] bg-white/80 dark:bg-[#151515]/80 p-5 md:p-6 shadow-[0_14px_50px_rgba(0,0,0,0.045)] backdrop-blur flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+  <div class="max-w-[960px] mx-auto px-4 pb-10 animate-enter" style="--enter-delay: 70ms">
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
       <div class="flex items-start gap-4 min-w-0">
         <div class="flex-1 min-w-0 pt-0.5">
-          <p class="text-[11px] uppercase tracking-[0.18em] text-[#f26522] font-semibold mb-2">Research software stories</p>
-          <h2 class="text-[24px] md:text-[26px] font-bold tracking-[-0.035em] text-[#242424] dark:text-white mb-1">Netherlands eScience Center</h2>
-          <p class="text-[15px] md:text-[16px] text-[#6b6b6b] dark:text-[#aaa] leading-relaxed mb-4 max-w-[560px]">
+          <h2 class="text-[22px] font-bold text-[#242424] dark:text-white mb-0.5">Netherlands eScience Center</h2>
+          <p class="text-[15px] text-[#6b6b6b] dark:text-[#999] leading-relaxed mb-2">
             We are the Dutch national centre of expertise for research software.
           </p>
-          <div class="flex flex-wrap items-center gap-2.5">
-            <span class="inline-flex items-center rounded-full bg-[#f7f7f7] dark:bg-[#202020] px-3 py-1.5 text-[13px] text-[#6b6b6b] dark:text-[#aaa]">
+          <div class="flex items-center gap-2">
+            <span class="text-[13px] text-[#6b6b6b] dark:text-[#999]">
               <span class="font-medium text-[#242424] dark:text-white">{allPosts.length}</span> articles
             </span>
-            <a href={sitePath("/search")} class="inline-flex items-center rounded-full bg-[#003388] px-3 py-1.5 text-[13px] font-medium text-white shadow-[0_8px_24px_rgba(0,51,136,0.22)] hover:bg-[#00266a] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#003388] transition-colors">Search posts</a>
-            <a href={sitePath("/rss.xml")} class="inline-flex items-center rounded-full border border-[#e6e6e6] dark:border-[#333] px-3 py-1.5 text-[13px] text-[#6b6b6b] dark:text-[#aaa] hover:border-[#f26522] hover:text-[#f26522] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f26522] transition-colors">RSS</a>
+            <span class="text-[#6b6b6b] dark:text-[#999]">·</span>
+            <a href={sitePath("/rss.xml")} class="text-[13px] text-[#6b6b6b] dark:text-[#999] hover:text-[#f26522] transition-colors">RSS</a>
+            <span class="text-[#6b6b6b] dark:text-[#999]">·</span>
+            <a href={sitePath("/search")} class="text-[13px] text-[#6b6b6b] dark:text-[#999] hover:text-[#242424] dark:hover:text-white transition-colors">Search</a>
           </div>
         </div>
       </div>
 
       <nav class="md:w-[360px] md:pt-1" aria-label="Popular topics">
         <div class="flex items-center justify-between gap-3 mb-2">
-          <p class="text-[11px] uppercase tracking-[0.16em] text-[#999] dark:text-[#777]">Popular topics</p>
-          <a href={sitePath("/topics")} class="text-[12px] font-medium text-[#003388] dark:text-[#9ab5ff] hover:text-[#f26522] transition-colors whitespace-nowrap">All →</a>
+          <p class="text-[11px] uppercase tracking-[0.14em] text-[#999] dark:text-[#777]">Popular topics</p>
+          <a href={sitePath("/topics")} class="text-[12px] text-[#6b6b6b] dark:text-[#999] hover:text-[#003388] dark:hover:text-white transition-colors whitespace-nowrap">All →</a>
         </div>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-1.5">
           {topics.slice(0, 6).map((topic) => (
-            <a href={sitePath(`/topics/${topic.slug}`)} class="inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] dark:border-[#333] bg-white dark:bg-[#191919] px-3 py-1.5 text-[12px] text-[#6b6b6b] dark:text-[#aaa] hover:-translate-y-0.5 hover:border-[#003388] hover:text-[#003388] hover:shadow-[0_8px_20px_rgba(0,51,136,0.10)] dark:hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#003388] transition-all">
+            <a href={sitePath(`/topics/${topic.slug}`)} class="inline-flex items-center gap-1.5 rounded-full border border-[#e6e6e6] dark:border-[#333] px-2.5 py-1 text-[12px] text-[#6b6b6b] dark:text-[#aaa] hover:border-[#003388] hover:text-[#003388] dark:hover:text-white transition-colors">
               <span>{topic.name}</span>
               <span class="text-[#aaa] dark:text-[#777]">{topic.count}</span>
             </a>
@@ -59,28 +60,27 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
       const featured = posts[0];
       const featuredCover = coverImageUrl(featured);
       return (
-        <a href={postUrl(featured)} class="group flex flex-col md:flex-row gap-5 md:gap-8 mb-10 md:mb-14 items-stretch overflow-hidden rounded-[28px] border border-[#ededed] dark:border-[#262626] bg-white dark:bg-[#151515] p-3 md:p-4 shadow-[0_18px_60px_rgba(0,0,0,0.07)] hover:bg-[#fafafa] dark:hover:bg-[#181818] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#003388] transition-colors animate-enter" style="--enter-delay: 150ms">
+        <a href={postUrl(featured)} class="group flex flex-col md:flex-row gap-4 md:gap-10 mb-10 md:mb-16 items-stretch md:items-start animate-enter" style="--enter-delay: 150ms">
           <div class="w-full md:w-1/2 flex-shrink-0">
             {featuredCover ? (
-              <img src={featuredCover} alt="" class="w-full aspect-[16/10] md:aspect-[4/3] object-cover rounded-[22px] fade-in-image" loading="eager" />
+              <img src={featuredCover} alt="" class="w-full aspect-[16/10] md:aspect-[4/3] object-cover fade-in-image" loading="eager" />
             ) : (
-              <div class="w-full aspect-[16/10] md:aspect-[4/3] flex items-center justify-center rounded-[22px] bg-[#f2f2f2] dark:bg-[#333]">
+              <div class="w-full aspect-[16/10] md:aspect-[4/3] flex items-center justify-center bg-[#f2f2f2] dark:bg-[#333]">
                 <span class="text-gray-300 text-lg">eScience Center</span>
               </div>
             )}
           </div>
-          <div class="w-full md:w-1/2 md:py-3 md:pr-3 flex flex-col justify-center">
-            <span class="mb-3 inline-flex w-fit rounded-full bg-[#fff3dd] dark:bg-[#2a2111] px-3 py-1 text-[12px] font-semibold text-[#995b00] dark:text-[#ffbf63]">Featured</span>
-            <h1 class="text-[28px] md:text-[34px] font-bold leading-[1.06] tracking-[-0.045em] text-[#242424] dark:text-white group-hover:text-[#003388] dark:group-hover:text-[#9ab5ff] mb-3 font-sans transition-colors">
+          <div class="w-full md:w-1/2">
+            <h1 class="text-[26px] md:text-[30px] font-bold leading-tight text-[#242424] dark:text-white group-hover:underline decoration-2 underline-offset-4 mb-2 font-sans">
               {featured.data.title}
             </h1>
-            <p class="text-[15px] md:text-[16px] text-[#6b6b6b] dark:text-[#aaa] leading-relaxed line-clamp-4 md:line-clamp-3 mb-4">
+            <p class="text-[15px] text-[#6b6b6b] leading-relaxed line-clamp-4 md:line-clamp-3 mb-3">
               {getExcerpt(featured.body || '', 280)}...
             </p>
-            <div class="flex items-center gap-2 text-[13px] text-[#6b6b6b] dark:text-[#999]">
+            <div class="flex items-center gap-2 text-[13px] text-[#6b6b6b]">
               <span>{formatDate(postDate(featured))}</span>
               <span>·</span>
-              <span>{featured.data.author}</span>
+              <span class="text-[#6b6b6b]">{featured.data.author}</span>
             </div>
           </div>
         </a>
@@ -88,15 +88,15 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
     })()}
 
     {/* 3-article grid — Medium-style row */}
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6 mb-12">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-12">
       {posts.slice(1, 4).map((post, index) => {
         const cover = coverImageUrl(post);
         return (
-          <a href={postUrl(post)} class="group block rounded-[22px] p-2 -m-2 hover:bg-[#fafafa] dark:hover:bg-[#181818] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#003388] transition-colors animate-enter" style={`--enter-delay: ${210 + index * 55}ms`}>
+          <a href={postUrl(post)} class="group block animate-enter" style={`--enter-delay: ${210 + index * 55}ms`}>
             {cover ? (
-              <img src={cover} alt="" class="w-full aspect-[16/10] object-cover rounded-[18px] mb-3 fade-in-image" loading="lazy" />
+              <img src={cover} alt="" class="w-full aspect-[16/10] object-cover mb-3 fade-in-image" loading="lazy" />
             ) : (
-              <div class="w-full aspect-[16/10] mb-3 rounded-[18px] bg-[#f2f2f2] dark:bg-[#333] flex items-center justify-center">
+              <div class="w-full aspect-[16/10] mb-3 bg-[#f2f2f2] flex items-center justify-center">
                 <span class="text-gray-300 text-sm">eScience Center</span>
               </div>
             )}
@@ -104,43 +104,43 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
               <div class="w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0" style="background: #003388;">
                 {post.data.author.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
               </div>
-              <span class="text-[12px] text-[#6b6b6b] dark:text-[#aaa]">{post.data.author}</span>
+              <span class="text-[12px] text-[#6b6b6b]">{post.data.author}</span>
             </div>
-            <h2 class="text-[17px] font-bold leading-snug tracking-[-0.02em] text-[#242424] dark:text-white group-hover:text-[#003388] dark:group-hover:text-[#9ab5ff] mb-1.5 line-clamp-3 font-sans transition-colors">
+            <h2 class="text-[16px] font-bold leading-snug text-[#242424] dark:text-white group-hover:underline decoration-2 underline-offset-4 mb-1 line-clamp-3 font-sans">
               {post.data.title}
             </h2>
-            <p class="text-[13px] text-[#6b6b6b] dark:text-[#aaa] leading-relaxed line-clamp-2 mb-2">
+            <p class="text-[13px] text-[#6b6b6b] leading-relaxed line-clamp-2 mb-2">
               {getExcerpt(post.body || '', 120)}...
             </p>
-            <span class="text-[12px] text-[#6b6b6b] dark:text-[#999]">{formatDate(postDate(post))}</span>
+            <span class="text-[12px] text-[#6b6b6b]">{formatDate(postDate(post))}</span>
           </a>
         );
       })}
     </div>
 
     {/* Remaining posts — feed list */}
-    <div class="divide-y divide-[#f2f2f2] dark:divide-[#242424]">
+    <div class="divide-y divide-[#f2f2f2]">
       {posts.slice(4).map((post, index) => {
         const cover = coverImageUrl(post);
         return (
-          <a href={postUrl(post)} class="group flex gap-4 sm:gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#181818] -mx-4 px-4 rounded-[18px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#003388] transition-colors animate-enter" style={`--enter-delay: ${Math.min(360 + index * 28, 720)}ms`}>
+          <a href={postUrl(post)} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#1a1a1a] -mx-4 px-4 transition-colors animate-enter" style={`--enter-delay: ${Math.min(360 + index * 28, 720)}ms`}>
             <div class="flex-1 min-w-0">
-              <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] dark:text-[#999] mb-1.5">
+              <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] mb-1.5">
                 <span class="font-medium text-[#242424] dark:text-white">{post.data.author}</span>
                 <span>·</span>
                 <span>{formatDate(postDate(post))}</span>
               </div>
-              <h2 class="text-[18px] md:text-[21px] font-bold leading-snug tracking-[-0.025em] text-[#242424] dark:text-white group-hover:text-[#003388] dark:group-hover:text-[#9ab5ff] mb-1.5 line-clamp-2 font-sans transition-colors">
+              <h2 class="text-[18px] md:text-[20px] font-bold leading-snug text-[#242424] dark:text-white group-hover:underline decoration-2 underline-offset-4 mb-1.5 line-clamp-2 font-sans">
                 {post.data.title}
               </h2>
-              <p class="text-[14px] text-[#6b6b6b] dark:text-[#aaa] leading-relaxed line-clamp-2 hidden sm:block">
+              <p class="text-[14px] text-[#6b6b6b] leading-relaxed line-clamp-2 hidden sm:block">
                 {getExcerpt(post.body || '')}...
               </p>
             </div>
             {cover ? (
-              <img src={cover} alt="" class="w-[112px] h-[112px] sm:w-[200px] sm:h-[134px] rounded-[18px] object-cover flex-shrink-0 order-2 fade-in-image transition-transform duration-500 group-hover:scale-[1.02]" loading="lazy" />
+              <img src={cover} alt="" class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] object-cover flex-shrink-0 order-2 fade-in-image" loading="lazy" />
             ) : (
-              <div class="w-[112px] h-[112px] sm:w-[200px] sm:h-[134px] rounded-[18px] flex-shrink-0 bg-[#f2f2f2] dark:bg-[#333] flex items-center justify-center order-2">
+              <div class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] flex-shrink-0 bg-[#f2f2f2] dark:bg-[#333] flex items-center justify-center order-2">
                 <span class="text-gray-300 text-xs">eScience</span>
               </div>
             )}
