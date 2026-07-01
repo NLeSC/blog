@@ -13,7 +13,7 @@ const { title, description, ogImage, noindex } = Astro.props;
   <meta name="description" content={description || 'eScience Center Blog — Research software engineering, data science, and digital scholarship'} />
   {noindex && <meta name="robots" content="noindex, nofollow" />}
   <link rel="icon" type="image/png" href={sitePath("/favicon.png")} />
-  <link rel="alternate" type="application/rss+xml" title="eScience Center Blog" href={sitePath("/rss.xml")} />
+  <link rel="alternate" type="application/rss+xml" title="eScience Center Blog" href={sitePath("/feed")} />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous" />
   <meta property="og:title" content={title || 'eScience Center Blog'} />
   <meta property="og:description" content={description || 'Research software engineering, data science, and digital scholarship'} />
