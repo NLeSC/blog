@@ -47,7 +47,7 @@ if (existsSync(filePath)) {
 }
 
 const tagLines = tags.length ? tags.map((tag) => `  - ${tag}`).join('\n') : '  - uncategorized';
-const content = `---\nlayout: post\ntitle: "${title.replaceAll('"', '\\"')}"\ndate: ${date}\nauthor: ${author}\npublished: false\ntags:\n${tagLines}\n---\n\nWrite the introduction here.\n\n<!--\nImage with caption pattern:\n\n<figure>\n  <img src="/assets/descriptive-file-name.png" alt="Short accessibility description of the image" />\n  <figcaption>Short visible caption. Add credit/source links here when needed.</figcaption>\n</figure>\n\nUse alt text for accessibility; use figcaption for the visible caption.\n-->\n`;
+const content = `---\nlayout: post\ntitle: "${title.replaceAll('"', '\\"')}"\nauthor: ${author}\npublished: false\ntags:\n${tagLines}\n---\n\nWrite the introduction here.\n\n<!--\nImage with caption pattern:\n\n<figure>\n  <img src="/assets/descriptive-file-name.png" alt="Short accessibility description of the image" />\n  <figcaption>Short visible caption. Add credit/source links here when needed.</figcaption>\n</figure>\n\nUse alt text for accessibility; use figcaption for the visible caption.\n-->\n`;
 
 writeFileSync(filePath, content);
 console.log(filePath);

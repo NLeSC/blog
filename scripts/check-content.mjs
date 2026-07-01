@@ -5,7 +5,7 @@ import { join, relative } from 'node:path';
 const root = process.cwd();
 const postsDir = join(root, 'content/posts');
 const assetsDir = join(root, 'public/assets');
-const requiredFrontmatter = ['title', 'date', 'author'];
+const requiredFrontmatter = ['title', 'author'];
 const reservedTopLevelRoutes = new Set(['api', 'authors', 'posts', 'search', 'topics', 'rss.xml']);
 const legacyRedirects = new Map();
 const warnings = [];
@@ -23,6 +23,10 @@ function add(kind, file, message) {
 }
 
 for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
+  if (!/^\d{4}-\d{2}-\d{2} - [^-].+\.md$/.test(file.split('/').pop())) {
+    add(errors, file, 'filename must use "YYYY-MM-DD - title.md"');
+  }
+
   const text = readFileSync(file, 'utf8');
   const frontmatter = text.match(/^---\n([\s\S]*?)\n---/);
   if (!frontmatter) {
@@ -32,6 +36,10 @@ for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
       if (!new RegExp(`^${field}:`, 'm').test(frontmatter[1])) {
         add(errors, file, `missing required frontmatter field: ${field}`);
       }
+    }
+
+    if (/^date:/m.test(frontmatter[1])) {
+      add(errors, file, 'date belongs in filename, not frontmatter');
     }
 
     const sourceUrlMatch = frontmatter[1].match(/^source_url:\s*(.+)$/m);

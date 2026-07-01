@@ -15,7 +15,7 @@ const posts = defineCollection({
   schema: z.object({
     layout: z.string().optional(),
     title: z.string().nullable().optional().transform(v => v || 'Untitled'),
-    date: z.coerce.date(),
+    date: z.coerce.date().optional(),
     author: z.string().nullable().optional().transform(v => (v && v.trim()) ? v.trim() : 'eScience Center'),
     published: z.boolean().nullable().optional().transform(v => v !== false),
     unlisted: z.boolean().nullable().optional().transform(v => v === true),
