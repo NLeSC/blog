@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { buildTopicIndex, comparePostsByDateDesc, formatDate, getCoverImage, getExcerpt, isListedPost, postDate, postUrl } from '../lib/archive';
-import { assetPath, sitePath } from '../lib/urls';
+import { buildTopicIndex, comparePostsByDateDesc, coverImageUrl, formatDate, getExcerpt, isListedPost, postDate, postUrl } from '../lib/archive';
+import { sitePath } from '../lib/urls';
 
 const allPosts = (await getCollection('posts')).filter(isListedPost);
 allPosts.sort(comparePostsByDateDesc);
@@ -58,13 +58,12 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
     <!-- Featured post — side-by-side on desktop -->
     {(() => {
       const featured = posts[0];
-      const featuredSlug = featured.id.replace(/\.md$/, '');
-      const featuredCover = getCoverImage(featured.body || '');
+      const featuredCover = coverImageUrl(featured);
       return (
-        <a href={sitePath(`/posts/${featuredSlug}`)} class="group flex flex-col md:flex-row gap-4 md:gap-10 mb-10 md:mb-16 items-stretch md:items-start animate-enter" style="--enter-delay: 150ms">
+        <a href={postUrl(featured)} class="group flex flex-col md:flex-row gap-4 md:gap-10 mb-10 md:mb-16 items-stretch md:items-start animate-enter" style="--enter-delay: 150ms">
           <div class="w-full md:w-1/2 flex-shrink-0">
             {featuredCover ? (
-              <img src={assetPath(featuredCover)} alt="" class="w-full aspect-[16/10] md:aspect-[4/3] object-cover fade-in-image" loading="eager" />
+              <img src={featuredCover} alt="" class="w-full aspect-[16/10] md:aspect-[4/3] object-cover fade-in-image" loading="eager" />
             ) : (
               <div class="w-full aspect-[16/10] md:aspect-[4/3] flex items-center justify-center bg-[#f2f2f2] dark:bg-[#333]">
                 <span class="text-gray-300 text-lg">eScience Center</span>
@@ -91,12 +90,11 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
     {/* 3-article grid — Medium-style row */}
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-12">
       {posts.slice(1, 4).map((post, index) => {
-        const slug = post.id.replace(/\.md$/, '');
-        const cover = getCoverImage(post.body || '');
+        const cover = coverImageUrl(post);
         return (
-          <a href={sitePath(`/posts/${slug}`)} class="group block animate-enter" style={`--enter-delay: ${210 + index * 55}ms`}>
+          <a href={postUrl(post)} class="group block animate-enter" style={`--enter-delay: ${210 + index * 55}ms`}>
             {cover ? (
-              <img src={assetPath(cover)} alt="" class="w-full aspect-[16/10] object-cover mb-3 fade-in-image" loading="lazy" />
+              <img src={cover} alt="" class="w-full aspect-[16/10] object-cover mb-3 fade-in-image" loading="lazy" />
             ) : (
               <div class="w-full aspect-[16/10] mb-3 bg-[#f2f2f2] flex items-center justify-center">
                 <span class="text-gray-300 text-sm">eScience Center</span>
@@ -123,10 +121,9 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
     {/* Remaining posts — feed list */}
     <div class="divide-y divide-[#f2f2f2]">
       {posts.slice(4).map((post, index) => {
-        const slug = post.id.replace(/\.md$/, '');
-        const cover = getCoverImage(post.body || '');
+        const cover = coverImageUrl(post);
         return (
-          <a href={sitePath(`/posts/${slug}`)} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#1a1a1a] -mx-4 px-4 transition-colors animate-enter" style={`--enter-delay: ${Math.min(360 + index * 28, 720)}ms`}>
+          <a href={postUrl(post)} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#1a1a1a] -mx-4 px-4 transition-colors animate-enter" style={`--enter-delay: ${Math.min(360 + index * 28, 720)}ms`}>
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] mb-1.5">
                 <span class="font-medium text-[#242424] dark:text-white">{post.data.author}</span>
@@ -141,7 +138,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
               </p>
             </div>
             {cover ? (
-              <img src={assetPath(cover)} alt="" class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] object-cover flex-shrink-0 order-2 fade-in-image" loading="lazy" />
+              <img src={cover} alt="" class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] object-cover flex-shrink-0 order-2 fade-in-image" loading="lazy" />
             ) : (
               <div class="w-[140px] h-[140px] sm:w-[200px] sm:h-[134px] flex-shrink-0 bg-[#f2f2f2] dark:bg-[#333] flex items-center justify-center order-2">
                 <span class="text-gray-300 text-xs">eScience</span>

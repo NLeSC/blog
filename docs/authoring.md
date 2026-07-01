@@ -10,7 +10,15 @@ Posts live in:
 content/posts/
 ```
 
-Each post is a Markdown file with frontmatter:
+Each post is an `index.md` file inside its own dated folder:
+
+```txt
+content/posts/2026-06-10 - my-post-title/
+  index.md
+  figure-1.webp
+```
+
+The `index.md` file contains frontmatter:
 
 ```md
 ---
@@ -28,19 +36,13 @@ Post body here.
 
 ## Add images
 
-Imported images currently live in:
-
-```txt
-public/assets/
-```
-
-Reference them from Markdown with root-absolute paths:
+Store images next to the post `index.md` and reference them with relative paths:
 
 ```md
-![Short descriptive alt text](/assets/my-image.webp)
+![Short descriptive alt text](./my-image.webp)
 ```
 
-Do **not** use relative paths such as `assets/my-image.webp` in Markdown. Astro's content asset plugin treats those as module imports from the post directory and the build can fail.
+Do **not** use bare relative paths such as `assets/my-image.webp`; use `./my-image.webp` for colocated assets.
 
 ## Recommended image rules
 
@@ -65,7 +67,8 @@ The check flags:
 - missing required frontmatter;
 - Markdown images without alt text;
 - `/assets/...` image references whose files do not exist;
-- relative `assets/...` image paths that should be root-absolute.
+- `./...` image references whose colocated files do not exist;
+- bare relative `assets/...` image paths.
 
 ## Why this is better than Medium for contributors
 

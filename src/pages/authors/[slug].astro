@@ -2,8 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { getAuthorInfo, getAuthorPic, getAuthorInitials } from '../../lib/authors';
-import { buildTopicIndex, comparePostsByDateDesc, formatDate, getCoverImage, getExcerpt, isListedPost, postDate, postUrl } from '../../lib/archive';
-import { assetPath, sitePath } from '../../lib/urls';
+import { buildTopicIndex, comparePostsByDateDesc, coverImageUrl, formatDate, getExcerpt, isListedPost, postDate, postUrl } from '../../lib/archive';
+import { sitePath } from '../../lib/urls';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('posts')).filter(isListedPost);
@@ -67,7 +67,7 @@ const authorTopics = buildTopicIndex(authorPosts).slice(0, 8);
 
     <div class="divide-y divide-[#f2f2f2] dark:divide-[#333]">
       {authorPosts.map((post) => {
-        const thumb = getCoverImage(post.body || '');
+        const thumb = coverImageUrl(post);
         return (
           <a href={postUrl(post)} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#1a1a1a] -mx-4 px-4 transition-colors">
             <div class="flex-1 min-w-0">
@@ -82,7 +82,7 @@ const authorTopics = buildTopicIndex(authorPosts).slice(0, 8);
               </p>
             </div>
             {thumb ? (
-              <img src={assetPath(thumb)} alt="" class="w-[112px] h-[112px] sm:w-[152px] sm:h-[152px] object-cover flex-shrink-0" loading="lazy" />
+              <img src={thumb} alt="" class="w-[112px] h-[112px] sm:w-[152px] sm:h-[152px] object-cover flex-shrink-0" loading="lazy" />
             ) : (
               <div class="w-[112px] h-[112px] sm:w-[152px] sm:h-[152px] flex-shrink-0 bg-[#f2f2f2] dark:bg-[#333] flex items-center justify-center">
                 <span class="text-gray-300 dark:text-[#555] text-xs">eScience</span>

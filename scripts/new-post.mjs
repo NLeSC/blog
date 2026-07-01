@@ -40,14 +40,16 @@ const tags = option('tags')
 
 const postsDir = join(process.cwd(), 'content', 'posts');
 mkdirSync(postsDir, { recursive: true });
-const filePath = join(postsDir, `${date} - ${slug}.md`);
+const postDir = join(postsDir, `${date} - ${slug}`);
+const filePath = join(postDir, 'index.md');
 if (existsSync(filePath)) {
   console.error(`Post already exists: ${filePath}`);
   process.exit(1);
 }
 
 const tagLines = tags.length ? tags.map((tag) => `  - ${tag}`).join('\n') : '  - uncategorized';
-const content = `---\nlayout: post\ntitle: "${title.replaceAll('"', '\\"')}"\nauthor: ${author}\npublished: false\ntags:\n${tagLines}\n---\n\nWrite the introduction here.\n\n<!--\nImage with caption pattern:\n\n<figure>\n  <img src="/assets/descriptive-file-name.png" alt="Short accessibility description of the image" />\n  <figcaption>Short visible caption. Add credit/source links here when needed.</figcaption>\n</figure>\n\nUse alt text for accessibility; use figcaption for the visible caption.\n-->\n`;
+const content = `---\nlayout: post\ntitle: "${title.replaceAll('"', '\\"')}"\nauthor: ${author}\npublished: false\ntags:\n${tagLines}\n---\n\nWrite the introduction here.\n\n<!--\nImage with caption pattern:\n\n<figure>\n  <img src="./descriptive-file-name.png" alt="Short accessibility description of the image" />\n  <figcaption>Short visible caption. Add credit/source links here when needed.</figcaption>\n</figure>\n\nStore images next to this index.md file. Use alt text for accessibility; use figcaption for the visible caption.\n-->\n`;
 
+mkdirSync(postDir, { recursive: true });
 writeFileSync(filePath, content);
 console.log(filePath);

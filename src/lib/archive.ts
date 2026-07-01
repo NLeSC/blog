@@ -3,6 +3,11 @@ import { assetPath, sitePath } from './urls';
 
 export type PostEntry = CollectionEntry<'posts'>;
 
+const contentAssets = import.meta.glob<string | { default: string }>('/content/posts/**/*.{avif,gif,jpeg,jpg,png,svg,webp}', {
+  eager: true,
+  query: '?url',
+});
+
 export function slugify(value: string): string {
   return value
     .toLowerCase()
@@ -14,7 +19,7 @@ export function slugify(value: string): string {
 }
 
 export function postSlug(post: PostEntry): string {
-  return post.id.replace(/\.md$/, '');
+  return post.id.replace(/\.md$/, '').replace(/\/index$/, '');
 }
 
 const POST_FILENAME_DATE = /^(\d{4}-\d{2}-\d{2})(?:\s+-\s+|---)/;
@@ -46,7 +51,7 @@ export function formatDate(date: Date, style: 'short' | 'long' = 'short'): strin
 }
 
 export function getCoverImage(body: string): string | null {
-  const imgs = [...body.matchAll(/!\[.*?\]\(\/assets\/([^)]+)\)/g)];
+  const imgs = [...body.matchAll(/!\[.*?\]\((\/assets\/[^)]+|\.\/[^)]+)\)/g)];
   if (imgs.length === 0) return null;
   if (imgs.length >= 2 && imgs[0].index !== undefined && imgs[0].index < 300) {
     return imgs[1][1];
@@ -54,9 +59,22 @@ export function getCoverImage(body: string): string | null {
   return imgs[0][1];
 }
 
+export function coverImageUrl(post: PostEntry): string | null {
+  const cover = getCoverImage(post.body || '');
+  if (!cover) return null;
+  if (cover.startsWith('/assets/')) return assetPath(cover.replace('/assets/', ''));
+
+  const postDir = post.id.replace(/\.md$/, '').replace(/\/index$/, '');
+  const filename = cover.replace(/^\.\//, '');
+  const asset = contentAssets[`/content/posts/${postDir}/${filename}`]
+    || Object.entries(contentAssets).find(([path]) => path.endsWith(`/${filename}`))?.[1];
+  return typeof asset === 'string' ? asset : asset?.default || null;
+}
+
 export function getExcerpt(body: string, maxLen = 200): string {
   return body
     .replace(/!\[.*?\]\(\/assets\/[^)]+\)/g, '')
+    .replace(/!\[.*?\]\(\.\/[^)]+\)/g, '')
     .replace(/\(https?:\/\/[^)]+\)/g, '')
     .replace(/#{1,6}\s/g, '')
     .replace(/[_\*\[\]`]/g, '')
@@ -103,7 +121,6 @@ export function buildTopicIndex(posts: PostEntry[]) {
 }
 
 export function serializePost(post: PostEntry) {
-  const cover = getCoverImage(post.body || '');
   return {
     id: post.id,
     title: post.data.title,
@@ -113,7 +130,7 @@ export function serializePost(post: PostEntry) {
     url: postUrl(post),
     tags: visibleTags(post.data.tags || []),
     excerpt: getExcerpt(post.body || '', 220),
-    cover: cover ? assetPath(cover) : null,
+    cover: coverImageUrl(post),
     readingMinutes: readTime(post.body || ''),
     source: post.data.source,
     sourceUrl: post.data.source_url || null,
