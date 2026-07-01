@@ -29,10 +29,14 @@ tags:
   - research software
   - reproducibility
 published: true
+# Optional: pin this post to the homepage featured slot.
+featured: true
 ---
 
 Post body here.
 ```
+
+Set `featured: true` only when a post should appear in the homepage featured slot. If multiple listed posts are marked, the newest by filename date wins. If no listed post is marked, the newest listed post is featured automatically.
 
 ## Add images
 

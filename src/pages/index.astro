@@ -7,6 +7,8 @@ import { sitePath } from '../lib/urls';
 const allPosts = (await getCollection('posts')).filter(isListedPost);
 allPosts.sort(comparePostsByDateDesc);
 const posts = allPosts; // Show all posts on homepage
+const featuredPost = posts.find(post => post.data.featured) || posts[0];
+const feedPosts = posts.filter(post => post.id !== featuredPost.id);
 const topics = buildTopicIndex(allPosts).slice(0, 8);
 ---
 
@@ -57,7 +59,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
   <div class="max-w-[960px] mx-auto px-4 pb-12">
     <!-- Featured post — side-by-side on desktop -->
     {(() => {
-      const featured = posts[0];
+      const featured = featuredPost;
       const featuredCover = coverImageUrl(featured);
       return (
         <a href={postUrl(featured)} class="group flex flex-col md:flex-row gap-5 md:gap-8 mb-10 md:mb-14 items-stretch overflow-hidden rounded-[28px] border border-[#ededed] dark:border-[#262626] bg-white dark:bg-[#151515] p-3 md:p-4 shadow-[0_18px_60px_rgba(0,0,0,0.07)] hover:bg-[#fafafa] dark:hover:bg-[#181818] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#003388] transition-colors animate-enter" style="--enter-delay: 150ms">
@@ -90,7 +92,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
 
     {/* 3-article grid — Medium-style row */}
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6 mb-12">
-      {posts.slice(1, 4).map((post, index) => {
+      {feedPosts.slice(0, 3).map((post, index) => {
         const cover = coverImageUrl(post);
         return (
           <a href={postUrl(post)} class="group block rounded-[22px] p-2 -m-2 hover:bg-[#fafafa] dark:hover:bg-[#181818] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#003388] transition-colors animate-enter" style={`--enter-delay: ${210 + index * 55}ms`}>
@@ -121,7 +123,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
 
     {/* Remaining posts — feed list */}
     <div class="divide-y divide-[#f2f2f2] dark:divide-[#242424]">
-      {posts.slice(4).map((post, index) => {
+      {feedPosts.slice(3).map((post, index) => {
         const cover = coverImageUrl(post);
         return (
           <a href={postUrl(post)} class="group flex gap-4 sm:gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#181818] -mx-4 px-4 rounded-[18px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#003388] transition-colors animate-enter" style={`--enter-delay: ${Math.min(360 + index * 28, 720)}ms`}>

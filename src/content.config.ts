@@ -19,6 +19,7 @@ const posts = defineCollection({
     author: z.string().nullable().optional().transform(v => (v && v.trim()) ? v.trim() : 'eScience Center'),
     published: z.boolean().nullable().optional().transform(v => v !== false),
     unlisted: z.boolean().nullable().optional().transform(v => v === true),
+    featured: z.boolean().nullable().optional().transform(v => v === true),
     source: z.string().nullable().optional().transform(v => v || 'medium'),
     source_url: z.string().nullable().optional(),
     license: licenseSchema,

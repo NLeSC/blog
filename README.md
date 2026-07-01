@@ -64,6 +64,7 @@ tags:
 | `source_url` | no | Link to original if cross-posted |
 | `published` | no | `false` to hide from the site entirely. Defaults to `true` |
 | `unlisted` | no | `true` keeps the direct URL generated but excludes the post from homepage, search, feeds, APIs, topic pages, and author pages |
+| `featured` | no | `true` makes the post eligible for the homepage featured slot. If multiple listed posts are featured, the newest by filename date wins. If none are featured, the newest listed post is used |
 
 ### 3. Body content
 
@@ -147,6 +148,7 @@ The site rebuilds automatically on push to `main`. To preview locally: `bun run 
 10. **Tags are freeform.** No controlled vocabulary — but prefer existing tags for discoverability. Check `/search` to see what's already in use.
 11. **Embeds depend on provider policy.** Some websites block iframes with `X-Frame-Options` or `Content-Security-Policy`; test embeds locally before publishing.
 12. **Use unlisted posts for smoke tests or private demos.** Set `unlisted: true` and keep `published: true` when a page should build and be reachable directly, but not appear in listings or feeds.
+13. **Feature one post manually when needed.** Set `featured: true` to put a listed post in the homepage featured slot. Only the newest featured post is used.
 
 ---
 
