@@ -33,7 +33,9 @@ const authorPic = getAuthorPic(post.data.author);
 const tags = visibleTags(post.data.tags || []);
 const minutes = readTime(post.body || '');
 const date = postDate(post);
-const postEditUrl = repositoryPath(`edit/main/content/posts/${post.id}`);
+const postSourcePath = post.filePath?.replace(/^.*?(content\/posts\/)/, '$1')
+  || `content/posts/${post.id.endsWith('.md') ? post.id : `${post.id}/index.md`}`;
+const postEditUrl = repositoryPath(`edit/main/${postSourcePath}`);
 
 // Find related posts by shared topics first, then same author
 const allPosts = (await getCollection('posts')).filter(isListedPost);
