@@ -58,9 +58,7 @@ const { title, description, ogImage, noindex } = Astro.props;
   <header class="border-b border-[#f2f2f2] dark:border-[#333] sticky top-0 bg-white/95 dark:bg-[#111]/95 backdrop-blur-sm z-50">
     <div class="max-w-[960px] mx-auto px-4 h-14 flex items-center justify-between gap-3">
       <a href={sitePath("/")} class="flex items-center gap-2.5 no-underline min-w-0">
-        <div class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-[11px] flex-shrink-0" style="background: #003388;">
-          eS
-        </div>
+        <img src={sitePath("/favicon.png")} alt="" class="w-8 h-8 rounded-full flex-shrink-0" />
         <span class="font-semibold text-[15px] text-[#242424] dark:text-white tracking-tight truncate">eScience Center Blog</span>
       </a>
       <div class="flex items-center gap-3 sm:gap-5 flex-shrink-0">
