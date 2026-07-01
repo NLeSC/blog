@@ -16,8 +16,6 @@ tags:
 
 ## After “part I” which gave an introduction on how to import, process, and analyze a tandem mass spectra dataset using Python and matchms, “part II” will add Spec2Vec to the game, a machine learning tool to assess spectrum similarities.
 
-][Florian Huber]·Feb 17, 2021
-
 Instead of looking at a few individual query spectra, lets have a look at the “bigger picture” by plotting part of the similarity score matrix we just computed to generate Figure 2**.
 
 from matplotlib import pyplot as pltscores_array = scores.scores.to_array()  # for matchms &gt;= 0.18.0plt.figure(figsize=(6,6), dpi=150)**plt.imshow(scores_array[:50, :50], cmap="viridis")

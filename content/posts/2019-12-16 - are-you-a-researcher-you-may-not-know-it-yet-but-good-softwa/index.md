@@ -12,8 +12,6 @@ tags:
   - Testing
 ---
 
-Subscribe*Remember me for faster sign in
-
 The previous example may look like (and actually is) quite silly. But remember that code is alive. Something that today is a simple function tomorrow may be more complicated. Imagine that a collaborator edits your function like this:
 
 sum(x,y):

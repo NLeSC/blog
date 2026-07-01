@@ -12,8 +12,6 @@ tags:
   - Training
 ---
 
-**SubscribeRemember me for faster sign in
-
 Along the way, the biggest issue was our data set itself. Because data collection of human movements is a job that takes time and our patient group is small, we only have a limited amount of data available. At the same time, the data set is highly variable, which makes the problem more difficult for Machine Learning.
 
 In next steps for this project, we are exploring the results and trying to translate them into information that is valuable for our research field. At the same time, we are in the early stages of a data sharing effort, with those who may have similar data sets. That way, we will be able to increase the size of our training set.

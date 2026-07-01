@@ -14,8 +14,6 @@ tags:
   - Workshop
 ---
 
-SubscribeRemember me for faster sign in
-
 A strategy for dealing with subjectivity in research, and in football, is to expose it. The VAR system in football allows the referee to scrutinise video footage of players, decide how grave a foul was, whether a ball crossed a line, or whether a situation should be deemed offside or not. It is a system designed to minimise human errors that could have a big influence on match results. It does not remove subjectivity, but it makes the ref’s decision-making process more transparent.
 
 Openly sharing research software serves a similar goal.² Or, as [Silberzahn et al.](https://journals.sagepub.com/doi/10.1177/2515245917747646#_i40) argue: “Transparency in data, methods, and process gives the rest of the community opportunity to see the decisions, question them, offer alternatives, and test these alternatives in further research.” However, as Antica Culina pointed out during the workshop, sharing code is not yet a standard practice for all researchers who write it.

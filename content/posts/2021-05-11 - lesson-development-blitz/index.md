@@ -12,8 +12,6 @@ tags:
   - Training
 ---
 
-**SubscribeRemember me for faster sign in
-
 5. Testing lessons**
 
 ![Lesson development blitz](./lesson-development-blitz-8f0c1255.png)

@@ -11,8 +11,6 @@ tags:
   - RSE
 ---
 
-Subscribe*Remember me for faster sign in
-
 When we are children, we lack patience. When we grow up, “we lack time”.
 
 Not all is bad, of course. Once trained, the deep neural networks are very fast when used for prediction. However, that assumes that the model is actually* used in practice rather than for the incremental improvement of state-of-art, i.e. academic scores. Not to mention that, in the latter case, the published model usually leaves *a lot* to be desired in terms of generated scientific knowledge.

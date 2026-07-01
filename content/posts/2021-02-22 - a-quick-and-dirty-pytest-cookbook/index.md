@@ -12,8 +12,6 @@ tags:
   - Testing
 ---
 
-Subscribe*Remember me for faster sign in
-
 As an alternative to the above snippet, you can install and run the [pytest-mypy-plugins](https://pypi.org/project/pytest-mypy-plugins/).
 
 ## Testing the documentation

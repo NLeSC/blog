@@ -13,8 +13,6 @@ tags:
 
 ## Software now officially listed as a research output
 
-SubscribeRemember me for faster sign in
-
 The “FAIR Software Route” website will be presented by DANS and eScience Center at the[ eScience Symposium](https://www.esciencecenter.nl/news/6th-national-escience-symposium-2019-digital-challenges-in-open-science) this November.
 
 Watch our RSD promotional video!

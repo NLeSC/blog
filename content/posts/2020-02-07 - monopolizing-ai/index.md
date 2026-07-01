@@ -16,8 +16,6 @@ tags:
 
 ## The field of machine learning and AI is facing an increasing divide.
 
-][Florian Huber]·Feb 4, 2020
-
 **16
 
 *Last edit: 07/02/2020*

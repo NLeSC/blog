@@ -13,8 +13,6 @@ tags:
   - Visualization
 ---
 
-Subscribe*Remember me for faster sign in
-
 To generate the Vega-Lite specification we can write a function like so
 
 To wrap the Vega-Lite visualization in React component we will use `useRef` to get a DOM element as container and use `useEffect` to call vegaEmbed when the iterations or container changes. The React component to render the visualization is

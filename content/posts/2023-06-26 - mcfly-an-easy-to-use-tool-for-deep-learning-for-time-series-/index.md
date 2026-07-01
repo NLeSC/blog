@@ -15,8 +15,6 @@ tags:
 
 ## A new mcfly 3.0 release is out. See how it works and how it can help you to apply deep learning to time series classification.
 
-][Florian Huber]·Apr 15, 2020
-
 Once the models are generated, they will be trained on the given data (or a subset to speed things up). This is done using `train_models_on_samples`.
 
 [See full tutorial notebook for more information.](https://github.com/NLeSC/mcfly-tutorial/blob/master/notebooks/tutorial/tutorial_quick.ipynb)

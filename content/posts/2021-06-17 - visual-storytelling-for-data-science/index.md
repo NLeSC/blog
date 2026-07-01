@@ -14,8 +14,6 @@ tags:
   - Visualization
 ---
 
-][Maarten van Meersbergen]·Jun 7, 2021
-
 When conducting research, the data collected can in itself be exciting and meaningful, but when it is presented as spreadsheets or bullet points it can be too boring or difficult to understand for the intended audience. Telling a visual story with data is not trivial however, depending on the level of expertise of your readers, you should choose your storyline structure well.
 
 The excellent paper [Narrative Visualization: Telling Stories with Data](https://ieeexplore.ieee.org/document/5613452) by Edward Segel and Jeffrey Heer provides some good insights on this. The main takeaway from this paper I’d like to share is this:

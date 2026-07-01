@@ -11,8 +11,6 @@ tags:
   - Neural Networks
 ---
 
-Subscribe*Remember me for faster sign in
-
 To get a quick start, they applied for the eScience Center Small-Scale Initiative (SSI), and were awarded consultancy on their project titled “Machine Learning for the complex response of the Wadden Sea*”. A first goal for the group was to determine what can machine learning actually do and which machine learning tools the group would need for this to happen. After all, machine learning is not magic. The group found great discussion partners in the eScience Center engineers.
 
 They decided to focus on two main questions: First, if machine learning can predict the daily averaged state of the Wadden Sea if we know the forcing. Second, if we can predict the trajectories of particles in the Wadden Sea with machine learning.

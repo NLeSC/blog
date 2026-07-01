@@ -14,8 +14,6 @@ tags:
   - Sustainability
 ---
 
-][eScience Editorial Team]·Mar 11, 2020**Subscribe*
-
 Some of the issues we’ve had in assembling this list are:
 
 * How much interest in software does an organization need to have to be listed?

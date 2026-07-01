@@ -13,8 +13,6 @@ tags:
 
 ## The next generation language models will still just be enormeous parrot-systems that imitate intelligent behavior. But they will *feel* like much more to us.
 
-][Florian Huber]·Jun 24, 2022
-
 Philosophically and legally they will remain things. But at some point in the not too far future many people will simply not perceive them as things anymore**. People might make “friends” with an AI (just as Blake Lemoine said he did, at least if we assume this is not all a big media stunt). People might listen to “their AI”. And many people will be tricked by an AI.
 
 ### Shifting societal rules and foundations

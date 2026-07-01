@@ -16,10 +16,6 @@ tags:
 
 ## For one full week we worked with 6 research teams from different disciplines to explore if and how machine learning could help them answer their research question(s). Here is a brief summary of what we did, how it went, and what we learned.
 
-][Florian Huber]·Feb 10, 2020
-
-**SubscribeRemember me for faster sign in
-
 2 
  DIALECT, Diabetes and Lifestyle Cohort Twente**** Team from: University of Twente and ZGT Almelo.
  Field: Medicine

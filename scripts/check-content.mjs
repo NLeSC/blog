@@ -86,6 +86,18 @@ for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
     add(errors, file, 'possible dropped imported link or mention text (found "to for")');
   }
 
+  if (/\*{0,2}Subscribe\*?Remember me for faster sign in/.test(text)) {
+    add(errors, file, 'Medium sign-in prompt leaked into post content');
+  }
+
+  if (/^\]\[[^\]\n]+\]·[A-Z][a-z]{2} \d{1,2}, \d{4}/m.test(text)) {
+    add(errors, file, 'Medium byline fragment leaked into post content');
+  }
+
+  if (/^---\n[\s\S]*?\n---\n\n?\d+\n\n>\s*\n\n/.test(text)) {
+    add(errors, file, 'possible Medium clap count and empty quote at start of post');
+  }
+
   for (const match of text.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g)) {
     const [, alt, src] = match;
     checkImage(file, src, alt);

@@ -14,8 +14,6 @@ tags:
   - NLP
 ---
 
-SubscribeRemember me for faster sign in
-
 Examples: In the biochemistry realm, software is used for modeling molecules for use in a next-gen diagnostics or therapeutics: we want to design some molecule in software with some characteristics that we can experimentally validate later. Other examples include designing and modeling medical devices, devices to help with environmental monitoring or cleanup, CAD tools, or designing new compute hardware [suggested by Jonathan Romano].
 
 ![Defining the roles of research software](./defining-the-roles-of-research-software-cf81259f.jpg)

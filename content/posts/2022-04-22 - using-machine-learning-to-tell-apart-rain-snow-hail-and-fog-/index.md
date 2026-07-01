@@ -13,8 +13,6 @@ tags:
 
 # **Using machine learning to tell apart rain, snow, hail and fog from cell tower data**
 
-][eScience Editorial Team]·Apr 21, 2022
-
 Next, **we explored whether CMLs can be used to detect **fog**. Fog consists of droplets so small that they float in the air up to a few meters above the ground. The disdrometers do not pick up fog accurately enough to be used as target dataset. For this reason, we used an alternative target dataset to detect fog.
 
 Figure 3: CML attenuation signal (red) and target dataset (fog/no fog in blue) model fog prediction (fog/no fog in black) model fog threshold (dashed gray) for 31 August 2015.The relatively round fog droplets can scatter a wide range of wavelengths smaller than the droplets themselves. This includes visible light, making fog… foggy. Fog also affects wavelengths within the near-infrared range. Luckily, the experimental setup of the measurement campaign also included a near-infrared link (Figure 1), which we use as reference dataset of the foggiest time steps. Comparing the fog time series and the CML signal reveals a distinct drop of the CML signal which coincides with the fog occurrence (Figure 3). **Once again we balance the dataset because the moments without fog far outnumber the fog events. After balancing the dataset and feeding the raw CML data into the McFly** algorithm, the result is a mere 49% accuracy. For a balanced two-class dataset, this is not better than just tossing a coin…

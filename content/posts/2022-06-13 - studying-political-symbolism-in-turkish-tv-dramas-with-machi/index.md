@@ -16,10 +16,6 @@ tags:
 
 # **Studying political symbolism in Turkish TV dramas with machine learning**
 
-][eScience Editorial Team]·Jun 10, 2022
-
-Subscribe*Remember me for faster sign in
-
 Faced with a challenge of this type, Machine Learning can come to the rescue to address arduous issues related to scale. Prompted by the eScience Center’s Small-Scale Initiative on Machine Learning, we formed a project team, which next to Mustafa Çolak, consisted of Ben Companjen, Laurents Sesink and Peter Verhaar from the [Leiden University Centre for Digital Scholarship](https://www.library.universiteitleiden.nl/about-us/centre-for-digital-scholarship), and of Çolaks’s PhD supervisor, Petra de Bruijn. The aim of the project was to develop a reliable method for the recognition of all occurrences of symbols that have political connotations in the first two seasons of Payitaht: Abdülhamid*, using algorithms in the field of computer vision. Data about the instances of these symbols can help to perform a ‘distant viewing’ of the series, and to perform comparative analyses of the importance of the concepts and the developments represented by these symbols.
 
 After the informative workshops and lectures in the kick-off week for the Small-Scale initiative in May 2021, we began to schedule regular meetings with consultants and Machine Learning experts from the eScience Center, to work on the methodology and to discuss our progress. These consultation sessions took place roughly every two weeks. During a first phase of the project, we collected our training data. We downloaded images depicting the selected symbols from Google Images, and, next to this, we also extracted a large number of relevant frames from the first few episodes of *Payitaht: Abdülhamid*. The training set eventually consisted of about 1500 images.

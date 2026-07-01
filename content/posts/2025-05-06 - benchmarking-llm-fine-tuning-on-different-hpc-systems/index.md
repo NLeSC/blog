@@ -14,10 +14,6 @@ tags:
   - HPC
 ---
 
-43
-
-> 
-
 Authors: Flavio Hafner (Netherlands eScience center), Mattie Niznik (Princeton Research Computing), Malte Lüken (Netherlands eScience center), Alessandra Maranca (Princeton University), Matthew Salganik (Princeton University).
 
 We have developed a benchmark that compares the compute performance of fine-tuning LLMs on multiple high-performance computing (HPC) systems, including systems designed for working with sensitive data. In this blog post, we introduce the benchmark, describe the lessons learned developing it and make it [open-source](https://github.com/odissei-benchmarks/torchtune-gpu-benchmark) so that it can be used and improved by others.
