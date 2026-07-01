@@ -39,6 +39,16 @@
         }
       ]
     },
+    "unlisted": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
     "source": {
       "anyOf": [
         {
@@ -53,6 +63,39 @@
       "anyOf": [
         {
           "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "license": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "badgeUrl": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          ]
         },
         {
           "type": "null"
