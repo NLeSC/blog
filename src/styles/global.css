@@ -103,6 +103,16 @@ body.dark {
   word-break: break-word;
 }
 
+.post-content > p:first-of-type {
+  font-size: 1.18em;
+  line-height: 1.72;
+  color: #3a3a3a;
+}
+
+.dark .post-content > p:first-of-type {
+  color: #f0f0f0;
+}
+
 .post-content h1, .post-content h2, .post-content h3, .post-content h4 {
   font-family: var(--font-sans);
   font-weight: 700;
@@ -149,6 +159,8 @@ body.dark {
   height: auto;
   margin: 2em auto;
   display: block;
+  border-radius: 18px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.08);
 }
 
 .post-content figure > img {
@@ -159,10 +171,10 @@ body.dark {
 
 .post-content figcaption {
   max-width: 100%;
-  margin: 0.8rem auto 0;
+  margin: 0.9rem auto 0;
   color: #6b6b6b;
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.45;
   letter-spacing: -0.004em;
   text-align: center;
@@ -205,22 +217,25 @@ body.dark {
 }
 
 .post-content blockquote {
-  border-left: 3px solid #242424;
-  padding-left: 1.5rem;
+  border-left: 4px solid #f26522;
+  padding: 1.1rem 1.3rem;
   margin: 2em 0;
-  margin-left: -1.5rem;
-  color: #6b6b6b;
+  color: #4a4a4a;
+  background: #fafafa;
+  border-radius: 0 18px 18px 0;
   font-style: italic;
 }
 
 .dark .post-content blockquote {
-  border-left-color: #555;
-  color: #999;
+  border-left-color: #ffbf63;
+  color: #d6d6d6;
+  background: #181818;
 }
 
 .post-content pre {
   background: #f7f7f7;
-  border-radius: 4px;
+  border: 1px solid #ececec;
+  border-radius: 18px;
   padding: 1.25rem;
   overflow-x: auto;
   font-size: 0.9rem;
@@ -231,6 +246,7 @@ body.dark {
 
 .dark .post-content pre {
   background: #1a1a1a;
+  border-color: #333;
   color: #e5e5e5;
 }
 
