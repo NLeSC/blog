@@ -1,0 +1,43 @@
+---
+layout: post
+title: "NL-RSE: What Open Science can learn from Open Source"
+author: Lieke de Boer
+published: true
+source: medium
+source_url: https://blog.esciencecenter.nl/nl-rse-what-open-science-can-learn-from-open-source-914452152def
+tags:
+  - Community
+  - Linux
+  - Open Science
+  - Open Source
+  - Performance
+  - RSE
+---
+
+*NL-RSE meetups are bimonthly events where the *[*Dutch community for Research Software Engineers*](https://nl-rse.org/)* comes together to learn new skills or hear inspiring talks by experts in the field of Open Science, Open Source, Research Software or Software Engineering. The *[*next NL-RSE meetup*](https://www.eventbrite.com/e/nl-rse-introduction-to-automated-software-testing-tickets-633227900697)* takes place on 15 June in Leiden and will be about automated testing. You can sign up for the meetup *[*here*](https://www.eventbrite.com/e/nl-rse-introduction-to-automated-software-testing-tickets-633227900697)*, and the mailing list *[*here*](https://nl-rse.org/pages/join)*.*
+
+Back in 2021, lawyer, philosopher, and Open Science advocate [Javier de la Cueva](https://twitter.com/jdelacueva) gave a talk at an NL-RSE meetup about what Open Science can learn from Open Source. This post is a report of that talk — originally first posted on the [NL-RSE blog](https://nl-rse.org/posts/2021-07-07-jdlc-meetup-june).
+
+![NL-RSE: What Open Science can learn from Open Source](/assets/nl-rse-what-open-science-can-learn-from--46f96ea7.jpg)
+
+Photo by [Mick Haupt](https://unsplash.com/@rocinante_11?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
+
+[Javier de la Cueva](https://twitter.com/jdelacueva) does not like slideshows — “*it limits the ways we communicate, like squeezing thoughts into 140 characters*”, but for the NL-RSE meetup, he made one anyway. De la Cueva is a lawyer, philosopher, and Open Science advocate, with expertise in free software and intellectual property. During the [meetup on Friday, 11 June 2021](https://nl-rse.org/events/2021-06-11-meetup), he gave a passionate talk about what the Open Science movement can learn from the Free Software movement, blending the topics of software development and science in a way not unfamiliar to those identifying as RSEs.
+
+If anyone’s an expert on these topics, it’s De la Cueva. He switched from Windows to Linux in 2000, after receiving a Blue Screen of Death on his Windows machine — “*Why would you create a wall that doesn’t allow me to understand something I paid for?*”. In 2002, when Wikipedia was planning to commercialize, De la Cueva and others [forked the Spanish version of the page onto a server in the University of Seville, Spain](https://www.wired.co.uk/article/wikipedia-spanish-fork), proving to Wikipedia’s owners that the entire project could be run on non-profit servers — a move some consider responsible for keeping Wikipedia free of commercial ads and paywalls to this day. Later, in 2006, he was, in his own words, “*the first lawyer* *to obtain a judicial ruling where the term *[*copyleft*](https://copyleft.org/)* was included*”. For the case in question, [Ladinamo](https://edri.org/our-work/edrigramnumber4-9spaincc/), De la Cueva defended the owners of a bar who were sued for failing to pay the compulsory licensing fee for playing music in their establishment. He won the case by successfully arguing that the music’s Creative Commons licenses allowed for public performance, and that no additional fees had to be paid.
+
+In 2014, De la Cueva defended his philosophy thesis, [Citizen Technological Pragmatics and Democratic Regeneration](https://www.researchgate.net/publication/266487696_Pragmaticas_tecnologicas_ciudadanas_y_regeneracion_democratica) (abstract in English, thesis in Spanish). The work discusses how open access, open science, open data, and open government affect public knowledge and democracy. The thesis reflects Javier’s varied interests, providing insights from the fields of law, technology, political philosophy, and philosophy of language. Today, De la Cueva works as a lawyer and professor at IE University in Madrid. Along with his university teaching activities, De la Cueva is actively involved in science dissemination, “because a functioning democracy needs its citizens to be informed about scientific development*”. Science, he says, should not be about *who* does it, but about *what* scientists are doing. A common sensical enough statement, but one that may sound like an unrealistic utopia to anyone who has ever worked in academia.
+
+![NL-RSE: What Open Science can learn from Open Source](/assets/nl-rse-what-open-science-can-learn-from--e598c5b9.jpg)
+
+Photo by [Umberto](https://unsplash.com/@umby?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)American sociologist of science [Robert K. Merton](https://en.wikipedia.org/wiki/Robert_K._Merton#
+
+Sociology_of_science_and_CUDOS) recognized this tension: he observed that the social system of science works both in agreement with, but also often in contradiction to, its own ideal. Merton expressed the ideal of science in four concrete moral principles, referred to as CUDOS** : Science must be **C**ommunist (in the sense of communal), meaning that all scientists have common ownership of scientific goods, giving up intellectual property of their work in exchange for recognition. It should be **U**niversal, or independent of the socio-political status and personal attributes of its participants. Scientific institutions should also be **D**isinterested, meaning personal gain of individuals within them is inferior to the greater goal of the scientific enterprise. Lastly, science must have **O**rganised **S**cepticism.
+
+For science to be in line with CUDOS, we have to rethink the relationship between scientists and their work. Because every scientific institution inevitably brings their own view of the world to the way they collect, analyse, and publish their data, open access to scientific publications only is not enough. After all, after data is collected, it is translated and analysed (often with the use of in-house developed software), written up into results, preprints and research papers, which can obscure the bias inherent in every step of the way leading up to that publication. Ideally, science openly shares every output that it creates, including data, publications, education, software and other tools. These outputs should be reused to two ends: First, to reproduce existing findings, De la Cueva argues — “*there is too much emphasis on novelty in science*”. Second, to combine all levels of existing scientific outputs into new structures, which De la Cueva considers crucial for innovation.
+
+Open Science can look at the Free Software movement for an example on how to openly share its output. Free Software developers recognise the importance of their software’s reusability, which means they understand the importance of licensing and diversity of licenses. Scientists, on the other hand, do not hold the power to put a license on their scientific output. De la Cueva argues that this should change. Science could, for example, take inspiration from the Internet Engineering Task Force (IETF), which manages standards for the Internet. Any contributor permits the IETF to distribute their contributions freely, and in turn can use any of the other standards, which have been licensed in the same way. This results in an open Internet that is freely accessible to all. If we want CUDOS for science, the same mechanism could be applied to scientific outputs, where scientists permit their contributions to be distributed freely, and in turn are able to freely use others’ contributions.
+
+De la Cueva points at two signs that science is moving in the right direction. First, the existence of preprint servers. Second, the [rise in peer-reviewed open access journals](https://www.aje.com/arc/open-access-changing-landscape/). And arguably, the increasingly common practice of publicly sharing research software, and adherence to FAIR data principles, can be counted as positive signs too. But there’s still work to be done: “*We still pay 9500 euros to obtain open access in* Nature. *And the default for publications is still* All rights reserved. *This has to end.*”
+
+Thanks to Lourens Veen and Pablo Rodríguez-Sánchez for helpful comments and additions.

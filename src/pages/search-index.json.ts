@@ -1,17 +1,17 @@
 import { getCollection } from 'astro:content';
-import { isListedPost } from '../lib/archive';
+import { comparePostsByDateDesc, isListedPost, postDate, postSlug } from '../lib/archive';
 import { sitePath } from '../lib/urls';
 
 export async function GET() {
   const posts = (await getCollection('posts'))
     .filter(isListedPost)
-    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    .sort(comparePostsByDateDesc)
     .map((post) => ({
       title: post.data.title,
       author: post.data.author,
-      date: post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
+      date: postDate(post).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
       tags: post.data.tags?.filter((tag: string) => tag !== 'uncategorized') || [],
-      url: sitePath(`/posts/${post.id.replace(/\.md$/, '')}`),
+      url: sitePath(`/posts/${postSlug(post)}`),
       excerpt: (post.body || '')
         .replace(/!\[.*?\]\([^)]+\)/g, '')
         .replace(/\(https?:\/\/[^)]+\)/g, '')

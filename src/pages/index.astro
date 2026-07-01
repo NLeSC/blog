@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, isListedPost, postUrl } from '../lib/archive';
+import { buildTopicIndex, comparePostsByDateDesc, formatDate, getCoverImage, getExcerpt, isListedPost, postDate, postUrl } from '../lib/archive';
 import { assetPath, sitePath } from '../lib/urls';
 
 const allPosts = (await getCollection('posts')).filter(isListedPost);
-allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+allPosts.sort(comparePostsByDateDesc);
 const posts = allPosts; // Show all posts on homepage
 const topics = buildTopicIndex(allPosts).slice(0, 8);
 ---
@@ -82,7 +82,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
               {getExcerpt(featured.body || '', 280)}...
             </p>
             <div class="flex items-center gap-2 text-[13px] text-[#6b6b6b]">
-              <span>{formatDate(featured.data.date)}</span>
+              <span>{formatDate(postDate(featured))}</span>
               <span>·</span>
               <span class="text-[#6b6b6b]">{featured.data.author}</span>
             </div>
@@ -117,7 +117,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
             <p class="text-[13px] text-[#6b6b6b] leading-relaxed line-clamp-2 mb-2">
               {getExcerpt(post.body || '', 120)}...
             </p>
-            <span class="text-[12px] text-[#6b6b6b]">{formatDate(post.data.date)}</span>
+            <span class="text-[12px] text-[#6b6b6b]">{formatDate(postDate(post))}</span>
           </a>
         );
       })}
@@ -134,7 +134,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
               <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] mb-1.5">
                 <span class="font-medium text-[#242424] dark:text-white">{post.data.author}</span>
                 <span>·</span>
-                <span>{formatDate(post.data.date)}</span>
+                <span>{formatDate(postDate(post))}</span>
               </div>
               <h2 class="text-[18px] md:text-[20px] font-bold leading-snug text-[#242424] dark:text-white group-hover:underline decoration-2 underline-offset-4 mb-1.5 line-clamp-2 font-sans">
                 {post.data.title}

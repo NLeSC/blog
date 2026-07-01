@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content';
-import { authorSlug, buildTopicIndex, isListedPost, serializePost } from '../../lib/archive';
+import { authorSlug, buildTopicIndex, comparePostsByDateDesc, isListedPost, postDate, serializePost } from '../../lib/archive';
 import { getAuthorInfo } from '../../lib/authors';
 import { sitePath } from '../../lib/urls';
 
@@ -15,14 +15,14 @@ export async function GET() {
 
   const data = [...byAuthor.entries()]
     .map(([name, authorPosts]) => {
-      const sorted = authorPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+      const sorted = authorPosts.sort(comparePostsByDateDesc);
       return {
         name,
         slug: authorSlug(name),
         url: sitePath(`/authors/${authorSlug(name)}`),
         bio: getAuthorInfo(name)?.bio || null,
         postCount: sorted.length,
-        latestPostDate: sorted[0]?.data.date.toISOString() || null,
+        latestPostDate: sorted[0] ? postDate(sorted[0]).toISOString() : null,
         topics: buildTopicIndex(sorted).slice(0, 10).map((topic) => ({
           name: topic.name,
           slug: topic.slug,

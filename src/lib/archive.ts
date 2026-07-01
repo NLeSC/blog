@@ -17,6 +17,18 @@ export function postSlug(post: PostEntry): string {
   return post.id.replace(/\.md$/, '');
 }
 
+const POST_FILENAME_DATE = /^(\d{4}-\d{2}-\d{2})(?:\s+-\s+|---)/;
+
+export function postDate(post: PostEntry): Date {
+  const match = postSlug(post).match(POST_FILENAME_DATE);
+  if (!match) throw new Error(`Post filename must start with YYYY-MM-DD: ${post.id}`);
+  return new Date(`${match[1]}T00:00:00.000Z`);
+}
+
+export function comparePostsByDateDesc(a: PostEntry, b: PostEntry): number {
+  return postDate(b).getTime() - postDate(a).getTime();
+}
+
 export function postUrl(post: PostEntry): string {
   return sitePath(`/posts/${postSlug(post)}`);
 }
@@ -73,10 +85,11 @@ export function buildTopicIndex(posts: PostEntry[]) {
     for (const tag of visibleTags(post.data.tags || [])) {
       const slug = slugify(tag);
       if (!slug) continue;
-      const existing = bySlug.get(slug) || { slug, name: tag, count: 0, latest: post.data.date, posts: [] };
+      const date = postDate(post);
+      const existing = bySlug.get(slug) || { slug, name: tag, count: 0, latest: date, posts: [] };
       existing.count += 1;
       existing.posts.push(post);
-      if (post.data.date > existing.latest) existing.latest = post.data.date;
+      if (date > existing.latest) existing.latest = date;
       bySlug.set(slug, existing);
     }
   }
@@ -84,7 +97,7 @@ export function buildTopicIndex(posts: PostEntry[]) {
   return [...bySlug.values()]
     .map((topic) => ({
       ...topic,
-      posts: topic.posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()),
+      posts: topic.posts.sort(comparePostsByDateDesc),
     }))
     .sort((a, b) => b.count - a.count || b.latest.getTime() - a.latest.getTime());
 }
@@ -96,7 +109,7 @@ export function serializePost(post: PostEntry) {
     title: post.data.title,
     author: post.data.author,
     authorSlug: authorSlug(post.data.author),
-    date: post.data.date.toISOString(),
+    date: postDate(post).toISOString(),
     url: postUrl(post),
     tags: visibleTags(post.data.tags || []),
     excerpt: getExcerpt(post.body || '', 220),

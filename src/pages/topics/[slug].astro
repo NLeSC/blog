@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, isListedPost, postUrl } from '../../lib/archive';
+import { buildTopicIndex, formatDate, getCoverImage, getExcerpt, isListedPost, postDate, postUrl } from '../../lib/archive';
 import { assetPath, sitePath } from '../../lib/urls';
 
 export async function getStaticPaths() {
@@ -37,7 +37,7 @@ const topicPosts = topic.posts;
               <div class="flex flex-wrap items-center gap-1.5 text-[13px] text-[#6b6b6b] dark:text-[#999] mb-1.5">
                 <span class="font-medium text-[#242424] dark:text-white">{post.data.author}</span>
                 <span>·</span>
-                <span>{formatDate(post.data.date)}</span>
+                <span>{formatDate(postDate(post))}</span>
               </div>
               <h2 class="text-[19px] md:text-[22px] font-bold leading-snug text-[#242424] dark:text-white group-hover:underline decoration-2 underline-offset-4 mb-1.5 line-clamp-2 font-sans">
                 {post.data.title}
