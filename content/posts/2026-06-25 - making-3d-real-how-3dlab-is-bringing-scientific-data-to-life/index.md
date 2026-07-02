@@ -14,8 +14,6 @@ tags:
 
 ![3D Gaussian Splatting visualization](./1_mAnikgybC6AM9aFcDx5Oxg.webp)
 
-Source: https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/
-
 Imagine trying to understand the structural integrity of a Roman ruin, or the complex vascular network of a biological organ, by looking at a flat map or static 2D photographs. You might get the general idea, but the depth, the context, and the reality are lost in translation.
 
 We live in a three-dimensional world, yet so much of our scientific data remains trapped on two-dimensional screens. For researchers in fields ranging from digital humanities to environmental science, this is not just an aesthetic issue. It’s a barrier to discovery.
@@ -30,7 +28,12 @@ In recent years, SLAM has seen a huge boom in interest with the application of n
 
 ## The Approach: Gaussian Splatting
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/q7zCeH9HXEU?si=TWZJpqxw_t0CVkk3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<video controls width="560" height="315" style="display: block; max-width: 100%; height: auto; margin: 0 auto;">
+  <source src="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/content/videos/bicycle.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<p class="caption">Source: https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/</p>
 
 If traditional 3D models (meshes) are like origami sculptures, Gaussian Splatting is like 3D impressionist painting. It represents a scene using millions of fuzzy 3D ellipses (“splats”). These splats can overlap and blend, allowing for incredibly realistic rendering of complex scenes, like the fuzzy texture of moss on a stone or the reflective sheen of polished marble, that traditional methods struggle to capture.
 
@@ -44,7 +47,12 @@ Key features of the 3DLab approach include:
 
 ## Impact: From Artifacts to Algorithms
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/P6xOVA1wYNg?si=g-hN8fqpCjtOdpLo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<video controls width="560" height="315" style="display: block; max-width: 100%; height: auto; margin: 0 auto;">
+  <source src="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/content/videos/garden.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<p class="caption">Source: https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/</p>
 
 While the project has applications in medicine and engineering, its potential in the **Social Sciences and Humanities (SH)** is particularly exciting.
 

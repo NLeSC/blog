@@ -169,33 +169,39 @@ body.dark {
   margin: 0 auto;
 }
 
-.post-content figcaption {
+.post-content figcaption,
+.post-content .caption {
   max-width: 100%;
-  margin: 0.9rem auto 0;
-  color: #6b6b6b;
+  margin: 0.9rem auto 2rem;
+  color: rgba(36, 36, 36, 0.68);
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  font-style: italic;
   line-height: 1.45;
   letter-spacing: -0.004em;
   text-align: center;
 }
 
-.dark .post-content figcaption {
-  color: #aaa;
+.dark .post-content figcaption,
+.dark .post-content .caption {
+  color: rgba(255, 255, 255, 0.68);
 }
 
-.post-content figcaption a {
+.post-content figcaption a,
+.post-content .caption a {
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
 }
 
-.post-content figcaption a:hover {
+.post-content figcaption a:hover,
+.post-content .caption a:hover {
   color: #242424;
 }
 
-.dark .post-content figcaption a:hover {
+.dark .post-content figcaption a:hover,
+.dark .post-content .caption a:hover {
   color: #fff;
 }
 
