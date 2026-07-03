@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getAuthorInfo, getAuthorPic, getAuthorInitials } from '../../lib/authors';
-import { authorSlug, comparePostsByDateDesc, coverImageUrl, formatDate, formatDate as formatArchiveDate, isListedPost, postDate, postSlug, postUrl, readTime, slugify, visibleTags } from '../../lib/archive';
+import { authorSlug, comparePostsByDateDesc, coverImageUrl, formatDate, formatDate as formatArchiveDate, getExcerpt, isListedPost, postDate, postSlug, postUrl, readTime, slugify, visibleTags } from '../../lib/archive';
 import { repositoryPath, repositoryUrl, sitePath } from '../../lib/urls';
 
 export async function getStaticPaths() {
@@ -33,6 +33,8 @@ const authorPic = getAuthorPic(post.data.author);
 const tags = visibleTags(post.data.tags || []);
 const minutes = readTime(post.body || '');
 const date = postDate(post);
+const excerpt = getExcerpt(post.body || '', 220);
+const cover = coverImageUrl(post);
 const postSourcePath = post.filePath?.replace(/^.*?(content\/posts\/)/, '$1')
   || `content/posts/${post.id.endsWith('.md') ? post.id : `${post.id}/index.md`}`;
 const postEditUrl = repositoryPath(`edit/main/${postSourcePath}`);
@@ -53,7 +55,7 @@ const relatedPosts = allPosts
   .map(({ post }) => post);
 ---
 
-<BaseLayout title={post.data.title} noindex={post.data.unlisted}>
+<BaseLayout title={post.data.title} description={excerpt} ogImage={cover} author={post.data.author} noindex={post.data.unlisted}>
   <article class="max-w-[720px] mx-auto px-4 animate-page">
     <header class="pt-10 md:pt-12 pb-8 animate-enter">
       <h1 class="text-[34px] md:text-[46px] font-bold leading-[1.08] text-[#242424] tracking-[-0.045em] font-sans mb-7 dark:text-white">
