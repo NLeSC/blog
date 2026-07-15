@@ -1,6 +1,6 @@
 # eScience Center Blog
 
-The Netherlands eScience Center blog — 275 articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://blog.esciencecenter.nl), now a standalone Astro site.
+The Netherlands eScience Center blog — 276 articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://blog.esciencecenter.nl), now a standalone Astro site.
 
 **Live:** [blog2.esciencecenter.nl](https://blog2.esciencecenter.nl)
 
@@ -19,7 +19,7 @@ The Netherlands eScience Center blog — 275 articles on research software engin
 - GitHub Pages deployment via Actions.
 - Rich technical writing support in post bodies:
   - standard markdown: headings, links, blockquotes, lists, tables, code blocks, and inline code;
-  - repository-managed images from `public/assets/`;
+  - images kept alongside the Markdown for each post;
   - raw HTML for editorial affordances such as `<details>` / `<summary>`;
   - iframe embeds for videos and interactive content, including YouTube and Observable-style embeds;
   - math notation via inline and block LaTeX;
@@ -30,22 +30,28 @@ The Netherlands eScience Center blog — 275 articles on research software engin
 
 ## Adding a new post
 
-### 1. Create the markdown file
+### 1. Create the post directory
 
-Use the helper command so filenames only encode the date and title; author names live in frontmatter where special characters are safe:
+Use the helper command so directory names only encode the date and title; author names live in frontmatter where special characters are safe:
 
 ```sh
 bun run new-post "Why We Build Tools" --author "Jesse Gonzalez" --tags "RSE,Tools,Open Source"
 ```
 
-This creates `content/posts/YYYY-MM-DD - why-we-build-tools.md` with `published: false` for review. You can also create markdown files manually using the same filename convention.
+This creates `content/posts/YYYY-MM-DD - why-we-build-tools/index.md` with `published: false` for review. Keep post-specific assets in that directory:
+
+```text
+content/posts/YYYY-MM-DD - why-we-build-tools/
+├── index.md
+├── why-we-build-tools-diagram.png
+└── workflow.webp
+```
 
 ### 2. Frontmatter (required)
 
 ```yaml
 ---
 title: "Why We Build Tools"
-date: 2026-06-10
 author: Jesse Gonzalez
 tags:
   - RSE
@@ -57,7 +63,7 @@ tags:
 | Field | Required | Notes |
 |---|---|---|
 | `title` | yes | Wrap in quotes if it contains special characters |
-| `date` | yes | `YYYY-MM-DD` format |
+| `date` | no | Publication date comes from the `YYYY-MM-DD` directory prefix; use this only for imported metadata |
 | `author` | yes | Full name as you want it displayed |
 | `tags` | no | List of keywords. Defaults to `["uncategorized"]` if omitted |
 | `source` | no | `"medium"` (default) or omit for original posts |
@@ -68,17 +74,17 @@ tags:
 
 ### 3. Body content
 
-Write markdown, plus supported rich content when needed. Images go in `public/assets/` and are referenced as root-relative paths:
+Write markdown, plus supported rich content when needed. Keep post-specific images next to the post Markdown and reference them with a relative path:
 
 ```markdown
-![Alt text](/assets/my-image.png)
+![Alt text](./why-we-build-tools-diagram.png)
 ```
 
 For images that need a visible caption, use a semantic HTML `<figure>` block. This is the preferred pattern for new posts because it keeps the alt text and the caption separate:
 
 ```html
 <figure>
-  <img src="/assets/my-image.png" alt="Short accessibility description of the image" />
+  <img src="./why-we-build-tools-diagram.png" alt="Short accessibility description of the image" />
   <figcaption>Caption shown under the image. Credit/source links are allowed.</figcaption>
 </figure>
 ```
@@ -123,7 +129,7 @@ Example embed:
 ```
 
 Use the unlisted integration showcase post as a reference for supported content patterns:
-[`content/posts/2026-06-11 - integration-showcase.md`](content/posts/2026-06-11%20-%20integration-showcase.md).
+[`content/posts/2026-06-11 - integration-showcase/index.md`](content/posts/2026-06-11%20-%20integration-showcase/index.md).
 
 Contributors can also view the live showcase to see what is possible:
 [https://blog2.esciencecenter.nl/posts/2026-06-11---integration-showcase/](https://blog2.esciencecenter.nl/posts/2026-06-11---integration-showcase/).
@@ -136,14 +142,14 @@ The site rebuilds automatically on push to `main`. To preview locally: `bun run 
 
 ## Content rules
 
-1. **One post per file.** No multi-post markdown files.
-2. **Images in `/assets/`.** Don't hotlink external images — download them and commit to `public/assets/`. Use descriptive filenames: `why-we-build-tools-diagram.png` not `IMG_4829.jpg`.
+1. **One post per directory.** Put its Markdown in `index.md`.
+2. **Keep post assets with the post.** Put images next to `index.md` and reference them with relative paths. Don't hotlink external images — download them and commit them with the post. Use descriptive filenames: `why-we-build-tools-diagram.png` not `IMG_4829.jpg`.
 3. **HTML is allowed when it adds value.** Keep it minimal and purposeful: embeds, `<details>`, and small semantic elements are fine. Avoid large custom layouts inside posts unless there is a strong editorial reason.
 4. **Frontmatter before body.** The `---` block must be the first thing in the file.
-5. **File naming convention.** `YYYY-MM-DD - post-slug.md`. The date in the filename should match the `date` field in frontmatter; keep author names in metadata only.
-6. **Alt text on every image.** Accessibility matters: `![Diagram showing the RSE role spectrum](/assets/rse-spectrum.png)`.
-7. **Editing existing posts.** Edit the `.md` file directly. Rebuild and the changes go live.
-8. **Deleting a post.** Remove the file, or set `published: false` to hide without deleting.
+5. **Directory naming convention.** `YYYY-MM-DD - post-slug/index.md`. Publication date comes from the directory name; keep author names in metadata only.
+6. **Alt text on every image.** Accessibility matters: `![Diagram showing why we build tools](./why-we-build-tools-diagram.png)`.
+7. **Editing existing posts.** Edit its `index.md`. Rebuild and the changes go live.
+8. **Deleting a post.** Remove its directory, or set `published: false` to hide without deleting.
 9. **Author pages.** Author pages are auto-generated from the `author` field. Use consistent author names across posts (e.g. always "Jesse Gonzalez", never mix "Jesse Gonzalez" and "J. Gonzalez").
 10. **Tags are freeform.** No controlled vocabulary — but prefer existing tags for discoverability. Check `/search` to see what's already in use.
 11. **Embeds depend on provider policy.** Some websites block iframes with `X-Frame-Options` or `Content-Security-Policy`; test embeds locally before publishing.
@@ -156,14 +162,14 @@ The site rebuilds automatically on push to `main`. To preview locally: `bun run 
 
 ```
 content/
-├── posts/            ← All blog posts (markdown + frontmatter)
+├── posts/            ← All blog posts (Markdown + frontmatter + local assets)
 src/
 ├── pages/            ← Route pages (index, posts/[slug], authors/[slug], search)
 ├── layouts/          ← Base layout (header, footer, OG metadata)
 ├── styles/           ← Global CSS (Tailwind + post-content typography)
 └── content.config.ts ← Post schema (Zod types)
 public/
-├── assets/           ← Post images
+├── assets/           ← Shared site assets
 ├── header-banner.webp
 └── favicon.svg
 ```
