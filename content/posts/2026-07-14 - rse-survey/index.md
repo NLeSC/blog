@@ -29,9 +29,36 @@ The core of this survey is the question: "do you see yourself more as a software
 ![Do you see yourself as an engineer or a researcher](engineer-vs-researcher.png)
 
 More than half of the participants (15) see themselves more as engineers (upper bar). 8 RSEs, on the other hand, position themselves towards the researcher's end of the scale. A clear majority on the engineering side, but the result is far from definitive.
-When it comes to spending time, on the other hand, it is. A few RSEs divide their time equally, but most of them are mostly busy with software engineering. Whether this corresponds to their own preference? We look into that further below.
 
-Let's first focus on the types of output that RSEs value more. The most important contribution for an engineer is software itself, whereas researchers traditionally mostly contribute to academic publications. These answers are not mutually exclusive, hence respondents can deem both software and academic output as equally important.
+When it comes to spending time, on the other hand, it is. Less than a third of the RSEs divide their time equally, but most of them are mostly busy with software engineering. Many of them would prefer spending more time with research. However, this preference is not shared by the whole RSE population either, as the same number of mostly-engineering RSEs would even like to increase their engineering time proportion:
+
+<!-- Values 1,2 merged as "mostly engineering" -->
+```mermaid
+sankey
+    Doing mostly Engineering,Want more engineering,7
+    Doing mostly Engineering,Want to keep current balance,6
+    Doing mostly Engineering,Want more Research,8
+    Doing both Equally,Want more engineering,1
+    Doing both Equally,Want to keep current balance,5
+    Doing both Equally,Want more Research,1
+```
+
+<!-- Same as above with all values separate
+```mermaid
+sankey
+    Doing mostly Engineering,Want much more Engineering,1
+    Doing mostly Engineering,Keep current balance,3
+    Doing mostly Engineering,Want more Research,3
+    Doing more Engineering,Want much more Engineering,3
+    Doing more Engineering,Want more Engineering,3
+    Doing more Engineering,Keep current balance,3
+    Doing more Engineering,Want more Research,5
+    Doing both Equally,Want more Engineering,1
+    Doing both Equally,Keep current balance,5
+    Doing both Equally,Want more Research,1
+``` -->
+
+Let's focus on the types of output that RSEs value more. The most important contribution for an engineer is software itself, whereas researchers traditionally mostly contribute to academic publications. These answers are not mutually exclusive, hence respondents can deem both software and academic output as equally important.
 
 ![How important is contribution to software vs. academic output for you?](software-vs-academic.png)
 
@@ -40,10 +67,6 @@ Nevertheless, there is a near-consensus among RSEs that software contributions a
 At the same time, the RSEs see a difference between their own priorities and those of their employer. While the organisation's importance for software output roughly aligns with their own judgement, only two RSEs think that the eScience Center does not consider academic output important.
 
 ![How important is contribution to software vs. academic output for your employer?](software-vs-academic-employer.png)
-
-At the same time, roughly a third of the RSEs would prefer to spend more time with research. Another third of the group says the opposite: they would prefer to spend even more time with engineering.
-
-![Would you prefer to spend more time with engineering or with research?](engineering-vs-research-time-preference.png)
 
 ## Skills
 
