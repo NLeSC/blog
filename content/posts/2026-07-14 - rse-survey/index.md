@@ -27,7 +27,6 @@ For a survey sent out to the 38 RSEs at the Netherlands eScience Center -- one o
 The core of this survey is the question: "do you see yourself more as a software engineer or as a researcher?"
 
 ![Do you see yourself as an engineer or a researcher](engineer-vs-researcher.png)
-Answers 1 and 2 mean (clearly) more an engineer, and are stacked in the graph. The same goes for answers 4 and 5: (clearly) more a researcher.
 
 More than half of the participants (15) see themselves more as engineers. 8 RSEs, on the other hand, position themselves towards the researcher's end of the scale. A clear majority on the engineering side, but the result is far from definitive.
 
