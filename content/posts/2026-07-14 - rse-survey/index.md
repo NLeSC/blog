@@ -37,7 +37,7 @@ Let's first focus on the types of output that RSEs value more. The most importan
 
 Nevertheless, there is a near-consensus among RSEs that software contributions are somewhat important (upper bar). For academic publications, this looks different: a third of the participants does not consider academic output as important part of their work (bottom bar).
 
-At the same time, the RSEs seem to make a difference between their own priorities and those of their employer. While the organisation's importance for software output roughly aligns with their own judgement, only two RSEs think that the eScience Center does not consider academic output important.
+At the same time, the RSEs see a difference between their own priorities and those of their employer. While the organisation's importance for software output roughly aligns with their own judgement, only two RSEs think that the eScience Center does not consider academic output important.
 
 ![How important is contribution to software vs. academic output for your employer?](software-vs-academic-employer.png)
 
