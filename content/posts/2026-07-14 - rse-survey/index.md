@@ -30,11 +30,11 @@ The core of this survey is the question: "do you see yourself more as a software
 
 More than half of the participants (15) see themselves more as engineers. 8 RSEs, on the other hand, position themselves towards the researcher's end of the scale. A clear majority on the engineering side, but the result is far from definitive.
 
-Let's look at the types of output that RSEs prioritise. The most important contribution for an engineer is software itself, whereas researchers traditionally mostly contribute to academic publications.
+Let's look at the types of output that RSEs value more. The most important contribution for an engineer is software itself, whereas researchers traditionally mostly contribute to academic publications. These answers are not mutually exclusive, hence respondents can deem both software and academic output as equally important.
 
 ![How important is contribution to software vs. academic output for you?](software-vs-academic.png)
 
-These answers are not mutually exclusive, hence respondents can deem both software and academic output as equally important. Anyway, there is a near-consensus among RSEs that software contributions are somewhat important (left-hand chart above). The side of academic publications looks different: a third of the participants does not consider academic output as important part of their work (right-hand chart).
+Nevertheless, there is a near-consensus among RSEs that software contributions are somewhat important (upper bar). For academic publications, this looks different: a third of the participants does not consider academic output as important part of their work (bottom bar).
 
 At the same time, the RSEs seem to make a difference between their own priorities and those of their employer. While the organisation's importance for software output roughly aligns with their own judgement, only two RSEs think that the eScience Center does not consider academic output important.
 
