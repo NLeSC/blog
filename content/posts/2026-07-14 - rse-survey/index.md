@@ -70,7 +70,7 @@ At the same time, the RSEs see a difference between their own priorities and tho
 
 ## Skills
 
-Ideally, the tasks in a job align with the skills required for those tasks. In the self-perception of the NL eScience Center RSEs, this is not always the case. Again, we have asked the RSEs about the differences between software engineering and research, but in relation to their own qualification. In summary, all RSEs feel (highly) qualified for their engineering tasks. For research, thr group of highly qualified ones is slightly smaller, and a few RSEs even feel underqualified.
+Ideally, the tasks in a job align with the skills required for those tasks. In the self-perception of the NL eScience Center RSEs, this is not always the case. Again, we have asked the RSEs about the differences between software engineering and research, but in relation to their own qualification. In summary, all RSEs feel (highly) qualified for their engineering tasks. For research, the group of highly qualified ones is slightly smaller, and a few RSEs even feel underqualified.
 
 ![Self-estimation of software and research skills](skills.png)
 
@@ -82,7 +82,7 @@ The next question zooms in to whether the respective skills of RSEs are sufficie
 
 ## Where do we come from?
 
-While not being a requirement for the profession, almost two thirds of RSEs at the NL eScience Center has a PhD. Among the rest, most hold a Master's degree.
+While not being a requirement for the profession, almost two-thirds of RSEs at the NL eScience Center have a PhD. Among the rest, most hold a Master's degree.
 
 ```mermaid
 pie showData
