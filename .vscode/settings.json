@@ -1,0 +1,28 @@
+{
+  "window.title": "📑 NLeSC Blog - ${activeEditorShort}",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  },
+  "svelte.plugin.svelte.format.config.svelteStrictMode": false,
+  "svelte.plugin.svelte.format.config.svelteAllowShorthand": true,
+  "svelte.plugin.svelte.format.config.svelteSortOrder": "options-scripts-markup-styles",
+  "svelte.plugin.svelte.compilerWarnings": {
+    "a11y-click-events-have-key-events": "ignore",
+    "a11y-no-static-element-interactions": "ignore",
+    "element_invalid_self_closing_tag": "ignore"
+  },
+  "workbench.editor.limit.value": 1,
+  "chatgpt.openOnStartup": true,
+  "workbench.colorCustomizations": {
+    "statusBar.noFolderBackground": "#410A56",
+    "statusBar.noFolderForeground": "#FEFBFF",
+    "titleBar.activeBackground": "#521600",
+    "titleBar.activeForeground": "#ffffff",
+    "titleBar.inactiveBackground": "#0099ff",
+    "titleBar.inactiveForeground": "#521600"
+  }
+}
