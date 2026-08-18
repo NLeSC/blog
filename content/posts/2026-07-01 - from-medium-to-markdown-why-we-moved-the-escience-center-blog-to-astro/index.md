@@ -41,6 +41,8 @@ As the blog grew, the long-term needs changed. We needed content collections, cu
 
 Astro adds those customization layers on top of static hosting while keeping development accessible. Authors edit Markdown, maintainers work with plain files, and feature work stays in code through routes, layouts, scripts, and checks.
 
+To make things even better, it follows a decoupled architecture: content and aesthetics are independent. so migrating the content to a different platform, or modifying the aesthetics, is a painless process.
+
 ## What changed
 
 Every post now lives in `content/posts` as a folder with a date-prefixed name, an `index.md` file, and images next to the article when practical.
