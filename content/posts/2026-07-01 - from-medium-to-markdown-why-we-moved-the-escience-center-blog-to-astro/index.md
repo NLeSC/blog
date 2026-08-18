@@ -176,12 +176,6 @@ That means future posts can use custom story layouts, reusable interactive figur
 
 We do not need all of that for every article. The important change is that the repository now gives us room to build those formats when a story needs them, instead of being limited by a platform editor.
 
-## What Medium still does better
-
-Medium lowers author setup because a web editor helps casual authors and built-in distribution helps readers find posts.
-
-The Astro workflow asks more from contributors. We need clear authoring docs, preview commands, and image guidance. Those tasks belong in the repository, next to the code and content.
-
 ## What we gained
 
 The blog now behaves like a small research software project because source files live in Git, build steps repeat, content checks run before publication, routes come from code, and outputs come from one collection.
