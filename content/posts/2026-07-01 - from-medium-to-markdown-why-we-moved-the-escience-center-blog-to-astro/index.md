@@ -18,7 +18,7 @@ Medium gave us an editor and a place to publish, but the blog needed more than a
 
 The eScience Center blog holds hundreds of posts about research software, data, high-performance computing, open science, training, and community work. Because each post is part of institutional knowledge, readers need stable links, authors need review, and maintainers need files they inspect, test, and move.
 
-For those reasons, we moved the blog to a public Markdown-based host. The source now lives as Markdown with local assets, Git stores every change, and [Astro](https://astro.build/) turns the content into static pages, feeds, search data, and topic pages.
+For those reasons, we moved the blog to a public Markdown-based host. The source now lives as Markdown with local assets, Git stores every change, and [Astro](https://astro.build/) turns the content into static pages, feeds, search data, and topic pages. And of course, all of this is readily available on a [public repository](https://github.com/nlesc-blogging/blog).
 
 This post is also a small showcase of what the new system makes possible. Here is the change you can see immediately: we can embed a live environmental visualization directly inside an article, instead of adding a static screenshot or sending readers away to another page.
 
@@ -186,4 +186,4 @@ The Astro workflow asks more from contributors. We need clear authoring docs, pr
 
 The blog now behaves like a small research software project because source files live in Git, build steps repeat, content checks run before publication, routes come from code, and outputs come from one collection.
 
-This fits an institute focused on research software. The old blog helped us publish, while the new blog helps us maintain the collection over time.
+This fits an institute focused not only in research software, but also in open science. By leaving Medium we escape the irony of hosting our blog in a closed, paywalled platform.
