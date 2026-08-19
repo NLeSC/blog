@@ -34,7 +34,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
               <span>articles</span>
             </span>
             <a href={sitePath("/search")} class="inline-flex items-center rounded-full border border-[#d7e0f4] dark:border-[#2b3a5f] bg-[#f5f8ff] dark:bg-[#182033] px-3 py-1.5 text-[13px] font-medium text-[#003388] dark:text-[#b9caff] hover:border-[#003388] hover:bg-white dark:hover:bg-[#202a42] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#003388] transition-colors">Search posts</a>
-            <a href={sitePath("/feed")} class="inline-flex items-center rounded-full border border-[#e6e6e6] dark:border-[#333] px-3 py-1.5 text-[13px] text-[#6b6b6b] dark:text-[#aaa] hover:border-[#f26522] hover:text-[#f26522] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f26522] transition-colors">RSS</a>
+            <a href={sitePath("/rss.xml")} class="inline-flex items-center rounded-full border border-[#e6e6e6] dark:border-[#333] px-3 py-1.5 text-[13px] text-[#6b6b6b] dark:text-[#aaa] hover:border-[#f26522] hover:text-[#f26522] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f26522] transition-colors">RSS</a>
           </div>
         </div>
       </div>
@@ -154,7 +154,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
 
     <div class="mt-10 text-center text-[13px] text-[#6b6b6b] dark:text-[#999]">
       {allPosts.length} articles ·{' '}
-      <a href={sitePath("/feed")} class="hover:text-[#f26522] transition-colors">RSS</a>
+      <a href={sitePath("/rss.xml")} class="hover:text-[#f26522] transition-colors">RSS</a>
       {' · '}
       <a href={sitePath("/search")} class="hover:text-[#242424] dark:hover:text-white underline">Search all posts</a>
     </div>
