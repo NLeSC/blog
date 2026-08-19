@@ -3,7 +3,7 @@
 ## Project
 
 - Repository: `https://github.com/NLeSC/blog`
-- Live site: `https://blog2.esciencecenter.nl/`
+- Live site: `https://blog.esciencecenter.nl/`
 - Purpose: Netherlands eScience Center blog and institutional archive, migrated from Medium.
 - Default branch: `main`
 - Release work is tracked in the GitHub `Release` milestone.

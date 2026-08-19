@@ -1,8 +1,8 @@
 # eScience Center Blog
 
-The Netherlands eScience Center blog — articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://blog.esciencecenter.nl), now a standalone Astro site.
+The Netherlands eScience Center blog — articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://medium.com/@eScienceCenter), now a standalone Astro site.
 
-**Live:** [blog2.esciencecenter.nl](https://blog2.esciencecenter.nl)
+**Live:** [blog.esciencecenter.nl](https://blog.esciencecenter.nl)
 
 ---
 
@@ -133,7 +133,7 @@ Use the unlisted integration showcase post as a reference for supported content 
 [`content/posts/2026-06-11 - integration-showcase/index.md`](content/posts/2026-06-11%20-%20integration-showcase/index.md).
 
 Contributors can also view the live showcase to see what is possible:
-[https://blog2.esciencecenter.nl/posts/2026-06-11---integration-showcase/](https://blog2.esciencecenter.nl/posts/2026-06-11---integration-showcase/).
+[https://blog.esciencecenter.nl/posts/2026-06-11---integration-showcase/](https://blog.esciencecenter.nl/posts/2026-06-11---integration-showcase/).
 
 ### 4. Rebuild
 
