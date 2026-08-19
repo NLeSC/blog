@@ -26,7 +26,7 @@ function sitemapFilter(page) {
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://blog2.esciencecenter.nl',
+  site: 'https://blog.esciencecenter.nl',
   base,
   integrations: [sitemap({ filter: sitemapFilter })],
   markdown: {

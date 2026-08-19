@@ -4,7 +4,7 @@ import { getCollection, render } from 'astro:content';
 import { comparePostsByDateDesc, coverImageUrl, isListedPost, postDate, postSlug } from '../lib/archive';
 import { sitePath } from '../lib/urls';
 
-const site = 'https://blog2.esciencecenter.nl';
+const site = 'https://blog.esciencecenter.nl';
 
 function absoluteUrls(html: string, postUrl: string): string {
   return html.replace(/\b(href|src)="(?![a-z][a-z0-9+.-]*:|\/\/|#)([^"]+)"/gi, (_, attribute, url) =>
