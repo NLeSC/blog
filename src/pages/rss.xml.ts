@@ -1,7 +1,7 @@
 import rss from '@astrojs/rss';
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { getCollection, render } from 'astro:content';
-import { comparePostsByDateDesc, coverImageUrl, getExcerpt, isListedPost, postDate, postSlug } from '../lib/archive';
+import { comparePostsByDateDesc, coverImageUrl, isListedPost, postDate, postSlug } from '../lib/archive';
 import { sitePath } from '../lib/urls';
 
 const site = 'https://blog2.esciencecenter.nl';
@@ -35,7 +35,7 @@ export async function GET() {
 
     return {
       title: post.data.title,
-      description: getExcerpt(post.body || '', 280),
+      description: content,
       content,
       link,
       pubDate: postDate(post),
