@@ -1,6 +1,6 @@
 # eScience Center Blog
 
-The Netherlands eScience Center blog — 276 articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://blog.esciencecenter.nl), now a standalone Astro site.
+The Netherlands eScience Center blog — articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://blog.esciencecenter.nl), now a standalone Astro site.
 
 **Live:** [blog2.esciencecenter.nl](https://blog2.esciencecenter.nl)
 
