@@ -13,8 +13,6 @@ tags:
   - Training
 ---
 
-Subscribe*Remember me for faster sign in
-
 Hey, should I draw a wild curve that splits all points exactly?
 
 ![Machine learning: when it is easy &amp; when it is difficult](./machine-learning-when-it-is-easy-amp-whe-a569527f.png)

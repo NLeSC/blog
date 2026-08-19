@@ -14,8 +14,6 @@ tags:
   - RSE
 ---
 
-**SubscribeRemember me for faster sign in
-
 Depending on your level of Python expertise, you might implement such an algorithm in different ways.
 
 In an introductory Python course we could write this function as follows.

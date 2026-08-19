@@ -16,8 +16,6 @@ tags:
 
 ][Lourens Veen]·Apr 26, 2023
 
-Subscribe*Remember me for faster sign in
-
 Any remaining differences are usually due to particular features supported by certain languages. In R for example, you can write down a statistical model equation, for which it has a special syntax using the `~` symbol. There’s no equivalent of that in Python or C or Pascal, because those languages weren’t designed for statistics.
 
 ### Structure

@@ -14,8 +14,6 @@ tags:
   - RSE
 ---
 
-Subscribe*Remember me for faster sign in
-
 But what if you want to plot your own data? While there are many resources on how to use existing tile or web-map services, I struggled to find out how to make my own. Eventually, I found a [nice example](https://www.azavea.com/blog/2018/08/06/generating-pyramided-tiles-from-a-geotiff-using-geotrellis/) using [GeoTrellis](https://geotrellis.readthedocs.io/en/latest/), but by that time I had already concocted a half-baked solution in my beloved Python. More on that in a bit.
 
 Leaflet also has different kinds of layers. You can draw lines, markers, shapes, polygons, images, and even videos. Here’s how to draw a simple rectangle on a Leaflet map:

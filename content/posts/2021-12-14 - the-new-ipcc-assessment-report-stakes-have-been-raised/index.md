@@ -14,8 +14,6 @@ tags:
   - Parallel Computing
 ---
 
-Subscribe*Remember me for faster sign in
-
 In [PRIMAVERA](https://www.primavera-h2020.eu/), a Horizon 2020 project, we focused upon the I/O machinery in a big European climate model [EC-Earth](http://www.ec-earth.org/about/). In particular, we were asked to come up with a solution to make this model produce those CMIP6 standardized output quantities, preferably without slashing the performance of the simulation workflow. The answer: we leveraged parallel Python to crunch through the high-resolution raw climate data of EC-Earth and apply the necessary formulas and conversions; the [ece2cmor3](https://github.com/EC-Earth/ece2cmor3) tool that does this has been adopted by the community as the method of choice to post-process this model output, and has since then been used to produce petabytes of climate model data for AR6.
 
 ![The new IPCC assessment report: stakes have been raised](./the-new-ipcc-assessment-report-stakes-ha-64226777.jpeg)

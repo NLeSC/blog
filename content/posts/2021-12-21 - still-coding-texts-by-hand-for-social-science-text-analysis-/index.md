@@ -16,8 +16,6 @@ tags:
 
 ][Sven van der Burg]·Dec 21, 2021
 
-**SubscribeRemember me for faster sign in
-
 * Coder-centered: **It is designed to make the coder’s life as easy as possible. You view one text at a time at the center of your screen. All you have to do is this: select a piece of text with your pointer, and click or hit a shortkey to add a label (for example: `concept 1’). When the complete text is coded, just click next. It’s as simple as that.
 * **No more errors in data entry: **As a data analyst, you don’t need to worry about how exactly a coder enters the data as you would, for example, when data is coded in an Excel sheet. Doccano enforces that any data entry results in nicely formatted data. You can download the data without any data entry errors.
 * **Open-source: **The programming code for Doccano is open for everyone to see and edit (under sensible restrictions, of course). This makes it free to use and easy to setup yourself in any scenario. In addition, if you want to add a new feature, you can always add it yourself or request it in the community. Yay for open-source software!

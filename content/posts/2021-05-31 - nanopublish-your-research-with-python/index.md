@@ -15,8 +15,6 @@ tags:
 
 ## Using nanopub, a high-level, user-friendly python interface to the nanopublication network
 
-Subscribe*Remember me for faster sign in
-
 For example, if you want to e.g. search for all nanopublications containing the text Picoides*:
 
 which returns two results both pointing to the example nanopublication we just discussed:

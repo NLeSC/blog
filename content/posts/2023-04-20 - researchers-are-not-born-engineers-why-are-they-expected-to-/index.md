@@ -14,8 +14,6 @@ tags:
   - Research Software
 ---
 
-Subscribe*Remember me for faster sign in
-
 I refuse to be too hard on my past self. It’s understandable that researchers, who juggle multiple projects and deadlines, do not have the time, energy or resources to become coding experts. But research is increasingly reliant on technology, so it’s important that researchers have access to the support and education they need to develop and use high-quality code. Learning good coding practices (or having access to those who know them) not only improves the reproducibility and reliability of research, but it adds to the fun of coding, saves time and prevents future headaches.
 
 ![Researchers are not born engineers — why are they expected to know how to code?](./researchers-are-not-born-engineers-why-a-448a811f.jpg)
