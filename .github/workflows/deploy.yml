@@ -27,7 +27,7 @@ jobs:
           bun-version: latest
       - run: bun install
       - name: Cache Astro images
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: node_modules/.astro
           key: ${{ runner.os }}-astro-${{ hashFiles('bun.lock', 'astro.config.mjs', 'content/posts/**/*.avif', 'content/posts/**/*.gif', 'content/posts/**/*.jpeg', 'content/posts/**/*.jpg', 'content/posts/**/*.png', 'content/posts/**/*.svg', 'content/posts/**/*.webp') }}
