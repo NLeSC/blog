@@ -11,6 +11,7 @@ export async function GET() {
     title: 'eScience Center Blog',
     description: 'Research software engineering, data science, and digital scholarship — by the Netherlands eScience Center',
     site: 'https://blog2.esciencecenter.nl',
+    stylesheet: '/rss.xsl',
     items: posts.map(post => {
       const slug = postSlug(post);
       // Get first paragraph as description
