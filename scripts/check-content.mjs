@@ -5,9 +5,11 @@ import { basename, dirname, join, relative } from 'node:path';
 const root = process.cwd();
 const postsDir = join(root, 'content/posts');
 const assetsDir = join(root, 'public/assets');
+const redirectMap = JSON.parse(readFileSync(join(root, 'src/legacy-redirects.json'), 'utf8'));
 const requiredFrontmatter = ['title', 'author'];
 const reservedTopLevelRoutes = new Set(['api', 'authors', 'posts', 'search', 'topics', 'rss.xml']);
 const legacyRedirects = new Map();
+const postTargets = new Set();
 const warnings = [];
 const errors = [];
 
@@ -39,6 +41,8 @@ function checkImage(file, src, alt = 'html') {
 for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
   const name = basename(file);
   const postName = name === 'index.md' ? basename(dirname(file)) : name.replace(/\.md$/, '');
+  const postTarget = `/posts/${postName.replaceAll(' ', '-')}`;
+  postTargets.add(postTarget);
   if (!/^\d{4}-\d{2}-\d{2} - [^-].+$/.test(postName)) {
     add(errors, file, 'post path must use "YYYY-MM-DD - title.md" or "YYYY-MM-DD - title/index.md"');
   }
@@ -75,6 +79,11 @@ for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
           } else {
             legacyRedirects.set(legacyPath, file);
           }
+
+          const canonicalSource = `https://blog.esciencecenter.nl/${legacyPath}`;
+          if (redirectMap[canonicalSource] !== postTarget) {
+            add(errors, file, `legacy redirect map must send ${canonicalSource} to ${postTarget}`);
+          }
         }
       } catch {
         add(errors, file, `invalid source_url: ${sourceUrl}`);
@@ -95,6 +104,16 @@ for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
     const [tag, src] = match;
     const alt = tag.match(/\balt=["']([^"']*)["']/)?.[1] || '';
     checkImage(file, src, alt);
+  }
+}
+
+for (const [source, target] of Object.entries(redirectMap)) {
+  const legacyPath = new URL(source).pathname.replace(/^\/+|\/+$/g, '');
+  if (reservedTopLevelRoutes.has(legacyPath.split('/')[0])) {
+    errors.push(`src/legacy-redirects.json: legacy redirect conflicts with existing route: /${legacyPath}`);
+  }
+  if (!['/', '/search', '/topics'].includes(target) && !target.startsWith('/topics/') && !postTargets.has(target)) {
+    errors.push(`src/legacy-redirects.json: missing redirect target: ${target}`);
   }
 }
 

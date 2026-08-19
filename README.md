@@ -94,6 +94,7 @@ Caption rules:
 - `alt` describes the image for screen readers; it is not the caption.
 - `<figcaption>` is the visible editorial caption under the image.
 - Keep captions short and factual, Medium-style.
+
 - Put credits/source links in the caption when needed.
 - Avoid the old export pattern where caption text is pasted as a normal paragraph directly after an image; use `<figure>` instead.
 
@@ -139,6 +140,18 @@ Contributors can also view the live showcase to see what is possible:
 The site rebuilds automatically on push to `main`. To preview locally: `bun run dev` → [localhost:4321](http://localhost:4321).
 
 ---
+
+## Legacy Medium redirects
+
+`src/legacy-redirects.json` is the DNS-cutover map from `blog.esciencecenter.nl` to Astro routes. It includes post URLs, Medium aliases, tag archives, `/about`, and `/archive`.
+
+Refresh it against Medium's sitemap before cutover:
+
+```sh
+node scripts/generate-legacy-redirect-map.mjs
+bun run check:content
+bun run build
+```
 
 ## Content rules
 
