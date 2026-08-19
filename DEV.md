@@ -22,7 +22,7 @@ curl -fsSL https://bun.sh/install | bash
 
 ```sh
 # Clone
-git clone git@github.com:nlesc-blogging/blog.git
+git clone git@github.com:NLeSC/blog.git
 cd blog
 
 # Install

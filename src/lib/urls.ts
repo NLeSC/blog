@@ -1,5 +1,5 @@
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-export const repositoryUrl = 'https://github.com/nlesc-blogging/blog';
+export const repositoryUrl = 'https://github.com/NLeSC/blog';
 
 export function sitePath(path = '/'): string {
   if (/^[a-z][a-z0-9+.-]*:/i.test(path) || path.startsWith('//')) return path;

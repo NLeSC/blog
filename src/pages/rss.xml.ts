@@ -10,7 +10,7 @@ export async function GET() {
   return rss({
     title: 'eScience Center Blog',
     description: 'Research software engineering, data science, and digital scholarship — by the Netherlands eScience Center',
-    site: 'https://nlesc-blogging.github.io/blog',
+    site: 'https://blog2.esciencecenter.nl',
     items: posts.map(post => {
       const slug = postSlug(post);
       // Get first paragraph as description

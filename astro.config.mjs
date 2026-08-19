@@ -8,7 +8,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { rehypeBasePaths } from './src/lib/rehype-base-paths.mjs';
 
-const base = '/blog';
+const base = '/';
 const legacyRedirectPaths = loadLegacyRedirectPaths();
 
 function walk(dir) {
@@ -49,7 +49,7 @@ function sitemapFilter(page) {
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://nlesc.github.io',
+  site: 'https://blog2.esciencecenter.nl',
   base,
   integrations: [sitemap({ filter: sitemapFilter })],
   markdown: {

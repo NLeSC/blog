@@ -3,7 +3,7 @@
 ## Project
 
 - Repository: `https://github.com/NLeSC/blog`
-- Live site: `https://nlesc.github.io/blog/`
+- Live site: `https://blog2.esciencecenter.nl/`
 - Purpose: Netherlands eScience Center blog and institutional archive, migrated from Medium.
 - Default branch: `main`
 - Release work is tracked in the GitHub `Release` milestone.
@@ -56,7 +56,7 @@ Use `bun run new-post "Title" --author "Full Name" --tags "Tag One,Tag Two"` to 
 - Make the smallest change that solves the issue; reuse existing helpers and patterns.
 - Preserve the established Astro and Tailwind implementation unless a task explicitly calls for a redesign.
 - Keep the site static. Do not introduce server-only behavior without a hosting decision because GitHub Pages cannot run it.
-- The deployed site currently uses the `/blog` base path. Generate internal links and asset URLs with existing URL helpers rather than hard-coding root-relative deployment assumptions.
+- The deployed site uses the root path. Generate internal links and asset URLs with existing URL helpers rather than hard-coding deployment assumptions.
 - Keep dependencies minimal. Prefer Astro, browser, and Node/Bun capabilities already present.
 - Do not edit generated directories: `dist/`, `.astro/`, or `node_modules/`.
 - Do not rewrite migrated prose merely for style. Content corrections should be traceable to the original source or explicit editorial direction.
