@@ -1,5 +1,6 @@
-import { sitePath } from '../lib/urls';
+---
 import redirects from '../legacy-redirects.json';
+import { sitePath } from '../lib/urls';
 
 export function getStaticPaths() {
   return Object.entries(redirects).map(([source, target]) => ({
@@ -8,9 +9,5 @@ export function getStaticPaths() {
   }));
 }
 
-export function GET({ props }: { props: { target: string } }) {
-  return new Response(null, {
-    status: 301,
-    headers: { Location: encodeURI(sitePath(props.target)) },
-  });
-}
+return Astro.redirect(sitePath(Astro.props.target), 301);
+---
