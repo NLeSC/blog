@@ -14,7 +14,7 @@ tags:
   - Sustainability
 ---
 
-][eScience Editorial Team]·Mar 11, 2020**Subscribe*
+][eScience Editorial Team]·Mar 11, 2020
 
 Some of the issues we’ve had in assembling this list are:
 

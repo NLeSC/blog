@@ -14,8 +14,6 @@ tags:
   - Python
 ---
 
-SubscribeRemember me for faster sign in
-
 The snippet below generates some data (a normal distribution), fits it, and creates a [matplotlib](https://matplotlib.org/) plot out of it. It takes three parameters, `mu_in`, `std_in`, and `size`.
 
 My cool python script 😎

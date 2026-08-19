@@ -9,8 +9,6 @@ tags:
   - Health
 ---
 
-Subscribe*Remember me for faster sign in
-
 Let’s take a few steps back. It is 1990 and a team of medical researchers equipped with a statistician is performing a [randomized control study](https://www.thelancet.com/journals/lancet/article/PII0140-6736(90)91656-U/fulltext) to find out if phenomenon X causes disease Y. They first take the utmost care that the data, I mean the patients, from which they want to derive conclusions, are representative of the population; that the experimental and the control group are properly established; that there are no correlations in the data-set, sorry, cohort, that might contaminate the results of the study; etc, etc… You get the point (I am not a professional statistician, so please ask one for more details). Only after* the experiment is prepared with the utmost rigor, are they allowed to actually make the experiment and apply AI, I mean, statistical methods, to gain predictions. (Did I say predictions? I meant conclusions.)
 
 ![Why AI will not replace experts](./why-ai-will-not-replace-experts-ac29c84f.jpg)

@@ -14,8 +14,6 @@ tags:
   - RSE
 ---
 
-SubscribeRemember me for faster sign in
-
 An important part of giving proper attribution is to make your software citable and to cite others when you build upon their work. Stephan and others have developed the Citation File Format ([https://citation-file-format.github.io/](https://citation-file-format.github.io/)), a metadata format for both humans and machines. While these citation files can be read and manually written, there is also an entire toolbox available to support creation, validation, and conversion of CFF files, and automation is on the horizon, with build plugins and automated updates.
 
 Stephan’s slides are available at:

@@ -12,8 +12,6 @@ tags:
   - Julia
 ---
 
-Subscribe*Remember me for faster sign in
-
 The `trapezoid` function has 4 arguments, therefore we have to use the general `jl_call` that we mentioned before. The arguments of `jl_call` are the function, an array of `jl_value_t *` arguments, and the number of arguments.
 
 ### 4: C function from Julia from C

@@ -18,8 +18,6 @@ tags:
 
 ][Florian Huber]·Feb 10, 2020
 
-**SubscribeRemember me for faster sign in
-
 2 
  DIALECT, Diabetes and Lifestyle Cohort Twente**** Team from: University of Twente and ZGT Almelo.
  Field: Medicine

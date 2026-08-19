@@ -13,8 +13,6 @@ tags:
 
 ## How artistic elements can enrich scientific writing
 
-Subscribe*Remember me for faster sign in
-
 I did a similar thing with figures. Matplotlib has this [awesome package](http://jakevdp.github.io/blog/2013/07/10/XKCD-plots-in-matplotlib/) that let’s you render all plots in a sketchy style, as shown below.
 
 ![Between pencil and paper](./between-pencil-and-paper-69248166.png)

@@ -16,8 +16,6 @@ tags:
 
 ## Designed with the S2S community, available for everyone
 
-Subscribe*Remember me for faster sign in
-
 These are just some of the questions that scientists in the field of sub-seasonal to seasonal (S2S) weather and climate prediction have to deal with on a daily basis. Especially now that the use of machine learning is [gaining traction](https://s2s-ai-challenge.github.io/). In this blog post, we introduce [Lilio](https://lilio.readthedocs.io/en/latest/index.html), a new calendar [package ](https://pypi.org/project/lilio/)that was designed to help tackle these questions.
 
 ![Lilio — a calendar package for machine learning with time series data](./lilio-a-calendar-package-for-machine-lea-42268afa.png)
