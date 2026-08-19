@@ -2,7 +2,7 @@
 
 The Netherlands eScience Center blog — 275 articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://blog.esciencecenter.nl), now a standalone Astro site.
 
-**Live:** [nlesc-blogging.github.io/blog](https://nlesc-blogging.github.io/blog)
+**Live:** [nlesc.github.io/blog](https://nlesc.github.io/blog)
 
 ---
 
@@ -126,7 +126,7 @@ Use the unlisted integration showcase post as a reference for supported content 
 [`content/posts/2026-06-11 - integration-showcase.md`](content/posts/2026-06-11%20-%20integration-showcase.md).
 
 Contributors can also view the live showcase to see what is possible:
-[https://nlesc-blogging.github.io/blog/posts/2026-06-11---integration-showcase/](https://nlesc-blogging.github.io/blog/posts/2026-06-11---integration-showcase/).
+[https://nlesc.github.io/blog/posts/2026-06-11---integration-showcase/](https://nlesc.github.io/blog/posts/2026-06-11---integration-showcase/).
 
 ### 4. Rebuild
 

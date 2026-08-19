@@ -49,7 +49,7 @@ function sitemapFilter(page) {
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://nlesc-blogging.github.io',
+  site: 'https://nlesc.github.io',
   base,
   integrations: [sitemap({ filter: sitemapFilter })],
   markdown: {

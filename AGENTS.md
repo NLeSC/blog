@@ -2,8 +2,8 @@
 
 ## Project
 
-- Repository: `https://github.com/nlesc-blogging/blog`
-- Live site: `https://nlesc-blogging.github.io/blog/`
+- Repository: `https://github.com/NLeSC/blog`
+- Live site: `https://nlesc.github.io/blog/`
 - Purpose: Netherlands eScience Center blog and institutional archive, migrated from Medium.
 - Default branch: `main`
 - Release work is tracked in the GitHub `Release` milestone.
@@ -96,6 +96,6 @@ Treat content-check errors and build failures as blockers. Existing warnings sho
 
 ## Deployment And Release
 
-Pushes to `main` deploy through `.github/workflows/deploy.yml` to GitHub Pages. Do not trigger migration-day operations automatically: repository transfer, DNS changes, production-domain changes, and analytics verification require explicit authorization. Keep repository and production URL constants easy to update when the repository moves from `nlesc-blogging/blog` to its final organization.
+Pushes to `main` deploy through `.github/workflows/deploy.yml` to GitHub Pages. Do not trigger migration-day operations automatically: repository transfer, DNS changes, production-domain changes, and analytics verification require explicit authorization. Keep repository and production URL constants easy to update if the repository moves again.
 
 When working on an issue, read the complete issue and discussion first. Check for an existing pull request before implementing overlapping work, and reference the issue in the resulting pull request.
