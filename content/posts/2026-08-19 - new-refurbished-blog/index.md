@@ -11,26 +11,28 @@ Our blog is now self-hosted!
 
 Dear readers,
 
-the irony didn't escape us: our organization advocates for open science and yet we publish our blog in a closed platform. Do we? Not anymore!
+The irony has not escaped us: our organization advocates for open science, and yet we publish our blog in a closed platform...or do we? 
+
+Not any more!
 
 Since today, our blog is fully owned by us and 100% freely accessible. The posts' source is now plain text, markdown-based. We are hosting it in [this public repository](https://github.com/nlesc-blogging/blog), and rendering it via GitHub actions.
 
-In order to make it future-proof, we are following a decoupled architecture: content and aesthetics are independent; so migrating the content or modifying the aesthetics is painless. We chose [Astro](https://astro.build/), an open source static website generator, as the software that puts everything together. 
+In order to make it future-proof, we are following a decoupled architecture: content and aesthetics are independent; so migrating the content or modifying the aesthetics is painless. We chose [Astro](https://astro.build/), an open-source static website generator, as the software that puts everything together. 
 
-In the near future we'll release a blogpost about our reasons behind this refurbish.
+In the near future we'll release a blogpost about our reasons behind this refurbishment.
 
 For an extensive list of reasons why Medium fell short for us, check [this pull request](https://github.com/nlesc-blogging/blog/issues/2).
 ### Does it affect me?
 Most likely not, unless:
 
-- You subscribed to us via Medium. If that's the case, please be aware you'll stop receiving updates. If you want to keep following us, we recommend you to subscribe to our RSS feed LINK, or follow our socials ([Bluesky](https://bsky.app/profile/esciencecenter.bsky.social), [Mastodon](https://akademienl.social/@eScienceCenter), [LinkedIn](https://www.linkedin.com/company/netherlands-escience-center/?viewAsMember=true)). 
+- You subscribed to us via Medium. If that's the case, please be aware you'll stop receiving updates. If you want to keep following us, we recommend that you subscribe to our RSS feed LINK, or follow our socials ([Bluesky](https://bsky.app/profile/esciencecenter.bsky.social), [Mastodon](https://akademienl.social/@eScienceCenter), [LinkedIn](https://www.linkedin.com/company/netherlands-escience-center/?viewAsMember=true)). 
 - You want to author a blogpost. This is actually easier than before. Now you can [submit your draft](https://github.com/nlesc-blogging/blog/pulls) through a pull request.
 
-For the rest, the change should be automatic and painless. The usual URL, [blog.esciencecenter.nl](https://blog.esciencecenter.nl), now points to the new blog. We cloned all the content to the new version. The URL's of the cloned blogposts are preserved. Also the URL of the RSS feed. To be even safer, the original old posts will still be available at https://medium.com/escience-center/.
+For the rest, the change should be automatic and painless. The usual URL, [blog.esciencecenter.nl](https://blog.esciencecenter.nl), now points to the new blog. We cloned all the content to the new version. The URLs of the cloned blogposts are preserved, and so is the URL of the RSS feed. To be even safer, the original old posts will remain available at https://medium.com/escience-center/.
 
-Summarizing: chances are that, without the blogpost you are currently reading, you wouldn't have even noticed the change!
+To summarize, chances are that without the blogpost you are currently reading, you probably wouldn't have even noticed the change!
 
-Of course, we could have missed something. Please let us know (by opening a [pull request](https://github.com/nlesc-blogging/blog/pulls) or contacting editors@esciencecenter.nl) if you notice something is off.
+Of course, we could have missed something. Please let us know (by opening a [pull request](https://github.com/nlesc-blogging/blog/pulls) or contacting editors@esciencecenter.nl) if you notice that something is off.
 
 Happy blogging!
 
