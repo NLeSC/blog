@@ -58,7 +58,7 @@ Open [localhost:4321](http://localhost:4321). Changes to `.astro`, `.md`, and `.
 │   └── content.config.ts  ← Zod schema for post frontmatter
 ├── content/posts/         ← Markdown posts with YAML frontmatter
 ├── public/
-│   ├── assets/            ← Post images (committed to repo)
+│   ├── assets/            ← Other assets (committed to repo)
 │   ├── header-banner.webp
 │   └── favicon.svg
 └── .github/workflows/
@@ -72,7 +72,7 @@ See [README.md](README.md) for full content guidelines. Quick version:
 1. Create `content/posts/YYYY-MM-DD - author-slug - post-slug.md`
 2. Add frontmatter: `title`, `date`, `author`, `tags`
 3. Write body in markdown
-4. Images go in `public/assets/`, referenced as `/assets/filename.png`
+4. Images go in the same directory as the Markdown content file, referenced with a relative path `![Alt text](./filename.png)`
 5. `bun run dev` to preview
 
 ## Building for production
@@ -125,7 +125,7 @@ Bun isn't on your PATH. Use the full path: `~/.bun/bin/bun`, or add `~/.bun/bin`
 The content loader reloads all 253 posts on any file change in `content/posts/`. Give it a moment — it usually recovers. If it doesn't, restart with `bun run dev`.
 
 ### Images not showing in dev
-Images must be in `public/assets/` and referenced with a leading slash: `/assets/filename.png`. Relative paths like `./assets/` or `assets/` won't resolve.
+Images must be in the directory of the Markdown content file and referenced with a relative path: `![Alt text](./filename.png)`.
 
 ### Build fails with out-of-memory
 The build processes 309 pages. If you run into memory issues, increase Node's memory limit:

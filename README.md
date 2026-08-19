@@ -1,6 +1,6 @@
 # eScience Center Blog
 
-The Netherlands eScience Center blog — 275 articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://blog.esciencecenter.nl), now a standalone Astro site.
+The Netherlands eScience Center blog — articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://blog.esciencecenter.nl), now a standalone Astro site.
 
 **Live:** [blog2.esciencecenter.nl](https://blog2.esciencecenter.nl)
 
@@ -19,7 +19,7 @@ The Netherlands eScience Center blog — 275 articles on research software engin
 - GitHub Pages deployment via Actions.
 - Rich technical writing support in post bodies:
   - standard markdown: headings, links, blockquotes, lists, tables, code blocks, and inline code;
-  - repository-managed images from `public/assets/`;
+  - repository-managed images;
   - raw HTML for editorial affordances such as `<details>` / `<summary>`;
   - iframe embeds for videos and interactive content, including YouTube and Observable-style embeds;
   - math notation via inline and block LaTeX;
@@ -68,17 +68,17 @@ tags:
 
 ### 3. Body content
 
-Write markdown, plus supported rich content when needed. Images go in `public/assets/` and are referenced as root-relative paths:
+Write markdown, plus supported rich content when needed. Images go in the same directory as the Markdown content file and are referenced as relative paths:
 
 ```markdown
-![Alt text](/assets/my-image.png)
+![Alt text](./my-image.png)
 ```
 
 For images that need a visible caption, use a semantic HTML `<figure>` block. This is the preferred pattern for new posts because it keeps the alt text and the caption separate:
 
 ```html
 <figure>
-  <img src="/assets/my-image.png" alt="Short accessibility description of the image" />
+  <img src="./my-image.png" alt="Short accessibility description of the image" />
   <figcaption>Caption shown under the image. Credit/source links are allowed.</figcaption>
 </figure>
 ```
@@ -137,11 +137,11 @@ The site rebuilds automatically on push to `main`. To preview locally: `bun run 
 ## Content rules
 
 1. **One post per file.** No multi-post markdown files.
-2. **Images in `/assets/`.** Don't hotlink external images — download them and commit to `public/assets/`. Use descriptive filenames: `why-we-build-tools-diagram.png` not `IMG_4829.jpg`.
+2. **Images.** Don't hotlink external images — download them and commit to the same directory as the Markdown file. Use descriptive filenames: `why-we-build-tools-diagram.png` not `IMG_4829.jpg`.
 3. **HTML is allowed when it adds value.** Keep it minimal and purposeful: embeds, `<details>`, and small semantic elements are fine. Avoid large custom layouts inside posts unless there is a strong editorial reason.
 4. **Frontmatter before body.** The `---` block must be the first thing in the file.
 5. **File naming convention.** `YYYY-MM-DD - post-slug.md`. The date in the filename should match the `date` field in frontmatter; keep author names in metadata only.
-6. **Alt text on every image.** Accessibility matters: `![Diagram showing the RSE role spectrum](/assets/rse-spectrum.png)`.
+6. **Alt text on every image.** Accessibility matters: `![Diagram showing the RSE role spectrum](./rse-spectrum.png)`.
 7. **Editing existing posts.** Edit the `.md` file directly. Rebuild and the changes go live.
 8. **Deleting a post.** Remove the file, or set `published: false` to hide without deleting.
 9. **Author pages.** Author pages are auto-generated from the `author` field. Use consistent author names across posts (e.g. always "Jesse Gonzalez", never mix "Jesse Gonzalez" and "J. Gonzalez").
@@ -156,14 +156,14 @@ The site rebuilds automatically on push to `main`. To preview locally: `bun run 
 
 ```
 content/
-├── posts/            ← All blog posts (markdown + frontmatter)
+├── posts/            ← All blog posts (markdown, frontmatter and images)
 src/
 ├── pages/            ← Route pages (index, posts/[slug], authors/[slug], search)
 ├── layouts/          ← Base layout (header, footer, OG metadata)
 ├── styles/           ← Global CSS (Tailwind + post-content typography)
 └── content.config.ts ← Post schema (Zod types)
 public/
-├── assets/           ← Post images
+├── assets/           ← Other assets
 ├── header-banner.webp
 └── favicon.svg
 ```
