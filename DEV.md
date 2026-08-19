@@ -56,9 +56,9 @@ Open [localhost:4321](http://localhost:4321). Changes to `.astro`, `.md`, and `.
 │   ├── layouts/           ← BaseLayout (HTML shell, header, footer)
 │   ├── styles/            ← global.css (Tailwind + post typography)
 │   └── content.config.ts  ← Zod schema for post frontmatter
-├── content/posts/         ← Markdown posts with YAML frontmatter
+├── content/posts/         ← Post directories with index.md and local assets
 ├── public/
-│   ├── assets/            ← Post images (committed to repo)
+│   ├── assets/            ← Shared site assets
 │   ├── header-banner.webp
 │   └── favicon.svg
 └── .github/workflows/
@@ -69,11 +69,10 @@ Open [localhost:4321](http://localhost:4321). Changes to `.astro`, `.md`, and `.
 
 See [README.md](README.md) for full content guidelines. Quick version:
 
-1. Create `content/posts/YYYY-MM-DD - author-slug - post-slug.md`
-2. Add frontmatter: `title`, `date`, `author`, `tags`
-3. Write body in markdown
-4. Images go in `public/assets/`, referenced as `/assets/filename.png`
-5. `bun run dev` to preview
+1. Run `bun run new-post "Post title" --author "Author Name" --tags "Tag One,Tag Two"`
+2. Edit `content/posts/YYYY-MM-DD - post-slug/index.md`
+3. Add images beside `index.md` and reference them as `./filename.png`
+4. Run `bun run dev` to preview
 
 ## Building for production
 
@@ -83,7 +82,7 @@ bun run preview   # serves dist/ at localhost:4321
 ```
 
 The build generates:
-- 309 static HTML pages (253 posts + index + search + author pages + RSS)
+- Static post, homepage, search, author, topic, feed, and redirect pages
 - RSS feed at `/rss.xml`
 - Sitemap at `/sitemap-index.xml`
 - Pagefind search index at `/pagefind/`
@@ -122,13 +121,13 @@ Powered by [Pagefind](https://pagefind.app). The search index is generated durin
 Bun isn't on your PATH. Use the full path: `~/.bun/bin/bun`, or add `~/.bun/bin` to your PATH.
 
 ### Dev server crashes after editing a post
-The content loader reloads all 253 posts on any file change in `content/posts/`. Give it a moment — it usually recovers. If it doesn't, restart with `bun run dev`.
+The content loader reloads all posts on any file change in `content/posts/`. Give it a moment — it usually recovers. If it doesn't, restart with `bun run dev`.
 
 ### Images not showing in dev
-Images must be in `public/assets/` and referenced with a leading slash: `/assets/filename.png`. Relative paths like `./assets/` or `assets/` won't resolve.
+Keep post images beside that post's `index.md` and use a relative path such as `./filename.png`. Reserve `public/assets/` for shared site assets.
 
 ### Build fails with out-of-memory
-The build processes 309 pages. If you run into memory issues, increase Node's memory limit:
+If a build runs out of memory, increase Node's memory limit:
 ```sh
 NODE_OPTIONS="--max-old-space-size=4096" bun run build
 ```
