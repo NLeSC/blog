@@ -1,27 +1,26 @@
 ---
 layout: post
 title: "New, refurbished blog"
-author: Pablo Rodriguez
+author: eScience Editorial Team
 published: true
 tags:
-  - Announcements
+  - Announcement
 ---
 
-Our blog is now self-hosted!
+Goodbye, Medium! Our blog is now self-hosted!
+
+![Photo by Mantas Hesthaven on Unsplash](./0_euevYqprJJrV2a6t.jpg)
 
 Dear readers,
 
-The irony has not escaped us: our organization advocates for open science, and yet we publish our blog in a closed platform...or do we? 
+The irony has not escaped us: our organization advocates for open science, and yet we publish our blog in a closed platform...or do we? Well, not any more!
 
-Not any more!
-
-Since today, our blog is fully owned by us and 100% freely accessible. The posts' source is now plain text, markdown-based. We are hosting it in [this public repository](https://github.com/nlesc-blogging/blog), and rendering it via GitHub actions.
+**Since today, our blog is fully owned by us and 100% freely accessible**. The posts' source is now markdown-based plain text. We are hosting it in [this public repository](https://github.com/nlesc-blogging/blog), and rendering it via GitHub actions.
 
 In order to make it future-proof, we are following a decoupled architecture: content and aesthetics are independent; so migrating the content or modifying the aesthetics is painless. We chose [Astro](https://astro.build/), an open-source static website generator, as the software that puts everything together. 
 
 In the near future we'll release a blogpost about our reasons behind this refurbishment.
 
-For an extensive list of reasons why Medium fell short for us, check [this pull request](https://github.com/nlesc-blogging/blog/issues/2).
 ### Does it affect me?
 Most likely not, unless:
 
@@ -35,14 +34,3 @@ To summarize, chances are that without the blogpost you are currently reading, y
 Of course, we could have missed something. Please let us know (by opening a [pull request](https://github.com/nlesc-blogging/blog/pulls) or contacting editors@esciencecenter.nl) if you notice that something is off.
 
 Happy blogging!
-
-<!--
-Image with caption pattern:
-
-<figure>
-  <img src="./descriptive-file-name.png" alt="Short accessibility description of the image" />
-  <figcaption>Short visible caption. Add credit/source links here when needed.</figcaption>
-</figure>
-
-Store images next to this index.md file. Use alt text for accessibility; use figcaption for the visible caption.
--->
