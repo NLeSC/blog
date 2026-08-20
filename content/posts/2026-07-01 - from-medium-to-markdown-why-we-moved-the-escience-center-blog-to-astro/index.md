@@ -14,13 +14,13 @@ tags:
 
 ![Diagram showing Medium export files moving into Markdown, Git, Astro, and static blog outputs](./cover.svg)
 
-Medium gave us an editor and a place to publish, but the blog needed more than a web form.
+Medium gave us an editor and a place to publish. Our blog had grown to need more than that.
 
-The eScience Center blog holds hundreds of posts about research software, data, high-performance computing, open science, training, and community work. Because each post is part of institutional knowledge, readers need stable links, authors need review, and maintainers need files they inspect, test, and move.
+The eScience Center blog contains hundreds of posts about research software, data, high-performance computing, open science, training, and community work. Together, they form part of our institutional memory. Readers need stable links, authors need a review process, and maintainers need files they can inspect, test, and move.
 
-For those reasons, we moved the blog to a public Markdown-based host. The source now lives as Markdown with local assets, Git stores every change, and [Astro](https://astro.build/) turns the content into static pages, feeds, search data, and topic pages. And of course, all of this is readily available on a [public repository](https://github.com/nlesc-blogging/blog).
+We therefore moved the blog to a public, Markdown-based home. Posts and their assets now live as plain files, Git records every change, and [Astro](https://astro.build/) turns the content into static pages, feeds, search data, and topic pages. The whole setup is available in a [public repository](https://github.com/nlesc-blogging/blog).
 
-This post is also a small showcase of what the new system makes possible. Here is the change you can see immediately: we can embed a live environmental visualization directly inside an article, instead of adding a static screenshot or sending readers away to another page.
+This post is also a small demonstration of what the new system can do. The first example is right here: a live environmental visualization embedded in the article, rather than a screenshot or a link that sends you elsewhere.
 
 <figure>
   <iframe
@@ -35,36 +35,36 @@ This post is also a small showcase of what the new system makes possible. Here i
 
 ## Why Astro now
 
-GitHub Pages and templates served us for a long time because they gave static hosting, simple layouts, and a low-cost publishing path.
+GitHub Pages and templates served us well for a long time. They offered static hosting, straightforward layouts, and an inexpensive way to publish.
 
-As the blog grew, the long-term needs changed. We needed content collections, custom routing, richer Markdown, validation, redirects, search data, RSS, and topic pages from one source.
+As the archive grew, so did our requirements. We needed content collections, custom routing, richer Markdown, validation, redirects, search data, RSS, and topic pages, all generated from one source.
 
-Astro adds those customization layers on top of static hosting while keeping development accessible. Authors edit Markdown, maintainers work with plain files, and feature work stays in code through routes, layouts, scripts, and checks.
+Astro provides those layers while keeping the site static and the development workflow approachable. Authors write Markdown. Maintainers work with plain files. Routes, layouts, scripts, and checks remain in code where developers can review and test them.
 
-To make things even better, it follows a decoupled architecture: content and aesthetics are independent. so migrating the content to a different platform, or modifying the aesthetics, is a painless process.
+The architecture also separates content from presentation. We can redesign the site without rewriting the articles, or move the content again without dragging the current design along with it. Future maintainers may thank us for that.
 
 ## What changed
 
-Every post now lives in `content/posts` as a folder with a date-prefixed name, an `index.md` file, and images next to the article when practical.
+Each post now has its own folder in `content/posts`, named with a date prefix. The folder contains an `index.md` file and, where practical, the images used by the article.
 
-Astro reads these folders as a content collection, while the collection schema checks frontmatter before the site builds. The route `src/pages/posts/[...slug].astro` maps each post ID to a URL, and the homepage, RSS feed, topic pages, author pages, API endpoints, and search index read from the same collection.
+Astro reads these folders as a content collection. A schema checks the frontmatter before the site builds. The route `src/pages/posts/[...slug].astro` maps each post ID to a URL, while the homepage, RSS feed, topic pages, author pages, API endpoints, and search index all read from the same collection.
 
-One content source feeds every public view.
+One source feeds every public view. That is a small sentence with a pleasantly large maintenance benefit.
 
 ## What Astro adds
 
-Astro sits between Markdown and public pages. The build reads content collections, validates frontmatter, renders Markdown with `remark-math` and `rehype-katex`, and writes static HTML.
+Astro sits between the Markdown files and the public site. During a build, it reads the content collections, validates frontmatter, renders Markdown with `remark-math` and `rehype-katex`, and writes static HTML.
 
-The site gets features from small parts working together:
+A handful of focused components provide the rest:
 
 - `@astrojs/sitemap` writes sitemap files from generated routes.
 - `@astrojs/rss` feeds `/rss.xml` from the post collection.
-- `src/pages/search-index.json.ts` exports search data for the browser search UI.
+- `src/pages/search-index.json.ts` exports data for the browser search interface.
 - `src/pages/api/*.json.ts` exposes post, author, and topic data.
 - `BaseLayout.astro` loads browser scripts for Mermaid, search, dark mode, and image behavior.
 - Astro components keep author cards, topic lists, layouts, and post templates in code.
 
-This is the useful layer above plain static hosting. The blog stays file-based, while the site gains routing, metadata, feeds, JavaScript components, and generated indexes from the same source.
+The blog remains file-based, but it gains routing, metadata, feeds, JavaScript components, and generated indexes without creating separate sources for each feature.
 
 | Area | Medium limitation | Markdown plus Astro path |
 | --- | --- | --- |
@@ -77,46 +77,45 @@ This is the useful layer above plain static hosting. The blog stays file-based, 
 | JavaScript | The platform decides which scripts run. | Astro loads browser code only where the site needs Mermaid, search, dark mode, or image behavior. |
 | Portability | Export quality decides how reusable the content is. | Plain files, assets, and build scripts move together. |
 
-## What this gives you
+In day-to-day work, this means:
 
-- Pull requests make content reviewable by showing exact line changes.
-- Relative image links keep local assets near source text.
-- Date-prefixed folders generate predictable URLs.
-- Build scripts catch broken image links and bad frontmatter.
-- Astro ships HTML first, then loads JavaScript for selected features.
+- Pull requests show the exact lines under review.
+- Relative image links keep local assets near their source text.
+- Date-prefixed folders produce predictable URLs.
+- Build scripts catch broken image links and invalid frontmatter.
+- Astro ships HTML first and loads JavaScript only for selected features.
 
-The result behaves like a small documentation system, with source files, routes, redirects, metadata, and validation in one repository.
+The result is closer to a small documentation system than a stack of articles in a web editor. Source files, routes, redirects, metadata, and validation all live in one repository.
 
-## Migration work
+## Treating the migration as data
 
-The Medium export gave us Markdown, image files, and metadata, but the content still needed cleanup.
+Medium's export gave us Markdown, image files, and metadata. It did not give us a finished archive. The content still needed careful cleanup.
 
-We handled the migration as data:
+We treated the migration as a data problem and:
 
-- Moved posts into date-prefixed folders.
-- Restored image references.
-- Normalized slugs.
-- Added redirects from source URLs.
-- Checked frontmatter.
-- Checked relative image paths.
-- Fixed RSS and search inputs.
+- moved posts into date-prefixed folders;
+- restored image references;
+- normalized slugs;
+- added redirects from source URLs;
+- checked frontmatter and relative image paths;
+- fixed the inputs used by RSS and search.
 
-This work matters because broken links and missing assets degrade the blog one post at a time. A repository gives maintainers a place to catch those failures before publication.
+This work is easy to underestimate. Broken links and missing assets erode an archive one post at a time. Keeping the content in a repository gives us a chance to catch those failures before publication instead of discovering them through a reader's report months later.
 
 ## Technical examples
 
-Medium works well for essays, while our blog often needs code, diagrams, math, maps, simulations, and small interactive pieces. The rest of this section is deliberately practical: it shows the kinds of technical media we can now support in the same article source.
+Research software stories often need more than text and images. They may include code, diagrams, formulas, maps, simulations, or a small interactive component. The examples below show how those pieces can live alongside the article source.
 
-We keep an unlisted integration showcase post in the repository to test richer inputs before they appear in public posts. The page covers fenced Mermaid flowcharts and sequence diagrams, LaTeX, raw HTML details, iframe embeds, WebGL demos, global environmental visualizations, environmental maps, tables, and image paths.
+We keep an unlisted integration showcase post in the repository to test richer inputs before using them in public posts. It covers fenced Mermaid flowcharts and sequence diagrams, LaTeX, raw HTML details, iframe embeds, WebGL demos, global environmental visualizations, environmental maps, tables, and image paths.
 
-In Astro, code blocks stay in Markdown:
+Code blocks remain ordinary Markdown:
 
 ```python
 def estimate_reading_time(words: int, words_per_minute: int = 225) -> int:
     return max(1, round(words / words_per_minute))
 ```
 
-The same file also holds Mermaid diagrams:
+The same file can contain Mermaid diagrams:
 
 ```mermaid
 graph LR
@@ -127,13 +126,13 @@ graph LR
   HTML --> RSS[RSS feed]
 ```
 
-Math fits the same workflow, so a post about machine learning does not need screenshots for formulas:
+Math follows the same workflow, so a machine learning post does not need to turn a formula into a screenshot:
 
 $$
 \operatorname{softmax}(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}}
 $$
 
-Interactive examples can sit in the same article when the provider allows framing. For a post about simulation or visualization, a WebGL fluid example is closer to the kind of technical media we want to support:
+When a provider allows framing, an interactive example can sit inside the article. For a story about simulation or visualization, a WebGL fluid example is much closer to the subject than a static image:
 
 <figure>
   <iframe
@@ -146,7 +145,7 @@ Interactive examples can sit in the same article when the provider allows framin
   <figcaption>Source: <a href="https://paveldogreat.github.io/WebGL-Fluid-Simulation/">WebGL Fluid Simulation</a> by <a href="https://github.com/PavelDoGreat/WebGL-Fluid-Simulation">Pavel Dobryakov</a>, MIT license. The project references GPU Gems Chapter 38, <a href="https://developer.nvidia.com/gpugems/gpugems/part-vi-beyond-triangles/chapter-38-fast-fluid-dynamics-simulation-gpu">Fast Fluid Dynamics Simulation on the GPU</a>.</figcaption>
 </figure>
 
-Environmental science posts can use the same pattern for live maps. A weather map gives readers something to explore instead of a static screenshot:
+Environmental science posts can use the same pattern for live maps. A weather map gives readers something to explore:
 
 <figure>
   <iframe
@@ -158,28 +157,24 @@ Environmental science posts can use the same pattern for live maps. A weather ma
   <figcaption>Source: <a href="https://www.windy.com/">Windy.com</a> embedded weather map using the ECMWF forecast layer. Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</figcaption>
 </figure>
 
-Small custom HTML components support details blocks, embeds, and interactive figures, while unlisted posts give editors a preview space before public release.
+Small custom HTML components can support details blocks, embeds, and interactive figures. Unlisted posts give editors a place to test them before publication.
 
-These features matter for technical writing because a research software post often needs a code sample, a workflow diagram, a formula, a repository link, and a citation. The publishing system should keep those pieces close to the article source.
+These features are useful because a technical article may need a code sample, workflow diagram, formula, repository link, and citation to explain one piece of work properly. The publishing system should keep those elements close to the text they support.
 
 ## Why Git matters
 
-Git gives editors a publication trail because a pull request stores discussion, review, and approval next to the change. Authors preview branches before merge, and CI runs validation before deploy.
+A pull request keeps discussion, review, and approval beside the proposed change. Authors can preview a branch before merge, while continuous integration validates the content before deployment.
 
-Editors review text, links, figures, and metadata in one place, while authors keep writing Markdown. The review process uses standard repository tools.
+Editors review text, links, figures, and metadata in one place. Authors still work in Markdown, and every revision remains visible in the repository history.
 
-This fits research software practice: treat content as source, review changes, run checks, and publish from a clean build.
+This is a familiar research software practice applied to publishing: keep the source accessible, review changes, run checks, and publish from a clean build.
 
-## What comes next
+## Room to grow
 
-The move to Markdown and Astro is the base layer, not the final shape. It lets us grow the blog into a modern media publication for research software and computational science.
+Markdown and Astro give us a foundation rather than a prescribed final form. We can now add new formats when a story genuinely benefits from them.
 
-That means future posts can use custom story layouts, reusable interactive figures, project showcases, map-based explainers, richer citation blocks, and article-specific components. A climate story could include a live map and a model diagram. A machine learning story could include a small interactive demo. A research software story could link narrative, code, package metadata, and project history on one page.
+That might mean a custom story layout, a reusable interactive figure, a project showcase, a map-based explainer, a richer citation block, or an article-specific component. A climate story could combine a live map with a model diagram. A machine learning story could include a small interactive demo. A research software story could connect its narrative to code, package metadata, and project history.
 
-We do not need all of that for every article. The important change is that the repository now gives us room to build those formats when a story needs them, instead of being limited by a platform editor.
+Most articles will not need any of that. The practical gain is choice: the repository gives us room to build a richer format when the material calls for one.
 
-## What we gained
-
-The blog now behaves like a small research software project because source files live in Git, build steps repeat, content checks run before publication, routes come from code, and outputs come from one collection.
-
-This fits an institute focused not only in research software, but also in open science. By leaving Medium we escape the irony of hosting our blog in a closed, paywalled platform.
+The blog now works much like the research software projects it describes. Its source lives in Git, builds are repeatable, checks run before publication, routes come from code, and every public view starts with the same content collection. For an institute committed to research software and open science, that feels like the right place for its institutional memory to live.
