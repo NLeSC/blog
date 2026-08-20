@@ -1,5 +1,5 @@
 ---
-title: "From Markdown to a Technical Publishing Platform: What Astro Lets Us Build"
+title: "Building a Technical Publishing Platform with Markdown and Astro"
 author: Jesse Gonzalez
 published: true
 source: local
@@ -14,13 +14,13 @@ tags:
 
 ![Abstract bands of warm light, blue, and violet flowing across a dark background](./cover.avif)
 
-Moving the eScience Center blog to Astro gave us something technically useful: control over the complete path from source file to published page.
+When we rebuilt the eScience Center blog with Astro, we brought the publishing chain into the repository. The source, validation rules, routes, generated feeds, and browser features now sit together where we can inspect and change them.
 
-Each article starts as Markdown in a public [Git repository](https://github.com/nlesc-blogging/blog). From there, we can validate it, combine it with structured metadata, generate several outputs, and add interactive features where the subject calls for them. [Astro](https://astro.build/) still delivers static HTML to the reader, so the default remains fast and simple.
+A post begins as Markdown in a public [Git repository](https://github.com/nlesc-blogging/blog). During the build, we validate it, combine it with structured metadata, and generate the different forms in which readers and other systems use it. [Astro](https://astro.build/) sends static HTML to the browser unless a particular feature needs JavaScript.
 
-That combination is the interesting part. Static no longer means fixed. It gives us a controlled base on which we can build richer forms of technical publishing.
+We can try more technical article formats without making every page depend on JavaScript.
 
-Here is an immediate example. This live environmental visualization is embedded directly in the article rather than represented by a screenshot:
+The wind map below is one simple example. It remains interactive inside the article instead of becoming a screenshot.
 
 <figure>
   <iframe
@@ -37,9 +37,9 @@ Here is an immediate example. This live environmental visualization is embedded 
 
 Astro sits between the article source and the public website. During a build, it reads our content collection, validates frontmatter, renders Markdown with `remark-math` and `rehype-katex`, and generates static HTML.
 
-Because that process is code, we decide what happens along the way. A build can check content, transform data, create indexes, and produce multiple views from the same article. The browser receives an ordinary static page unless a feature genuinely needs JavaScript.
+The build step is ordinary project code, so we can inspect and extend it. It checks content, transforms data, creates indexes, and produces multiple views from the same article. The browser still receives an ordinary static page unless a feature needs JavaScript.
 
-The current site already uses this model in several ways:
+The current site already uses this build in several places.
 
 - `@astrojs/sitemap` generates sitemap files from the available routes.
 - `@astrojs/rss` builds `/rss.xml` from the post collection.
@@ -54,26 +54,26 @@ One Markdown article can therefore appear on a post page, an author page, a topi
 
 Each post lives in its own folder in `content/posts`. The date-prefixed folder contains an `index.md` file and, where practical, the images used by the article.
 
-Frontmatter turns the article into more than a block of prose. Fields such as title, author, publication status, source, and tags become inputs for the rest of the site. Astro's collection schema checks those fields before the build succeeds.
+The title, author, publication status, source, and tags live in the article's frontmatter. The rest of the site can use those fields, and Astro's collection schema checks them before the build succeeds.
 
 The route `src/pages/posts/[...slug].astro` maps each post ID to a URL. The homepage, topic pages, author pages, API endpoints, RSS feed, and search index all read from that same collection.
 
-This creates room for more structured connections. A post could link to software repositories, Research Software Directory entries, releases, DOIs, papers, datasets, projects, or contributor profiles. Because the metadata is available during the build, those links can also drive related-content sections, citation blocks, software cards, or project archives.
+The same metadata can connect a post to software repositories, Research Software Directory entries, releases, DOIs, papers, datasets, projects, or contributor profiles. Those links could later drive related-content sections, citation blocks, software cards, or project archives.
 
 ## Technical media can live with the story
 
 Research software is difficult to explain using prose and screenshots alone. A post may need code, a workflow diagram, a formula, a map, a simulation, or a small interactive demonstration.
 
-We keep an unlisted integration showcase post in the repository to test these inputs before using them in public articles. It covers fenced Mermaid flowcharts and sequence diagrams, LaTeX, raw HTML details, iframe embeds, WebGL demos, global environmental visualizations, environmental maps, tables, and image paths.
+We keep an unlisted integration test post in the repository to check these inputs before using them in public articles. It covers fenced Mermaid flowcharts and sequence diagrams, LaTeX, raw HTML details, iframe embeds, WebGL demos, global environmental visualizations, environmental maps, tables, and image paths.
 
-Code remains ordinary Markdown:
+A Python example can remain in an ordinary Markdown fence.
 
 ```python
 def estimate_reading_time(words: int, words_per_minute: int = 225) -> int:
     return max(1, round(words / words_per_minute))
 ```
 
-The same source file can contain a Mermaid diagram:
+Mermaid diagrams use a fenced block as well.
 
 ```mermaid
 graph LR
@@ -84,13 +84,13 @@ graph LR
   HTML --> RSS[RSS feed]
 ```
 
-Mathematical notation follows the same workflow:
+Mathematical notation stays in the article source.
 
 $$
 \operatorname{softmax}(x_i) = \frac{e^{x_i}}{\sum_j e^{x_j}}
 $$
 
-When an external provider allows framing, we can place an interactive example beside the explanation it supports. For a story about simulation or visualization, readers can interact with the system directly:
+When an external provider allows framing, we can place an interactive example beside the explanation it supports. In a story about simulation or visualization, readers can work with the system directly.
 
 <figure>
   <iframe
@@ -103,7 +103,7 @@ When an external provider allows framing, we can place an interactive example be
   <figcaption>Source: <a href="https://paveldogreat.github.io/WebGL-Fluid-Simulation/">WebGL Fluid Simulation</a> by <a href="https://github.com/PavelDoGreat/WebGL-Fluid-Simulation">Pavel Dobryakov</a>, MIT license. The project references GPU Gems Chapter 38, <a href="https://developer.nvidia.com/gpugems/gpugems/part-vi-beyond-triangles/chapter-38-fast-fluid-dynamics-simulation-gpu">Fast Fluid Dynamics Simulation on the GPU</a>.</figcaption>
 </figure>
 
-Environmental science posts can use the same approach for live maps:
+Environmental science posts can include live maps in the same way.
 
 <figure>
   <iframe
@@ -115,13 +115,13 @@ Environmental science posts can use the same approach for live maps:
   <figcaption>Source: <a href="https://www.windy.com/">Windy.com</a> embedded weather map using the ECMWF forecast layer. Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</figcaption>
 </figure>
 
-These examples use existing services, but the same architecture can support custom Astro components, generated figures, WebGL, WebAssembly, or browser-based visualizations. The static page remains the foundation. Interactive code is added only where it helps explain the work.
+The examples above use existing services. We can also add custom Astro components, generated figures, WebGL, WebAssembly, or browser-based visualizations. The page remains static until one of those features has a reason to run code in the browser.
 
 ## Content checks become part of publishing
 
 Once articles are files in a repository, editorial quality can be checked in the same pipeline as the website.
 
-Our build scripts already validate frontmatter and relative image paths. The same approach can be extended to check:
+Our build scripts already validate frontmatter and relative image paths. They could also check the following.
 
 - broken links;
 - missing alt text;
@@ -134,7 +134,7 @@ Our build scripts already validate frontmatter and relative image paths. The sam
 
 A pull request shows the exact lines that changed. Editors can review text, links, figures, and metadata together, preview the branch, and let continuous integration validate the result before deployment.
 
-The useful point is technical feedback. An author or editor can see that an image path is broken or a required field is missing before the article reaches the public site.
+This gives authors and editors technical feedback before publication. A broken image path or missing field is easier to fix in a pull request than after readers encounter it on the public site.
 
 ## Content and presentation can evolve separately
 
@@ -142,14 +142,14 @@ Markdown stores the article's structure and content. Astro components and CSS co
 
 That separation lets us redesign an author page, change the typography, add a new story layout, or rebuild the topic navigation without rewriting the articles themselves. It also allows individual stories to use a custom layout while the rest of the archive keeps the standard template.
 
-The same principle applies to outputs. A new API, newsletter feed, annual-report index, or research-software collection can read the existing content and metadata during the build. The archive becomes reusable input rather than material locked to one visual presentation.
+A new API, newsletter feed, annual-report index, or research-software collection can read the existing content and metadata during the build. The archive remains useful input instead of being tied to one visual presentation.
 
 ## What we can build next
 
-The current implementation provides the base pieces: structured Markdown, local assets, content collections, programmable routes, reusable components, validation, static output, and selective JavaScript.
+The current implementation gives us structured Markdown, local assets, content collections, programmable routes, reusable components, validation, static output, and selective JavaScript.
 
-From there, we can build features around actual publishing needs. A climate article could combine a live map with a model diagram. A machine learning article could include an interactive explanation and the relevant code. A software story could connect its narrative to a repository, release metadata, DOI, citation, maintainers, and related projects.
+Those pieces let us build around the needs of an article. A climate story could combine a live map with a model diagram. A machine learning article could include an interactive explanation and the relevant code. A software story could connect its narrative to a repository, release metadata, DOI, citation, maintainers, and related projects.
 
 We can also generate curated topic collections, richer author pages, faceted archive search, reusable scientific figures, notebook-derived articles, or machine-readable feeds for other eScience systems.
 
-Most posts will still be straightforward articles, and that is a feature too. Astro gives us static HTML by default and technical depth when we need it. The important change is that we now control the layer in between: the build process that turns institutional knowledge into a website, an archive, and a platform for explaining research software properly.
+Most posts will remain straightforward articles, which is exactly what they should be. Astro gives us static HTML by default and more technical depth when a story needs it. We now control the build process that turns the archive into pages, feeds, data, and interactive explanations.
