@@ -12,7 +12,7 @@ tags:
   - Web
 ---
 
-![Diagram showing Medium export files moving into Markdown, Git, Astro, and static blog outputs](./cover.svg)
+![A code workstation overlaid with a Markdown-to-Astro publishing pipeline](./cover.webp)
 
 Moving the eScience Center blog to Astro gave us something technically useful: control over the complete path from source file to published page.
 
