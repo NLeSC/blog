@@ -12,7 +12,7 @@ tags:
   - Web
 ---
 
-![A code workstation overlaid with a Markdown-to-Astro publishing pipeline](./cover.webp)
+![Abstract bands of warm light, blue, and violet flowing across a dark background](./cover.avif)
 
 Moving the eScience Center blog to Astro gave us something technically useful: control over the complete path from source file to published page.
 
