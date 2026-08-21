@@ -9,6 +9,9 @@ tags:
   - Software Engineering
 ---
 
+
+What is exactly a Research Software Engineer?
+
 ## A Representative Survey
 
 The definition of Research Software Engineers (RSEs) is, according to the [website of the international RSE community](http://researchsoftware.org/):
