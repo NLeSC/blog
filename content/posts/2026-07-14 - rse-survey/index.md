@@ -17,7 +17,7 @@ The definition of Research Software Engineers (RSEs) is, according to the [websi
 
 Defining the specifics, however is less straight-forward. How much of a researcher is somebody with 'an understanding of research'? How much 'professional software expertise' is there? To get a more fine-grained view, we have asked the people who know best: RSEs working in this profession.
 
-![RSEs Technical Work between engineering and research](rse-scale.png)
+![RSEs Technical Work between engineering and research](./rse-scale.png)
 Source: [Katz et al., 2021](https://zenodo.org/record/5531839)
 
 For a survey sent out to the 38 RSEs at the Netherlands eScience Center -- one of the largest institutions of Research Software Engineering in the world -- we have received 28 completed responses. This proportion gives statistically robust insights about how the RSEs NL eScience Center see their role.
