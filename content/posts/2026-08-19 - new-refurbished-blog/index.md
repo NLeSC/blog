@@ -22,7 +22,7 @@ In the near future we'll release a blogpost about our reasons and technical deta
 ### Does it affect me?
 Most likely not, unless:
 
-- You subscribed to us via Medium. If that's the case, please be aware you'll stop receiving updates. If you want to keep following us, we recommend that you subscribe to our [RSS feed](https://blog.esciencecenter.nl/feed/), or follow our socials ([Bluesky](https://bsky.app/profile/esciencecenter.bsky.social), [Mastodon](https://akademienl.social/@eScienceCenter), [LinkedIn](https://www.linkedin.com/company/netherlands-escience-center/?viewAsMember=true)). 
+- You subscribed to us via Medium. If that's the case, please be aware you'll stop receiving updates. If you want to keep following us, we recommend that you subscribe to our [RSS feed](https://blog.esciencecenter.nl/rss.xml), or follow our socials ([Bluesky](https://bsky.app/profile/esciencecenter.bsky.social), [Mastodon](https://akademienl.social/@eScienceCenter), [LinkedIn](https://www.linkedin.com/company/netherlands-escience-center/?viewAsMember=true)). 
 - You want to author a blogpost. This is actually easier than before. Now you can [submit your draft](https://github.com/NLeSC/blog/pulls) through a pull request.
 
 **For everyone else, the change should be automatic and painless**. The usual URL, [blog.esciencecenter.nl](https://blog.esciencecenter.nl), now points to the new backend. We cloned all the content to the new version. The URLs of the cloned blogposts are preserved, and so is the URL of the RSS feed. To be even safer, the original old posts will remain available at https://medium.com/escience-center/.
