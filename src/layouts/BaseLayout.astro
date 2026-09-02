@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import CodeCopyButtons from '../components/CodeCopyButtons.astro';
 import { sitePath } from '../lib/urls';
 
 const { title, description, ogImage, author, noindex } = Astro.props;
@@ -303,5 +304,6 @@ const imageUrl = absoluteUrl(ogImage || sitePath('/header-banner.webp'));
 
     initMermaidBlocks().catch((error) => console.error('Mermaid rendering failed', error));
   </script>
+  <CodeCopyButtons />
 </body>
 </html>

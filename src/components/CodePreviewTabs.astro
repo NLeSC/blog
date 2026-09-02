@@ -1,0 +1,233 @@
+<script>
+  const root = document.querySelector('.post-content');
+  const copyIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"></path></svg>';
+  const checkIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>';
+
+  root?.querySelectorAll<HTMLElement>('[data-code-example-preview]').forEach((previewMarker, index) => {
+    let sourceMarker = previewMarker.nextElementSibling;
+    while (sourceMarker && !sourceMarker.hasAttribute('data-code-example-source')) {
+      sourceMarker = sourceMarker.nextElementSibling;
+    }
+    if (!sourceMarker) return;
+
+    const example = document.createElement('section');
+    const header = document.createElement('div');
+    const tabs = document.createElement('div');
+    const previewTab = document.createElement('button');
+    const codeTab = document.createElement('button');
+    const previewPanel = document.createElement('div');
+    const codePanel = document.createElement('div');
+    const previewId = `code-example-preview-${index}`;
+    const codeId = `code-example-code-${index}`;
+
+    example.className = 'code-example';
+    header.className = 'code-example__tabs';
+    tabs.className = 'code-example__tablist';
+    tabs.setAttribute('role', 'tablist');
+    tabs.setAttribute('aria-label', 'Example view');
+
+    previewTab.type = 'button';
+    previewTab.textContent = 'Preview';
+    previewTab.className = 'code-example__tab';
+    previewTab.id = `${previewId}-tab`;
+    previewTab.setAttribute('role', 'tab');
+    previewTab.setAttribute('aria-controls', previewId);
+
+    codeTab.type = 'button';
+    codeTab.textContent = 'Code';
+    codeTab.className = 'code-example__tab';
+    codeTab.id = `${codeId}-tab`;
+    codeTab.setAttribute('role', 'tab');
+    codeTab.setAttribute('aria-controls', codeId);
+
+    previewPanel.className = 'code-example__panel';
+    previewPanel.id = previewId;
+    previewPanel.setAttribute('role', 'tabpanel');
+    previewPanel.setAttribute('aria-labelledby', previewTab.id);
+
+    codePanel.className = 'code-example__panel code-example__panel--code';
+    codePanel.id = codeId;
+    codePanel.setAttribute('role', 'tabpanel');
+    codePanel.setAttribute('aria-labelledby', codeTab.id);
+
+    while (previewMarker.nextSibling && previewMarker.nextSibling !== sourceMarker) {
+      previewPanel.append(previewMarker.nextSibling);
+    }
+    while (sourceMarker.nextSibling && (sourceMarker.nextElementSibling?.tagName !== 'H2' || sourceMarker.nextSibling !== sourceMarker.nextElementSibling)) {
+      codePanel.append(sourceMarker.nextSibling);
+    }
+
+    const source = codePanel.querySelector('pre code');
+    if (source) {
+      const copy = document.createElement('button');
+      const status = document.createElement('span');
+      copy.type = 'button';
+      copy.className = 'code-example__copy';
+      copy.title = 'Copy code';
+      copy.setAttribute('aria-label', 'Copy code');
+      copy.innerHTML = copyIcon;
+      status.className = 'sr-only';
+      status.setAttribute('role', 'status');
+      copy.addEventListener('click', async () => {
+        status.textContent = '';
+        try {
+          await navigator.clipboard.writeText(source.textContent || '');
+          copy.innerHTML = checkIcon;
+          copy.title = 'Copied';
+          copy.setAttribute('aria-label', 'Copied');
+          status.textContent = 'Code copied';
+          window.setTimeout(() => {
+            copy.innerHTML = copyIcon;
+            copy.title = 'Copy code';
+            copy.setAttribute('aria-label', 'Copy code');
+          }, 1500);
+        } catch {
+          copy.title = 'Unable to copy';
+          status.textContent = 'Unable to copy code';
+        }
+      });
+      header.append(copy, status);
+    }
+
+    const tabButtons = [previewTab, codeTab];
+    const panels = [previewPanel, codePanel];
+    const selectTab = (selected: number) => {
+      tabButtons.forEach((tab, tabIndex) => {
+        const active = tabIndex === selected;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+        panels[tabIndex].hidden = !active;
+      });
+    };
+
+    tabButtons.forEach((tab, tabIndex) => {
+      tab.addEventListener('click', () => selectTab(tabIndex));
+      tab.addEventListener('keydown', (event) => {
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 0
+          : event.key === 'End' ? tabButtons.length - 1
+          : (tabIndex + (event.key === 'ArrowRight' ? 1 : -1) + tabButtons.length) % tabButtons.length;
+        selectTab(next);
+        tabButtons[next].focus();
+      });
+    });
+
+    tabs.append(previewTab, codeTab);
+    header.prepend(tabs);
+    example.append(header, previewPanel, codePanel);
+    previewMarker.before(example);
+    previewMarker.remove();
+    sourceMarker.remove();
+    selectTab(0);
+  });
+</script>
+
+<style is:global>
+  .post-content .code-example {
+    margin: 1.5em 0 2em;
+    overflow: hidden;
+    border: 1px solid #dedede;
+    border-radius: 14px;
+    background: #fff;
+  }
+
+  .post-content .code-example__tabs {
+    display: flex;
+    align-items: center;
+    padding: 0.7rem;
+    border-bottom: 1px solid #dedede;
+    background: #f3f4f6;
+  }
+
+  .post-content .code-example__tablist {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .post-content .code-example__tab {
+    border: 0;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .post-content .code-example__tab {
+    padding: 0.45rem 0.8rem;
+    border-radius: 7px;
+    color: #4b5563;
+    background: transparent;
+  }
+
+  .post-content .code-example__tab[aria-selected='true'] {
+    color: #003388;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  }
+
+  .post-content .code-example__tab:focus-visible {
+    outline: 2px solid #1d4ed8;
+    outline-offset: 2px;
+  }
+
+  .post-content .code-example__panel {
+    position: relative;
+    padding: 1.25rem;
+  }
+
+  .post-content .code-example__panel > :first-child {
+    margin-top: 0;
+  }
+
+  .post-content .code-example__panel > :last-child {
+    margin-bottom: 0;
+  }
+
+  .post-content .code-example__panel--code {
+    padding: 0;
+  }
+
+  .post-content .code-example__panel--code pre {
+    min-height: 4.25rem;
+    margin: 0;
+    padding: 1.4rem 1.25rem;
+    border: 0;
+    border-radius: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .post-content .code-example__copy {
+    margin-left: auto;
+  }
+
+  .dark .post-content .code-example {
+    border-color: #343a46;
+    background: #111;
+  }
+
+  .dark .post-content .code-example__tabs {
+    border-color: #343a46;
+    background: #222831;
+  }
+
+  .dark .post-content .code-example__tab {
+    color: #aab0bc;
+  }
+
+  .dark .post-content .code-example__tab[aria-selected='true'] {
+    color: #8cc7ff;
+    background: #1a2029;
+  }
+
+  @media (max-width: 480px) {
+    .post-content .code-example__panel {
+      padding: 1rem;
+    }
+
+    .post-content .code-example__panel--code {
+      padding: 0;
+    }
+  }
+</style>

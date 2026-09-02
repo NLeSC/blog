@@ -1,0 +1,109 @@
+<script>
+  const copyIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"></path></svg>';
+  const checkIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>';
+
+  function addCodeCopyButtons() {
+    document.querySelectorAll<HTMLElement>('.post-content pre').forEach((pre) => {
+      if (pre.closest('.code-example, .code-block-copy')) return;
+      if (pre.dataset.language === 'mermaid' || pre.querySelector('.language-mermaid')) return;
+
+      const wrapper = document.createElement('div');
+      const button = document.createElement('button');
+      const status = document.createElement('span');
+      wrapper.className = 'code-block-copy';
+      button.type = 'button';
+      button.className = 'code-copy-button';
+      button.title = 'Copy code';
+      button.setAttribute('aria-label', 'Copy code');
+      button.innerHTML = copyIcon;
+      status.className = 'sr-only';
+      status.setAttribute('role', 'status');
+      button.addEventListener('click', async () => {
+        status.textContent = '';
+        try {
+          await navigator.clipboard.writeText(pre.textContent || '');
+          button.innerHTML = checkIcon;
+          button.title = 'Copied';
+          button.setAttribute('aria-label', 'Copied');
+          status.textContent = 'Code copied';
+          window.setTimeout(() => {
+            button.innerHTML = copyIcon;
+            button.title = 'Copy code';
+            button.setAttribute('aria-label', 'Copy code');
+          }, 1500);
+        } catch {
+          button.title = 'Unable to copy';
+          status.textContent = 'Unable to copy code';
+        }
+      });
+
+      pre.before(wrapper);
+      wrapper.append(pre, button, status);
+    });
+  }
+
+  window.requestAnimationFrame(addCodeCopyButtons);
+</script>
+
+<style is:global>
+  .post-content .code-block-copy {
+    position: relative;
+    margin: 1.5em 0;
+  }
+
+  .post-content .code-block-copy > pre {
+    margin: 0;
+    padding-right: 4rem;
+  }
+
+  .post-content .code-copy-button,
+  .post-content .code-example__copy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    padding: 0;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    color: #4b5563;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  .post-content .code-copy-button {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .post-content .code-copy-button svg,
+  .post-content .code-example__copy svg {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .post-content .code-copy-button:hover,
+  .post-content .code-example__copy:hover {
+    color: #003388;
+    border-color: #9ca3af;
+  }
+
+  .post-content .code-copy-button:focus-visible,
+  .post-content .code-example__copy:focus-visible {
+    outline: 2px solid #1d4ed8;
+    outline-offset: 2px;
+  }
+
+  .dark .post-content .code-copy-button,
+  .dark .post-content .code-example__copy {
+    border-color: #4b5563;
+    color: #e5e7eb;
+    background: #242b35;
+  }
+</style>
