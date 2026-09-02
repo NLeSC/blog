@@ -4,7 +4,7 @@ The Netherlands eScience Center blog — articles on research software engineeri
 
 **Live at:** [blog.esciencecenter.nl](https://blog.esciencecenter.nl)
 
-# How to use me
+# 💻 How to use me
 
 <details><summary>Installation (click to expand)</summary>
 
@@ -44,7 +44,7 @@ bun run dev
 
 Open [localhost:4321](http://localhost:4321). Changes reload instantly.
 
-# How to submit a blogpost
+# ✍️ How to submit a blogpost
 
 Below we show our **recommended** way of working. If you don't feel comfortable with it, you can always reach out to editors@esciencecenter.nl, and we'll assist you in the process.
 
