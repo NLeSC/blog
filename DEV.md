@@ -1,5 +1,15 @@
 # Developers' readme
 
+## Commands
+
+| Command | What it does |
+|---|---|
+| `bun run dev` | Start dev server with hot reload |
+| `bun run build` | Build static site to `dist/` |
+| `bun run new-post` | See [below](#adding-a-new-post) |
+| `bun run preview` | Preview the production build locally |
+| `bun run astro check` | Type-check `.astro` files |
+
 ## Project overview
 
 ```
@@ -49,15 +59,6 @@
   - Mermaid diagrams from fenced `mermaid` code blocks.
 - Unlisted direct-link posts for integration/showcase pages that build but stay out of public listings, RSS, APIs, topics, authors, and search.
 
-## Adding a new post
-
-See [README.md](README.md) for full content guidelines. Quick version:
-
-1. Run `bun run new-post "Post title" --author "Author Name" --tags "Tag One,Tag Two"`
-2. Edit `content/posts/YYYY-MM-DD - post-slug/index.md`
-3. Add images beside `index.md` and reference them as `./filename.png`
-4. Run `bun run dev` to preview
-
 ## Building for production
 
 ```sh
@@ -99,8 +100,8 @@ bun run build
 
 Powered by [Pagefind](https://pagefind.app). The search index is generated during `bun run build`. It indexes post titles, author names, and body text. The index is ~1MB and loads on demand.
 
-## Legacy Medium redirects
-In order to make our blog backwards compatible with our previous Medium one, we had to implement a couple of tweaks
+## Legacy Medium stuff
+In order to make our blog backwards compatible with our previous Medium one, we had to implement a couple of tweaks.
 
 ### Duplicated RSS feed
 The rss feed has copies in two places, namely:
