@@ -1,8 +1,8 @@
 # eScience Center Blog
 
-The Netherlands eScience Center blog — articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://medium.com/@eScienceCenter), now a standalone Astro site.
+The Netherlands eScience Center blog — articles on research software engineering, data science, digital scholarship, and open science.
 
-**Live:** [blog.esciencecenter.nl](https://blog.esciencecenter.nl)
+**Live at:** [blog.esciencecenter.nl](https://blog.esciencecenter.nl)
 
 # How to use me
 
