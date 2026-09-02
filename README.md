@@ -1,53 +1,113 @@
 # eScience Center Blog
 
-The Netherlands eScience Center blog — articles on research software engineering, data science, digital scholarship, and open science. Originally hosted on [Medium](https://medium.com/@eScienceCenter), now a standalone Astro site.
+The Netherlands eScience Center blog — articles on research software engineering, data science, digital scholarship, and open science.
 
-**Live:** [blog.esciencecenter.nl](https://blog.esciencecenter.nl)
+**Live at:** [blog.esciencecenter.nl](https://blog.esciencecenter.nl)
 
----
+# 💻 How to use me
 
-## Implemented features
+<details><summary>Installation (click to expand)</summary>
 
-- Astro static site generated from markdown posts.
-- Medium-style homepage with featured article, image cards, and full archive feed.
-- Responsive article pages with wide images, captions, reading time, tags, and source links.
-- Author archive pages with bios, profile photos, and post lists.
-- Topic/tag archive pages plus homepage topic discovery.
-- Client-side search across posts.
-- RSS feed and JSON endpoints for posts, authors, and topics.
-- Dark mode support.
-- GitHub Pages deployment via Actions.
-- Rich technical writing support in post bodies:
-  - standard markdown: headings, links, blockquotes, lists, tables, code blocks, and inline code;
-  - images kept alongside the Markdown for each post;
-  - raw HTML for editorial affordances such as `<details>` / `<summary>`;
-  - iframe embeds for videos and interactive content, including YouTube and Observable-style embeds;
-  - math notation via inline and block LaTeX;
-  - Mermaid diagrams from fenced `mermaid` code blocks.
-- Unlisted direct-link posts for integration/showcase pages that build but stay out of public listings, RSS, APIs, topics, authors, and search.
+## Prerequisites
 
----
+- **[Bun](https://bun.sh)** ≥ 1.2 — runtime, package manager, and bundler
+- **Git** — version control
+- **Node.js** ≥ 22.12 (Bun handles this, but some tooling may need it)
 
-## Adding a new post
+### macOS
+```sh
+curl -fsSL https://bun.sh/install | bash
+```
 
-### 1. Create the post directory
+### Linux
+```sh
+curl -fsSL https://bun.sh/install | bash
+```
 
-Use the helper command so directory names only encode the date and title; author names live in frontmatter where special characters are safe:
+## Quick start
 
 ```sh
-bun run new-post "Why We Build Tools" --author "Jesse Gonzalez" --tags "RSE,Tools,Open Source"
+# Clone
+git clone git@github.com:NLeSC/blog.git
+cd blog
+
+# Install
+bun install
+```
+</details>
+
+## Run daemon
+```sh
+# Dev server (hot reload)
+bun run dev
 ```
 
-This creates `content/posts/YYYY-MM-DD - why-we-build-tools/index.md` with `published: false` for review. Keep post-specific assets in that directory:
+Open [localhost:4321](http://localhost:4321). Changes reload instantly.
 
-```text
-content/posts/YYYY-MM-DD - why-we-build-tools/
-├── index.md
-├── why-we-build-tools-diagram.png
-└── workflow.webp
+# ✍️ How to submit a blogpost
+
+Below we show our **recommended** way of working. If you don't feel comfortable with it, you can always reach out to editors@esciencecenter.nl, and we'll assist you in the process.
+
+## In a nutshell
+
+1. Fork this repo and [install it](#how-to-use-me).
+2. Run `bun run new-post "Post title" --author "Author Name" --tags "Tag One,Tag Two"`
+3. This will create `content/posts/YYYY-MM-DD - post-title/index.md`. That's your post. Edit it.
+4. (Optional) Add images in the same folder that was just created, and reference them as `./filename.png`.
+5. Run `bun run dev` to preview (at [localhost:4321](http://localhost:4321)).
+6. When you are happy, open a draft pull request.
+
+## More details
+
+<details><summary>For the curious mind only (click to expand)</summary>
+
+### Body content
+
+In a nutshell: write GitHub-flavored markdown, plus supported rich content (images, equations, diagrams, ...) when needed.
+
+#### Images
+
+Keep post-specific images next to the Markdown post and reference them with a relative path:
+
+```markdown
+![Alt text](./why-we-build-tools-diagram.png)
 ```
 
-### 2. Frontmatter (required)
+For images that need a visible caption, use a semantic HTML `<figure>` block. This is the preferred pattern for new posts because it keeps the alt text and the caption separate:
+
+```html
+<figure>
+  <img src="./why-we-build-tools-diagram.png" alt="Short accessibility description of the image" />
+  <figcaption>Caption shown under the image. Credit/source links are allowed.</figcaption>
+</figure>
+```
+
+Caption rules:
+
+- `alt` describes the image for screen readers; it is not the caption.
+- `<figcaption>` is the visible editorial caption under the image.
+- Keep captions short and factual, Medium-style.
+
+- Put credits/source links in the caption when needed.
+- Avoid the old export pattern where caption text is pasted as a normal paragraph directly after an image; use `<figure>` instead.
+
+#### Other body content (equations, diagrams, ...)
+
+Supported body content includes:
+
+- normal markdown paragraphs, headings, links, blockquotes, lists, tables, and code fences;
+- inline code with backticks;
+- syntax-highlighted code blocks with language fences, e.g. ```` ```python ````;
+- inline math with `$...$` and block math with `$$...$$`;
+- Mermaid diagrams with fenced `mermaid` blocks;
+- raw HTML for small editorial elements such as `<details>` / `<summary>`;
+- iframe embeds for videos or interactive figures, as long as the provider allows framing.
+
+The unlisted [blog post formatting guide](https://blog.esciencecenter.nl/posts/blog-post-formatting-guide) shows how to use these features alongside the corresponding [source](content/posts/2026-06-11%20-%20integration-showcase/index.md).
+
+### Frontmatter
+
+The basic frontmatter is automatically generated by `bun run new-post`. Keep reading only in case you are interested in knowing more.
 
 ```yaml
 ---
@@ -72,87 +132,6 @@ tags:
 | `unlisted` | no | `true` keeps the direct URL generated but excludes the post from homepage, search, feeds, APIs, topic pages, and author pages |
 | `featured` | no | `true` makes the post eligible for the homepage featured slot. If multiple listed posts are featured, the newest by filename date wins. If none are featured, the newest listed post is used |
 
-### 3. Body content
-
-Write markdown, plus supported rich content when needed. Keep post-specific images next to the post Markdown and reference them with a relative path:
-
-```markdown
-![Alt text](./why-we-build-tools-diagram.png)
-```
-
-For images that need a visible caption, use a semantic HTML `<figure>` block. This is the preferred pattern for new posts because it keeps the alt text and the caption separate:
-
-```html
-<figure>
-  <img src="./why-we-build-tools-diagram.png" alt="Short accessibility description of the image" />
-  <figcaption>Caption shown under the image. Credit/source links are allowed.</figcaption>
-</figure>
-```
-
-Caption rules:
-
-- `alt` describes the image for screen readers; it is not the caption.
-- `<figcaption>` is the visible editorial caption under the image.
-- Keep captions short and factual, Medium-style.
-
-- Put credits/source links in the caption when needed.
-- Avoid the old export pattern where caption text is pasted as a normal paragraph directly after an image; use `<figure>` instead.
-
-Supported body content includes:
-
-- normal markdown paragraphs, headings, links, blockquotes, lists, tables, and code fences;
-- inline code with backticks;
-- syntax-highlighted code blocks with language fences, e.g. ```` ```python ````;
-- inline math with `$...$` and block math with `$$...$$`;
-- Mermaid diagrams with fenced `mermaid` blocks;
-- raw HTML for small editorial elements such as `<details>` / `<summary>`;
-- iframe embeds for videos or interactive figures, as long as the provider allows framing.
-
-Example Mermaid diagram:
-
-````markdown
-```mermaid
-graph LR
-  Markdown --> Astro
-  Astro --> HTML
-  HTML --> Pages
-```
-````
-
-Example embed:
-
-```html
-<iframe
-  src="https://observablehq.com/embed/@d3/bar-chart/2?cells=chart"
-  title="Observable D3 bar chart embed"
-  loading="lazy">
-</iframe>
-```
-
-Use the unlisted integration showcase post as a reference for supported content patterns:
-[`content/posts/2026-06-11 - integration-showcase/index.md`](content/posts/2026-06-11%20-%20integration-showcase/index.md).
-
-Contributors can also view the live showcase to see what is possible:
-[https://blog.esciencecenter.nl/posts/2026-06-11---integration-showcase/](https://blog.esciencecenter.nl/posts/2026-06-11---integration-showcase/).
-
-### 4. Rebuild
-
-The site rebuilds automatically on push to `main`. To preview locally: `bun run dev` → [localhost:4321](http://localhost:4321).
-
----
-
-## Legacy Medium redirects
-
-`src/legacy-redirects.json` is the DNS-cutover map from `blog.esciencecenter.nl` to Astro routes. It includes post URLs, Medium aliases, tag archives, `/about`, and `/archive`.
-
-Refresh it against Medium's sitemap before cutover:
-
-```sh
-node scripts/generate-legacy-redirect-map.mjs
-bun run check:content
-bun run build
-```
-
 ## Content rules
 
 1. **One post per directory.** Put its Markdown in `index.md`.
@@ -169,31 +148,7 @@ bun run build
 12. **Use unlisted posts for smoke tests or private demos.** Set `unlisted: true` and keep `published: true` when a page should build and be reachable directly, but not appear in listings or feeds.
 13. **Feature one post manually when needed.** Set `featured: true` to put a listed post in the homepage featured slot. Only the newest featured post is used.
 
----
+</details>
 
-## Project structure
-
-```
-content/
-├── posts/            ← All blog posts (Markdown + frontmatter + local assets)
-src/
-├── pages/            ← Route pages (index, posts/[slug], authors/[slug], search)
-├── layouts/          ← Base layout (header, footer, OG metadata)
-├── styles/           ← Global CSS (Tailwind + post-content typography)
-└── content.config.ts ← Post schema (Zod types)
-public/
-├── assets/           ← Shared site assets
-├── header-banner.webp
-└── favicon.svg
-```
-
----
-
-## Tech stack
-
-- [Astro](https://astro.build) — static site generator
-- [Tailwind CSS v4](https://tailwindcss.com) — utility-first styling
-- [Bun](https://bun.sh) — package manager and runtime
-- GitHub Pages — hosting (via Actions)
-
-See [DEV.md](DEV.md) for local setup and development.
+## Need more information?
+See [DEV.md](DEV.md) for more details.
