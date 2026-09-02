@@ -14,7 +14,9 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const tocHeadings = headings.filter(({ depth }) => depth === 2 || depth === 3);
+const showTableOfContents = tocHeadings.length >= 2;
 
 const DEFAULT_LICENSE = {
   name: 'CC BY-SA 4.0',
@@ -111,8 +113,25 @@ const relatedPosts = allPosts
       )}
     </header>
 
-    <div class="post-content pb-8 animate-enter" style="--enter-delay: 120ms">
-      <Content />
+    <div class="post-reading">
+      {showTableOfContents && (
+        <aside class="post-toc" data-post-toc>
+          <nav class="post-toc-nav" aria-label="Table of contents">
+            <p>On this page</p>
+            <ol>
+              {tocHeadings.map(({ depth, slug, text }) => (
+                <li data-depth={depth}>
+                  <a href={`#${slug}`} data-heading-id={slug}>{text}</a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
+      )}
+
+      <div class="post-content pb-8 animate-enter" style="--enter-delay: 120ms">
+        <Content />
+      </div>
     </div>
 
     <!-- License -->
@@ -195,4 +214,38 @@ const relatedPosts = allPosts
       </footer>
     )}
   </article>
+
+  <script>
+    const toc = document.querySelector('[data-post-toc]');
+    if (toc) {
+      const links = Array.from(toc.querySelectorAll<HTMLAnchorElement>('a[data-heading-id]'));
+      const activate = (id: string) => links.forEach((link) => {
+        if (link.getAttribute('data-heading-id') === id) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      const targets = links.flatMap((link) => {
+        const target = document.getElementById(link.getAttribute('data-heading-id') || '');
+        return target ? [target] : [];
+      });
+
+      const updateActiveHeading = () => {
+        const current = targets.reduce((active, target) => (
+          target.getBoundingClientRect().top <= 96 ? target : active
+        ), targets[0]);
+        activate(current?.id || '');
+      };
+
+      updateActiveHeading();
+      links.forEach((link) => link.addEventListener('click', () => activate(link.getAttribute('data-heading-id') || '')));
+      let updating = false;
+      window.addEventListener('scroll', () => {
+        if (updating) return;
+        updating = true;
+        requestAnimationFrame(() => {
+          updateActiveHeading();
+          updating = false;
+        });
+      }, { passive: true });
+    }
+  </script>
 </BaseLayout>
