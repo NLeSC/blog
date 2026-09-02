@@ -44,7 +44,7 @@ bun run dev
 
 Open [localhost:4321](http://localhost:4321). Changes reload instantly.
 
-# For authors
+# How to submit a blogpost
 
 Below we show our **recommended** way of working. If you don't feel comfortable with it, you can always reach out to editors@esciencecenter.nl, and we'll assist you in the process.
 
