@@ -59,7 +59,7 @@ Below we show our **recommended** way of working. If you don't feel comfortable 
 
 ## More details
 
-For the curious mind only.
+<details><summary>For the curious mind only (click to expand)</summary>
 
 ### Body content
 
@@ -147,6 +147,8 @@ tags:
 11. **Embeds depend on provider policy.** Some websites block iframes with `X-Frame-Options` or `Content-Security-Policy`; test embeds locally before publishing.
 12. **Use unlisted posts for smoke tests or private demos.** Set `unlisted: true` and keep `published: true` when a page should build and be reachable directly, but not appear in listings or feeds.
 13. **Feature one post manually when needed.** Set `featured: true` to put a listed post in the homepage featured slot. Only the newest featured post is used.
+
+</details>
 
 ## Need more information?
 See [DEV.md](DEV.md) for more details.
