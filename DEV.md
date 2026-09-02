@@ -1,52 +1,10 @@
-# Development
-
-Local development setup for the eScience Center Blog.
-
-## Prerequisites
-
-- **[Bun](https://bun.sh)** ≥ 1.2 — runtime, package manager, and bundler
-- **Git** — version control
-- **Node.js** ≥ 22.12 (Bun handles this, but some tooling may need it)
-
-macOS:
-```sh
-curl -fsSL https://bun.sh/install | bash
-```
-
-Linux:
-```sh
-curl -fsSL https://bun.sh/install | bash
-```
-
-## Quick start
-
-```sh
-# Clone
-git clone git@github.com:NLeSC/blog.git
-cd blog
-
-# Install
-bun install
-
-# Dev server (hot reload)
-bun run dev
-```
-
-Open [localhost:4321](http://localhost:4321). Changes to `.astro`, `.md`, and `.css` files reload instantly.
-
-## Commands
-
-| Command | What it does |
-|---|---|
-| `bun run dev` | Start dev server with hot reload |
-| `bun run build` | Build static site to `dist/` |
-| `bun run preview` | Preview the production build locally |
-| `bun run astro check` | Type-check `.astro` files |
+# Developers' readme
 
 ## Project overview
 
 ```
 .
+├── content/posts/         ← Post directories with index.md and local assets
 ├── src/
 │   ├── pages/             ← Astro route pages
 │   │   ├── index.astro    ← Homepage (hero + feed)
@@ -56,7 +14,6 @@ Open [localhost:4321](http://localhost:4321). Changes to `.astro`, `.md`, and `.
 │   ├── layouts/           ← BaseLayout (HTML shell, header, footer)
 │   ├── styles/            ← global.css (Tailwind + post typography)
 │   └── content.config.ts  ← Zod schema for post frontmatter
-├── content/posts/         ← Post directories with index.md and local assets
 ├── public/
 │   ├── assets/            ← Shared site assets
 │   ├── header-banner.webp
@@ -64,6 +21,33 @@ Open [localhost:4321](http://localhost:4321). Changes to `.astro`, `.md`, and `.
 └── .github/workflows/
     └── deploy.yml         ← GitHub Pages deploy action
 ```
+
+## Tech stack
+
+- [Astro](https://astro.build) — static site generator
+- [Tailwind CSS v4](https://tailwindcss.com) — utility-first styling
+- [Bun](https://bun.sh) — package manager and runtime
+- GitHub Pages — hosting (via Actions)
+
+## Implemented features
+
+- Astro static site generated from markdown posts.
+- Medium-style homepage with featured article, image cards, and full archive feed.
+- Responsive article pages with wide images, captions, reading time, tags, and source links.
+- Author archive pages with bios, profile photos, and post lists.
+- Topic/tag archive pages plus homepage topic discovery.
+- Client-side search across posts.
+- RSS feed and JSON endpoints for posts, authors, and topics.
+- Dark mode support.
+- GitHub Pages deployment via Actions.
+- Rich technical writing support in post bodies:
+  - standard markdown: headings, links, blockquotes, lists, tables, code blocks, and inline code;
+  - images kept alongside the Markdown for each post;
+  - raw HTML for editorial affordances such as `<details>` / `<summary>`;
+  - iframe embeds for videos and interactive content, including YouTube and Observable-style embeds;
+  - math notation via inline and block LaTeX;
+  - Mermaid diagrams from fenced `mermaid` code blocks.
+- Unlisted direct-link posts for integration/showcase pages that build but stay out of public listings, RSS, APIs, topics, authors, and search.
 
 ## Adding a new post
 
@@ -114,6 +98,28 @@ bun run build
 ## Search
 
 Powered by [Pagefind](https://pagefind.app). The search index is generated during `bun run build`. It indexes post titles, author names, and body text. The index is ~1MB and loads on demand.
+
+## Legacy Medium redirects
+In order to make our blog backwards compatible with our previous Medium one, we had to implement a couple of tweaks
+
+### Duplicated RSS feed
+The rss feed has copies in two places, namely:
+
+```sh
+{home}/rss.xml # The standard, recommended place for an RSS feed
+{home}/feed    # So our Medium subscribers don't need to re-subscribe
+```
+
+### Content redirects
+`src/legacy-redirects.json` is the DNS-cutover map from `blog.esciencecenter.nl` to Astro routes. It includes post URLs, Medium aliases, tag archives, `/about`, and `/archive`.
+
+Refresh it against Medium's sitemap before cutover:
+
+```sh
+node scripts/generate-legacy-redirect-map.mjs
+bun run check:content
+bun run build
+```
 
 ## Troubleshooting
 

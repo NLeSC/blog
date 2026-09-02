@@ -4,31 +4,64 @@ The Netherlands eScience Center blog — articles on research software engineeri
 
 **Live:** [blog.esciencecenter.nl](https://blog.esciencecenter.nl)
 
----
+# How to use me
 
-## Implemented features
+<details><summary>Installation (click to expand)</summary>
 
-- Astro static site generated from markdown posts.
-- Medium-style homepage with featured article, image cards, and full archive feed.
-- Responsive article pages with wide images, captions, reading time, tags, and source links.
-- Author archive pages with bios, profile photos, and post lists.
-- Topic/tag archive pages plus homepage topic discovery.
-- Client-side search across posts.
-- RSS feed and JSON endpoints for posts, authors, and topics.
-- Dark mode support.
-- GitHub Pages deployment via Actions.
-- Rich technical writing support in post bodies:
-  - standard markdown: headings, links, blockquotes, lists, tables, code blocks, and inline code;
-  - images kept alongside the Markdown for each post;
-  - raw HTML for editorial affordances such as `<details>` / `<summary>`;
-  - iframe embeds for videos and interactive content, including YouTube and Observable-style embeds;
-  - math notation via inline and block LaTeX;
-  - Mermaid diagrams from fenced `mermaid` code blocks.
-- Unlisted direct-link posts for integration/showcase pages that build but stay out of public listings, RSS, APIs, topics, authors, and search.
+## Prerequisites
 
----
+- **[Bun](https://bun.sh)** ≥ 1.2 — runtime, package manager, and bundler
+- **Git** — version control
+- **Node.js** ≥ 22.12 (Bun handles this, but some tooling may need it)
+
+### macOS
+```sh
+curl -fsSL https://bun.sh/install | bash
+```
+
+### Linux
+```sh
+curl -fsSL https://bun.sh/install | bash
+```
+
+## Quick start
+
+```sh
+# Clone
+git clone git@github.com:NLeSC/blog.git
+cd blog
+
+# Install
+bun install
+```
+</details>
+
+## Run daemon
+```sh
+# Dev server (hot reload)
+bun run dev
+```
+
+Open [localhost:4321](http://localhost:4321). Changes to `.astro`, `.md`, and `.css` files reload instantly.
+
+## Commands
+
+| Command | What it does |
+|---|---|
+| `bun run dev` | Start dev server with hot reload |
+| `bun run build` | Build static site to `dist/` |
+| `bun run new-post` | See [below](#adding-a-new-post) |
+| `bun run preview` | Preview the production build locally |
+| `bun run astro check` | Type-check `.astro` files |
+
+# For authors
+
+Below we show our **recommended** way of working. If you don't feel comfortable with it, you can always reach out to editors@esciencecenter.nl, and we'll assist you in the process.
 
 ## Adding a new post
+
+### 0. Fork this repository
+You'll need to work within your own branch.
 
 ### 1. Create the post directory
 
@@ -38,7 +71,7 @@ Use the helper command so directory names only encode the date and title; author
 bun run new-post "Why We Build Tools" --author "Jesse Gonzalez" --tags "RSE,Tools,Open Source"
 ```
 
-This creates `content/posts/YYYY-MM-DD - why-we-build-tools/index.md` with `published: false` for review. Keep post-specific assets in that directory:
+This creates `content/posts/YYYY-MM-DD - why-we-build-tools/index.md` with `published: false` for review. Keep post-specific assets, such as images or other files, in that same directory:
 
 ```text
 content/posts/YYYY-MM-DD - why-we-build-tools/
@@ -46,6 +79,8 @@ content/posts/YYYY-MM-DD - why-we-build-tools/
 ├── why-we-build-tools-diagram.png
 └── workflow.webp
 ```
+
+`index.md` is the document where you'll write your article. By default it contains a template showcasing how to use it.
 
 ### 2. Frontmatter (required)
 
@@ -135,23 +170,12 @@ Use the unlisted integration showcase post as a reference for supported content 
 Contributors can also view the live showcase to see what is possible:
 [https://blog.esciencecenter.nl/posts/2026-06-11---integration-showcase/](https://blog.esciencecenter.nl/posts/2026-06-11---integration-showcase/).
 
-### 4. Rebuild
+### 4. See the results
 
-The site rebuilds automatically on push to `main`. To preview locally: `bun run dev` → [localhost:4321](http://localhost:4321).
+To preview locally: `bun run dev` → [localhost:4321](http://localhost:4321).
 
----
-
-## Legacy Medium redirects
-
-`src/legacy-redirects.json` is the DNS-cutover map from `blog.esciencecenter.nl` to Astro routes. It includes post URLs, Medium aliases, tag archives, `/about`, and `/archive`.
-
-Refresh it against Medium's sitemap before cutover:
-
-```sh
-node scripts/generate-legacy-redirect-map.mjs
-bun run check:content
-bun run build
-```
+### 5. Create a draft pull request
+This is your way of signalling us your blog is ready for review!
 
 ## Content rules
 
@@ -169,31 +193,5 @@ bun run build
 12. **Use unlisted posts for smoke tests or private demos.** Set `unlisted: true` and keep `published: true` when a page should build and be reachable directly, but not appear in listings or feeds.
 13. **Feature one post manually when needed.** Set `featured: true` to put a listed post in the homepage featured slot. Only the newest featured post is used.
 
----
-
-## Project structure
-
-```
-content/
-├── posts/            ← All blog posts (Markdown + frontmatter + local assets)
-src/
-├── pages/            ← Route pages (index, posts/[slug], authors/[slug], search)
-├── layouts/          ← Base layout (header, footer, OG metadata)
-├── styles/           ← Global CSS (Tailwind + post-content typography)
-└── content.config.ts ← Post schema (Zod types)
-public/
-├── assets/           ← Shared site assets
-├── header-banner.webp
-└── favicon.svg
-```
-
----
-
-## Tech stack
-
-- [Astro](https://astro.build) — static site generator
-- [Tailwind CSS v4](https://tailwindcss.com) — utility-first styling
-- [Bun](https://bun.sh) — package manager and runtime
-- GitHub Pages — hosting (via Actions)
-
-See [DEV.md](DEV.md) for local setup and development.
+## Need more information?
+See [DEV.md](DEV.md) for more details.
