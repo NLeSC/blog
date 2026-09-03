@@ -29,13 +29,13 @@ Similar to previous meetings, the atmosphere was open and collaborative,
 with participants eager to exchange ideas and identify opportunities for
 alignment across institutions.
 
-**Community Updates: Shared Challenges, Shared Opportunities**
+## Community Updates: Shared Challenges, Shared Opportunities
 
 The first hour was dedicated to updates from participating
 organizations: UMCU, LUMC, AUMC, UMCG, and eScience Center, each sharing
 their current initiatives and priorities.
 
-**1. Software Management Plans continue to gain traction**
+### 1. Software Management Plans continue to gain traction
 
 Software Management Plans (SMPs) were a recurring topic across
 institutions. UMC Utrecht shared experiences with implementing SMPs
@@ -58,7 +58,7 @@ The discussion highlighted a shared interest in harmonizing approaches
 where possible, while recognizing that different use cases may require
 different implementations and tools.
 
-**2. Training and community building remain important priorities**
+### 2. Training and community building remain important priorities
 
 Many institutions reported training-related initiatives, ranging from
 Git and version-control training to coding cafés, software curation
@@ -71,7 +71,7 @@ encouraging participation can still be challenging. This led to valuable
 discussions about audience needs, event formats, and ways to increase
 visibility within institutions.
 
-**3. Version control, licensing, and intellectual property**
+### 3. Version control, licensing, and intellectual property
 
 Another common theme was support for version control, software
 publication, licensing, and intellectual property considerations.
@@ -82,7 +82,7 @@ updates from other institutions, confirming that legal and governance
 questions remain important parts of research software management
 support.
 
-**4. Update from eScience Center**
+### 4. Update from eScience Center
 
 eScience Center representative Carlos Martinez updated us on current and
 upcoming funding and talent development opportunities, including the
@@ -97,7 +97,7 @@ training to strengthen interoperability between software registries and
 repositories and increase the visibility and sustainability of research
 software
 
-**Spotlight Discussion: SMPs**
+## Spotlight Discussion: SMPs
 
 Following the coffee break, the group held a dedicated discussion on
 SMPs.
@@ -139,7 +139,7 @@ While no single solution fits every context, the discussion reinforced
 the value of continued collaboration and knowledge sharing between UMCs
 on this rapidly developing topic.
 
-**Looking Ahead: Where Does DReaMS Belong?**
+## Looking Ahead: Where Does DReaMS Belong?
 
 The second major discussion of the day was led by **Thomas Pronk**, who
 invited the community to reflect on the future positioning of DReaMS
@@ -178,7 +178,7 @@ To support this, the community agreed that future meeting agendas should
 be published in advance, alongside information on how interested
 colleagues outside the immediate network can join selected discussions.
 
-**Continuing the Conversation**
+## Continuing the Conversation
 
 The June meeting once again demonstrated the value of bringing together
 professionals working at the intersection of research software, data
