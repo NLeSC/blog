@@ -1,0 +1,47 @@
+name: Merge Schedule
+
+# How to use me:
+# On a pull request's description, add a line like
+# /schedule 2026-08-28
+#
+# See example here: https://github.com/PabRod/automerge-test/pull/1
+#
+# The PR will merge on the first pass after the date is reached.
+# Please note that the exact time is hard to predict, and that
+# the merge will only happen if the branch is mergeable and approved.
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+  schedule:
+    # https://crontab.guru/every-hour
+    # Runs at 37 minutes past the hour (to avoid rush hour at 0 or 30), every 4 hours
+    - cron: '37 */4 * * *'
+
+# Needed so the action can comment, label and merge.
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge_schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: gr2m/merge-schedule-action@v2
+        with:
+          # Merge method to use. Possible values are merge, squash or
+          # rebase. Default is merge.
+          merge_method: merge
+          # Time zone to use. Default is UTC.
+          time_zone: 'Europe/Amsterdam'
+          # Require all pull request statuses to be successful before
+          # merging. Default is `false`.
+          require_statuses_success: 'true'
+          # Label to apply to the pull request if the merge fails. Default is
+          # `automerge-fail`.
+          automerge_fail_label: 'merge-schedule-failed'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN
