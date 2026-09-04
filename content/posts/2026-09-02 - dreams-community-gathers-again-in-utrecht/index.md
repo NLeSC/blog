@@ -32,7 +32,7 @@ alignment across institutions.
 ## Community Updates: Shared Challenges, Shared Opportunities
 
 The first hour was dedicated to updates from participating
-organizations: UMCU, LUMC, AUMC, UMCG, and eScience Center, each sharing
+organizations: [UMCU](https://www.umcutrecht.nl/), [LUMC](https://www.lumc.nl/), [AUMC](https://www.amsterdamumc.nl/), [UMCG](https://www.umcg.nl/), and [eScience Center](https://www.esciencecenter.nl/), each sharing
 their current initiatives and priorities.
 
 ### 1. Software Management Plans continue to gain traction
