@@ -103,7 +103,7 @@ Supported body content includes:
 - raw HTML for small editorial elements such as `<details>` / `<summary>`;
 - iframe embeds for videos or interactive figures, as long as the provider allows framing.
 
-The unlisted [blog post formatting guide](https://blog.esciencecenter.nl/posts/blog-post-formatting-guide) shows how to use these features alongside the corresponding [source](content/posts/2026-06-11%20-%20integration-showcase/index.md).
+The unlisted [blog post formatting guide](https://blog.esciencecenter.nl/posts/formatting-guide) shows how to use these features alongside the corresponding [source](content/posts/2026-06-11%20-%20formatting-guide/index.md).
 
 ### Frontmatter
 
