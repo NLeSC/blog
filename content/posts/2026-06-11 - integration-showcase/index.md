@@ -1,7 +1,7 @@
 ---
-title: "Blog post formatting guide"
+title: "Formatting guide"
 author: "eScience Editorial Team"
-slug: "blog-post-formatting-guide"
+slug: "formatting-guide"
 published: true
 unlisted: true
 source: "local"
