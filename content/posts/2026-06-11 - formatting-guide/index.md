@@ -8,7 +8,7 @@ source: "local"
 tags: []
 ---
 
-This unlisted guide shows what authors can use in an eScience Center blog post. Each example is rendered first and followed by the Markdown or HTML needed to reproduce it. Copy an example into your post and replace its content.
+This guide shows what authors can use in an eScience Center blog post. Each example is rendered first and followed by the Markdown or HTML needed to reproduce it. Copy an example into your post and replace its content.
 
 ## Start a post
 
