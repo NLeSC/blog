@@ -18,14 +18,20 @@ export function slugify(value: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
+export function postSourceSlug(post: PostEntry): string {
+  return (post.filePath?.replace(/^.*?content\/posts\//, '') || post.id)
+    .replace(/\.md$/, '')
+    .replace(/\/index$/, '');
+}
+
 export function postSlug(post: PostEntry): string {
-  return post.id.replace(/\.md$/, '').replace(/\/index$/, '');
+  return post.data.slug || post.id.replace(/\.md$/, '').replace(/\/index$/, '');
 }
 
 const POST_FILENAME_DATE = /^(\d{4}-\d{2}-\d{2})(?:\s+-\s+|---)/;
 
 export function postDate(post: PostEntry): Date {
-  const match = postSlug(post).match(POST_FILENAME_DATE);
+  const match = postSourceSlug(post).match(POST_FILENAME_DATE);
   if (!match) throw new Error(`Post filename must start with YYYY-MM-DD: ${post.id}`);
   return new Date(`${match[1]}T00:00:00.000Z`);
 }

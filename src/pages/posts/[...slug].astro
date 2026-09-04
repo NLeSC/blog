@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import CodePreviewTabs from '../../components/CodePreviewTabs.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getAuthorInfo, getAuthorPic, getAuthorInitials } from '../../lib/authors';
 import { authorSlug, comparePostsByDateDesc, coverImageUrl, formatDate, formatDate as formatArchiveDate, getExcerpt, isListedPost, postDate, postSlug, postUrl, readTime, slugify, visibleTags } from '../../lib/archive';
@@ -17,6 +18,7 @@ const { post } = Astro.props;
 const { Content, headings } = await render(post);
 const tocHeadings = headings.filter(({ depth }) => depth === 2 || depth === 3);
 const showTableOfContents = tocHeadings.length >= 2;
+const hasCodeExamples = post.body?.includes('data-code-example-preview');
 
 const DEFAULT_LICENSE = {
   name: 'CC BY-SA 4.0',
@@ -130,6 +132,7 @@ const relatedPosts = allPosts
 
       <div class="post-content pb-8 animate-enter" style="--enter-delay: 120ms">
         <Content />
+        {hasCodeExamples && <CodePreviewTabs />}
       </div>
     </div>
 

@@ -10,6 +10,7 @@ const requiredFrontmatter = ['title', 'author'];
 const reservedTopLevelRoutes = new Set(['api', 'authors', 'feed', 'posts', 'search', 'topics', 'rss.xml']);
 const legacyRedirects = new Map();
 const postTargets = new Set();
+const postRoutes = new Map();
 const warnings = [];
 const errors = [];
 
@@ -22,6 +23,15 @@ function walk(dir) {
 
 function add(kind, file, message) {
   kind.push(`${relative(root, file)}: ${message}`);
+}
+
+function checkPostRoute(file, route) {
+  const existing = postRoutes.get(route);
+  if (existing) {
+    add(errors, file, `duplicate post route /posts/${route} also used by ${relative(root, existing)}`);
+  } else {
+    postRoutes.set(route, file);
+  }
 }
 
 function checkImage(file, src, alt = 'html') {
@@ -41,11 +51,11 @@ function checkImage(file, src, alt = 'html') {
 for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
   const name = basename(file);
   const postName = name === 'index.md' ? basename(dirname(file)) : name.replace(/\.md$/, '');
-  const postTarget = `/posts/${postName.replaceAll(' ', '-')}`;
-  postTargets.add(postTarget);
+  let postTarget = `/posts/${postName.replaceAll(' ', '-')}`;
   if (!/^\d{4}-\d{2}-\d{2} - [^-].+$/.test(postName)) {
     add(errors, file, 'post path must use "YYYY-MM-DD - title.md" or "YYYY-MM-DD - title/index.md"');
   }
+  checkPostRoute(file, postName.replace(/\s+-\s+/g, '---'));
 
   const text = readFileSync(file, 'utf8');
   const frontmatter = text.match(/^---\n([\s\S]*?)\n---/);
@@ -60,6 +70,13 @@ for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
 
     if (/^date:/m.test(frontmatter[1])) {
       add(errors, file, 'date belongs in filename, not frontmatter');
+    }
+
+    const slugMatch = frontmatter[1].match(/^slug:\s*(?:'([^']+)'|"([^"]+)"|([^\s#]+))(?:\s+#.*)?$/m);
+    const slug = slugMatch?.slice(1).find(Boolean);
+    if (slug) {
+      checkPostRoute(file, slug);
+      postTarget = `/posts/${slug}`;
     }
 
     const sourceUrlMatch = frontmatter[1].match(/^source_url:\s*(.+)$/m);
@@ -90,6 +107,7 @@ for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
       }
     }
   }
+  postTargets.add(postTarget);
 
   if (/\b(?:gratitude|thanks?)\s+to\s+for\b/i.test(text)) {
     add(errors, file, 'possible dropped imported link or mention text (found "to for")');

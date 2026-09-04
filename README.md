@@ -63,7 +63,7 @@ Below we show our **recommended** way of working. If you don't feel comfortable 
 
 ### Body content
 
-In a nutshell: write GitHub-flavored markdown, plus supported rich content (images, equations, diagrams, ...) when needed. 
+In a nutshell: write GitHub-flavored markdown, plus supported rich content (images, equations, diagrams, ...) when needed.
 
 #### Images
 
@@ -103,7 +103,7 @@ Supported body content includes:
 - raw HTML for small editorial elements such as `<details>` / `<summary>`;
 - iframe embeds for videos or interactive figures, as long as the provider allows framing.
 
-We created a showcase hidden post showing how to use these features. Comparing its [source](content/posts/2026-06-11%20-%20integration-showcase/index.md) and [live](https://blog.esciencecenter.nl/posts/2026-06-11---integration-showcase/) versions is the most eloquent tutorial.
+The unlisted [blog post formatting guide](https://blog.esciencecenter.nl/posts/formatting-guide) shows how to use these features alongside the corresponding [source](content/posts/2026-06-11%20-%20formatting-guide/index.md).
 
 ### Frontmatter
 
