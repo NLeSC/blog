@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Research Software Engineers: Between Academia and Industry"
+title: "Research Software Engineers: Between Research and Engineering"
 author: Carsten Schnober
 tags:
   - RSE
