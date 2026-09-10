@@ -9,7 +9,7 @@ We use [this GitHub Action](./github/workflows/scheduler.yml) to schedule blogpo
 3. If the PR is mergeable and approved, the scheduler action will merge the PR automatically, effectively publishing the post.
 
 *Caveat*: the exact moment the PR is merged could be a few hours later than expected. This is due to the way GitHub manages `CRON` tasks.
-
+*Caveat*: Pull requests from [forks can not be scheduled](https://github.com/gr2m/merge-schedule-action/blob/master/README.md?plain=1#L69). Either invite PR author to this repo and have them move branch to this repo or merge PR manually. 
 For more information, see the docs of [merge-schedule-action](https://github.com/gr2m/merge-schedule-action/tree/master).
 
 ## Commands
