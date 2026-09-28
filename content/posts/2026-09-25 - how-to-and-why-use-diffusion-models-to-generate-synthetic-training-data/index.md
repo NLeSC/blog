@@ -109,8 +109,8 @@ The time you spend debugging your custom training loop is time not spent on the 
 
 <figure>
 
-<img alt="Classifier-free diffusion implemented from scratch" src="./classifier-free-diffusion-from-scratch.avif" width=650 />
-<figcaption>Classifier-free diffusion implemented from scratch. A lot of good experience but not the best results overall</figcaption>
+<img alt="Classifier-free diffusion implemented from scratch" src="./classifier-free-diffusion-from-scratch.avif" style="width: 650px;" />
+<figcaption>Classifier-free diffusion implemented from scratch. A lot of good experience but not the best results overall.</figcaption>
 </figure>
 
 ## Stable Diffusion and the Hugging Face Ecosystem
@@ -202,7 +202,7 @@ This requires no additional model, no segmentation masks, and no ground-truth an
 <figure>
 
 <img alt="Generation from the same seed but asking different ventricle sizes in the prompt" src="./generation-same-seed-different-prompt.png" width=650 />
-<figcaption>Generation from the same seed but asking different ventricle sizes in the prompt</figcaption>
+<figcaption>Generation from the same seed but asking different ventricle sizes in the prompt.</figcaption>
 </figure>
 
 ## Why This Approach Is Worth the Effort
