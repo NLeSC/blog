@@ -150,5 +150,17 @@ tags:
 
 </details>
 
+## Archive data
+
+The blog publishes static JSON snapshots for anyone who wants to explore or reuse its public archive:
+
+| URL | Contents |
+|---|---|
+| [`/api/posts.json`](https://blog.esciencecenter.nl/api/posts.json) | Listed posts, newest first, with titles, authors, dates, URLs, tags, excerpts, and cover URLs |
+| [`/api/authors.json`](https://blog.esciencecenter.nl/api/authors.json) | Authors with bios, post counts, topics, and their posts |
+| [`/api/topics.json`](https://blog.esciencecenter.nl/api/topics.json) | Topics with post counts and their posts |
+
+These are complete JSON arrays, not per-author or per-topic endpoints. They are generated when the static site is built, exclude unpublished and unlisted posts, and are intended as convenient archive exports rather than a versioned integration API.
+
 ## Need more information?
 See [DEV.md](DEV.md) for more details.
