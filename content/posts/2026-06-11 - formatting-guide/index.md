@@ -1,5 +1,6 @@
 ---
 title: "Formatting guide"
+subtitle: "A practical reference for writing and formatting your post"
 author: "eScience Editorial Team"
 slug: "formatting-guide"
 published: true
@@ -17,6 +18,7 @@ Every post starts with YAML frontmatter. It supplies the title, author, publicat
 ```yaml
 ---
 title: "A clear and specific title"
+subtitle: "One sentence that introduces the story"
 author: "Author Name"
 slug: "clear-and-specific-title"
 published: true
@@ -28,7 +30,7 @@ tags:
 ---
 ```
 
-The custom `slug` is optional. When supplied, it creates a short, stable URL containing only lowercase letters, numbers, and hyphens.
+The optional `subtitle` appears beneath the title on the post and in listing previews. Keep it short and plain text; omit it to use an excerpt from the post body in previews. The custom `slug` is also optional. When supplied, it creates a short, stable URL containing only lowercase letters, numbers, and hyphens.
 
 The optional `cover` selects the image used in homepage and archive cards and social previews. Put the image next to `index.md` and use `./filename.png`, or use `/assets/filename.png` for a shared asset. Without `cover`, the blog chooses an image from the post body when possible. `cover` does not make a post featured; use `featured: true` for that.
 

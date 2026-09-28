@@ -129,6 +129,7 @@ tags:
 | Field | Required | Notes |
 |---|---|---|
 | `title` | yes | Wrap in quotes if it contains special characters |
+| `subtitle` | no | Short, plain-text line shown below the title on the post and in listing previews; also used for the post's metadata description. Without it, previews use an excerpt from the body |
 | `date` | no | Publication date comes from the `YYYY-MM-DD` directory prefix; use this only for imported metadata |
 | `author` | yes | Full name as you want it displayed |
 | `tags` | no | List of keywords. Defaults to `["uncategorized"]` if omitted |
@@ -138,6 +139,8 @@ tags:
 | `unlisted` | no | `true` keeps the direct URL generated but excludes the post from homepage, search, feeds, APIs, topic pages, and author pages |
 | `featured` | no | `true` makes the post eligible for the homepage featured slot. If multiple listed posts are featured, the newest by filename date wins. If none are featured, the newest listed post is used |
 | `cover` | no | Image for homepage/archive cards and social previews; takes priority over body-image detection. Use `./filename.png` beside `index.md`, or `/assets/filename.png` for a shared asset. The file must exist; omit the field to use the existing automatic choice |
+
+For a rendered example, see the [formatting guide](content/posts/2026-06-11%20-%20formatting-guide/index.md#start-a-post).
 
 ## Content rules
 

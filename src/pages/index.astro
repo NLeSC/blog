@@ -78,7 +78,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
               {featured.data.title}
             </h1>
             <p class="text-[15px] md:text-[16px] text-[#6b6b6b] dark:text-[#aaa] leading-relaxed line-clamp-4 md:line-clamp-3 mb-4">
-              {getExcerpt(featured.body || '', 280)}...
+              {featured.data.subtitle || `${getExcerpt(featured.body || '', 280)}...`}
             </p>
             <div class="flex items-center gap-2 text-[13px] text-[#6b6b6b] dark:text-[#999]">
               <span>{formatDate(postDate(featured))}</span>
@@ -113,7 +113,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
               {post.data.title}
             </h2>
             <p class="text-[13px] text-[#6b6b6b] dark:text-[#aaa] leading-relaxed line-clamp-2 mb-2">
-              {getExcerpt(post.body || '', 120)}...
+              {post.data.subtitle || `${getExcerpt(post.body || '', 120)}...`}
             </p>
             <span class="text-[12px] text-[#6b6b6b] dark:text-[#999]">{formatDate(postDate(post))}</span>
           </a>
@@ -136,8 +136,8 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
               <h2 class="text-[18px] md:text-[21px] font-bold leading-snug tracking-[-0.025em] text-[#242424] dark:text-white group-hover:text-[#003388] dark:group-hover:text-[#9ab5ff] mb-1.5 line-clamp-2 font-sans transition-colors">
                 {post.data.title}
               </h2>
-              <p class="text-[14px] text-[#6b6b6b] dark:text-[#aaa] leading-relaxed line-clamp-2 hidden sm:block">
-                {getExcerpt(post.body || '')}...
+              <p class:list={["text-[14px] text-[#6b6b6b] dark:text-[#aaa] leading-relaxed line-clamp-2", !post.data.subtitle && "hidden sm:block"]}>
+                {post.data.subtitle || `${getExcerpt(post.body || '')}...`}
               </p>
             </div>
             {cover ? (

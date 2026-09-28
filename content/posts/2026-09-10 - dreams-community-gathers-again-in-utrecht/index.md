@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "DReaMS Community Gathers Again in Utrecht: Building Momentum on Research Software Management"
+subtitle: "Connecting research software managers across Dutch university medical centers"
 author: eScience Editorial Team
 published: true
 tags:
