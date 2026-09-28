@@ -21,6 +21,7 @@ author: "Author Name"
 slug: "clear-and-specific-title"
 published: true
 source: "local"
+cover: ./figure.png
 tags:
   - research software
   - reproducibility
@@ -28,6 +29,8 @@ tags:
 ```
 
 The custom `slug` is optional. When supplied, it creates a short, stable URL containing only lowercase letters, numbers, and hyphens.
+
+The optional `cover` selects the image used in homepage and archive cards and social previews. Put the image next to `index.md` and use `./filename.png`, or use `/assets/filename.png` for a shared asset. Without `cover`, the blog chooses an image from the post body when possible. `cover` does not make a post featured; use `featured: true` for that.
 
 ## Text, links, and emphasis
 

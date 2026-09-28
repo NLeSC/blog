@@ -55,6 +55,7 @@ For more information, see the docs of [merge-schedule-action](https://github.com
 
 - Astro static site generated from markdown posts.
 - Medium-style homepage with featured article, image cards, and full archive feed.
+- Optional `cover` frontmatter to select a card/social image explicitly, falling back to body images when omitted.
 - Responsive article pages with wide images, captions, reading time, tags, and source links.
 - Author archive pages with bios, profile photos, and post lists.
 - Topic/tag archive pages plus homepage topic discovery.
@@ -144,6 +145,7 @@ The content loader reloads all posts on any file change in `content/posts/`. Giv
 
 ### Images not showing in dev
 Keep post images beside that post's `index.md` and use a relative path such as `./filename.png`. Reserve `public/assets/` for shared site assets.
+For a specific homepage/archive/social image, set `cover: ./filename.png` in the post frontmatter (or `cover: /assets/filename.png` for a shared asset). This is independent of `featured: true`. Run `bun run check:content` to catch missing cover files.
 
 ### Build fails with out-of-memory
 If a build runs out of memory, increase Node's memory limit:

@@ -60,9 +60,17 @@ export function formatDate(date: Date, style: 'short' | 'long' = 'short'): strin
 }
 
 export function coverImageUrl(post: PostEntry): string | null {
-  const cover = getCoverImage(post.body || '');
+  const cover = post.data.cover || getCoverImage(post.body || '');
   if (!cover) return null;
   if (cover.startsWith('/assets/')) return assetPath(cover.replace('/assets/', ''));
+
+  if (post.data.cover) {
+    const sourcePath = post.filePath?.split('content/posts/')[1];
+    const postDir = sourcePath?.includes('/') ? sourcePath.slice(0, sourcePath.lastIndexOf('/')) : '';
+    const asset = contentAssets[`/content/posts/${postDir ? `${postDir}/` : ''}${cover.slice(2)}`];
+    if (!asset) throw new Error(`Missing cover image ${cover} for ${post.filePath || post.id}`);
+    return typeof asset === 'string' ? asset : asset.default;
+  }
 
   const postDir = post.id.replace(/\.md$/, '').replace(/\/index$/, '');
   const filename = cover.replace(/^\.\//, '');
