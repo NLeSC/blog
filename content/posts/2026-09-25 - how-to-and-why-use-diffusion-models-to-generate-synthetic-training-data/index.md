@@ -2,6 +2,7 @@
 layout: post
 title: "Using diffusion models for generating synthetic training data"
 subtitle: "And why you might want to do it in the first place"
+cover: "./diffusion-model-attempting-generation.avif"
 author: Simone Ciarella
 published: true
 tags:
@@ -74,7 +75,7 @@ Then once the model is trained, at inference time, you start from pure random no
 
 <figure>
 
-<img alt="Diffusion model in the process of generating a ‘Shepp-Logan phantom model of a MRI’" src="./diffusion-model-attempting-generation.gif" width=256 />
+<img alt="Diffusion model in the process of generating a ‘Shepp-Logan phantom model of a MRI’" src="./diffusion-model-attempting-generation.avif" width=256 />
 
 <figcaption>Diffusion model in the process of generating a ‘Shepp-Logan phantom model of a MRI’. While the final results is a clean representation of a brain, this is far from being a good replacement for a MRI scan.</figcaption>
 </figure>
@@ -108,7 +109,7 @@ The time you spend debugging your custom training loop is time not spent on the 
 
 <figure>
 
-<img alt="Classifier-free diffusion implemented from scratch" src="./classifier-free-diffusion-from-scratch.gif" width=650 />
+<img alt="Classifier-free diffusion implemented from scratch" src="./classifier-free-diffusion-from-scratch.avif" width=650 />
 <figcaption>Classifier-free diffusion implemented from scratch. A lot of good experience but not the best results overall</figcaption>
 </figure>
 
