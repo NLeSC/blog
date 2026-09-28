@@ -15,6 +15,7 @@ const posts = defineCollection({
   schema: z.object({
     layout: z.string().optional(),
     title: z.string().nullable().optional().transform(v => v || 'Untitled'),
+    subtitle: z.string().trim().min(1).optional(),
     slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).optional(),
     date: z.coerce.date().optional(),
     author: z.string().nullable().optional().transform(v => (v && v.trim()) ? v.trim() : 'eScience Center'),

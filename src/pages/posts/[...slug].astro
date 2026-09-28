@@ -59,12 +59,17 @@ const relatedPosts = allPosts
   .map(({ post }) => post);
 ---
 
-<BaseLayout title={post.data.title} description={excerpt} ogImage={cover} author={post.data.author} noindex={post.data.unlisted}>
+<BaseLayout title={post.data.title} description={post.data.subtitle || excerpt} ogImage={cover} author={post.data.author} noindex={post.data.unlisted}>
   <article class="max-w-[720px] mx-auto px-4 animate-page">
     <header class="pt-10 md:pt-12 pb-8 animate-enter">
       <h1 class="text-[34px] md:text-[46px] font-bold leading-[1.08] text-[#242424] tracking-[-0.045em] font-sans mb-7 dark:text-white">
         {post.data.title}
       </h1>
+      {post.data.subtitle && (
+        <p class="text-[19px] md:text-[22px] leading-snug text-[#606060] dark:text-[#b8b8b8] -mt-3 mb-7">
+          {post.data.subtitle}
+        </p>
+      )}
 
       <div class="flex items-start gap-4 mb-6">
         <a href={sitePath(`/authors/${authorPathSlug}`)} class="flex-shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#003388] rounded-full">
