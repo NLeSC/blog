@@ -59,7 +59,6 @@ const authorTopics = buildTopicIndex(authorPosts).slice(0, 8);
           ))}
         </div>
         <div class="flex flex-wrap gap-3 mt-4 text-[13px]">
-          <a href={sitePath(`/api/authors.json#${author.toLowerCase().replace(/\s+/g, '-')}`)} class="text-[#1A8917] hover:underline">Archive data</a>
           <a href={sitePath(`/search?q=${encodeURIComponent(author)}`)} class="text-[#1A8917] hover:underline">Search this author</a>
         </div>
       </div>
