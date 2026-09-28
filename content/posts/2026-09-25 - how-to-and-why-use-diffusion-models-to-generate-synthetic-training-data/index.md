@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "How (and why) use diffusion models for generating synthetic training data"
+title: "Using diffusion models for generating synthetic training data"
+subtitle: "And why you might want to do it in the first place"
 author: Simone Ciarella
 published: true
 tags:
