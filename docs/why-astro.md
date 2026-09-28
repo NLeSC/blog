@@ -41,7 +41,7 @@ Medium has a smoother casual editor, easy image paste, built-in discovery, and a
 ## Current killer features implemented
 
 - `/topics` and `/topics/[slug]`: topic collection pages generated from post metadata.
-- Author pages now show an author's main topics and archive/search links.
+- Author pages show an author's main topics and a search link.
 - Post pages link tags to topic pages and recommend related posts by shared topics.
 - `/api/posts.json`, `/api/authors.json`, and `/api/topics.json`: reusable structured archive data.
 - `bun run check:content`: content/image/frontmatter quality checks.
