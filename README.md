@@ -82,6 +82,8 @@ For images that need a visible caption, use a semantic HTML `<figure>` block. Th
 </figure>
 ```
 
+The `src="./…"` path in an HTML `<img>` is resolved relative to the post's `index.md`, just like a Markdown image. Keep the image in that folder; do not use a `/posts/…` URL.
+
 Caption rules:
 
 - `alt` describes the image for screen readers; it is not the caption.

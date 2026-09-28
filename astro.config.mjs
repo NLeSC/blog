@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { rehypeBasePaths } from './src/lib/rehype-base-paths.mjs';
+import { rehypeColocatedHtmlImages } from './src/lib/rehype-colocated-html-images.mjs';
 
 const base = '/';
 const legacyRedirectPaths = loadLegacyRedirectPaths();
@@ -31,7 +32,7 @@ export default defineConfig({
   integrations: [sitemap({ filter: sitemapFilter })],
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex, [rehypeBasePaths, { base }]],
+    rehypePlugins: [rehypeKatex, rehypeColocatedHtmlImages, [rehypeBasePaths, { base }]],
   },
   prefetch: {
     prefetchAll: true,

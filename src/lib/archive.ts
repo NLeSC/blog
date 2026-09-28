@@ -1,5 +1,8 @@
 import type { CollectionEntry } from 'astro:content';
 import { assetPath, sitePath } from './urls';
+import { getCoverImage } from './cover-image.mjs';
+
+export { getCoverImage } from './cover-image.mjs';
 
 export type PostEntry = CollectionEntry<'posts'>;
 
@@ -54,15 +57,6 @@ export function formatDate(date: Date, style: 'short' | 'long' = 'short'): strin
     month: style === 'long' ? 'long' : 'short',
     day: 'numeric',
   });
-}
-
-export function getCoverImage(body: string): string | null {
-  const imgs = [...body.matchAll(/!\[.*?\]\((\/assets\/[^)]+|\.\/[^)]+)\)/g)];
-  if (imgs.length === 0) return null;
-  if (imgs.length >= 2 && imgs[0].index !== undefined && imgs[0].index < 300) {
-    return imgs[1][1];
-  }
-  return imgs[0][1];
 }
 
 export function coverImageUrl(post: PostEntry): string | null {
