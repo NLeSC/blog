@@ -59,7 +59,6 @@ const authorTopics = buildTopicIndex(authorPosts).slice(0, 8);
           ))}
         </div>
         <div class="flex flex-wrap gap-3 mt-4 text-[13px]">
-          <a href={sitePath(`/api/authors.json#${author.toLowerCase().replace(/\s+/g, '-')}`)} class="text-[#1A8917] hover:underline">Archive data</a>
           <a href={sitePath(`/search?q=${encodeURIComponent(author)}`)} class="text-[#1A8917] hover:underline">Search this author</a>
         </div>
       </div>
@@ -77,8 +76,8 @@ const authorTopics = buildTopicIndex(authorPosts).slice(0, 8);
               <h2 class="text-[18px] md:text-[20px] font-bold leading-snug text-[#242424] dark:text-white group-hover:underline decoration-2 underline-offset-4 mb-1.5 line-clamp-2 font-sans">
                 {post.data.title}
               </h2>
-              <p class="text-[14px] text-[#6b6b6b] leading-relaxed line-clamp-2 hidden sm:block">
-                {getExcerpt(post.body || '')}...
+              <p class:list={["text-[14px] text-[#6b6b6b] leading-relaxed line-clamp-2", !post.data.subtitle && "hidden sm:block"]}>
+                {post.data.subtitle || `${getExcerpt(post.body || '')}...`}
               </p>
             </div>
             {thumb ? (

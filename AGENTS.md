@@ -73,6 +73,7 @@ Use `bun run new-post "Title" --author "Full Name" --tags "Tag One,Tag Two"` to 
 - `published: false` hides a post completely.
 - `unlisted: true` keeps a direct URL but excludes the post from listings, feeds, APIs, topics, authors, and search.
 - `featured: true` makes a listed post eligible for the homepage feature; the newest featured post wins.
+- Optional `cover: ./filename.png` selects the homepage/archive/social image instead of body-image detection; shared assets may use `/assets/filename.png`. It does not affect `featured`.
 - Prefer co-located assets referenced relatively from a post. Existing shared assets in `public/assets/` may remain there.
 - Every meaningful image needs useful alt text. Use `<figure>` and `<figcaption>` when a visible caption is required.
 - Preserve valid Markdown constructs, code fences, math, Mermaid, raw editorial HTML, and supported embeds.

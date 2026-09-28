@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { isCoverPath } from './lib/cover-path.mjs';
 
 const licenseSchema = z.union([
   z.string(),
@@ -15,12 +16,14 @@ const posts = defineCollection({
   schema: z.object({
     layout: z.string().optional(),
     title: z.string().nullable().optional().transform(v => v || 'Untitled'),
+    subtitle: z.string().trim().min(1).optional(),
     slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).optional(),
     date: z.coerce.date().optional(),
     author: z.string().nullable().optional().transform(v => (v && v.trim()) ? v.trim() : 'eScience Center'),
     published: z.boolean().nullable().optional().transform(v => v !== false),
     unlisted: z.boolean().nullable().optional().transform(v => v === true),
     featured: z.boolean().nullable().optional().transform(v => v === true),
+    cover: z.string().refine(isCoverPath, 'Use a co-located ./image.png or shared /assets/image.png path').optional(),
     source: z.string().nullable().optional().transform(v => v || 'medium'),
     source_url: z.string().nullable().optional(),
     license: licenseSchema,

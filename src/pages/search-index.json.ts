@@ -8,11 +8,12 @@ export async function GET() {
     .sort(comparePostsByDateDesc)
     .map((post) => ({
       title: post.data.title,
+      subtitle: post.data.subtitle || null,
       author: post.data.author,
       date: postDate(post).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
       tags: post.data.tags?.filter((tag: string) => tag !== 'uncategorized') || [],
       url: sitePath(`/posts/${postSlug(post)}`),
-      excerpt: (post.body || '')
+      excerpt: post.data.subtitle || (post.body || '')
         .replace(/!\[.*?\]\([^)]+\)/g, '')
         .replace(/\(https?:\/\/[^)]+\)/g, '')
         .replace(/#{1,6}\s/g, '')

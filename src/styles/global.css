@@ -261,7 +261,7 @@ body.dark {
 }
 
 .post-content figure > img {
-  width: 100%;
+  width: auto;
   max-width: 100%;
   margin: 0 auto;
 }
@@ -312,10 +312,10 @@ body.dark {
   }
 
   .post-content figure > img {
-    width: 100%;
+    width: auto;
     max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

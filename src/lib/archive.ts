@@ -1,5 +1,8 @@
 import type { CollectionEntry } from 'astro:content';
 import { assetPath, sitePath } from './urls';
+import { getCoverImage } from './cover-image.mjs';
+
+export { getCoverImage } from './cover-image.mjs';
 
 export type PostEntry = CollectionEntry<'posts'>;
 
@@ -56,19 +59,18 @@ export function formatDate(date: Date, style: 'short' | 'long' = 'short'): strin
   });
 }
 
-export function getCoverImage(body: string): string | null {
-  const imgs = [...body.matchAll(/!\[.*?\]\((\/assets\/[^)]+|\.\/[^)]+)\)/g)];
-  if (imgs.length === 0) return null;
-  if (imgs.length >= 2 && imgs[0].index !== undefined && imgs[0].index < 300) {
-    return imgs[1][1];
-  }
-  return imgs[0][1];
-}
-
 export function coverImageUrl(post: PostEntry): string | null {
-  const cover = getCoverImage(post.body || '');
+  const cover = post.data.cover || getCoverImage(post.body || '');
   if (!cover) return null;
   if (cover.startsWith('/assets/')) return assetPath(cover.replace('/assets/', ''));
+
+  if (post.data.cover) {
+    const sourcePath = post.filePath?.split('content/posts/')[1];
+    const postDir = sourcePath?.includes('/') ? sourcePath.slice(0, sourcePath.lastIndexOf('/')) : '';
+    const asset = contentAssets[`/content/posts/${postDir ? `${postDir}/` : ''}${cover.slice(2)}`];
+    if (!asset) throw new Error(`Missing cover image ${cover} for ${post.filePath || post.id}`);
+    return typeof asset === 'string' ? asset : asset.default;
+  }
 
   const postDir = post.id.replace(/\.md$/, '').replace(/\/index$/, '');
   const filename = cover.replace(/^\.\//, '');
@@ -130,12 +132,13 @@ export function serializePost(post: PostEntry) {
   return {
     id: post.id,
     title: post.data.title,
+    subtitle: post.data.subtitle || null,
     author: post.data.author,
     authorSlug: authorSlug(post.data.author),
     date: postDate(post).toISOString(),
     url: postUrl(post),
     tags: visibleTags(post.data.tags || []),
-    excerpt: getExcerpt(post.body || '', 220),
+    excerpt: post.data.subtitle || getExcerpt(post.body || '', 220),
     cover: coverImageUrl(post),
     readingMinutes: readTime(post.body || ''),
     source: post.data.source,

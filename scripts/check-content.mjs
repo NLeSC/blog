@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { basename, dirname, join, relative } from 'node:path';
+import { isCoverPath } from '../src/lib/cover-path.mjs';
 
 const root = process.cwd();
 const postsDir = join(root, 'content/posts');
@@ -70,6 +71,17 @@ for (const file of walk(postsDir).filter((path) => path.endsWith('.md'))) {
 
     if (/^date:/m.test(frontmatter[1])) {
       add(errors, file, 'date belongs in filename, not frontmatter');
+    }
+
+    const coverLine = frontmatter[1].match(/^cover:\s*(.*)$/m);
+    if (coverLine) {
+      const value = coverLine[1].trim();
+      const cover = value.match(/^(['"])(.*?)\1(?:\s+#.*)?$/)?.[2] || value.replace(/\s+#.*$/, '');
+      if (!isCoverPath(cover)) {
+        add(errors, file, 'cover must be a co-located ./image.png or shared /assets/image.png path');
+      } else {
+        checkImage(file, cover);
+      }
     }
 
     const slugMatch = frontmatter[1].match(/^slug:\s*(?:'([^']+)'|"([^"]+)"|([^\s#]+))(?:\s+#.*)?$/m);
