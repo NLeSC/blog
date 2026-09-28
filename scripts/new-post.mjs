@@ -48,7 +48,7 @@ if (existsSync(filePath)) {
 }
 
 const tagLines = tags.length ? tags.map((tag) => `  - ${tag}`).join('\n') : '  - uncategorized';
-const content = `---\nlayout: post\ntitle: "${title.replaceAll('"', '\\"')}"\nauthor: ${author}\npublished: false\ntags:\n${tagLines}\n---\n\nWrite the introduction here.\n\n<!--\nImage with caption pattern:\n\n<figure>\n  <img src="./descriptive-file-name.png" alt="Short accessibility description of the image" />\n  <figcaption>Short visible caption. Add credit/source links here when needed.</figcaption>\n</figure>\n\nStore images next to this index.md file. Use alt text for accessibility; use figcaption for the visible caption.\n-->\n`;
+const content = `---\nlayout: post\ntitle: "${title.replaceAll('"', '\\"')}"\nauthor: ${author}\npublished: false\n# Optional card/social preview image: cover: ./descriptive-file-name.png\ntags:\n${tagLines}\n---\n\nWrite the introduction here.\n\n<!--\nImage with caption pattern:\n\n<figure>\n  <img src="./descriptive-file-name.png" alt="Short accessibility description of the image" />\n  <figcaption>Short visible caption. Add credit/source links here when needed.</figcaption>\n</figure>\n\nStore images next to this index.md file. Use alt text for accessibility; use figcaption for the visible caption.\n-->\n`;
 
 mkdirSync(postDir, { recursive: true });
 writeFileSync(filePath, content);

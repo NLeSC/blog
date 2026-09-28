@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { isCoverPath } from './lib/cover-path.mjs';
 
 const licenseSchema = z.union([
   z.string(),
@@ -21,6 +22,7 @@ const posts = defineCollection({
     published: z.boolean().nullable().optional().transform(v => v !== false),
     unlisted: z.boolean().nullable().optional().transform(v => v === true),
     featured: z.boolean().nullable().optional().transform(v => v === true),
+    cover: z.string().refine(isCoverPath, 'Use a co-located ./image.png or shared /assets/image.png path').optional(),
     source: z.string().nullable().optional().transform(v => v || 'medium'),
     source_url: z.string().nullable().optional(),
     license: licenseSchema,
