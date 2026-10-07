@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Making LLMs Work for Science: How AI-Powered Storytelling Helps Researchers Communicate Their Software"
-author: Jesse Gonzalez
+author: Jessie Gonzalez
 published: true
 source: medium
 source_url: https://blog.esciencecenter.nl/making-llms-work-for-science-how-ai-powered-storytelling-helps-researchers-communicate-their-639cc6664dc2
