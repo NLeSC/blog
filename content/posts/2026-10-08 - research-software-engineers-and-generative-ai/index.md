@@ -4,10 +4,12 @@ title: "Research Software Engineers and generative AI"
 author: ole
 published: true
 cover: ./walle.webp
+subtitle: "There are always disruptions in society; new technologies emerge, outdated ones die or are turned into a niche instead. There are still people out there that manufacture horse-wagons. But that’s not the dominant industry it used to be."
 tags:
   - RSE
   - Research software
 ---
+
 
 <figure>
 <img alt="A toy WALL-E robot sitting in front of a computer keyboard." src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*wiwV4MeuEdJQBgoPzaoHnA.png" width=650 />
