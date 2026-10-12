@@ -10,7 +10,6 @@ tags:
   - Research software
 ---
 
-
 <figure>
 <img alt="A toy WALL-E robot sitting in front of a computer keyboard." src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*wiwV4MeuEdJQBgoPzaoHnA.png" width=650 />
 <figcaption>Image by Arthur Caranta under CC BY-SA 2.0, cropped.</figcaption>
