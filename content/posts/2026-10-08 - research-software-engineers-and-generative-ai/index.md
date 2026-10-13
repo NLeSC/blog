@@ -19,7 +19,9 @@ There are always disruptions in society; new technologies emerge, outdated ones 
 
 ## The Job of a Research Software Engineer (RSE)
 
-What is our job, at its core? It is not hand-crafting artisanal code. Code by itself is useless. Even worse, code itself is a liability¹. The value that we produce is the functionality that this code provides. Our job is to help scientists solve really hard problems with it. So cool! Let’s put aside for a moment that a large part of what we do is discussing and planning and mediating: people stuff. Instead, let’s focus on the tech part.
+What is our job, at its core? It is not hand-crafting artisanal code. Code by itself is useless. Even worse, code itself is a liability[^1]. The value that we produce is the functionality that this code provides. Our job is to help scientists solve really hard problems with it. So cool! Let’s put aside for a moment that a large part of what we do is discussing and planning and mediating: people stuff. Instead, let’s focus on the tech part.
+
+[^1]: Code rots and needs to be maintained.
 
 To be able to do our job technology-wise, we need to keep up to date with emerging technologies, and reasonably up to date with past ones. A new framework emerges to speed up computations? Better learn it. A language gets traction in the community? We learn it, too.
 
@@ -77,7 +79,9 @@ I’m not worried that experts would be fooled by AI’s hallucinations; they wo
 
 So what now? What shall we do with this generative AI thing? It’s a tool, so we use it. Our job is to find out how to use it efficiently and responsibly. Researchers won’t have the time for that, they barely have enough time for coding. So that’s where we step in.
 
-Are our current ways of working threatened? Yes! As they always have been. Whenever a new language or tool comes along that makes coding easier, certain people decry the end of proper software-engineering². For better (more peaceful conversations) or worse (less entertainment), language has mellowed out a bit since the days of BASIC, but the cycle is still very much alive:
+Are our current ways of working threatened? Yes! As they always have been. Whenever a new language or tool comes along that makes coding easier, certain people decry the end of proper software-engineering[^2]. For better (more peaceful conversations) or worse (less entertainment), language has mellowed out a bit since the days of BASIC, but the cycle is still very much alive:
+
+[^2]: Make a coffee and head to [https://www.cs.virginia.edu/~evans/cs655/readings/ewd498.html](https://www.cs.virginia.edu/~evans/cs655/readings/ewd498.html)
 
 - New thing comes along, simplifies old thing.
 - More people use simple, new thing and make mistakes.
@@ -87,10 +91,8 @@ For generative AI we are still learning about the types of mistakes one can make
 
 Instead of a new framework, or a new language, we have to learn a new technology. We need to know its strengths and weaknesses, and its boundaries. When should we use it? And more importantly, when should we not? Should we use it for code generation, or only use it to check our code? How can we prompt-engineer most effectively? How can we check the output for mistakes? What’s the consensus on licensing generated code? Are we actually allowed to publish AI generated code? Is it even defensible to use AI, given the resources that it consumes? Those are the questions we research software engineers need to be able to answer.
 
-Remember the “people stuff” that I brushed away at the beginning? That becomes even more important now. This is — plus domain knowledge, of course — what makes a *Research* Software Engineer. Navigating a playing field which boundary conditions are evolving daily; keeping code quality high despite AI being in the loop *somewhere³*; explaining and discussing ethical challenges… This is now a core part of our job.
+Remember the “people stuff” that I brushed away at the beginning? That becomes even more important now. This is — plus domain knowledge, of course — what makes a *Research* Software Engineer. Navigating a playing field which boundary conditions are evolving daily; keeping code quality high despite AI being in the loop *somewhere*[^3]; explaining and discussing ethical challenges… This is now a core part of our job.
+
+[^3]: Whether you like it or not, (generative) AI is not going anywhere. People *will* use it. The best we can do is give the right guidance.
 
 Buckle up my friend, it will be a wild, fun ride.
-
-1. Code rots and needs to be maintained.
-2. Make a coffee and head to [https://www.cs.virginia.edu/~evans/cs655/readings/ewd498.html](https://www.cs.virginia.edu/~evans/cs655/readings/ewd498.html)
-3. Whether you like it or not, (generative) AI is not going anywhere. People *will* use it. The best we can do is give the right guidance.
