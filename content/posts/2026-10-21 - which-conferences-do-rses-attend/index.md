@@ -10,16 +10,10 @@ tags:
   - Community
 ---
 
-<!--
-Image with caption pattern:
-
 <figure>
-  <img src="./descriptive-file-name.png" alt="Short accessibility description of the image" />
-  <figcaption>Short visible caption. Add credit/source links here when needed.</figcaption>
+  <img src="./cover-conferences.jpg" alt="An image showing people attending different conference venues" />
+  <figcaption>Conference venues, a great place to explore new topics and meet like-minded people.</figcaption>
 </figure>
-
-Store images next to this index.md file. Use alt text for accessibility; use figcaption for the visible caption.
--->
 
 We are research software engineers (RSEs) which, as the name implies, means being involved in both research and software engineering. While this can sound overwhelming, it is also a great opportunity to interact with very different communities. So, what kind of conferences do we go to?
 
@@ -33,7 +27,7 @@ For example, Abel's background is in applied mathematics, specifically numerical
 
 As research software engineers, we mostly present findings related to the software: for instance, computational results, or advances made possible by our involvement in the field. Sometimes we also help present purely academic findings, when we represent the project as a whole at the conference.
 
-It is also common for us to go to mixed conferences, which are not purely about the domain but about its computational side and infrastructure. One such conference is the [ODISSEI conference](https://odissei-data.nl/event/odissei-conference-2026/), coming up this November, which interests several of us in the Social Science & Humanities section. 
+It is also common for us to go to mixed conferences, which are not purely about the domain but about its computational side and infrastructure. One example is the [ODISSEI conference](https://odissei-data.nl/event/odissei-conference-2026/), coming up this November, which interests several of us in the Social Science & Humanities section. Another example is [DUCOMS](https://www.computationalsciencenl.nl/en/ducoms-day-2026/), which is also taking place at the end of November. DUCOMS brings together computational science professionals from all disciplines and career stages who apply their expertise to problems both in academia and industry. The conference illustrates how people working on problems that may seem very different on the surface can share core ideas to tackle complexity in their daily work.  
 
 ## [](#Research-Software-and-Open-Science-conferences "Research-Software-and-Open-Science-conferences")Research Software and Open Science conferences
 
@@ -49,9 +43,7 @@ On the other side, we have the more technical conferences. These focus on softwa
 
 Among those we attend at the eScience Center are conferences focused on high-performance computing (HPC) and GPUs, conferences specific to a programming language, such as PyCon or JuliaCon, and conferences mixing programming languages with other kinds of applications, such as PyData.
 
-One specific example of this type is [DUCOMS](https://www.computationalsciencenl.nl/en/ducoms-day-2026/), which is also taking place at the end of November this year. It brings together computational science professionals from all disciplines and career stages who apply their expertise to problems both in academia and industry. The conference illustrates how people working on problems that may seem very different on the surface can share core ideas to tackle complexity in their daily work.
-
-Another example is [FOSDEM](https://blog.esciencecenter.nl/posts/2026-04-09---fosdem-2026-observations-and-key-takeaways/), a large technical conference held yearly in Brussels, now heading into its twenty-seventh edition. FOSDEM is a conference on free and open source software, and a breeding ground for open source enthusiasts. It includes tracks for research software and more specific ones, such as the Energy devroom, but it also offers networking opportunities and talks on purely computational subjects, such as Python, PostgreSQL, or Git itself.
+One such example is [FOSDEM](https://blog.esciencecenter.nl/posts/2026-04-09---fosdem-2026-observations-and-key-takeaways/), a large technical conference held yearly in Brussels, now heading into its twenty-seventh edition. FOSDEM is a conference on free and open source software, and a breeding ground for open source enthusiasts. It includes tracks for research software and more specific ones, such as the Energy devroom, but it also offers networking opportunities and talks on purely computational subjects, such as Python, PostgreSQL, or Git itself.
 
 These conferences are particularly useful because they keep RSEs up to date with technology improvements outside their usual community. For instance, at the last PyData ([PyData Amsterdam 2026](https://amsterdam.pydata.org/)), a company presented how they use AI to identify bounding boxes in images, including how they gathered and labelled their data. The same kind of approach applies to some of our software; for example, in the [Rags2Riches](https://research-software-directory.org/projects/rags2riches) project we are also facing the problem of how to semi-automatically label our data at scale, so we benefit from that specific knowledge. It also helps that Abel (numerical optimization) and Angel (natural language processing) work on this project together and attend these conferences with very different eyes: the same talk can suggest a better labelling workflow to one and an optimization problem, such as deciding which data to label first, to the other. Combining both views is often how an idea from a conference turns into something concrete for one of our projects.
 
