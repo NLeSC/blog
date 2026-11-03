@@ -9,7 +9,7 @@ export async function GET() {
     .map((post) => ({
       title: post.data.title,
       subtitle: post.data.subtitle || null,
-      author: post.data.author,
+      author: post.data.author.join(', '),
       date: postDate(post).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
       tags: post.data.tags?.filter((tag: string) => tag !== 'uncategorized') || [],
       url: sitePath(`/posts/${postSlug(post)}`),

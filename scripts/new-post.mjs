@@ -3,7 +3,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 function usage() {
-  console.error('Usage: bun run new-post "Post title" --author "Author Name" [--date YYYY-MM-DD] [--tags tag1,tag2]');
+  console.error('Usage: bun run new-post "Post title" --author "Author Name" [--author "Co-author Name"] [--date YYYY-MM-DD] [--tags tag1,tag2]');
   process.exit(1);
 }
 
@@ -16,8 +16,11 @@ function option(name, fallback = '') {
   return i >= 0 ? args[i + 1] || fallback : fallback;
 }
 
-const author = option('author');
-if (!author) usage();
+const authors = args.flatMap((arg, i) => arg === '--author' ? [args[i + 1]] : []);
+if (!authors.length || authors.some(author => !author?.trim() || author.startsWith('--'))) usage();
+const author = authors.length === 1
+  ? JSON.stringify(authors[0].trim())
+  : `\n${[...new Set(authors.map(author => author.trim()))].map(name => `  - ${JSON.stringify(name)}`).join('\n')}`;
 
 const date = option('date', new Date().toISOString().slice(0, 10));
 if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {

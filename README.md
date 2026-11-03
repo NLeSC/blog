@@ -131,7 +131,7 @@ tags:
 | `title` | yes | Wrap in quotes if it contains special characters |
 | `subtitle` | no | Short, plain-text line shown below the title on the post and in listing previews; also used for the post's metadata description. Without it, previews use an excerpt from the body |
 | `date` | no | Publication date comes from the `YYYY-MM-DD` directory prefix; use this only for imported metadata |
-| `author` | yes | Full name as you want it displayed |
+| `author` | yes | Full display name, or a YAML list of names for a co-authored post |
 | `tags` | no | List of keywords. Defaults to `["uncategorized"]` if omitted |
 | `source` | no | `"medium"` (default) or omit for original posts |
 | `source_url` | no | Link to original if cross-posted |
@@ -152,7 +152,17 @@ For a rendered example, see the [formatting guide](content/posts/2026-06-11%20-%
 6. **Alt text on every image.** Accessibility matters: `![Diagram showing why we build tools](./why-we-build-tools-diagram.png)`.
 7. **Editing existing posts.** Edit its `index.md`. Rebuild and the changes go live.
 8. **Deleting a post.** Remove its directory, or set `published: false` to hide without deleting.
-9. **Author pages.** Author pages are auto-generated from the `author` field. Use consistent author names across posts (e.g. always "Jesse Gonzalez", never mix "Jesse Gonzalez" and "J. Gonzalez").
+9. **Author pages.** Author pages are auto-generated from the `author` field. Use consistent author names across posts (e.g. always "Jesse Gonzalez", never mix "Jesse Gonzalez" and "J. Gonzalez"). For multiple authors, use a nonempty YAML list (shown below). Names appear in the listed order, each linked to their profile, and the post appears in every co-author's archive. Duplicate names are counted once; blank list entries are not allowed.
+
+   ```yaml
+   author:
+     - Jesse Gonzalez
+     - Pablo Rodríguez Sánchez
+   ```
+
+   Post JSON exports include an `authors` array with each author's `name`, `slug`, and profile `url`.
+
+   The post helper also accepts repeated `--author` options: `bun run new-post "Post title" --author "Jesse Gonzalez" --author "Pablo Rodríguez Sánchez"`.
 10. **Tags are freeform.** No controlled vocabulary — but prefer existing tags for discoverability. Check `/search` to see what's already in use.
 11. **Embeds depend on provider policy.** Some websites block iframes with `X-Frame-Options` or `Content-Security-Policy`; test embeds locally before publishing.
 12. **Use unlisted posts for smoke tests or private demos.** Set `unlisted: true` and keep `published: true` when a page should build and be reachable directly, but not appear in listings or feeds.

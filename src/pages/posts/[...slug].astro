@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import CodePreviewTabs from '../../components/CodePreviewTabs.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getAuthorInfo, getAuthorPic, getAuthorInitials } from '../../lib/authors';
+import { getAuthorPic, getAuthorInitials } from '../../lib/authors';
 import { authorSlug, comparePostsByDateDesc, coverImageUrl, formatDate, formatDate as formatArchiveDate, getExcerpt, isListedPost, postDate, postSlug, postUrl, readTime, slugify, visibleTags } from '../../lib/archive';
 import { repositoryPath, repositoryUrl, sitePath } from '../../lib/urls';
 
@@ -31,9 +31,6 @@ const license = typeof frontmatterLicense === 'string'
   ? { name: frontmatterLicense }
   : (frontmatterLicense ?? DEFAULT_LICENSE);
 
-const authorPathSlug = authorSlug(post.data.author);
-const authorInfo = getAuthorInfo(post.data.author);
-const authorPic = getAuthorPic(post.data.author);
 const tags = visibleTags(post.data.tags || []);
 const minutes = readTime(post.body || '');
 const date = postDate(post);
@@ -50,7 +47,7 @@ const relatedPosts = allPosts
   .filter(p => p.id !== post.id)
   .map((candidate) => {
     const sharedTopics = visibleTags(candidate.data.tags || []).filter((tag) => tagSet.has(slugify(tag))).length;
-    const sameAuthor = candidate.data.author === post.data.author ? 1 : 0;
+    const sameAuthor = candidate.data.author.some(name => post.data.author.includes(name)) ? 1 : 0;
     return { post: candidate, score: sharedTopics * 4 + sameAuthor };
   })
   .filter(({ score }) => score > 0)
@@ -71,29 +68,37 @@ const relatedPosts = allPosts
         </p>
       )}
 
-      <div class="flex items-start gap-4 mb-6">
-        <a href={sitePath(`/authors/${authorPathSlug}`)} class="flex-shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#003388] rounded-full">
-          {authorPic ? (
-            <img
-              src={authorPic}
-              alt={post.data.author}
-              class="w-12 h-12 rounded-full object-cover bg-[#003388] fade-in-image"
-              loading="lazy"
-            />
-          ) : (
-            <div class="w-12 h-12 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0" style="background: #003388;">
-              {getAuthorInitials(post.data.author)}
+      <div class="flex flex-col gap-4 mb-6">
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+        {post.data.author.map(author => {
+          const authorPathSlug = authorSlug(author);
+          const authorPic = getAuthorPic(author);
+          return (
+            <div class="flex items-center gap-3">
+              <a href={sitePath(`/authors/${authorPathSlug}`)} aria-label={author} class="flex-shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#003388] rounded-full">
+                {authorPic ? (
+                  <img
+                    src={authorPic}
+                    alt=""
+                    class="w-12 h-12 rounded-full object-cover bg-[#003388] fade-in-image"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-12 h-12 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0" style="background: #003388;">
+                    {getAuthorInitials(author)}
+                  </div>
+                )}
+              </a>
+              <div class="min-w-0">
+                <a href={sitePath(`/authors/${authorPathSlug}`)} class="font-medium text-[#242424] hover:text-[#003388] dark:text-white dark:hover:text-[#9ab5ff] transition-colors">
+                  {author}
+                </a>
+              </div>
             </div>
-          )}
-        </a>
-        <div class="flex flex-col gap-1 pt-0.5">
-          <a href={sitePath(`/authors/${authorPathSlug}`)} class="font-medium text-[#242424] hover:text-[#003388] dark:text-white dark:hover:text-[#9ab5ff] transition-colors">
-            {post.data.author}
-          </a>
-          {authorInfo?.bio && (
-            <p class="text-[13px] text-[#6b6b6b] leading-relaxed dark:text-[#999]">{authorInfo.bio}</p>
-          )}
-          <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] dark:text-[#999]">
+          );
+        })}
+        </div>
+          <div class="flex flex-wrap items-center gap-1.5 text-[13px] text-[#6b6b6b] dark:text-[#999]">
             <time datetime={date.toISOString()}>{formatDate(date, 'long')}</time>
             <span>·</span>
             <span>{minutes} min read</span>
@@ -106,7 +111,6 @@ const relatedPosts = allPosts
               </>
             )}
           </div>
-        </div>
       </div>
 
       {tags.length > 0 && (

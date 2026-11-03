@@ -43,7 +43,7 @@ export async function buildFeed(): Promise<Response> {
       content,
       link,
       pubDate: postDate(post),
-      author: post.data.author,
+      author: post.data.author.join(', '),
       customData: cover
         ? `<media:content url="${escapeXml(new URL(cover, site).href)}" medium="image" />`
         : undefined,

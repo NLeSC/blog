@@ -83,7 +83,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
             <div class="flex items-center gap-2 text-[13px] text-[#6b6b6b] dark:text-[#999]">
               <span>{formatDate(postDate(featured))}</span>
               <span>·</span>
-              <span>{featured.data.author}</span>
+              <span>{featured.data.author.join(', ')}</span>
             </div>
           </div>
         </a>
@@ -105,9 +105,9 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
             )}
             <div class="flex items-center gap-2 mb-2">
               <div class="w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0" style="background: #003388;">
-                {post.data.author.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
+                {post.data.author[0].split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()}
               </div>
-              <span class="text-[12px] text-[#6b6b6b] dark:text-[#aaa]">{post.data.author}</span>
+              <span class="text-[12px] text-[#6b6b6b] dark:text-[#aaa]">{post.data.author.join(', ')}</span>
             </div>
             <h2 class="text-[17px] font-bold leading-snug tracking-[-0.02em] text-[#242424] dark:text-white group-hover:text-[#003388] dark:group-hover:text-[#9ab5ff] mb-1.5 line-clamp-3 font-sans transition-colors">
               {post.data.title}
@@ -129,7 +129,7 @@ const topics = buildTopicIndex(allPosts).slice(0, 8);
           <a href={postUrl(post)} class="group flex gap-4 sm:gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#181818] -mx-4 px-4 rounded-[18px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#003388] transition-colors animate-enter" style={`--enter-delay: ${Math.min(360 + index * 28, 720)}ms`}>
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-1.5 text-[13px] text-[#6b6b6b] dark:text-[#999] mb-1.5">
-                <span class="font-medium text-[#242424] dark:text-white">{post.data.author}</span>
+                <span class="font-medium text-[#242424] dark:text-white">{post.data.author.join(', ')}</span>
                 <span>·</span>
                 <span>{formatDate(postDate(post))}</span>
               </div>

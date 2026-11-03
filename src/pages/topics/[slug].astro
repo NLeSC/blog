@@ -35,7 +35,7 @@ const topicPosts = topic.posts;
           <a href={postUrl(post)} class="group flex gap-5 py-6 first:pt-0 hover:bg-[#fafafa] dark:hover:bg-[#1a1a1a] -mx-4 px-4 transition-colors">
             <div class="flex-1 min-w-0">
               <div class="flex flex-wrap items-center gap-1.5 text-[13px] text-[#6b6b6b] dark:text-[#999] mb-1.5">
-                <span class="font-medium text-[#242424] dark:text-white">{post.data.author}</span>
+                <span class="font-medium text-[#242424] dark:text-white">{post.data.author.join(', ')}</span>
                 <span>·</span>
                 <span>{formatDate(postDate(post))}</span>
               </div>

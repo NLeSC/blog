@@ -8,9 +8,11 @@ export async function GET() {
   const byAuthor = new Map<string, typeof posts>();
 
   for (const post of posts) {
-    const list = byAuthor.get(post.data.author) || [];
-    list.push(post);
-    byAuthor.set(post.data.author, list);
+    for (const author of post.data.author) {
+      const list = byAuthor.get(author) || [];
+      list.push(post);
+      byAuthor.set(author, list);
+    }
   }
 
   const data = [...byAuthor.entries()]
