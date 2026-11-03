@@ -99,7 +99,7 @@ To explain quicksort in the style of Yoda, we might say something like:
 
 Here is an example of quicksort implemented in Python:
 
-```hs
+```python
 def quicksort(arr):
   if len(arr) <= 1:
     return arr
@@ -116,7 +116,7 @@ This implementation of quicksort uses the middle element of the array as the piv
 
 Another well-known sorting algorithm that is equally fast as quicksort is merge sort, which also has an average time complexity of O(n log n). Here is an example of merge sort implemented in Java:
 
-```hs
+```java
 public void mergeSort(int[] array) {
   if (array.length <= 1) return;
 

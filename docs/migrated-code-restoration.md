@@ -2,7 +2,7 @@
 
 This audit supports [issue #21](https://github.com/NLeSC/blog/issues/21). It covers the 278 Medium-migrated posts dated 2017–2026, including examples whose fences or surrounding introductory sections were lost. It does not change the Markdown renderer.
 
-Draft status: the published change currently includes the completed pre-2022 and 2024–2026 batches (198 posts audited, 51 posts changed). The 80-post 2022–2023 pass is still in progress and is not included in this snapshot.
+All year-range passes are complete: 278 posts audited, with repairs in 69 posts. Twelve omitted source images were also recovered from the immutable backup. Seven unavailable embedded examples remain documented below.
 
 ## Sources and approach
 
@@ -19,6 +19,7 @@ Additional author-owned sources include:
 - [Parallel Python erratum](https://gist.github.com/jhidding/e08c3096b5c54bf2138ca248625de029) and [Parallel R article source](https://github.com/PabRod/blog-parallelR/blob/master/parallelR.Rmd).
 - [Original shell-testing example](https://github.com/NLeSC/python-template/blob/90273feba08376faea12cd154479ba64fbccf81d/tests/test_project.py), [Twitter workflow](https://github.com/egpbos/covid_vaccine_progress_bot/blob/e9d4eced48f315567c224f19068ab6bd8206020c/.github/workflows/tweet_progress.yml), and [Travis configuration](https://github.com/roofit-dev/root/blob/travis_trusty2018_update/.travis.yml).
 - [IP rotation tutorial](https://odissei-soda.nl/tutorials/ip-rotation/).
+- [Julia embedding article sources](https://github.com/abelsiqueira/julia-from-cpp/tree/60abbe6eab216f6123d2af3008fb3c60f29470a3) and [the Mcfly article's historical tutorial notebook](https://github.com/NLeSC/mcfly-tutorial/blob/bbd7881a27dd74f2e991cd5c0da8e6774c2dc808/notebooks/tutorial/tutorial_quick.ipynb). Named author files and historical notebook cells recover omitted examples; the exact selections of vanished Medium embeds cannot be asserted. Reconstructed combinations of files were not substituted.
 - [Debugging journey author Markdown](https://github.com/suvayu/suvayu/blob/master/blog/2025-02-15-duckdb-julia-windows.md) and [missing-symbols follow-up](https://github.com/suvayu/suvayu/blob/master/blog/2025-03-16-duckdb-mingw-inline-fn.md).
 - [Bring Your Own Backend author Markdown](https://github.com/sverhoeven/byob-todo-frontend/blob/main/blog/README.md).
 - [Give Me Data, Yesterday: original article](https://ole.mn/posts/2026-02-data-cache/).
@@ -40,10 +41,11 @@ Gist filenames, authors, dates, descriptions, and contents were checked against 
 
 ## Unresolved source gaps
 
-Five examples remain unavailable; no approximate replacement was inserted:
+Seven examples remain unavailable; no approximate replacement was inserted:
 
 - **Snakemake and Xenon:** the native Grid Engine and Slurm submit commands. The [author RSS](https://medium.com/feed/@jhspaaks) identifies embed targets [912f983dbbd1d28f1f0352ac81eb8e19](https://medium.com/media/912f983dbbd1d28f1f0352ac81eb8e19/href) and [e43c63543f7feee0eee898d5d9a0cd67](https://medium.com/media/e43c63543f7feee0eee898d5d9a0cd67/href), but retrieval is blocked. Author gist history contains scheduler-specific Xenon commands, not proven replacements for the native examples.
 - **GraphQL/Ceiba:** the simplified query schema, mutation schema, and resolver. [Historical production code](https://github.com/nlesc-nano/ceiba/tree/1845e6adfe710949f2f544ec4a41745e4bd130e5/ceiba) has different statuses and arguments from the article's simplified examples. It was not substituted. No matching author gist or exact-article Wayback snapshot was found.
+- **Embedding Julia in C/C++:** the original “Install Jill” and “Makefile (version 1)” embeds. The backup and original-article mirror retain their captions but not their code. Current/historical installer instructions and combinations of author Makefile revisions are not evidence of those exact examples, so they were not substituted.
 
 Five current posts have no matching backup original: the 2019 dark-matter article; the 2020 AI speech-learning, evidence-for-research-software, and WOSSS19 articles; and the 2025 Floris-Jan interview. Their surviving text contains no code candidates, but original-content completeness cannot be asserted for them.
 

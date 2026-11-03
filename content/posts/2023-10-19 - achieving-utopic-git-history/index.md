@@ -102,8 +102,8 @@ The diff, which we will see when we enter edit mode, is the following:
 
 Clearly, tasks A1 and A2 are mixed and can’t be split. So instead, we manually change the diff. Since we want only A1 applied, we change the diff to
 
-```hs
-x = 1
+```diff
+ x = 1
 -y = 2
 -z = x + y
 +p = 2
@@ -164,8 +164,8 @@ And the following git history:
 
 The `hash01` and `hash02` commits are the ones we did in the previous sections. The `hash03` commit is
 
-```hs
-def bar():
+```diff
+ def bar():
 -    y = 1
 -    return y + foo()
 +    p = 1
@@ -174,8 +174,8 @@ def bar():
 
 And the `hash04` commit is
 
-```hs
-def bar():
+```diff
+ def bar():
      p = 1
 -    return p -foo()
 +    return p - foo()
@@ -272,8 +272,8 @@ git add -p
 
 Make the first commit diff look like
 
-```hs
-def bar():
+```diff
+ def bar():
 -    y = 1
 -    return y + foo()
 +    p = 1
@@ -282,8 +282,8 @@ def bar():
 
 And the second looks like
 
-```hs
-def bar():
+```diff
+ def bar():
      p = 1
 -    return p + foo()
 +    return p -foo()

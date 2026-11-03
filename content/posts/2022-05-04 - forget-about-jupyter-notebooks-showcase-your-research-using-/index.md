@@ -36,7 +36,11 @@ Now as a dashboard 🐱‍💻
 
 Then run the dashboard using:
 
-streamlit run my_dashboard.pyThis will start a server, and the dashboard can be accessed through the browser (much like a Jupyter Notebook).
+```sh
+streamlit run my_dashboard.py
+```
+
+This will start a server, and the dashboard can be accessed through the browser (much like a Jupyter Notebook).
 
 ![Forget about Jupyter Notebooks — showcase your research using Dashboards](./forget-about-jupyter-notebooks-showcase--909c1674.png)
 A fancy dashboard

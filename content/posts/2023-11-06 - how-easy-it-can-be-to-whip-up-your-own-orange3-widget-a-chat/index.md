@@ -28,6 +28,7 @@ My initial brainstorm led me straight to a ChatGPT-powered chatbot, but alas, I 
 
 Embarking on a journey is always thrilling, but you might find yourself going, “Where in the world do I begin?” Fret not, for Orange3 has your back with a nifty add-on template. No need to suffer the pains of starting from scratch — just give ’em a friendly clone from [GitHub](https://github.com/biolab/orange3-example-addon) to your computer and sprinkle in the required Python libraries.
 
+```sh
 #Clone the repo of the example Orange3 add-on
 git clone https://github.com/biolab/orange3-example-addon.git
 cd orange3-example-addon
@@ -35,11 +36,18 @@ cd orange3-example-addon
 #Install Orange3 and other required packages
 python -m venv orangedev  
 source orangedev/bin/activate 
-pip install pyqt6 pyqt6-webengine orange3 hugchatTime for a little detective work! Execute these commands to check if you have everything in the right place.
+pip install pyqt6 pyqt6-webengine orange3 hugchat
+```
 
+Time for a little detective work! Execute these commands to check if you have everything in the right place.
+
+```sh
 #Install the example add-on and open the GUI application of Orange
 pip install -e .  
-python -m Orange.canvas  If everything goes well, you should be able to see the following window popping up, where you can find that your *Example* add-on and *Hello World* widget are already there.
+python -m Orange.canvas
+```
+
+If everything goes well, you should be able to see the following window popping up, where you can find that your *Example* add-on and *Hello World* widget are already there.
 
 ![How Easy It Can Be to Whip Up Your Own Orange3 Widget: A Chatbot Adventure with HuggingChat!](./how-easy-it-can-be-to-whip-up-your-own-o-0731634a.png)
 The canvas application with the example add-on installed.
@@ -51,6 +59,7 @@ Before we wade into the treacherous waters ahead, let’s take a peek at what aw
 ![How Easy It Can Be to Whip Up Your Own Orange3 Widget: A Chatbot Adventure with HuggingChat!](./how-easy-it-can-be-to-whip-up-your-own-o-e0526449.gif)
 The chatbot widget.In brief, I have a chatbot that allows me to log in with my own HuggingFace account and password, answer my questions, and record all of the historical conversations. The only thing I did was create a Python file named “HugChat.py*” *and put it in the folder “orange3-example-addon/orangecontrib/example/widgets”. Check the content of my file to get a first impression of how easy the work is.
 
+```python
 #Content of the HugChat.py file
 from Orange.data import Table
 from Orange.widgets import gui
@@ -122,25 +131,37 @@ class HugChat(OWWidget):
             "Query": self.queries, 
             "Reply": self.replies
         }) 
-        self.Outputs.data.send(table_from_frame(df_output))Now, let’s look at the details. The code above defines a class that contains all the features and functions of our widget. This class is inherited from another class named `OWWidget`, which is the base class of all Orange3 widgets. From there, we can rewrite existing functions and create new functions to satisfy our requirements.
+        self.Outputs.data.send(table_from_frame(df_output))
+```
+
+Now, let’s look at the details. The code above defines a class that contains all the features and functions of our widget. This class is inherited from another class named `OWWidget`, which is the base class of all Orange3 widgets. From there, we can rewrite existing functions and create new functions to satisfy our requirements.
 
 At the top of the class, we have a brief description of the widget, including its name, a short text explaining what it does, and a path string pointing to the location of the widget icon. An additional flag called `want_main_area` is assigned to be true, which means that we want to present the main area of the widget and show things there.
 
+```python
 name = "Hugging Chatbot"
 description = "Orange3 widget instance of HuggingChat."
 icon = "icons/mywidget.svg"
-want_main_area = TrueA widget can contain both the control and main area, while the main area is optional. To briefly explain, the control area should contain all of the utilities for preparing the widget, while the main area is for the major functionality.
+want_main_area = True
+```
+
+A widget can contain both the control and main area, while the main area is optional. To briefly explain, the control area should contain all of the utilities for preparing the widget, while the main area is for the major functionality.
 
 ![How Easy It Can Be to Whip Up Your Own Orange3 Widget: A Chatbot Adventure with HuggingChat!](./how-easy-it-can-be-to-whip-up-your-own-o-92940abc.png)
 Sub-interface of our widget that includes both the control and main area.We also have three class attributes defined, which will be used to store the result of interacting with the GUI controls (I will come back to this later). If there are any output tables, they will be defined in an inner class named `Outputs`. In our case, we only have one output table for outputting the chatting history.
 
+```python
 email = Setting("")
 passwd = Setting("")
 query = Setting("")
 
 class Outputs:
-        data = Output("Data", Table)Next, we defined the `__init__` method, where we run `__init__` of the parent class, initialize all the instance attributes, and define the GUI of the widget. We got two empty lists, `queries` and `replies`, for storing the chat history, and `chatbot` which is the HuggingChat object. Now, let’s focus on the part of GUI construction.
+        data = Output("Data", Table)
+```
 
+Next, we defined the `__init__` method, where we run `__init__` of the parent class, initialize all the instance attributes, and define the GUI of the widget. We got two empty lists, `queries` and `replies`, for storing the chat history, and `chatbot` which is the HuggingChat object. Now, let’s focus on the part of GUI construction.
+
+```python
 # control area: login
 gui.lineEdit(widget=self.controlArea, master=self, 
              value="email", label="Email")
@@ -153,7 +174,10 @@ gui.button(widget=self.controlArea, master=self,
 gui.lineEdit(widget=self.mainArea, master=self, 
              value="query", label="Query", callback=self.chat)
 self.reply = gui.WebviewWidget(parent=None, debug=False)
-self.mainArea.layout().addWidget(self.reply)The above code adds GUI controls to both the control and main area, where GUI controls will be added and placed in the interface by following the order of their definitions in the code. You should be able to find three types of GUI controls:
+self.mainArea.layout().addWidget(self.reply)
+```
+
+The above code adds GUI controls to both the control and main area, where GUI controls will be added and placed in the interface by following the order of their definitions in the code. You should be able to find three types of GUI controls:
 
 * `lineEdit` that allows the user to input some text,
 * `button` that will trigger a pre-defined function by clicking, and

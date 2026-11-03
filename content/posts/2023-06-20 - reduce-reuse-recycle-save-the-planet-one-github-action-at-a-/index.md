@@ -65,6 +65,7 @@ This also saves a whole bunch of unnecessary CI runs, and gives you more control
 
 To set this up, add this to your github action:
 
+```yaml
 # tests.yml
 name: Tests
 
@@ -87,12 +88,16 @@ jobs:
     ...
 
     steps:
-      ...See an example of how we have implemented this for one of our projects [here](https://github.com/duqtools/duqtools/blob/main/.github/workflows/test.yaml).
+      ...
+```
+
+See an example of how we have implemented this for one of our projects [here](https://github.com/duqtools/duqtools/blob/main/.github/workflows/test.yaml).
 
 ### Filter by changed files
 
 Another common pattern we use is to only run a job when the relevant files have changed. Let's say we have a simple project with the following folder structure:
 
+```text
 project-to-save-the-planet/
 ├── docs/
 │   └── the_plan.md
@@ -104,9 +109,13 @@ project-to-save-the-planet/
 ├── tests/
 │   └── ...
 ├── ...
-└── README.mdWe don't have to re-run all tests if something only changed in the documentation, nor do we have to rebuild the documentation if we only make changes to some tests. And if we only fix a typo in `README.md` neither will be necessary. These restrictions can be enabled by adding filters in the `[paths](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onpushpull_requestpull_request_targetpathspaths-ignore)` section of the workflow triggers. These `paths` specifications can also be combined with the other filters such as branches shown earlier, to trigger only if it matches the paths and **branch. **
+└── README.md
+```
+
+We don't have to re-run all tests if something only changed in the documentation, nor do we have to rebuild the documentation if we only make changes to some tests. And if we only fix a typo in `README.md` neither will be necessary. These restrictions can be enabled by adding filters in the `[paths](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onpushpull_requestpull_request_targetpathspaths-ignore)` section of the workflow triggers. These `paths` specifications can also be combined with the other filters such as branches shown earlier, to trigger only if it matches the paths and **branch. **
 Here's an example configuration that triggers only on changes in the `docs` folders:
 
+```yaml
 # docs.yml
 on:
   push:
@@ -115,8 +124,12 @@ on:
       - 'docs/**'
 
 jobs:
-  ...Certain paths or types of files can also be excluded using an exclamation mark (`!`). This can be useful if we want to trigger the tests to run on changes in `src/` or `tests/`, except when we make changes to some supporting documentation or other data that does not affect the outcome of the tests. Here's an example of such a workflow:
+  ...
+```
 
+Certain paths or types of files can also be excluded using an exclamation mark (`!`). This can be useful if we want to trigger the tests to run on changes in `src/` or `tests/`, except when we make changes to some supporting documentation or other data that does not affect the outcome of the tests. Here's an example of such a workflow:
+
+```yaml
 # tests.yml
 on:
   push:
@@ -128,6 +141,7 @@ on:
 
 jobs:
   ...
+```
 
 ### Use CPU versions of tensorflow and pytorch
 
@@ -137,6 +151,7 @@ But, did you know that most of this space is taken up by GPU support? Try using 
 
 To do so, add this step to your GitHub action prior to installing your package:
 
+```yaml
 # tests.yml
 jobs:
   test:
@@ -156,6 +171,8 @@ jobs:
     - name: Install dependencies
       run: |
           pip install .
+```
+
 *Why throw away when you can reuse?* Photo by [JulieN2212 via Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Upcycled_Roses.jpg).
 
 ## Reuse
@@ -174,6 +191,7 @@ As the cache key, we use a combination of the Python directory name (this includ
 
 This means we can also safely skip the `pip install` step if we hit the cache. Depending on the number of dependencies, this virtually eliminates the setup time of your workflow.
 
+```yaml
 # tests.yaml
 jobs:
   test:
@@ -190,6 +208,7 @@ jobs:
         if: steps.cache-python-env.outputs.cache-hit != 'true'
         run: |
           python -m pip install -e .[develop]
+```
 
 ### Caching any directory
 
@@ -199,6 +218,7 @@ We recommend adding a version to the cache key, so that you can easily invalidat
 
 Any subsequent workflows, will restore the directory from GitHub's cache.
 
+```yaml
 # tests.yaml
 jobs:
   test:
@@ -216,7 +236,9 @@ jobs:
         run: |
           mkdir important-dependency
           cd important-dependency
-          echo "All I want is world peace... Or a piece of the world." &gt; t.txt
+          echo "All I want is world peace... Or a piece of the world." > t.txt
+```
+
 Failing code into the red bin, please. Photo by [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral).
 
 ## Recycle
@@ -227,6 +249,7 @@ Finally, can we recycle **anything that is left when our CI run is done? Althoug
 
 Pytest has a very handy `[--last-failed](https://docs.pytest.org/en/stable/how-to/cache.html)` flag for exactly this purpose, but that obviously depends on a local cache to remember the outcome of the previous run. Luckily for you, [we've already made a GitHub action](https://github.com/sjvrijn/pytest-last-failed) that takes care of setting this up for you! Simply use this action instead of your `*run: pytest --my --pytest --args*` step:
 
+```yaml
 # tests.yaml
 jobs:
   test:
@@ -238,6 +261,7 @@ jobs:
       uses: sjvrijn/pytest-last-failed@v2
       with:
         pytest-args: '--my --pytest --args'
+```
 
 ## Conclusion
 

@@ -82,12 +82,17 @@ So, how can we implement these rules in a practical way on our computer? Impleme
 
 So, how do these rules look, for instance, in Julia? (For a Python implementation, take a look [here](https://github.com/PabRod/dualdiff)). First of all, we need to define a `Dual` object, representing a dual number. In principle, it is as simple as a container for two real numbers:
 
+```julia
 """ Structure representing a Dual number """
 struct Dual
     x::Real
     dx::Real
-endLater, it will come in handy to add a couple of constructors.
+end
+```
 
+Later, it will come in handy to add a couple of constructors.
+
+```julia
 """ Structure representing a Dual number """
 struct Dual
     x::Real
@@ -104,34 +109,60 @@ struct Dual
         return x
     end
 end
+```
+
 > *Don’t worry too much if you don’t understand the lines above. They have been added only making the *`*Dual*`* object easier to use (for instance, *`*Dual(1)*`* would have failed without the first constructor, and so would have done the application of *`*Dual*`* to a number that is already a *`*Dual*`*).*
 
 Another trick that will prove handy soon is to create a type alias for anything that is either a `Number` (one of Julia's base types) or a `Dual`.
 
-const DualNumber = Union{Dual, Number}And now comes the fun part. We’ll teach our new object how to do mathematics! For instance, as we saw earlier, the rule for adding dual numbers is to add both their components, just as in a 2D vector:
+```julia
+const DualNumber = Union{Dual, Number}
+```
 
+And now comes the fun part. We’ll teach our new object how to do mathematics! For instance, as we saw earlier, the rule for adding dual numbers is to add both their components, just as in a 2D vector:
+
+```julia
 import Base: +
 function +(self::DualNumber, other::DualNumber)::Dual
     self, other = Dual(self), Dual(other) # Coerce into Dual
     return Dual(self.x + other.x, self.dx + other.dx)
-endWe have to teach even more basic stuff. Remember a computer is dramatically devoid of common sense, so, for instance, we have to define the meaning of a plus sign in front of a `Dual`.
+end
+```
 
+We have to teach even more basic stuff. Remember a computer is dramatically devoid of common sense, so, for instance, we have to define the meaning of a plus sign in front of a `Dual`.
+
+```julia
 +(z::Dual) = z
+```
+
 > This sounds as idiotic as explaining that +3 is equal to 3, but the computer needs to know! Another possibility is using inheritance, but this is an advanced topic beyond the scope of this piece.
 
 Defining minus a `Dual` will also be needed:
 
+```julia
 import Base: -
--(z::Dual) = Dual(-z.x, -z.dx)and actually, it allows us to define the subtraction of two dual numbers as a sum:
+-(z::Dual) = Dual(-z.x, -z.dx)
+```
 
+and actually, it allows us to define the subtraction of two dual numbers as a sum:
+
+```julia
 function -(self::DualNumber, other::DualNumber)::Dual
 	self, other = Dual(self), Dual(other) # Coerce into Dual
 	return self + (-other) # A subtraction disguised as a sum!
-endSome basic operations may be slightly trickier than expected. For instance, when is a dual number smaller than another dual number? Notice that in this case, it only makes sense to compare the first elements, and ignore the derivatives:
+end
+```
 
-import Base: &lt;
-&lt;(self::Dual, other::Dual) = self.x &lt; other.xAs we saw before, more interesting stuff happens with multiplication and division:
+Some basic operations may be slightly trickier than expected. For instance, when is a dual number smaller than another dual number? Notice that in this case, it only makes sense to compare the first elements, and ignore the derivatives:
 
+```julia
+import Base: <
+<(self::Dual, other::Dual) = self.x < other.x
+```
+
+As we saw before, more interesting stuff happens with multiplication and division:
+
+```julia
 import Base: *, /
 
 function *(self::DualNumber, other::DualNumber)::Dual
@@ -146,15 +177,22 @@ function /(self::DualNumber, other::DualNumber)::Dual
     y = self.x / other.x
     dy = (self.dx * other.x - self.x * other.dx) / (other.x)^2 # Rule of quotient for derivatives
     return Dual(y, dy)
-endand with potentiation to a real number:
+end
+```
 
+and with potentiation to a real number:
+
+```julia
 import Base: ^
 function ^(self::Dual, other::Real)::Dual
     self, other = Dual(self), Dual(other) # Coerce into Dual
     y = self.x^other.x
     dy = other.x * self.x^(other.x - 1) * self.dx # Derivative of u(x)^n
     return Dual(y, dy)
-endThe full list of definitions for algebraic operations [is here](https://github.com/PabRod/DualDiff.jl/blob/main/src/Dual.jl). For Python, use [this link](https://github.com/PabRod/dualdiff/blob/main/dualdiff/dual.py). I recommend taking a look!
+end
+```
+
+The full list of definitions for algebraic operations [is here](https://github.com/PabRod/DualDiff.jl/blob/main/src/Dual.jl). For Python, use [this link](https://github.com/PabRod/dualdiff/blob/main/dualdiff/dual.py). I recommend taking a look!
 
 After this, each and every time our dual number finds one of the operations defined above in its mysterious journey down a function or a script, it will keep track of its effect on the derivative. It doesn’t matter how long, complicated, or poorly programmed the function is, the second coordinate of our dual number will manage it. Well, as long as the function is differentiable and we don’t hit the machine’s precision… but that would be asking our computer to do magic.
 
@@ -172,13 +210,18 @@ it is apparent that and p(3) = 39 and p’(3) = 34.
 
 Using our `Dual` object, we can reach the same conclusion automatically:
 
-poly = x -&gt; x^3 + x^2 + x 
+```julia
+poly = x -> x^3 + x^2 + x
 z = Dual(3, 1)
 poly(z)
 
-&gt; Dual(39, 34)Even if the same polynomial is defined in a more intricate way, the `Dual` object can keep track:
+> Dual(39, 34)
+```
 
-""" Equivalent to poly = x -&gt; x^3 + x^2 + x
+Even if the same polynomial is defined in a more intricate way, the `Dual` object can keep track:
+
+```julia
+""" Equivalent to poly = x -> x^3 + x^2 + x
 Just uglier """
 function poly(x)
 	aux = 0 # Initialize auxiliary variable
@@ -189,7 +232,8 @@ end
 
 poly(z)
 
-&gt; Dual(39, 34)
+> Dual(39, 34)
+```
 
 ## What about non-algebraic functions?
 
@@ -204,21 +248,33 @@ The rule of thumb here is, and actually was since the very beginning:
 ![Automatic differentiation from scratch](./automatic-differentiation-from-scratch-d3a44ff1.jpg)
 We can create a `_factory` function that abstracts this structure for us:
 
+```julia
 function _factory(f::Function, df::Function)::Function
-    return z -&gt; Dual(f(z.x), df(z.x) * z.dx)
-endSo now, we only have to open our derivatives table and fill line by line, starting with the derivative of a sine, continuing with that of a cosine, a tangent, etc.
+    return z -> Dual(f(z.x), df(z.x) * z.dx)
+end
+```
 
+So now, we only have to open our derivatives table and fill line by line, starting with the derivative of a sine, continuing with that of a cosine, a tangent, etc.
+
+```julia
 import Base: sin, cos
 
 sin(z::Dual) = _factory(sin, cos)(z)
-cos(z::Dual) = _factory(cos, x -&gt; -sin(x))(z) # An explicit lambda function is often requiredIf we know our maths, we don’t even need to fill all the derivatives manually from the table. For instance, the tangent is defined as:
+cos(z::Dual) = _factory(cos, x -> -sin(x))(z) # An explicit lambda function is often required
+```
+
+If we know our maths, we don’t even need to fill all the derivatives manually from the table. For instance, the tangent is defined as:
 
 ![Automatic differentiation from scratch](./automatic-differentiation-from-scratch-3c2438c8.jpg)
 and we already have automatically differentiable sine, cosine, and division in our arsenal. So this line will do the trick:
 
+```julia
 import Base: tan
 
-tan(z::Dual) = sin(z) / cos(z) # We can rely on previously defined functions!Of course, hard-coding the tangent’s derivative is also possible, and probably good for code performance and numerical stability. But hey, it’s quite cool that this is even possible!
+tan(z::Dual) = sin(z) / cos(z) # We can rely on previously defined functions!
+```
+
+Of course, hard-coding the tangent’s derivative is also possible, and probably good for code performance and numerical stability. But hey, it’s quite cool that this is even possible!
 
 See a more complete derivatives table [here](https://github.com/PabRod/DualDiff.jl/blob/main/src/primitives.jl) (Python version [here](https://github.com/PabRod/dualdiff/blob/main/dualdiff/primitives.py)).
 
@@ -229,17 +285,20 @@ Let’s compute the derivative of the non-algebraic function
 ![Automatic differentiation from scratch](./automatic-differentiation-from-scratch-a6b0d3c2.jpg)
 It is easy to prove analytically that the derivative is 1 everywhere (notice that the argument of the tangent is actually constant). Now, using `Dual`:
 
-fun = x -&gt; x + tan(cos(x)^2 + sin(x)^2)
+```julia
+fun = x -> x + tan(cos(x)^2 + sin(x)^2)
 
 z = Dual(0, 1)
 fun(z)
 
-&gt; Dual(1.557407724654902, 1.0)
+> Dual(1.557407724654902, 1.0)
+```
 
 ## Making it more user-friendly
 
 We can use dual numbers to create a user-friendly derivative function:
 
+```julia
 """
     derivative(f)
 
@@ -248,16 +307,21 @@ We can use dual numbers to create a user-friendly derivative function:
     the function's derivative
 """
 function derivative(f)
-    df = x -&gt; f(Dual(x, 1.0)).dx
+    df = x -> f(Dual(x, 1.0)).dx
     return df
-endUsing this, our example above will look like:
+end
+```
 
-fun = x -&gt; x + tan(cos(x)^2 + sin(x)^2)
+Using this, our example above will look like:
+
+```julia
+fun = x -> x + tan(cos(x)^2 + sin(x)^2)
 
 dfun = derivative(f)
 dfun(0)
 
-&gt; 1.0
+> 1.0
+```
 
 ### Another example**
 
@@ -266,10 +330,15 @@ Now we want to calculate and visualize the derivatives of:
 ![Automatic differentiation from scratch](./automatic-differentiation-from-scratch-7e1f04a0.jpg)
 First, we have to input the function, and the derivative gets calculated automatically:
 
+```julia
 f(x) = x^2 - 5x + 6 - 5x^3 - 5 * exp(-50 * x^2)
 
-df = derivative(f)We can visualize the results by plotting a tangent line:
+df = derivative(f)
+```
 
+We can visualize the results by plotting a tangent line:
+
+```julia
 using Plots
 
 I = [-0.7; 0.7]
@@ -281,6 +350,8 @@ I = [-0.7; 0.7]
     plot!(L, -1, 1, c=:red)
     ylims!(-5, 15)
 end
+```
+
 ![Automatic differentiation from scratch](./automatic-differentiation-from-scratch-fe83078a.gif)
 
 ## Is this useful?

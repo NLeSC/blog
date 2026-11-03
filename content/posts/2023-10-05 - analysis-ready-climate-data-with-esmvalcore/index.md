@@ -23,6 +23,7 @@ In a [recent blog post](https://medium.com/pangeo/easy-ipcc-part-1-multi-model-d
 
 To give you an impression of ESMValCore’s look and feel, we start with a complete code block that exactly reproduces Tom’s figure. In the remainder of this post, we’ll dive into the details: the dataset interface, automatic ESGF downloads, CMOR checks and fixes, and exporting as recipe, meanwhile touching upon some of the similarities and differences with xarray-datatree. At the end of the blogpost we’ll build an ESMValTool recipe that reproduces the same figure with all available models and ensemble members.
 
+```python
 import cf_units
 import matplotlib.pyplot as plt
 from iris import quickplot
@@ -78,6 +79,8 @@ for dataset in datasets:
 # Show the plot
 plt.legend()
 plt.show()
+```
+
 ![Analysis-ready climate data with ESMValCore](./analysis-ready-climate-data-with-esmvalc-02171093.png)
 The famous IPCC figure from Tom’s blogpost reproduced with ESMValCore.Cool! This looks exactly like the figure in Tom’s post 🎉. With roughly the same amount of code. If you haven’t read Tom’s post, this figure shows the historical and projected rise in sea-surface temperature from different climate models and future emission scenario’s.
 
@@ -95,13 +98,22 @@ It’s worth dissecting *how *ESMValCore does things, though. Firstly because yo
 
 ESMValCore works with a configuration file. This is where you store information about, for example, how your data is organized on disk. The defaults are pretty good, we only had to enable automatic downloads. Let’s have a look at some of the other settings.
 
-print({key: CFG[key] **       for key in ['download_dir', 'drs', 'output_dir', 'rootpath']
-}){
+```python
+print({key: CFG[key]
+       for key in ['download_dir', 'drs', 'output_dir', 'rootpath']
+})
+```
+
+```text
+{
     'download_dir': PosixPath('/home/peter/climate_data'),
     'drs': {'CMIP3': 'ESGF', 'CMIP5': 'ESGF', 'CMIP6': 'ESGF', 'CORDEX': 'ESGF', 'obs4MIPs': 'ESGF'},
     'output_dir': PosixPath('/home/peter/esmvaltool_output'),
     'rootpath': {'default': [PosixPath('/home/peter/climate_data')]}
-}The default configuration specifies that data will be downloaded to a folder called `climate data` in my home directory. The `rootpath` setting specifies all folders where ESMValCore should look for data, and it is set to the same default. Finally, ESMValCore defines a dedicated folder to store output. Every ESMValTool run or session will get its own subdirectory in there.
+}
+```
+
+The default configuration specifies that data will be downloaded to a folder called `climate data` in my home directory. The `rootpath` setting specifies all folders where ESMValCore should look for data, and it is set to the same default. Finally, ESMValCore defines a dedicated folder to store output. Every ESMValTool run or session will get its own subdirectory in there.
 
 The key point here is that you don’t have to worry about data management. You can configure some folders if you want to, but even that is not strictly necessary. If you’re working on dedicated climate data infrastructure such as Jasmin or DKRZ, you can also configure ESMValCore to use the Data Reference Syntax (DRS, the filenames + folder structure) used on these machines.
 
@@ -109,7 +121,9 @@ The key point here is that you don’t have to worry about data management. You 
 
 Let’s have a closer look at the dataset definition. What happened, for example, when we called `augment_facets`?
 
-dataset = Dataset(**    short_name='tos',
+```python
+dataset = Dataset(
+    short_name='tos',
     mip='Omon',
     project='CMIP6',
     exp='historical',
@@ -118,7 +132,11 @@ dataset = Dataset(**    short_name='tos',
     grid='gn',
 )
 dataset.augment_facets()
-print(dataset)Dataset:
+print(dataset)
+```
+
+```text
+Dataset:
 {'dataset': 'CESM2',
  'project': 'CMIP6',
  'mip': 'Omon',
@@ -134,8 +152,12 @@ print(dataset)Dataset:
  'original_short_name': 'tos',
  'standard_name': 'sea_surface_temperature',
  'units': 'degC'}
-session: 'session-405b0393-0e28-4dae-836e-0d5961e3d30b_20230609_084132'ESMValCore auto-completed our `Dataset` based on the information it got from the [CMOR tables](https://github.com/PCMDI/cmip6-cmor-tables). With this specification, ESMValCore can automatically search both your local filesystem and the ESGF for available copies of the dataset. Let’s make things a bit more interesting, and look for all available ensemble members. The `from_files()` method is used to build a list of available dataset based on the search fields.
+session: 'session-405b0393-0e28-4dae-836e-0d5961e3d30b_20230609_084132'
+```
 
+ESMValCore auto-completed our `Dataset` based on the information it got from the [CMOR tables](https://github.com/PCMDI/cmip6-cmor-tables). With this specification, ESMValCore can automatically search both your local filesystem and the ESGF for available copies of the dataset. Let’s make things a bit more interesting, and look for all available ensemble members. The `from_files()` method is used to build a list of available dataset based on the search fields.
+
+```python
 CFG['search_esgf'] = 'always'
 dataset_search = Dataset(
     short_name='tos',
@@ -148,7 +170,11 @@ dataset_search = Dataset(
 )
 ensemble_datasets = list(dataset_search.from_files())
 
-print([ds['ensemble'] for dataset in ensemble_datasets])[
+print([ds['ensemble'] for dataset in ensemble_datasets])
+```
+
+```text
+[
     'r10i1p1f1',
     'r11i1p1f1',
     'r1i1p1f1',
@@ -160,12 +186,16 @@ print([ds['ensemble'] for dataset in ensemble_datasets])[
     'r7i1p1f1',
     'r8i1p1f1',
     'r9i1p1f1'
-]Apparently there’s 11 ensemble members available for this model.
+]
+```
+
+Apparently there’s 11 ensemble members available for this model.
 
 The wildcard search functionality ( `'*'` ) is incredibly useful, as there are often inconsistencies in availability between datasets. Asking for ensemble member 1 through 11 may work for CESM2 today, but not for another model, or it may be different tomorrow.
 
 What if we wanted to plot all *available data?
 
+```python
 CFG['search_esgf'] = 'always'
 dataset_search= Dataset(
     short_name='tos',
@@ -178,20 +208,33 @@ dataset_search= Dataset(
     grid='gn',
 )
 all_of_cmip = list(dataset_search.from_files())
-print(len(all_of_cmip))821That’s a lot of datasets! We’ll save that for the end of the post.
+print(len(all_of_cmip))
+```
+
+```text
+821
+```
+
+That’s a lot of datasets! We’ll save that for the end of the post.
 
 ### Adding supplementary information**
 
 To arrive at global mean temperature, we needed to calculate an area-weighted average. The data for ocean temperature comes at the native model grid, which is irregular and the grid cell area is not easily obtained. To address exactly this issue, the CF conventions include a specification of [cell measures](http://cfconventions.org/Data/cf-conventions/cf-conventions-1.7/build/ch07s02.html). ESMValCore supports this functionality and makes it easy to add cell measures to a dataset. In our case, we need the variable called `areacello`.
 
-# Discard augmented facets as they will be different for areacello**dataset = Dataset(**dataset.minimal_facets)
+```python
+# Discard augmented facets as they will be different for areacello
+dataset = Dataset(**dataset.minimal_facets)
 
 # Add areacello as supplementary dataset
 dataset.add_supplementary(short_name='areacello', mip='Ofx')
 
 # Autocomplete and inspect
 dataset.augment_facets()
-print(dataset.summary())Dataset:
+print(dataset.summary())
+```
+
+```text
+Dataset:
 {'dataset': 'CESM2',
  'project': 'CMIP6',
  'mip': 'Omon',
@@ -223,33 +266,70 @@ supplementaries:
    'original_short_name': 'areacello',
    'standard_name': 'cell_area',
    'units': 'm2'}
-session: 'session-ccace7d0-dc3b-4e03-87ea-2716aa127618_20230609_085322'These ancillary datasets are not always consistently available for each variant of a dataset. ESMValCore includes some convenience functionality that tries to find a matching variable if the exact match is not available. For example, it may take the grid cell area from another ensemble member. In this case, it looks like we have an exact match.
+session: 'session-ccace7d0-dc3b-4e03-87ea-2716aa127618_20230609_085322'
+```
+
+These ancillary datasets are not always consistently available for each variant of a dataset. ESMValCore includes some convenience functionality that tries to find a matching variable if the exact match is not available. For example, it may take the grid cell area from another ensemble member. In this case, it looks like we have an exact match.
 
 ### Data (down)loading**
 
 We now arrive at the part of the script that calls `dataset.load()`. In the background, ESMValCore automatically located the files on ESGF and downloaded them for us. Let’s illustrate this.
 
-# Before load**print(dataset.files)[
+```python
+# Before load
+print(dataset.files)
+```
+
+```text
+[
     ESGFFile:CMIP6/CMIP/NCAR/CESM2/historical/r4i1p1f1/Omon/tos/gn/v20190308/tos_Omon_CESM2_historical_r4i1p1f1_gn_
 185001-201412.nc on hosts ['aims3.llnl.gov', 'esgf-data.ucar.edu', 'esgf-data04.diasjp.net', 'esgf.ceda.ac.uk', 
 'esgf3.dkrz.de']
-]# After load (and re-defining the dataset to trigger a new search)
-print(dataset.files)[LocalFile('/home/peter/climate_data/CMIP6/CMIP/NCAR/CESM2/historical/r4i1p1f1/Omon/tos/gn/v20190308/tos_Omon_CESM2_historical_r4i1p1f1_gn_185001-201412.nc')]Notice that there were copies of this file available on 5 different ESGF nodes. ESMValCore automatically selects the fastest available server and stored the dataset according to the standard CMOR data reference syntax.
+]
+```
+
+```python
+# After load (and re-defining the dataset to trigger a new search)
+print(dataset.files)
+```
+
+```text
+[LocalFile('/home/peter/climate_data/CMIP6/CMIP/NCAR/CESM2/historical/r4i1p1f1/Omon/tos/gn/v20190308/tos_Omon_CESM2_historical_r4i1p1f1_gn_185001-201412.nc')]
+```
+
+Notice that there were copies of this file available on 5 different ESGF nodes. ESMValCore automatically selects the fastest available server and stored the dataset according to the standard CMOR data reference syntax.
 
 For our example dataset, all the data is apparently contained within one file. However, it’s not always like this. If we look, for example, at another ensemble member, we can see that it is stored in chunks of 50 years:
 
-print(ensemble_datasets[1].files)[ESGFFile:CMIP6/CMIP/NCAR/CESM2/historical/r10i1p1f1/Omon/tos/gn/v20190313/tos_Omon_CESM2_historical_r10i1p1f1_gn_185001-189912.nc on hosts ['aims3.llnl.gov', 'esgf-data.ucar.edu', 'esgf-data04.diasjp.net', 'esgf.ceda.ac.uk', 'esgf3.dkrz.de'],
+```python
+print(ensemble_datasets[1].files)
+```
+
+```text
+[ESGFFile:CMIP6/CMIP/NCAR/CESM2/historical/r10i1p1f1/Omon/tos/gn/v20190313/tos_Omon_CESM2_historical_r10i1p1f1_gn_185001-189912.nc on hosts ['aims3.llnl.gov', 'esgf-data.ucar.edu', 'esgf-data04.diasjp.net', 'esgf.ceda.ac.uk', 'esgf3.dkrz.de'],
  ESGFFile:CMIP6/CMIP/NCAR/CESM2/historical/r10i1p1f1/Omon/tos/gn/v20190313/tos_Omon_CESM2_historical_r10i1p1f1_gn_190001-194912.nc on hosts ['aims3.llnl.gov', 'esgf-data.ucar.edu', 'esgf-data04.diasjp.net', 'esgf.ceda.ac.uk', 'esgf3.dkrz.de'],
  ESGFFile:CMIP6/CMIP/NCAR/CESM2/historical/r10i1p1f1/Omon/tos/gn/v20190313/tos_Omon_CESM2_historical_r10i1p1f1_gn_195001-199912.nc on hosts ['aims3.llnl.gov', 'esgf-data.ucar.edu', 'esgf-data04.diasjp.net', 'esgf.ceda.ac.uk', 'esgf3.dkrz.de'],
- ESGFFile:CMIP6/CMIP/NCAR/CESM2/historical/r10i1p1f1/Omon/tos/gn/v20190313/tos_Omon_CESM2_historical_r10i1p1f1_gn_200001-201412.nc on hosts ['aims3.llnl.gov', 'esgf-data.ucar.edu', 'esgf-data04.diasjp.net', 'esgf.ceda.ac.uk', 'esgf3.dkrz.de']]In this case, ESMValCore automatically concatenates the data for us.
+ ESGFFile:CMIP6/CMIP/NCAR/CESM2/historical/r10i1p1f1/Omon/tos/gn/v20190313/tos_Omon_CESM2_historical_r10i1p1f1_gn_200001-201412.nc on hosts ['aims3.llnl.gov', 'esgf-data.ucar.edu', 'esgf-data04.diasjp.net', 'esgf.ceda.ac.uk', 'esgf3.dkrz.de']]
+```
+
+In this case, ESMValCore automatically concatenates the data for us.
 
 You may have noticed that we assigned the result of the `load` method to a new variable called `cube`:
 
-cube = dataset.load()Under the hood, ESMValCore uses `[iris](https://scitools-iris.readthedocs.io)` to represent data cubes. Compared to `xarray`, `iris` is more strict on checking adherence to CF conventions. This can make it harder to work with, but it also acts as a safeguard against unexpected behaviour.
+```python
+cube = dataset.load()
+```
+
+Under the hood, ESMValCore uses `[iris](https://scitools-iris.readthedocs.io)` to represent data cubes. Compared to `xarray`, `iris` is more strict on checking adherence to CF conventions. This can make it harder to work with, but it also acts as a safeguard against unexpected behaviour.
 
 Where Tom used [xMIP](https://cmip6-preprocessing.readthedocs.io), ESMValCore comes with builtin checks and if there are any (known) issues with the datasets, it automatically fixes them. Also, it automatically loads all supplementary datasets. Notice how the cell area is present as a cell measure.
 
-print(cube)sea_surface_temperature / (degC)          (time: 1980; cell index along second dimension: 384; cell index along first dimension: 320)
+```python
+print(cube)
+```
+
+```text
+sea_surface_temperature / (degC)          (time: 1980; cell index along second dimension: 384; cell index along first dimension: 320)
     Dimension coordinates:
         time                                   x                                        -                          -
         cell index along second dimension      -                                        x                          -
@@ -285,7 +365,7 @@ print(cube)sea_surface_temperature / (degC)          (time: 1980; cell index alo
         initialization_index              1
         institution                       'National Center for Atmospheric Research, Climate and Global Dynamics Laboratory, ...'
         institution_id                    'NCAR'
-        license                           'CMIP6 model data produced by &lt;The National Center for Atmospheric Research&gt; ...'
+        license                           'CMIP6 model data produced by <The National Center for Atmospheric Research> ...'
         mipTable                          'Omon'
         mip_era                           'CMIP6'
         model_doi_url                     'https://doi.org/10.5065/D67H1H0V'
@@ -316,6 +396,7 @@ print(cube)sea_surface_temperature / (degC)          (time: 1980; cell index alo
         variable_id                       'tos'
         variant_info                      'CMIP6 20th century experiments (1850-2014) with CAM6, interactive land ...'
         variant_label                     'r4i1p1f1'
+```
 
 ### Pre-processing **🛠️
 
@@ -323,9 +404,12 @@ ESMValCore comes with a [large suite](https://docs.esmvaltool.org/projects/ESMVa
 
 We won’t go into detail on each of the preprocessing functions applied above, as they’re fairly self-explanatory. One thing to highlight though, is that in our calculation of anomalies, we deviated a little bit from Tom’s method. He subtracted the overall average of 1950–1980; we used monthly means over that period. It’s not really necessary here, but it facilitates comparing changes in summer temperature, for example 😎.
 
-cube = area_statistics(cube, operator='mean')**cube = anomalies(cube, reference=reference_period, period='month')
+```python
+cube = area_statistics(cube, operator='mean')
+cube = anomalies(cube, reference=reference_period, period='month')
 cube = annual_statistics(cube, operator='mean')
 cube.convert_units('degrees_C')
+```
 
 ### Custom code**
 
@@ -333,10 +417,16 @@ Up to this point, everything we’ve done was “pure” ESMValCore. However, in
 
 This can be a good moment to thank iris for its services, and continue with xarray if you prefer. For example:
 
-import xarray as xr**da = xr.DataArray.from_iris(cube)
+```python
+import xarray as xr
+da = xr.DataArray.from_iris(cube)
 da.plot()
-print(da)&lt;xarray.DataArray 'tos' (time: 165)&gt;
-dask.array&lt;filled, shape=(165,), dtype=float32, chunksize=(1,), chunktype=numpy.ndarray&gt;
+print(da)
+```
+
+```text
+<xarray.DataArray 'tos' (time: 165)>
+dask.array<filled, shape=(165,), dtype=float32, chunksize=(1,), chunktype=numpy.ndarray>
 Coordinates:
   * time     (time) object 1850-07-02 13:00:00.000001 ... 2014-07-02 12:00:00
     nlon     int64 ...
@@ -358,6 +448,8 @@ Attributes: (12/57)
     title:                  Sea Surface Temperature
     type:                   real
     cell_methods:           area: mean where sea time: mean longitude: latitu...
+```
+
 ![Analysis-ready climate data with ESMValCore](./analysis-ready-climate-data-with-esmvalc-7d340529.png)
 The change in sea-surface temperature as plotted by xarray’s builtin plot method.
 
@@ -365,11 +457,17 @@ The change in sea-surface temperature as plotted by xarray’s builtin plot meth
 
 Traditionally, ESMValTool was designed to work with recipes: static, human-readable files that declare a worfklow from start to finish. This comes back to what we said earlier about describing *what* to do instead of *how*. ESMValCore helps us to start building a recipe. With the following code, we can generate the `datasets` and `diagnostics` sections of the recipe:
 
-from esmvalcore.dataset import datasets_to_recipe**import yaml
+```python
+from esmvalcore.dataset import datasets_to_recipe
+import yaml
 
 for dataset in ensemble_datasets:
     dataset.facets['diagnostic'] = 'easy_ipcc'
-print(yaml.safe_dump(datasets_to_recipe(datasets)))datasets:
+print(yaml.safe_dump(datasets_to_recipe(datasets)))
+```
+
+```yaml
+datasets:
 - dataset: CESM2
   ensemble: r4i1p1f1
   institute: NCAR
@@ -402,7 +500,10 @@ diagnostics:
         - ssp585
         grid: gn
         mip: Omon
-        project: CMIP6You still have to add the preprocessors and some metadata (a short description etc.). We envision a workflow where you use ESMValCore interactively for most of your exploratory work, and then port it to a recipe for sharing and reproducibility.
+        project: CMIP6
+```
+
+You still have to add the preprocessors and some metadata (a short description etc.). We envision a workflow where you use ESMValCore interactively for most of your exploratory work, and then port it to a recipe for sharing and reproducibility.
 
 To complete this post, we’ve gone ahead and extended the recipe above to include all the available CMIP6 data and make a nice plot. As you might expect, this required more labour due to dataset issues for which no fixes were available, and a bit of extra tinkering to make the figure look more like the IPCC version. You can find the corresponding recipe and diagnostic script [here](https://github.com/ESMValGroup/ESMValTool/pull/3356). Be careful with running it, though! This recipe will try to download almost twenty-thousand files… Running this on the German climate compute service, we get the following figure:
 

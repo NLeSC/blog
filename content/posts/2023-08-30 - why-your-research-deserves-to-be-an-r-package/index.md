@@ -42,13 +42,21 @@ First of all, when your code is packaged, it is contained in a standardized fold
 
 Secondly, and perhaps most crucially, packaged code consists of functions only. Functions are the units at the centre of a package. They take information as arguments and return an output. For example, I have a function called *multiply. *This function, you guessed it, multiplies the two arguments I give it, and returns the result:
 
-multiply &lt;- function(a, b){
+```r
+multiply <- function(a, b){
   return(a * b)
-}After including this function in a package — let’s call it *mypackage — *someone else can now use it without opening and running the entire codebase, but instead by attaching the package and calling the function:
+}
+```
 
-&gt; library(myPackage)
-&gt; multiply(3,4)
-[1] 12You have likely written functions before. And you know how folders work. To dot the i’s and cross the t’s, Rstudio is here to help: it contains many built-in functions to make package creation a breeze.
+After including this function in a package — let’s call it *mypackage — *someone else can now use it without opening and running the entire codebase, but instead by attaching the package and calling the function:
+
+```r
+> library(myPackage)
+> multiply(3,4)
+[1] 12
+```
+
+You have likely written functions before. And you know how folders work. To dot the i’s and cross the t’s, Rstudio is here to help: it contains many built-in functions to make package creation a breeze.
 
 ### Your work deserves to be reused.
 
@@ -58,11 +66,15 @@ Let’s take an example. Mark*, a linguistics professor, runs frequent analyses 
 
 Mark has hundreds of conversations to analyse, so he made functions that contains the essential elements of his workflow. Now, when he loads a new conversation, he can for instance use this function** to quickly get an overview of the basic statistics:
 
-&gt; conversation &lt;- read.csv("data/conversation25.csv")
-&gt; inspect_convo(conversation)
+```r
+> conversation <- read.csv("data/conversation25.csv")
+> inspect_convo(conversation)
 Number of speakers: 2
 Length of conversation: 10:03
-Number of utterances: 9438But Mark does not work alone. His group contains PhD students and postdocs, and is a popular place for bachelor and master internships. He shares his scripts with his group, but they can be a daunting sight for those who have not programmed much before. And as his toolkit grows, he loses track of the different elements it contains, and what updates he has shared with whom.
+Number of utterances: 9438
+```
+
+But Mark does not work alone. His group contains PhD students and postdocs, and is a popular place for bachelor and master internships. He shares his scripts with his group, but they can be a daunting sight for those who have not programmed much before. And as his toolkit grows, he loses track of the different elements it contains, and what updates he has shared with whom.
 
 Mark needs an R package.
 
@@ -88,16 +100,20 @@ You were testing your function, and it took a lot of time.
 
 With tests, we can automate this process. Mark, for instance, knows that when he puts the file conversation25.csv* into *inspect_convo*, it should return information about the number of speakers (2), the length of the file (10 minutes and 3 seconds), and the number of utterances (9438). He does not have to keep checking this himself, but can put his knowledge inside a test:
 
+```r
 test_that("Conversation inspection returns the right results", {
   # load the test object and run inspect_convo
   load("conversation25.Rda")
-  conversation &lt;- inspect_convo(conversation25)
+  conversation <- inspect_convo(conversation25)
   
   # inspect_convo should return the right information
   expect_true(conversation[1] == "Number of speakers: 2")
   expect_true(conversation[2] == "Length of conversation: 10:03")
   expect_true(conversation[3] == "Number of utterances: 9438")
-})Now he simply runs the tests, and Rstudio will tell him if they pass. This quickly starts saving him a lot of time, especially when the package grows and starts including more functions. With one click, Mark can confirm that everything, everywhere, is OK.
+})
+```
+
+Now he simply runs the tests, and Rstudio will tell him if they pass. This quickly starts saving him a lot of time, especially when the package grows and starts including more functions. With one click, Mark can confirm that everything, everywhere, is OK.
 
 ![Why your research deserves to be an R package](./why-your-research-deserves-to-be-an-r-pa-f3599774.png)
 The Rstudio view of the tests in this package confirm that every function is operating as it should.Being able to check functionality like this comes with a lot of freedom, to grow your package, but also to improve the things already written. How efficient is that function you wrote, really? When you edit (or “refactor”) the code, your tests give you the peace of mind that your edits have not caused any inadvertent problems. After all, as soon as something breaks, you will know!

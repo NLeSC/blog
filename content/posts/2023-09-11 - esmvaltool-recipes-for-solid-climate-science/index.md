@@ -38,14 +38,19 @@ ESMValTool was originally designed for the analysis of CMIP data: output of many
 
 For example, the file name conventions make it possible to specify a dataset like so:
 
-Dataset(**    short_name = 'tos',
+```python
+Dataset(
+    short_name = 'tos',
     mip = 'Omon',
     project = 'CMIP6',
     exp = 'historical',
     dataset = 'CESM2',
     ensemble = 'r4i1p1f1',
     grid = 'gn'
-)and ESMValCore is able to locate it, both on your local computer or on [ESGF](https://esgf.llnl.gov/), the shared infrastructure where all of the CMIP data are collected. ESMValCore can automatically download data from ESGF, provided that the data is present there.
+)
+```
+
+and ESMValCore is able to locate it, both on your local computer or on [ESGF](https://esgf.llnl.gov/), the shared infrastructure where all of the CMIP data are collected. ESMValCore can automatically download data from ESGF, provided that the data is present there.
 
 Pause a moment to let this sink in: ESMValCore eliminates hardcoded paths in your scripts, or rather, recipes. This is key to making them interoperable.
 

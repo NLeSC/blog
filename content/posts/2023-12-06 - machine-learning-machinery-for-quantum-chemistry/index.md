@@ -49,6 +49,7 @@ As the name indicates, QMCTorch is based on the popular deep learning framework 
 
 To use the code we first need to define a molecule through its atomic positions. QMCTorch allows for a few different flavors of wave functions to be used and we therefore need to pick one. We also have to define a sampler and an optimizer to compute and minimize the total energy of the system. Of course, each component has a lot of knobs that can be tweaked and that can greatly affect the result of the calculation.
 
+```python
 from torch import optim
 from qmctorch.scf import Molecule
 from qmctorch.wavefunction import SlaterJastrow,
@@ -71,7 +72,10 @@ opt = optim.Adam(wf.parameters(), lr=1E-3)
 
 # create a solver and optimize the wave function
 solver = Solver(wf=wf, sampler=sampler, optimizer=opt)
-solver.run(250)We can then ask QMCTorch to optimize the wave function of a molecule or even to optimize its geometry. The illustration below shows the result of such a geometry optimization for a water molecule. Starting from a non-ideal atomic arrangement, where the oxygen and the two hydrogens are aligned, the optimization process quickly brings the atoms in a more favorable conformation.
+solver.run(250)
+```
+
+We can then ask QMCTorch to optimize the wave function of a molecule or even to optimize its geometry. The illustration below shows the result of such a geometry optimization for a water molecule. Starting from a non-ideal atomic arrangement, where the oxygen and the two hydrogens are aligned, the optimization process quickly brings the atoms in a more favorable conformation.
 
 ![Machine Learning Machinery for Quantum Chemistry](./machine-learning-machinery-for-quantum-c-6746e7cc.gif)
 
