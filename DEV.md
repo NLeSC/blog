@@ -72,6 +72,12 @@ For more information, see the docs of [merge-schedule-action](https://github.com
   - Mermaid diagrams from fenced `mermaid` code blocks.
 - Unlisted direct-link posts for integration/showcase pages that build but stay out of public listings, RSS, APIs, topics, authors, and search.
 
+## Authoring links and series
+
+Post bodies use standard Markdown links with root-relative `/posts/<slug>/` URLs, optionally followed by a heading fragment. Custom frontmatter `slug` values provide short URLs; otherwise generated paths include the filename date. Preserve published slugs. Series navigation is maintained as ordinary lists of links, not generated from series metadata.
+
+See [the authoring workflow](docs/authoring.md#link-to-posts-and-sections) and the [formatting guide examples](content/posts/2026-06-11%20-%20formatting-guide/index.md#links-to-other-posts) for the contributor-facing syntax.
+
 ## Building for production
 
 ```sh
