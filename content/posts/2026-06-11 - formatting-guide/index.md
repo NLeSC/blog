@@ -30,6 +30,16 @@ tags:
 ---
 ```
 
+For one author, use `author: "Author Name"` as above. For multiple authors, use a YAML list under the same `author` field:
+
+```yaml
+author:
+  - "First Author"
+  - "Second Author"
+```
+
+Authors appear in the order listed, each linked to their author page. The post appears in every co-author’s archive. Use consistent names across posts and do not leave list entries blank.
+
 The optional `subtitle` appears beneath the title on the post and in listing previews. Keep it short and plain text; omit it to use an excerpt from the post body in previews. The custom `slug` is also optional. When supplied, it creates a short, stable URL containing only lowercase letters, numbers, and hyphens.
 
 The optional `cover` selects the image used in homepage and archive cards and social previews. Put the image next to `index.md` and use `./filename.png`, or use `/assets/filename.png` for a shared asset. Without `cover`, the blog chooses an image from the post body when possible. `cover` does not make a post featured; use `featured: true` for that.
