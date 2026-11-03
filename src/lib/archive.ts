@@ -83,6 +83,7 @@ export function getExcerpt(body: string, maxLen = 200): string {
   return body
     .replace(/!\[.*?\]\(\/assets\/[^)]+\)/g, '')
     .replace(/!\[.*?\]\(\.\/[^)]+\)/g, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
     .replace(/\(https?:\/\/[^)]+\)/g, '')
     .replace(/#{1,6}\s/g, '')
     .replace(/[_\*\[\]`]/g, '')

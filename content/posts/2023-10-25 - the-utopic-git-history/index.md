@@ -13,7 +13,7 @@ tags:
   - Workflows
 ---
 
-*If you love this article and can’t wait to read more about The Utopic Git History, please see *[*this follow-up article*](/achieving-utopic-git-history-4cc2a1fd3107?sk=88f3dac86d55ac1833f66165bc6634c2)* by Abel.*
+*If you love this article and can’t wait to read more about The Utopic Git History, please see [this follow-up article](/posts/2023-10-19---achieving-utopic-git-history/) by Abel.*
 
 A quick way to create discord among a group of developers is to discuss Git. More specifically, whether to merge, rebase, or squash. There are many arguments around this, simply because it involves opinions on whether the end result is good or bad. Some of these arguments verge from bad experiences with extreme cases. The most common case that I encounter is the dreadful huge pull request**.
 
@@ -30,15 +30,11 @@ A very large pull request is one containing changes in many files, possibly with
 
 Let’s discuss how to avoid this issue, and touch on the merge vs rebase vs squash debate on the way there.
 
-> 
-
-Target audience: This post should be useful for anyone interested in best practices with Git, or intermediate/advanced usage of Git. It also contains opinions on Git rebase and squash, so it might trigger some people.
+> Target audience: This post should be useful for anyone interested in best practices with Git, or intermediate/advanced usage of Git. It also contains opinions on Git rebase and squash, so it might trigger some people.
 
 ## UGH — Utopic Git History
 
-> 
-
-Note: UGH should be pronounced with disdain and eye-rolling.
+> Note: UGH should be pronounced with disdain and eye-rolling.
 
 The main idea behind what I will call UGH workflow is **atomic git commits. **This is not a new subject, you can find a few blog posts about it — in fact, I just found out about the [Git Legit](https://www.youtube.com/watch?v=_e5oq4JT4_8) talk by Pauline Vos and I strongly recommend watching it.
 
@@ -130,9 +126,7 @@ This is the harder part because it is not just git anymore. There are different 
 * Each pull request should close one, and only one issue.
 * Each issue should be small enough to not creep into more than one topic.
 
-> 
-
-Clarification: not every issue leads to a pull request, but every pull request requires an issue.
+> Clarification: not every issue leads to a pull request, but every pull request requires an issue.
 
 To achieve this, one has to
 
@@ -150,9 +144,7 @@ I find that it helps a lot to work on an epic issue as a whole, then split it in
 
 What if we take these atomic definitions to the extreme?
 
-> 
-
-One commit per pull request.
+> One commit per pull request.
 
 Since the issue is minimal, then it should be fixable with a single commit, right? Otherwise, the issue would not be minimal.
 
