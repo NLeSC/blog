@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Which conferences do RSEs attend?"
+subtitle: "Conference venues, a great place to explore new topics and meet like-minded people."
 author: Angel Daza
 published: true
 # Optional card/social preview image: cover: ./descriptive-file-name.png
