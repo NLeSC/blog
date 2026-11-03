@@ -53,36 +53,36 @@ There is a practical issue with this form of literate programming. We’re havin
 
 [Markdown](https://daringfireball.net/projects/markdown/) has become a standard way of expressing text documents (without there being a standard and moreover many different flavours). Markdown can be converted to HTML, LaTeX and many other formats. Everyone’s favourite tool for markdown conversion is of course [PanDoc](https://pandoc.org/). One guiding principle in the following design is that the resulting Markdown is parsable by PanDoc. We will be denoting code blocks using three back ticks on the opening and closing line of the code block like so:
 
-```hs
-\`\`\`py
+````markdown
+```py
 print("Hello, Amsterdam!")
-\`\`\`
 ```
+````
 
 One way of denoting the programming language of the code block is by extending the opening back ticks with an accepted abbreviation of the language. In the above example we tell the document formatter that the given source code is written in Python. For our purpose this syntax is not flexible enough. We want to extend the code block meta-data with other properties. PanDoc supports attaching a CSS class, id and attributes to code blocks using curly brackets:
 
-```hs
-\`\`\` {.py file=hello.py}
+````markdown
+``` {.py file=hello.py}
 print("Hello, World!")
-\`\`\`
 ```
+````
 
 In this system of literate programming the tangler will extract this code block and write it to a file \`hello.py\`. More complicated programs can be built using a system of references. Keeping with Python, it is considered good form to enclose a main script using the following \`if\`-statement:
 
-```hs
-\`\`\` {.py file=hello2.py}
+````markdown
+``` {.py file=hello2.py}
 if __name__ == "__main__":
     <<main-body>>
-\`\`\`
 ```
+````
 
 We can define the body anywhere else in the document:
 
-```hs
-\`\`\` {.py #main-body}
+````markdown
+``` {.py #main-body}
 print("Hello, Universe!")
-\`\`\`
 ```
+````
 
 The tangler will then combine these code blocks into a single file:
 

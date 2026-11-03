@@ -64,11 +64,14 @@ This means that the function itself is an object that lives in our environment a
 The basic skeleton of a decorator in R looks like this:
 
 ```hs
-deco <- function(f) {  wrapper <- function(...) {
+deco <- function(f) {
+  wrapper <- function(...) {
        # <code prior to execution>
        res <- f(...)
-       # <code posterior to execution>       return(res)
-  }  return(wrapper)
+       # <code posterior to execution>
+       return(res)
+  }
+  return(wrapper)
 }
 ```
 
@@ -87,12 +90,17 @@ Let’s see some examples:
 The decorator below can be used to print the starting and ending times of your function:
 
 ```hs
-timer <- function(f) {   wrapper <- function(...) {
+timer <- function(f) {
+   wrapper <- function(...) {
       # Before execution
       op <- options(digits.secs = 6) # Increase time resolution
-      print(paste("Ini time:", Sys.time())) # Show the clock before      res <- f(...)      # After execution
-      print(paste("End time:", Sys.time())) # Show the clock after      return(res)
-  }  return(wrapper)
+      print(paste("Ini time:", Sys.time())) # Show the clock before
+      res <- f(...)
+      # After execution
+      print(paste("End time:", Sys.time())) # Show the clock after
+      return(res)
+  }
+  return(wrapper)
 }
 ```
 
@@ -128,11 +136,16 @@ The `...` syntax, meaning any amount of input parameters, allows for timing func
 Another interesting possibility is using a decorator for logging the output of any function. Check this out:
 
 ```hs
-logger <- function(f, filename = 'log.txt') {   wrapper <- function(...) {
+logger <- function(f, filename = 'log.txt') {
+   wrapper <- function(...) {
       # Before execution
-      # Do nothing      res <- f(...)      # After execution
-      write(res, file = filename, append = TRUE)      return(res)
-  }  return(wrapper)
+      # Do nothing
+      res <- f(...)
+      # After execution
+      write(res, file = filename, append = TRUE)
+      return(res)
+  }
+  return(wrapper)
 }
 ```
 
@@ -155,13 +168,15 @@ and it will log the value `8` in the default file `log.txt`. A non-default log f
 Certainly one of the secrets to the success of decorators in Python is that they look really neat. Instead of something like:
 
 ```hs
-# In Pythonf_dec = decorator(f)
+# In Python
+f_dec = decorator(f)
 ```
 
 We can use syntactic sugar to apply the decorator from the moment the function is defined:
 
 ```hs
-# In Python@decorator
+# In Python
+@decorator
 def f(args):
    # <function body>
 ```
@@ -216,12 +231,15 @@ Each line differed in the size and composition of the pasted string. In order to
 So I wrote a decorator that logs the first argument of anything, and it saved my day:
 
 ```hs
-log1starg <- function(f, filename = 'loginput.txt') {  wrapper <- function(x, ...) {
+log1starg <- function(f, filename = 'loginput.txt') {
+  wrapper <- function(x, ...) {
       # Before execution
       write(x, file = filename, append = TRUE) # Log the 1st arg
     
-      res <- f(x, ...)      # After execution
-      # Do nothing      return(res)
+      res <- f(x, ...)
+      # After execution
+      # Do nothing
+      return(res)
   }
   
   return(wrapper)

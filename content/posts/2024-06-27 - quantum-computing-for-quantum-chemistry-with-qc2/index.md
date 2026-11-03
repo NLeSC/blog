@@ -82,6 +82,7 @@ Schematic representation of qc2 design and workflow.[qc2](https://github.com/qc2
 
 In the code block below, we present a minimal example using qc2 for a simple VQE run on the water molecule:
 
+```python
 # Import ASE-related modules
 from ase.build import molecule
 
@@ -113,10 +114,14 @@ qc2data.algorithm = VQE(
 )
 
 # Run VQE algorithm
-qc2data.algorithm.run()As noted, qc2 is designed around the *qc2Data* class, which links traditional quantum chemistry codes with quantum computing backends through custom ASE calculators and formatted data files. Here, the molecular structure of water is built from ASE’s G2 database, with the reference HF run with qc2’s custom PySCF ASE calculator. By default, all relevant electronic structure data, including the initial molecular orbitals and electron integrals, are saved in the *h2o.hdf5* formatted datafile, following the QCSchema. The information contained in this file is used by *qc2Data *to build the molecular hamiltonian and its qubit representation. Despite being highly customizable, all the details of the VQE workflow discussed in the previous section are abstracted into a *VQE* class instance, which, in this case, corresponds to the PennyLane *VQE* class from the qc2’s algorithms package. This is passed to the *qc2data.algorithm* attribute.
+qc2data.algorithm.run()
+```
+
+As noted, qc2 is designed around the *qc2Data* class, which links traditional quantum chemistry codes with quantum computing backends through custom ASE calculators and formatted data files. Here, the molecular structure of water is built from ASE’s G2 database, with the reference HF run with qc2’s custom PySCF ASE calculator. By default, all relevant electronic structure data, including the initial molecular orbitals and electron integrals, are saved in the *h2o.hdf5* formatted datafile, following the QCSchema. The information contained in this file is used by *qc2Data *to build the molecular hamiltonian and its qubit representation. Despite being highly customizable, all the details of the VQE workflow discussed in the previous section are abstracted into a *VQE* class instance, which, in this case, corresponds to the PennyLane *VQE* class from the qc2’s algorithms package. This is passed to the *qc2data.algorithm* attribute.
 
 The next example illustrates how to conduct an oo-VQE run using the Qiskit *oo_VQE* class as implemented in the qc2’s algorithms package:
 
+```python
 # Import ASE-related modules
 from ase.build import molecule
 
@@ -149,7 +154,10 @@ qc2data.algorithm = oo_VQE(
 )
 
 # Run oo-VQE algorithm
-qc2data.algorithm.run()The structure of the input is exactly the same as before, with the exception that we are now instantiating and running a different algorithm class. A distinct qc2-ASE calculator could also be used, such as [DIRAC](https://www.diracprogram.org/) or [your own calculator](https://qc2.readthedocs.io/en/latest/ase/building_qc2_ASEs.html), with minimal changes and effort. This is a hallmark of qc2. Additionally, since we have previously completed a HF calculation in our VQE example above and saved all relevant *ab initio* data in *h2o.hdf5*, we could simply skip this step and proceed directly to defining the *oo_VQE* class. In this scenario, qc2 will automatically read the data contained in *h2o.hdf5*.
+qc2data.algorithm.run()
+```
+
+The structure of the input is exactly the same as before, with the exception that we are now instantiating and running a different algorithm class. A distinct qc2-ASE calculator could also be used, such as [DIRAC](https://www.diracprogram.org/) or [your own calculator](https://qc2.readthedocs.io/en/latest/ase/building_qc2_ASEs.html), with minimal changes and effort. This is a hallmark of qc2. Additionally, since we have previously completed a HF calculation in our VQE example above and saved all relevant *ab initio* data in *h2o.hdf5*, we could simply skip this step and proceed directly to defining the *oo_VQE* class. In this scenario, qc2 will automatically read the data contained in *h2o.hdf5*.
 
 ![Quantum Computing for Quantum Chemistry with qc2](./quantum-computing-for-quantum-chemistry--764d744f.png)
 Energy convergence of ground-state water obtained from qc2's VQE and oo-VQE algorithms. Also shown by dashed lines are the results obtained using traditional quantum chemistry [CASCI](https://pyscf.org/user/mcscf.html)(4, 4)/STO-3G and [CASSCF](https://pyscf.org/user/mcscf.html)(4, 4)/STO-3G methods with PySCF. At iteration #0, both VQE and oo-VQE start at the reference HF energy.The figure shows the energy convergence of ground-state water as obtained using the above qc2 input examples. Although qc2 can be directly interfaced with real quantum backends, for illustration purposes, all quantum circuit evaluations were conducted with the *default.qubit* state simulator device for PennyLane and the Qiskit* Estimator primitive* with *StateVector, *both providing exact expectation values. As expected, oo-VQE energies are variationally lower and converge nearly exactly to the predicted [CASSCF](https://pyscf.org/user/mcscf.html) values. Recall, however, that while oo-VQE is computationally more expensive than traditional VQE, this additional burden is entirely placed on the classical computer (optimizers), not the quantum backend. Note further from the figure that, since all initial circuit (and orbital rotation) parameters are set to zero by default, both VQE and oo-VQE initiate their interactive processes at the reference HF energy.

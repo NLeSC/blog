@@ -54,12 +54,17 @@ The main idea, in a nutshell
 
 Here’s the core pattern. The frontend reads the backend URL from the query string:
 
-export function App() {**  const backend = new URLSearchParams(location.search).get('backend');
+```tsx
+export function App() {
+  const backend = new URLSearchParams(location.search).get('backend');
   if (!backend) {
-    return &lt;BackendForm /&gt;;
+    return <BackendForm />;
   }
-  return &lt;StreetscapesExplorer backend={backend} /&gt;;
-}When someone visits the frontend without specifying a backend, they see a helpful form with instructions:
+  return <StreetscapesExplorer backend={backend} />;
+}
+```
+
+When someone visits the frontend without specifying a backend, they see a helpful form with instructions:
 
 ![Bring Your Own Backend](./bring-your-own-backend-eb41ae53.png)
 When the frontend is unable to connect to the specified backend, it shows an error message with troubleshooting tips:
@@ -78,18 +83,27 @@ No rebuilds. No redeployments. No complex configuration. Just a URL parameter.
 
 For this pattern to work after I leave, the backend needs to be dead simple to run.
 
+```python
 from dataclasses import dataclass, field
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()Web browsers do not like the frontend and backend to be at different URLs. For this in the backend we need to enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) like so:
+app = FastAPI()
+```
 
+Web browsers do not like the frontend and backend to be at different URLs. For this in the backend we need to enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) like so:
+
+```python
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
-)Then anyone can simply write a decorated and type annotated Python function to define an API endpoint:
+)
+```
 
+Then anyone can simply write a decorated and type annotated Python function to define an API endpoint:
+
+```python
 @dataclass
 class FilterParams(Bbox):
     ratings: list[int] = Field(default=[])
@@ -100,11 +114,16 @@ class Image:
     url: str
     lat: float
     lon: float
-@app.get("/images")
-async def fetch_images(filter: Annotated[FilterParams, Query()]) -&gt; list[Image]
-    # ... implementationAnd to make it even more user-friendly, the backend prints a clickable link to the frontend on startup:
 
-def main() -&gt; None:
+@app.get("/images")
+async def fetch_images(filter: Annotated[FilterParams, Query()]) -> list[Image]
+    # ... implementation
+```
+
+And to make it even more user-friendly, the backend prints a clickable link to the frontend on startup:
+
+```python
+def main() -> None:
     url = "https://urban-m4.github.io/Urban-M5/?backend=http://localhost:8000"
     print(f"Waiting for the streetscapes-explorer to start...")
     print(f"Goto {url}")
@@ -112,7 +131,10 @@ def main() -&gt; None:
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
 if __name__ == "__main__":
-    main()If you’re feeling more helpful you can use [webbrowser.open(url)](https://docs.python.org/3/library/webbrowser.html#webbrowser.open) to open the URL automatically in the user’s default browser.
+    main()
+```
+
+If you’re feeling more helpful you can use [webbrowser.open(url)](https://docs.python.org/3/library/webbrowser.html#webbrowser.open) to open the URL automatically in the user’s default browser.
 
 ## The contract: OpenAPI as the bridge
 
@@ -120,26 +142,34 @@ The frontend and backend need to agree on an API contract. Rather than maintaini
 
 FastAPI automatically generates an OpenAPI specification from the Python code. I then use [OpenAPI TypeScript](https://openapi-ts.dev/introduction) to generate TypeScript types:
 
-openapi-typescript http://localhost:5000/openapi.json -o ./src/lib/streetscapes-api.tsThe frontend then makes type-safe API calls:
+```bash
+openapi-typescript http://localhost:5000/openapi.json -o ./src/lib/streetscapes-api.ts
+```
 
+The frontend then makes type-safe API calls:
+
+```tsx
 import createClient from 'openapi-fetch';
 import type { paths } from './lib/streetscapes-api';
 
 function StreetscapesExplorer({backend}: { backend: string }) {
-  const client = createClient&lt;paths&gt;({ baseUrl: backend }); 
+  const client = createClient<paths>({ baseUrl: backend });
   const { data = [], error } = await client.GET('/images', {
     params: { query: { rating: [4, 5] } }
   });
   return (
-    &lt;div&gt;
-      {error &amp;&amp; &lt;div&gt;Error: {error.message}&lt;/div&gt;}
-      {data.map(image =&gt; (
-        &lt;img key={image.id} src={image.url} alt={`Image ${image.id}`} /&gt;
+    <div>
+      {error && <div>Error: {error.message}</div>}
+      {data.map(image => (
+        <img key={image.id} src={image.url} alt={`Image ${image.id}`} />
       ))}
       {/* ... rest of the app like map view */}
-    &lt;/div&gt;
+    </div>
   );
-};This gives us compile-time safety: if my partners change the API contract, the TypeScript compiler will catch any mismatches when regenerating the types.
+};
+```
+
+This gives us compile-time safety: if my partners change the API contract, the TypeScript compiler will catch any mismatches when regenerating the types.
 
 ## Try it out yourself
 

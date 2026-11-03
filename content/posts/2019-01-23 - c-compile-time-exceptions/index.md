@@ -27,9 +27,14 @@ Reading through Scott Meyers’ timeless classic *Effective C++*, I was struck b
 template<typename T>
 class SmartPtr {
 public:
-  explicit SmartPtr(T *realPtr);  …  template<typename U>
+  explicit SmartPtr(T *realPtr);
+  …
+  template<typename U>
   SmartPtr(const SmartPtr<U>& other)
-  : heldPtr(other.get()) { … }  T* get() const { return heldPtr; }  …private:
+  : heldPtr(other.get()) { … }
+  T* get() const { return heldPtr; }
+  …
+private:
   T *heldPtr;
 }
 ```
@@ -89,7 +94,8 @@ Debug messages should not be this ridiculously hard to read, should they? I hone
 Now, to be honest, once you succeeded in cutting through the clutter, this is a more or less clear message:
 
 ```hs
-error: cannot initialize a member subobject of type ‘Bottom *’ with an rvalue of type ‘Middle *’note: [obtuse hint that the error was caused by the template specialization of the constructor]
+error: cannot initialize a member subobject of type ‘Bottom *’ with an rvalue of type ‘Middle *’
+note: [obtuse hint that the error was caused by the template specialization of the constructor]
 ```
 
 Or, to make it maybe a bit more understandable to an English speaker:
@@ -127,7 +133,8 @@ This line of thinking lead me to my eureka-moment: ***C++ should have compile-ti
 ```hs
 template<typename T>
 class SmartPtr {
- …  template<typename U>
+ …
+  template<typename U>
   compile_except(E2064) {
     compile_cerr << "error: cannot initialize a 'SmartPtr<" << T << ">' with an rvalue of type 'SmartPtr<" << U << ">', because " << U << " is not implicitly convertible to " << T << "\n";
     compile_fail;
@@ -198,7 +205,8 @@ class SmartPtr {
 <source>:4:19: note: because ‘std::is_base_of<Bottom, Middle>::value’ evaluated to false
 concept Derived = std::is_base_of<U, T>::value;
  ^
-1 error generated.Compiler returned: 1
+1 error generated.
+Compiler returned: 1
 ```
 
 Wait a minute… this isn’t crystal clear at all. Concepts, why do you pain me so?!

@@ -39,7 +39,8 @@ Inside source fragments you may encounter a line with `<<...>>` marks like,
 ```rb
 «hello_world.cc»=
 #include <cstdlib>
-#include <iostream><<example-main-function>>
+#include <iostream>
+<<example-main-function>>
 @
 ```
 

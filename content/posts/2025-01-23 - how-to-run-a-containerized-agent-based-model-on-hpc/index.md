@@ -50,9 +50,48 @@ Now we are going to follow these steps to run your model within a container on H
 
 First, we create a `netlogo-headless.def` file with the following content:
 
+```text
+Bootstrap: docker
+From: openjdk:17
+
+%arguments
+    NETLOGO_VERSION=6.3.0
+
+%setup
+    # Download Netlogo on host if not already present
+    wget -nc https://ccl.northwestern.edu/netlogo/{{NETLOGO_VERSION}}/NetLogo-{{NETLOGO_VERSION}}-64.tgz
+
+%files
+    # Add Netlogo tar to container
+    NetLogo-{{NETLOGO_VERSION}}-64.tgz /
+
+%environment
+    LC_ALL=C.UTF-8
+    LANG=C.UTF-8
+    DISPLAY=:14
+    export PATH=/app/netlogo:$PATH
+
+%post
+    mkdir -p /app/netlogo
+    tar xzf /NetLogo-{{NETLOGO_VERSION}}-64.tgz -C /app/netlogo --strip-components=1
+    # Increase heap jvm memory to 8G
+    sed -i 's/Xmx1024m/Xmx8g/' /app/netlogo/netlogo-headless.sh
+
+%runscript
+    # Command to run when container starts
+    echo "netlogo-headless.sh $*"
+    /bin/bash -c "/app/netlogo/netlogo-headless.sh  $*"
+
+```
+
 *Step 2. Build a container*
 
 We are going to build an apptainer container on your local machine from a definition file that we have just created in Step 1. For this, a Linux system with sudo rights is needed.
+
+```bash
+#!/bin/bash
+sudo apptainer build netlogo-headless.sif netlogo-headless.def
+```
 
 This command will create an apptainer image `netlogo-headless.sif` which we will use to run the model in headless mode on HPC.
 
@@ -60,7 +99,11 @@ This command will create an apptainer image `netlogo-headless.sif` which we will
 
 We need to create a shell script that contains the command to run the model in headless mode. First, we look at how to run the model in headless mode without a container.
 
-./netlogo-headless.sh — model “PATH_TO_MODEL” — experiment “EXPERIMENT_NAME” — table OUTPUT.CSVThe line of code above will execute a `netlogo-headless.sh` command, where
+```sh
+./netlogo-headless.sh — model “PATH_TO_MODEL” — experiment “EXPERIMENT_NAME” — table OUTPUT.CSV
+```
+
+The line of code above will execute a `netlogo-headless.sh` command, where
 
 - ` — model` is an argument that specifies the NetLogo model to be run;
 
@@ -68,47 +111,95 @@ We need to create a shell script that contains the command to run the model in h
 
 - ` — table` argument is optional and can be used to specify the name of the output file.
 
-apptainer exec netlogo-headless.sif netlogo-headless.sh — model “PATH_TO_MODEL” — experiment “EXPERIMENT_NAME” — table OUTPUT.CSVFor example, to run a model `Wolf Sheep Simple 5.nlogo` with an experiment `Wolf Sheep Simple model analysis` and save the output in `wolf_sheep_output.csv`, use the following command.
+```sh
+apptainer exec netlogo-headless.sif netlogo-headless.sh — model “PATH_TO_MODEL” — experiment “EXPERIMENT_NAME” — table OUTPUT.CSV
+```
+
+For example, to run a model `Wolf Sheep Simple 5.nlogo` with an experiment `Wolf Sheep Simple model analysis` and save the output in `wolf_sheep_output.csv`, use the following command.
+
+```bash
+#!/bin/bash
+apptainer exec netlogo-headless.sif netlogo-headless.sh --model "/app/netlogo/models/IABM Textbook/chapter 4/Wolf Sheep Simple 5.nlogo" --experiment "Wolf Sheep Simple model analysis" --table wolf_sheep_output.csv
+```
 
 We save the code above as `job.sh` and change permissions to make it executable with
 
-chmod +x job.shStep 3. Create an archive to be copied to HPC*
+```sh
+chmod +x job.sh
+```
+
+Step 3. Create an archive to be copied to HPC*
 
 To run our model on HPC, we need to copy all files to the remote machine. First, we create an archive on a local machine that contains the model, the container, and the shell script. For this, we create a directory and copy `model`, `netlogo-headless.sif`, and `job.sh` into it and call this directory `jobHPC`. Then we create a gzip tarball of a directory.
 
-tar -czvf jobHPC.tar.gz jobHPC*Step 4. Copy to HPC*
+```sh
+tar -czvf jobHPC.tar.gz jobHPC
+```
+
+*Step 4. Copy to HPC*
 
 To copy `jobHPC.tar.gz` file from your local machine to HPC cluster, we can use the `scp` command. This command will copy `jobHPC.tar.gz` file to the remote machine using SSH (Secure Shell) protocol for data transfer.
 
-scp jobHPC.tar.gz username@remote:/path/to/remote/directoryReplace `username@remote` with your username and the address of the HPC cluster. Replace `/path/to/remote/directory` with the path to the directory on the HPC cluster where you want to copy the file. This command will prompt you for your password on the HPC cluster before copying the file.
+```sh
+scp jobHPC.tar.gz username@remote:/path/to/remote/directory
+```
+
+Replace `username@remote` with your username and the address of the HPC cluster. Replace `/path/to/remote/directory` with the path to the directory on the HPC cluster where you want to copy the file. This command will prompt you for your password on the HPC cluster before copying the file.
 
 *Step 5. Unpack the archive on HPC*
 
 Once the file is copied to the HPC cluster, log into the remote machine and unpack the archive using the following command:
 
-tar -xzvf jobHPC.tar.gz*Step 6. Run model on HPC*
+```sh
+tar -xzvf jobHPC.tar.gz
+```
+
+*Step 6. Run model on HPC*
 
 Submit a job to a ([SLURM](https://slurm.schedmd.com/)) scheduler on HPC using the following command:
+
+```bash
+#!/bin/bash
+sbatch --time=0-02:00:00 job.sh
+```
 
 Here, we set a limit of 2 hours for the job to run. You can change the time limit as per your requirements.
 
 Now you can pull up information about the jobs in the queue:
 
-squeue --user=your-usernameWe use here the `--user`flag because we only want to see our job.
+```sh
+squeue --user=your-username
+```
+
+We use here the `--user`flag because we only want to see our job.
 
 You can stop your job with
 
-scancel your_job-id*Step 7. Retrieve results*
+```sh
+scancel your_job-id
+```
+
+*Step 7. Retrieve results*
 
 Once finished you can retrieve your results. For this, you need to identify the files you need to retrieve. To copy the files to your local machine run:
 
-scp username@remote:/path/to/remote/file /path/to/local/destinationReplace `/path/to/remote/file` with the path to the file on the HPC system, and `/path/to/local/destination` with the path where you want to save the file on your local machine.
+```sh
+scp username@remote:/path/to/remote/file /path/to/local/destination
+```
+
+Replace `/path/to/remote/file` with the path to the file on the HPC system, and `/path/to/local/destination` with the path where you want to save the file on your local machine.
 
 For example, to copy `job_output.txt` from the HPC system to your desktop:
 
-scp user@hpc.example.com:/home/user/job_output.txt ~/Desktop/Finally, if you want to copy multiple files, you need to add flag `--r` which will allow you to copy all files in the directory `job_output`.
+```sh
+scp user@hpc.example.com:/home/user/job_output.txt ~/Desktop/
+```
 
+Finally, if you want to copy multiple files, you need to add flag `--r` which will allow you to copy all files in the directory `job_output`.
+
+```sh
 scp -r user@hpc.example.com:/home/user/job_output/ ~/Desktop/
+```
 ![How to run a containerized Agent-Based Model on HPC](./how-to-run-a-containerized-agent-based-m-0680d40a.jpg)
 
 Photo by [Lightsaber Collection](https://unsplash.com/@lightsabercollection?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)

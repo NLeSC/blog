@@ -21,6 +21,7 @@ The Engineering Corner
 ![Procedural Programming](./procedural-programming-01699b68.jpeg)
 My copy of Pascal User Manual and Report by Jensen &amp; Wirth (1975).Here’s an example of a Pascal program (a lesser known programming language developed in the 1970s - Ed.), in fact Program 0.1 from *Pascal User Manual and Report* (1975) by Kathleen Jensen and [Niklaus Wirth](https://en.wikipedia.org/wiki/Niklaus_Wirth):
 
+```pascal
 program inflation(output);
 
 const n = 10;
@@ -34,7 +35,10 @@ begin
         w3 := w3 * 1.10;
         writeln(i,w1,w2,w3)
     until i==n
- end.If you are a Python user, you can see this is not that different[⁰](https://medium.com/p/f1d8cdef7540#bf2b). A Pascal program begins by listing all the constants and variables we are going to need, and their types. Then follows a list of statements, which in this case calculate and print a table of inflation-adjustment factors for ten years and three different inflation rates.
+ end.
+```
+
+If you are a Python user, you can see this is not that different[⁰](https://medium.com/p/f1d8cdef7540#bf2b). A Pascal program begins by listing all the constants and variables we are going to need, and their types. Then follows a list of statements, which in this case calculate and print a table of inflation-adjustment factors for ten years and three different inflation rates.
 
 I’ll leave a Python version as an exercise to the reader, but you can see that it will be quite similar (answer below[¹](#2c46), if you want to check your work). In Python, variables are made automatically and don’t have to be declared in advance, but the style of programming is similar. It’s known as *imperative programming*.
 
@@ -48,6 +52,7 @@ Unless the sections do completely different, independent things, this is inevita
 
 So, we could use a bit of help. In Pascal, this comes in the form of a *procedure*. Here’s a slightly modified version of Program 11.3 from the same book as above:
 
+```pascal
 program parameters(output);
 
 var a, b, c: integer;
@@ -65,7 +70,10 @@ begin
     a := 0; b := 0; c := 0;
     h(a, b);
     writeln(a, b)
-end.What we have here is a program like before, but the work it does is now split up between the main program and a separate section, which is our procedure. It consists of two parts: a *declaration* (the first line) and an *implementation* (the rest of the block).
+end.
+```
+
+What we have here is a program like before, but the work it does is now split up between the main program and a separate section, which is our procedure. It consists of two parts: a *declaration* (the first line) and an *implementation* (the rest of the block).
 
 A procedure is a kind of box around a block of code (a *scope*). Variables can not pass through the walls of the box, unless we explicitly pass them through. In the declaration `procedure h(x: integer, var y: integer);` we specify explicitly which variables can be passed into the box to communicate between the procedure and the rest of the program: `x` and `y` in this example. These are called the procedure’s *parameters*.
 
@@ -73,14 +81,19 @@ The `var` keyword in front of `y` says that `y` is passed by reference, while th
 
 No other variables can enter or exit the box. Variable `z`is declared inside the procedure, and it is only visible within the procedure because we haven’t said otherwise.
 
+```pascal
 { The main program again }
 
 begin
     a := 0; b := 0; c := 0;
     h(a, b);
     writeln(a, b)
-end.This program has some nice properties. When we call procedure `h` in the main program, we can be sure that variable `c` will not be changed, without even looking at `h`! Then, taking the declaration (the first line with the parameters) of `h` into account, we can also tell that `a` will probably be read by `h` , but won’t be changed, and that `b` may end up having a different value after the call. Crucially, we can know all of this without ever reading `h`’s implementation.
+end.
+```
 
+This program has some nice properties. When we call procedure `h` in the main program, we can be sure that variable `c` will not be changed, without even looking at `h`! Then, taking the declaration (the first line with the parameters) of `h` into account, we can also tell that `a` will probably be read by `h` , but won’t be changed, and that `b` may end up having a different value after the call. Crucially, we can know all of this without ever reading `h`’s implementation.
+
+```pascal
 { Procedure h by itself }
 
 procedure h(x: integer, var y: integer);
@@ -90,7 +103,10 @@ begin
     y := y + 1;
     z := x + y;
     writeln(z)
-end;Looking at procedure `h`, we can tell by looking only at the procedure that any changes we make to it that do not affect what we do to `y` will not affect how the rest of the program runs, again *without inspecting the rest of the program*.
+end;
+```
+
+Looking at procedure `h`, we can tell by looking only at the procedure that any changes we make to it that do not affect what we do to `y` will not affect how the rest of the program runs, again *without inspecting the rest of the program*.
 
 Of course, if we do make such a change, then we will still have to find all the places in which `h` is called and possibly modify them. There is still a dependency! It’s just been made explicit. The same goes if we change the declaration, for example by changing `x` to be a `real`.
 
@@ -119,6 +135,7 @@ I don’t think it really works this way though. Blog posts tend to have really 
 
 I also think that short procedures should be avoided. Here’s the above example without procedure `h`:
 
+```pascal
 program parameters(output);
 
 var a, b, c, z: integer;
@@ -129,7 +146,10 @@ begin
     z := x + 1 + y;
     writeln(z);
     writeln(x, y);
-end.9 lines of code, versus 15 before. And it looks simpler too, doesn’t it? No need to look at the parameter declaration, or to consider which variable belongs where. So maybe procedures aren’t all they’re made out to be?
+end.
+```
+
+9 lines of code, versus 15 before. And it looks simpler too, doesn’t it? No need to look at the parameter declaration, or to consider which variable belongs where. So maybe procedures aren’t all they’re made out to be?
 
 ### Costs and benefits
 
@@ -151,6 +171,7 @@ Procedures are a useful way of breaking up all the things your program does into
 
 [1] Here’s a Python version. As you can see, Pascal and Python use different symbols for things, and I’ve used a for-loop because Python doesn’t have repeat..until, but it looks pretty similar.
 
+```python
 # inflation
 
 N = 10
@@ -159,4 +180,7 @@ for i in range(1, N+1):
     w1 = w1 * 1.07
     w2 = w2 * 1.08
     w3 = w3 * 1.10
-    print(i, w1, w2, w3)[2] I’m not naming names here…
+    print(i, w1, w2, w3)
+```
+
+[2] I’m not naming names here…

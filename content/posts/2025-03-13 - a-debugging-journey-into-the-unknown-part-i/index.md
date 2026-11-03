@@ -24,20 +24,36 @@ Since there was no significant progress on the issue for a few months, I decided
 
 On Windows, trying to install any version of `DuckDB.jl` later than `1.0.0` was failing with the error:
 
+```text
 ERROR: LoadError: could not load symbol "duckdb_vector_size":
-The specified procedure could not be found.Some Julia packages, like `DuckDB.jl` depend on a native library. The native library is an internal dependency, and typically named `MyPackage_jll.jl`; in the case of DuckDB, it is `DuckDB_jll.jl`. The error above tells us that during the compilation step, Julia tries to load a symbol from the native library, but cannot find it. A "symbol" here refers to a DuckDB C-API function provided by the native DuckDB library.
+The specified procedure could not be found.
+```
+
+Some Julia packages, like `DuckDB.jl` depend on a native library. The native library is an internal dependency, and typically named `MyPackage_jll.jl`; in the case of DuckDB, it is `DuckDB_jll.jl`. The error above tells us that during the compilation step, Julia tries to load a symbol from the native library, but cannot find it. A "symbol" here refers to a DuckDB C-API function provided by the native DuckDB library.
 
 So as a first step, I wanted to check: can we actually install this library, and load that symbol? To get the call syntax correct, I looked at the source code of `[DuckDB.jl](https://github.com/duckdb/duckdb/blob/5f5512b827df6397afd31daedb4bbdee76520019/tools/juliapkg/src/api.jl#L1285-L1297)`[ ](https://github.com/duckdb/duckdb/blob/5f5512b827df6397afd31daedb4bbdee76520019/tools/juliapkg/src/api.jl#L1285-L1297):
 
+```julia
 function duckdb_vector_size()
     return ccall((:duckdb_vector_size, libduckdb), idx_t, ())
-endThe variable `idx_t` above is defined in `ctypes.jl` as:
+end
+```
 
-const idx_t = UInt64 # DuckDB index typeSo we can test loading the native library like this:
+The variable `idx_t` above is defined in `ctypes.jl` as:
 
-pkg&gt; add DuckDB_jll
-julia&gt; using DuckDB_jll
-julia&gt; ccall((:duckdb_vector_size, libduckdb), UInt64, ())The above recipe replicates the error for any version newer than `1.0.0`! Hurray! Now that we have confirmation that the problem is in the native library, we have to understand: *Why is the symbol not visible to Julia?*
+```julia
+const idx_t = UInt64 # DuckDB index type
+```
+
+So we can test loading the native library like this:
+
+```text
+pkg> add DuckDB_jll
+julia> using DuckDB_jll
+julia> ccall((:duckdb_vector_size, libduckdb), UInt64, ())
+```
+
+The above recipe replicates the error for any version newer than `1.0.0`! Hurray! Now that we have confirmation that the problem is in the native library, we have to understand: *Why is the symbol not visible to Julia?*
 
 ## Symbol visibility in Windows DLLs
 
@@ -45,19 +61,24 @@ My first hurdle was to find a way to get both versions of the library and compar
 
 On Linux, we can use `nm` from `binutils` to look at the symbols present in the library. Thanks to the `-C` flag, `nm` can even ["demangle"](https://en.wikipedia.org/wiki/Name_mangling) symbol names if necessary. So for the moment we can copy over DLLs from Windows to Linux, and inspect.
 
+```text
 $ nm -C libduckdb.dll | grep duckdb_vector_size  # working version: v1.0.0
 000000036a271d00 T duckdb_vector_size
 $ nm -C libduckdb.dll | grep duckdb_vector_size  # not working version: e.g. v1.1.2
 000000036a36e0e0 T duckdb_vector_size
 000000036be998d0 r .rdata$.refptr.duckdb_vector_size
-000000036be998d0 R .refptr.duckdb_vector_sizeNo luck 😦, seems that the symbols exist for both versions of the native library. I was puzzled. Searching around I found while building Windows DLLs, you have to explicitly [export symbol names](https://learn.microsoft.com/en-us/cpp/build/exporting-from-a-dll-using-declspec-dllexport) using the `__declspec(dllexport)` attribute. Besides signalling which names are available, it also serves as a mechanism to optimise DLL load times. So I went looking for these attributes in the DuckDB [source code](https://github.com/duckdb/duckdb/blob/5f5512b827df6397afd31daedb4bbdee76520019/src/include/duckdb.h#L17-L31):
+000000036be998d0 R .refptr.duckdb_vector_size
+```
 
+No luck 😦, seems that the symbols exist for both versions of the native library. I was puzzled. Searching around I found while building Windows DLLs, you have to explicitly [export symbol names](https://learn.microsoft.com/en-us/cpp/build/exporting-from-a-dll-using-declspec-dllexport) using the `__declspec(dllexport)` attribute. Besides signalling which names are available, it also serves as a mechanism to optimise DLL load times. So I went looking for these attributes in the DuckDB [source code](https://github.com/duckdb/duckdb/blob/5f5512b827df6397afd31daedb4bbdee76520019/src/include/duckdb.h#L17-L31):
+
+```cpp
 #ifndef DUCKDB_API
 #ifdef _WIN32
 #ifdef DUCKDB_STATIC_BUILD
 #define DUCKDB_API
 #else
-#if defined(DUCKDB_BUILD_LIBRARY) &amp;&amp; !defined(DUCKDB_BUILD_LOADABLE_EXTENSION)
+#if defined(DUCKDB_BUILD_LIBRARY) && !defined(DUCKDB_BUILD_LOADABLE_EXTENSION)
 #define DUCKDB_API __declspec(dllexport)
 #else
 #define DUCKDB_API __declspec(dllimport)
@@ -66,17 +87,32 @@ $ nm -C libduckdb.dll | grep duckdb_vector_size  # not working version: e.g. v1.
 #else
 #define DUCKDB_API
 #endif
-#endifYou can see, the `#ifdef` directives conditionally defines the macro `DUCKDB_API` which expands to `__declspec(dllexport)` when building a Windows DLL. Later in the header file, this macro is used to [mark every C-API function for export](https://github.com/duckdb/duckdb/blob/5f5512b827df6397afd31daedb4bbdee76520019/src/include/duckdb.h#L1289-L1295).
+#endif
+```
 
-DUCKDB_API idx_t duckdb_vector_size();Now that we know the C-API function name symbols are marked for export correctly, we should check if they are indeed exported. After some searching, I learnt Windows development tools includes the program `dumpbin.exe` that can show the exported symbol names. So I can search for exported symbols in the output.
+You can see, the `#ifdef` directives conditionally defines the macro `DUCKDB_API` which expands to `__declspec(dllexport)` when building a Windows DLL. Later in the header file, this macro is used to [mark every C-API function for export](https://github.com/duckdb/duckdb/blob/5f5512b827df6397afd31daedb4bbdee76520019/src/include/duckdb.h#L1289-L1295).
+
+```cpp
+DUCKDB_API idx_t duckdb_vector_size();
+```
+
+Now that we know the C-API function name symbols are marked for export correctly, we should check if they are indeed exported. After some searching, I learnt Windows development tools includes the program `dumpbin.exe` that can show the exported symbol names. So I can search for exported symbols in the output.
 
 Working version of `libduckdb.dll` :
 
-&gt; dumpbin.exe /EXPORTS .\bin\libduckdb.dll | findstr duckdb_vector_size
-        335  14E 0078D1B0 duckdb_vector_sizeFaulty version of `libduckdb.dll` :
+```text
+> dumpbin.exe /EXPORTS .\bin\libduckdb.dll | findstr duckdb_vector_size
+        335  14E 0078D1B0 duckdb_vector_size
+```
 
-&gt; dumpbin.exe /EXPORTS .\bin\libduckdb.dll | findstr duckdb_vector_size
-# empty output, since nothing was foundSo it is confirmed that the symbol export is not working for the faulty version. However we still do not know which commit introduced the issue. Let us try to find that 🙂.
+Faulty version of `libduckdb.dll` :
+
+```text
+> dumpbin.exe /EXPORTS .\bin\libduckdb.dll | findstr duckdb_vector_size
+# empty output, since nothing was found
+```
+
+So it is confirmed that the symbol export is not working for the faulty version. However we still do not know which commit introduced the issue. Let us try to find that 🙂.
 
 ## Hunt for the first “bad” commit
 
@@ -86,6 +122,7 @@ So I went searching again for an alternative. Unsurprisingly, Wine (the Windows 
 
 To build with Windows DLL, we need to cross-compile DuckDB on Linux using the MingW-w64 toolchain. Combined with the `winedump` tool, I wrote the following script that we can use to test a successful build.
 
+```bash
 #!/bin/bash
 
 rm -rf build
@@ -100,7 +137,7 @@ cmake -B build \
       -DDUCKDB_EXPLICIT_PLATFORM=x86_64-w64-mingw32-cxx11 .
 cmake --build build
 
-[[ $? -ne 0 ]] &amp;&amp; \
+[[ $? -ne 0 ]] && \
 {
     echo "build failed, cannot test"
     exit 125
@@ -116,8 +153,12 @@ if [[ -f build/src/libduckdb.dll ]]; then
 else
     echo "cannot find DLL, cannot test"
     exit 125
-fiThe script builds DuckDB, and checks whether the generated DLL file export the C-API symbols correctly. It also handles a few corner cases of build failures. Note that the build command uses the following toolchain file (thanks to this [gist](https://gist.github.com/peterspackman/8cf73f7f12ba270aa8192d6911972fe8/)).
+fi
+```
 
+The script builds DuckDB, and checks whether the generated DLL file export the C-API symbols correctly. It also handles a few corner cases of build failures. Note that the build command uses the following toolchain file (thanks to this [gist](https://gist.github.com/peterspackman/8cf73f7f12ba270aa8192d6911972fe8/)).
+
+```cmake
 set(CMAKE_SYSTEM_NAME Windows)
 set(TOOLCHAIN_PREFIX x86_64-w64-mingw32)
 
@@ -133,14 +174,21 @@ set(CMAKE_FIND_ROOT_PATH /usr/${TOOLCHAIN_PREFIX})
 # modify default behavior of FIND_XXX() commands
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
-set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)Now we can use this script with `git-bisect` to find the first bad commit, like this:
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+```
 
+Now we can use this script with `git-bisect` to find the first bad commit, like this:
+
+```text
 $ git bisect start
 $ git bisect bad v1.1.2
 $ git bisect good v1.0.0
 $ git bisect run ./bisect-script.bash
 $ git bisect visualize # shows a nice summary
-$ git bisect resetThe bisection led me to this commit: [d1ea1538](https://github.com/duckdb/duckdb/commit/d1ea1538c9217fb536485f1500f04a0b55b1e584). Unfortunately it is not clear how that commit would lead to symbol export failure, it only adds 11 new functions to the C-API (so 11 new symbols). So for now, this debugging journey has to stop here, without a clear resolution. But we did learn a lot of new concepts, and used a wide variety of tools to investigate.
+$ git bisect reset
+```
+
+The bisection led me to this commit: [d1ea1538](https://github.com/duckdb/duckdb/commit/d1ea1538c9217fb536485f1500f04a0b55b1e584). Unfortunately it is not clear how that commit would lead to symbol export failure, it only adds 11 new functions to the C-API (so 11 new symbols). So for now, this debugging journey has to stop here, without a clear resolution. But we did learn a lot of new concepts, and used a wide variety of tools to investigate.
 
 ## What did we learn?
 

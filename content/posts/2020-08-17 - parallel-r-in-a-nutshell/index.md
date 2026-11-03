@@ -32,7 +32,8 @@ Modern laptops typically have 4 or 8 cores. Each of them can be loosely thought 
 
 ```hs
 numCores <- parallel::detectCores() # Requires library(parallel)
-print(numCores)# In my case, this prints 8
+print(numCores)
+# In my case, this prints 8
 ```
 
 When a program runs serially (as they usually do by default), only one core is recruited for performing the program’s task. Recruiting more than one core for a given task is known as parallelization. The desired result of parallelizing a task is a reduction in its execution time. An analogy could be to build a wall by laying bricks alone, one by one (serial) as opposed to building it with the help of three friends (parallel with 4 “cores”).
@@ -72,7 +73,9 @@ And the **input** is just a vector containing 1000 large integers (that I create
 # Generate some large integers
 N <- 1000 # Number of integers
 min <- 100000 # Lower bound
-max <- 10000000000 # Upper boundinputs <- sample(min:max, N) # List of N random large integers (between 1e5 and 1e10)
+max <- 10000000000 # Upper bound
+
+inputs <- sample(min:max, N) # List of N random large integers (between 1e5 and 1e10)
 ```
 
 These two objects, `fun` and `inputs`, define the *homework* we want to assign to our computer (in this case, to decide which integers from the list of inputs are prime). We also want our computer to store the results. We will do this in six different ways, two of them parallel. Later, we’ll compare their performance.
@@ -98,7 +101,9 @@ The `foreach` package saves us the explicit typing of the index (compare with th
 
 ```hs
 # Load the required libraries
-library(foreach)foreach (val = inputs, .combine = "c") %do% { 
+library(foreach)
+
+foreach (val = inputs, .combine = "c") %do% {
     fun(val) # Loop one-by-one using foreach
 } -> results
 ```
@@ -121,7 +126,9 @@ And now, we’ll finally use parallel programming to solve our problem.
 
 ```hs
 # Load the required libraries
-library(parallel)# Run parallel
+library(parallel)
+
+# Run parallel
 results <- mclapply(inputs, fun, mc.cores = numCores)
  
 # Note that the number of cores is required by mclapply
@@ -136,8 +143,12 @@ Rule of thumb: `doParallel` transforms a `foreach` loop into a parallel process.
 ```hs
 # Load the required libraries
 library(iterators)
-library(doParallel)# Initialize
-registerDoParallel(numCores)# Loop
+library(doParallel)
+
+# Initialize
+registerDoParallel(numCores)
+
+# Loop
 foreach(val = inputs, .combine = "c") %dopar% {
     fun(val)
 } -> results
@@ -174,7 +185,8 @@ It is just a recipe to build a list of numbers by adding 1 to the previous numbe
 In this case, our function and inputs look like:
 
 ```hs
-fun <- function(x) {x + 1}N <- 6
+fun <- function(x) {x + 1}
+N <- 6
 inputs <- rep(NA, N) # Initialize as (0, NA, NA, ..., NA)
 inputs[1] <- 0
 ```
@@ -184,16 +196,19 @@ Using a serial loop everything works fine:
 ```hs
 foreach(i = 2:N) %do% {
   inputs[i] <- fun(inputs[i-1])
-}# The result is the expected: 0 1 2 3 4 5
+}
+# The result is the expected: 0 1 2 3 4 5
 ```
 
 But what if we insist on parallelizing? After all, our serial loop is very similar to the `foreach` + `doParallel` one, so it is tempting to at least try. And what happens then? As expected, it simply doesn’t work properly. And more worryingly, doesn’t throw an error either!
 
 ```hs
 inputs <- rep(NA, N) # Initialize again
-inputs[1] <- 0foreach(i = 2:N) %dopar% {
+inputs[1] <- 0
+foreach(i = 2:N) %dopar% {
   inputs[i] <- fun(inputs[i-1])
-}# The result in this case is a disastrous 0 NA NA NA NA NA
+}
+# The result in this case is a disastrous 0 NA NA NA NA NA
 ```
 
 And that was it. This is just a quick starting guide to a complicated topic. If you want to know more, I suggest you go directly to the [future](https://github.com/HenrikBengtsson/future) library.

@@ -29,11 +29,25 @@ Markdown is a way of writing up rich content (i.e. text, document hierarchy, ima
 
 ```hs
 Level 1 Header
-==============Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-eiusmod tempor incididunt ut labore et dolore magna aliqua.Level 2 Header
---------------Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-nisi ut aliquip ex ea commodo consequat.* list item
-* Another item## Also a Level 2 HeaderDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.> quote: Excepteur sint occaecat cupidatat non proident, sunt in 
+==============
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+Level 2 Header
+--------------
+
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+nisi ut aliquip ex ea commodo consequat.
+
+* list item
+* Another item
+
+## Also a Level 2 Header
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+> quote: Excepteur sint occaecat cupidatat non proident, sunt in
 > culpa qui officia deserunt mollit anim id est laborum
 ```
 
@@ -45,11 +59,11 @@ I will highlight some extensions, all clearly documented and supported by Pandoc
 
 There are many extensions to Markdown, some of which are more widely used than others. One of the most influencial flavour of Markdown is the superset by Github, its major addition being that of delimited code blocks.
 
-```hs
-\`\`\`javascript
+````markdown
+```javascript
 var factorial = n => (n < 2) ? 1 : n * factorial(n — 1);
-\`\`\`
 ```
+````
 
 ### Attributes
 
@@ -98,7 +112,7 @@ Information that is usually contained in a HTML `<header>` region can be include
 ---
 title: A theorem on right angled triangles
 author: Pythagoras of Samos
-date: 2019-07-02
+date: ~520 BC, a hot summer night
 ---
 ```
 
@@ -122,7 +136,9 @@ There are many ways to cite papers, the syntax for which is [documented in the P
 Equations can be entered using the famous LaTeX DSL for equations. Use single `$` characters to delimit an inline equation and double `$$` to delimit a full width equation.
 
 ```hs
-Given a right angled triangle of sides $a$, $b$ and hypotenuse $c$, we may state that,$$a^2 + b^2 = c^2.$$
+Given a right angled triangle of sides $a$, $b$ and hypotenuse $c$, we may state that,
+
+$$a^2 + b^2 = c^2.$$
 ```
 
 When converting to a LaTeX based output this will work trivially. For HTML it is probably best to use MathJax, enabled in Pandoc with the `--mathjax` and `--standalone` flags.
@@ -139,7 +155,13 @@ We’ll create a document named `last-theorem.md` and enter the following:
 ---
 title: Last theorem
 author: P. de Fermat
----For integer values of $a$, $b$, $c$ and $n > 2$, the equation$$a^n + b^n = c^n,$$has no solution. I have a truly remarkable proof for this.
+---
+
+For integer values of $a$, $b$, $c$ and $n > 2$, the equation
+
+$$a^n + b^n = c^n,$$
+
+has no solution. I have a truly remarkable proof for this.
 ```
 
 We can see how Pandoc reads a document by running

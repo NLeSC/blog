@@ -59,13 +59,21 @@ The actual underlying data can be stored as 32-bit floating point numbers on dis
 
 Just like with text files or other documents, lossless compression is possible for netCDF files. The more repetitious your data is, the easier it is for lossless compression algorithms to compress your data.
 
-cdo -z zip 4 ... # where 4 is the compression level (1 - 9)In Python, with the popular ‘xarray’ package, you can instead do:
+```sh
+cdo -z zip 4 ... # where 4 is the compression level (1 - 9)
+```
 
+In Python, with the popular ‘xarray’ package, you can instead do:
+
+```python
 import xarray as xr
 
 ds = xr.open_dataset("my_dataset.nc")
 encoding = {"my_variable": {"zlib": True, "complevel": 4}}
-ds.to_netcdf("compressed_dataset.nc", encoding=encoding)In many cases applying lossless compression to your data can reduce the size on disk by 20–50%. This comes at a cost of slightly more CPU use, while disk I/O usage is lower.
+ds.to_netcdf("compressed_dataset.nc", encoding=encoding)
+```
+
+In many cases applying lossless compression to your data can reduce the size on disk by 20–50%. This comes at a cost of slightly more CPU use, while disk I/O usage is lower.
 
 The exact impact on your analysis speed will depend on your system, but unless you have a slow CPU and a blazingly fast disk your further analyses will likely be faster when you compress your data. Therefore it’s best to default to using some form of lossless compression on your netCDF files, unless you have a specific reason not to.
 
@@ -83,7 +91,9 @@ Integer encoding works very well for climate data as the range of values that yo
 
 When using integer encoding in xarray you can specify the encoding as such:
 
-import xarray as xr**
+```python
+import xarray as xr
+
 ds = xr.open_dataset("my_dataset.nc")
 
 fvalue = 65535  # fill value for missing values
@@ -98,7 +108,10 @@ encoding = {
     },
 }
 
-ds.to_netcdf("compressed_dataset.nc", encoding=encoding)For Climate Data Operators users, the [“pack” operator](https://code.mpimet.mpg.de/projects/cdo/embedded/index.html#x1-1130002.2.4) is available for this purpose.
+ds.to_netcdf("compressed_dataset.nc", encoding=encoding)
+```
+
+For Climate Data Operators users, the [“pack” operator](https://code.mpimet.mpg.de/projects/cdo/embedded/index.html#x1-1130002.2.4) is available for this purpose.
 
 Compression ‘filters’**
 

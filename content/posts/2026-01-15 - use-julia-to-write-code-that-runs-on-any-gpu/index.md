@@ -40,20 +40,39 @@ To continue writing GPU code that can run on any hardware you can make use of [J
 
 To get started, after installing Julia, you can initialize arrays on the GPU with the appropriate backend package. As an example, I will use oneAPI, but the code will look the same for the other backends. The following line is the only one that’s machine dependent:
 
-import oneAPI.oneArray as GPUArrayHaving imported this, we can define arrays on the GPU. In this case a 2D matrix containing single-precision floating point numbers:
+```julia
+import oneAPI.oneArray as GPUArray
+```
 
-A = GPUArray(ones(Float32, 1024, 1024))Now we can write a kernel. This example comes from the [KernelAbstractions documentation](https://juliagpu.github.io/KernelAbstractions.jl/stable/quickstart/), and will simply multiply every element of the matrix by 2:
+Having imported this, we can define arrays on the GPU. In this case a 2D matrix containing single-precision floating point numbers:
 
+```julia
+A = GPUArray(ones(Float32, 1024, 1024))
+```
+
+Now we can write a kernel. This example comes from the [KernelAbstractions documentation](https://juliagpu.github.io/KernelAbstractions.jl/stable/quickstart/), and will simply multiply every element of the matrix by 2:
+
+```julia
 using KernelAbstractions
 
 @kernel function mul2_kernel(A)
   I = @index(Global)
   A[I] = 2 * A[I]
-endWe can apply the kernel to the matrix `A` :
+end
+```
 
+We can apply the kernel to the matrix `A` :
+
+```julia
 backend = get_backend(A)
-mul2_kernel(backend, 64)(A, ndrange=size(A))And that’s it! — *Note that *`64`* is the “workgroup size”, i.e., the number of the array elements assigned to one work group. Tuning this parameter can make the kernel run faster.*
+mul2_kernel(backend, 64)(A, ndrange=size(A))
+```
 
+And that’s it! — *Note that *`64`* is the “workgroup size”, i.e., the number of the array elements assigned to one work group. Tuning this parameter can make the kernel run faster.*
+
+For simple kernels, there is also the package [AcceleratedKernels.jl](https://juliagpu.github.io/AcceleratedKernels.jl), which allows you to convert normal loops into GPU accelerated loops by just changing a single line:
+
+```julia
 import AcceleratedKernels as AK
 
 function cpu_copy!(dst, src)
@@ -66,7 +85,10 @@ function gpu_copy!(dst, src)
     AK.foreachindex(src) do i
         dst[i] = src[i]
     end
-endThe `gpu_copy` function will run on GPU if `dst` and `src` are GPU arrays. Otherwise the function will run on CPU.
+end
+```
+
+The `gpu_copy` function will run on GPU if `dst` and `src` are GPU arrays. Otherwise the function will run on CPU.
 
 ## Example packages
 

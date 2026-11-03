@@ -48,9 +48,14 @@ Let’s check out the files now.
 
 What did we actually download? A rather small zip file.
 
+```text
 $ ls -lah fix.zip
--rw-r--r-- 1 ole users 367K Aug 27 08:15 fix.zipProviding the password, we can unpack it and have a look at the content.
+-rw-r--r-- 1 ole users 367K Aug 27 08:15 fix.zip
+```
 
+Providing the password, we can unpack it and have a look at the content.
+
+```text
 $ 7z e -pchangeme fix.zip
 
 7-Zip [64] 17.05 : Copyright (c) 1999-2021 Igor Pavlov : 2017-08-28
@@ -70,12 +75,19 @@ Everything is Ok
 Folders: 1
 Files: 2
 Size:       747008
-Compressed: 375771What did we just unpack?
+Compressed: 375771
+```
 
+What did we just unpack?
+
+```text
 $ ls -lah fix/
 total 456K
 -rw-r--r-- 1 ole users 490K Aug 27 08:15 msvcp140.dll
--rw-r--r-- 1 ole users 240K Aug 27 08:15 x86_64-w64-ranlib.exeHuh. `ranlib` is a standard programming tool, although here it is supposed to be an installer (!). This “fix” seems to have been written for a Windows system. I can’t run it on my Linux machine. Bummer. I’m also not very good at decompiling `*.exe` files to check what’s really inside. But we can ask some websites for assistance.
+-rw-r--r-- 1 ole users 240K Aug 27 08:15 x86_64-w64-ranlib.exe
+```
+
+Huh. `ranlib` is a standard programming tool, although here it is supposed to be an installer (!). This “fix” seems to have been written for a Windows system. I can’t run it on my Linux machine. Bummer. I’m also not very good at decompiling `*.exe` files to check what’s really inside. But we can ask some websites for assistance.
 
 ### VirusTotal
 
@@ -126,13 +138,17 @@ Opening the URL in a browser lets us see:
 
 Visiting the C2 serverWell, that’s not much. This is the default landing page of their `nginx` web server, with no content whatsoever. Let’s have a look at the source code of this website then, by pressing `CTRL+U` in the browser.
 
-&lt;html&gt;
-  &lt;head&gt;&lt;title&gt;405 Not Allowed&lt;/title&gt;&lt;/head&gt;
-  &lt;body&gt;
-    &lt;center&gt;&lt;h1&gt;405 Not Allowed&lt;/h1&gt;&lt;/center&gt;
-    &lt;hr&gt;&lt;center&gt;nginx/1.18.0 (Ubuntu)&lt;/center&gt;
-  &lt;/body&gt;
-&lt;/html&gt;Ah yes. Privacy conscious. At least we learn that the server runs `nginx` version `1.18.0` on Ubuntu.
+```html
+<html>
+  <head><title>405 Not Allowed</title></head>
+  <body>
+    <center><h1>405 Not Allowed</h1></center>
+    <hr><center>nginx/1.18.0 (Ubuntu)</center>
+  </body>
+</html>
+```
+
+Ah yes. Privacy conscious. At least we learn that the server runs `nginx` version `1.18.0` on Ubuntu.
 
 If we look back at the network section of the Triage analysis, we see that the malware made a request to the `/api` path. API stands for Application Programming Interface **and is basically a somewhat standardized interface for talking to computers programmatically. What does that API path look like in the browser?
 
@@ -151,17 +167,23 @@ A different 404 page? Hmm…Another dead end? But this one look different. Russi
 
 Let’s see what we can learn from this page. Translation:
 
-404**
+```text
+404
+
 Oops... There was a mistake
 
 Sorry, this page was not found or the administrator has closed access to it
 
-&lt;- To the main pageNo surprises here. Let’s download the whole thing and see what we get.
+<- To the main page
+```
+
+No surprises here. Let’s download the whole thing and see what we get.
 
 ### Website source code
 
 The website source contains the following files:
 
+```text
 $ tree
 .
 ├── Ошибка_files
@@ -176,7 +198,10 @@ $ tree
 │   ├── tabler-vendors.min.css
 │   ├── tom-select.complete.min.js
 │   └── tom-select.css
-└── Ошибка.htmlOur error page seems to have been built with [tabler.io](https://tabler.io/). This seems to be a bit too much effort for a simple 404 page. Tabler is often used to build elaborate dashboards. So there’s probably more to it.
+└── Ошибка.html
+```
+
+Our error page seems to have been built with [tabler.io](https://tabler.io/). This seems to be a bit too much effort for a simple 404 page. Tabler is often used to build elaborate dashboards. So there’s probably more to it.
 
 The `css` files are Cascading Style Sheets (CSS), which are used for styling a web page. Not too interesting. `[tom-select](https://tom-select.js.org/)` is a standard JavaScript framework for UI control. `[jquery](https://jquery.com/)` is a library to simplify HTML development, assisting with document traversal and other things.
 
@@ -184,7 +209,11 @@ The interesting ones that remain are `dober.html` and `doberman.min.html`. What 
 
 The content of `dober.html` is one single line of text which looks like this:
 
-&lt;!DOCTYPE html&gt;&lt;html lang="en-US"&gt;&lt;head&gt;&lt;title&gt;Just a moment...&lt;/title&gt;&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;&lt;meta http-equiv="X-UA-Compatible" content="IE=Edge"&gt;&lt;meta name="robots" content="noindex,nofollow"&gt;&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;&lt;style&gt;*{box-sizing:border-box;margin:0;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%;color:#313131}button,html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}@media (prefers-color-sch...Urgh. This HTML vomit is “minified”, which means it is condensed as much as possible to save bandwidth when opening a website. This makes it hard to read for us humans, though. Luckily we can get some help with disentangling it.
+```html
+<!DOCTYPE html><html lang="en-US"><head><title>Just a moment...</title><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><style>*{box-sizing:border-box;margin:0;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%;color:#313131}button,html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}@media (prefers-color-sch...
+```
+
+Urgh. This HTML vomit is “minified”, which means it is condensed as much as possible to save bandwidth when opening a website. This makes it hard to read for us humans, though. Luckily we can get some help with disentangling it.
 
 ### Unminify.com
 
@@ -192,7 +221,8 @@ While there are Integrated Development Environments (IDEs) that can disentangle 
 
 Unminifying HTML code, making it readable and prettyThe code in the screenshot above is now much more readable. Below in the unminified code of `doberman.min.html` we can find a reference to a file that does not seem to exist. An excerpt of `doberman.min.html`:
 
-&lt;script&gt;
+```html
+<script>
     (function () {
         window._cf_chl_opt = {
             cvId: "3",
@@ -201,7 +231,10 @@ Unminifying HTML code, making it readable and prettyThe code in the screenshot a
             cNounce: "11691",
             cRay: "8b96971bcef66608",
             cHash: "a7c37071216d981",
-            cUPMDTk: "\/core\/panel\/js\/doberman.min.js?2&amp;__cf_chl_tk=POTzyU0ftLF9cvsIaAitlr5np8LsKoghhsVMME6MjWg-1724704337-0.0.1.1-2559",Where is this file `/core/panel/js/doberman.min.js` referenced here? It was not downloaded with the rest. Is it being dynamically created and loaded? I would not know without more time to study it. Again, luckily, other people already did the hard work for us. Searching for this file string on Google leads to [an in-depth report](https://www.intrinsec.com/wp-content/uploads/2023/10/TLP-CLEAR-Lumma-Stealer-EN-Information-report.pdf) by the French security firm [Intrisec](https://www.intrinsec.com/). The mysterious file is apparently not present anymore in this “newer” version of the Lumma Stealer:
+            cUPMDTk: "\/core\/panel\/js\/doberman.min.js?2&__cf_chl_tk=POTzyU0ftLF9cvsIaAitlr5np8LsKoghhsVMME6MjWg-1724704337-0.0.1.1-2559",
+```
+
+Where is this file `/core/panel/js/doberman.min.js` referenced here? It was not downloaded with the rest. Is it being dynamically created and loaded? I would not know without more time to study it. Again, luckily, other people already did the hard work for us. Searching for this file string on Google leads to [an in-depth report](https://www.intrinsec.com/wp-content/uploads/2023/10/TLP-CLEAR-Lumma-Stealer-EN-Information-report.pdf) by the French security firm [Intrisec](https://www.intrinsec.com/). The mysterious file is apparently not present anymore in this “newer” version of the Lumma Stealer:
 
 > 
 

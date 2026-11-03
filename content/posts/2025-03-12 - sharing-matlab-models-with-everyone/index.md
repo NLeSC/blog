@@ -34,6 +34,7 @@ This is where Docker comes into play. Docker allows you to package your applicat
 
 Lucky for us, [someone already did the work of containerizing MATLAB Runtime](https://github.com/demartis/MATLAB_runtime_docker). Thanks Riccardo De Martis! A quick example is in the following Dockerfile:
 
+```dockerfile
 # We start from the already-existing MATLAB Runtime container:
 FROM demartis/matlab-runtime:R2023a
 
@@ -50,7 +51,10 @@ RUN chmod 777 /temp/
 ENV MCR_CACHE_ROOT /temp/
 
 # Run the model:
-CMD ./MATLAB_MODELNotice that the MATLAB Runtime container is based on Debian, so you need to generate your executable file on a Linux system as well. On the flip side, once the container is built, it will be easy to run it on different systems, as well as in parallel (such as scaling up your analysis on HPC, where more computational power and data is available).
+CMD ./MATLAB_MODEL
+```
+
+Notice that the MATLAB Runtime container is based on Debian, so you need to generate your executable file on a Linux system as well. On the flip side, once the container is built, it will be easy to run it on different systems, as well as in parallel (such as scaling up your analysis on HPC, where more computational power and data is available).
 
 ## Interacting with the containerized model
 

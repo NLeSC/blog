@@ -78,11 +78,14 @@ Protecting your `main` branch means that you can’t commit to it directly. You 
 * Create a pull request from `feature` to `main` on [github.com](https://github.com)
 * Open a terminal and create some magic:
 
+```sh
 cd your/project/folder     # cd into your project directory
 git pull    # get the latest changes to your local computer
 git switch main    # select the `main` branch, if necessary
 git merge --ff-only feature    # ff-merge feature onto main
 git push      # allowed! because you created a pull request
+```
+
 * The pull request is automatically closed 🪄
 
 While rather low-tech, this relies on the workflow and discipline of the developers to work. This is a danger zone. It is 4:55pm on a Friday afternoon. You opened a pull request to contribute your work on the `feature` branch and now watch patiently how the green circle closes that shows that all CI tests passed. Your fingers itch to wrap things up quickly so you can go home and wolf down the lasagna you prepared already the day before.

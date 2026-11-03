@@ -13,6 +13,131 @@ tags:
 
 ## Use ppoll to handle EINTR once and for all
 
+![A child calling into a studio microphone behind a pop filter.](/assets/0_9673x3EO1AadXhPS-8582ce0f.webp)
+
+What my first experience trying to send out signals was like. Can anybody hear me? Photo by Jason Rosewell on Unsplash
+
+I have been dabbling in using and mixing these two well known interprocess communication techniques for a few months now. Dabbling may not be the right word. More like desperately trying to find my way out of a dark room without a flash light.
+
+Speaking of which, if you’re ever in [Nijmegen](https://en.wikipedia.org/wiki/Nijmegen), be sure to visit the [muZIEum](https://muzieum.nl/) and experience what it’s like to be blind. In their basement, they recreated everyday scenes and then made it completely, absolutely dark. It’s really a magnificent experience.
+
+Anyway, once you’ve done that, you’ll know how I have been feeling lately trying to get ZeroMQ to play nice with POSIX signals… I hope that after reading this, you won’t have to feel the same way, if you don’t want to (if you do, visit Nijmegen, or stop reading now).
+
+Specifically, I present here some **pitfalls and problems** of using **ZeroMQ** calls `send`, `receive` and `poll`, which are blocking calls (they pause the program until they get what they were waiting for), in **combination** with **POSIX** signals that interrupt these calls. In my case, initially, these calls were external, but eventually, I also wanted to actively trigger them myself. Both situations require different approaches.
+
+Luckily, there is a **solution to the problems**, which I’ll also come to at the end of this article after a long winded description of the process of me wrapping my head around all of this. Long story short: I implemented a `ppoll` ZeroMQ call (yes, with double p).
+
+But let's first set the scene before diving into details.
+
+## Backstory
+
+Our story takes place in the [ROOT C++ data analysis framework](https://root.cern/) for particle physics experiments, specifically in the RooFit package. (For the short, technical essentials of the following chronicle, skip down to the next header Technical overview.)
+
+I’m building a system to run RooFit calculations in parallel on multiple processes. To do that, I need interprocess communication. For this, I chose ZeroMQ, because of its [really funny manual](http://zguide.zeromq.org/page:all) (and because other people seemed to like it, particularly Roel Aaij, who helped me get started with it).
+
+At this point, you may wonder why we didn’t use an existing task execution framework like [TBB](https://en.wikipedia.org/wiki/Threading_Building_Blocks) or [Cilk](https://en.wikipedia.org/wiki/Cilk), but we had some specific design constaints that made this impossible (integration with the current RooFit C++ code and performance requirements), so we had to whip up our own thing.
+
+Everything was coming along nicely. With lots of valuable input from the team, Inti Pelupessy and I designed and built the MultiProcess system, it was working just fine, we benchmarked it, presented it and published a bit and things seemed to be hunky-dory. Matter of packing it up and shipping it. Or so we thought.
+
+The first version had some, let’s say, [sub-optimal implementation choices](https://en.wikipedia.org/wiki/Spaghetti_code) (which I take full responsibility for). Also, in our final version, we wanted to make a few user-facing design changes. So we got together, made a better design and I started coding version two.
+
+![The redesign team gathered around an outdoor table at CERN.](/assets/0_h49Fzwhw4IyLttce-96e6ecef.webp)
+
+The redesign team at CERN past summer. So young. So naive (speaking for myself at least).
+
+To make the MultiProcess framework more maintainable, I split it into several conceptual classes. Most importantly, the so-called `TaskManager` was taken apart. The `TaskManager` did hardly anything to manage tasks. Instead it managed a task queue, interprocess communication and forking into multiple processes, i.e. everything needed behind the scenes to get workers (processes) to calculate their parts of the total calculation and then send the results back to the master process. Workers don't need management, they just need someone to take all the red tape away from them so they can focus on what they do best! There is no political message here!
+
+So, now we have a `JobManager` which keeps a list of `Job` s, and explicitly spawns objects for the other previously bunched together tasks of the `TaskManager` (are you confused yet?): a `Queue`, a `Messenger` and a `ProcessManager`. The queue also runs an event loop on the queue process (which the master process talks to) and the worker processes (which talk to the queue as well) run a `worker_loop` which is just a free function, yay C++, free the functions from their classist masters! Still no politics, I assure you.
+
+Now, one of the nice things of having monolithic classes is that you don’t have to worry too much about, say, separating your concerns. This means for instance that the old `TaskManager` could use its messaging parts to tell its process management parts to shut down children after the Job was done.
+
+In the new situation, the `JobManager` instantiates its `ProcessManager` member to spawn child processes and after that instantiates its `Messenger` member to setup our means of communication. In C++ it would be most natural to let the destructor of these classes clean up all connections and processes. However, when we do this after our Job is done, we can no longer use the `Messenger` to communicate between processes, because there is a recursive dependency. We would need the `Messenger` to tell the `ProcessManager` to terminate the processes, but the processes cannot die before they killed the `Messenger`, because through ZeroMQ it keeps alive an I/O thread that waits for messages from the ZeroMQ sockets that we haven't killed yet because we needed them to kill the processes!
+
+In principle, you can do it by sending a terminate signal over the messenger, which triggers the destruction of the `JobManager`, which then destroys all its component members. This has its own issues, not the least of which is that it creates an external dependency for destruction, which seems like a bad design choice.
+
+To get out of this swamp, there are several other possibilities, like making the messenger a singleton class like the `JobManager` or the ZeroMQ context (yeah, now the skeletons come popping out of the closet), but I just couldn't bear making yet another one of those.
+
+![Skeleton figures against a dark background.](/assets/0_wNTLScaDrD53gnLf-f331d8a7.webp)
+
+Honestly, my closet isn’t big enough to hold all the skeletons…
+
+In any case, I thought it would be nice to make the classes independent (even though the `Messenger` still needs the `ProcessManager` instance at creation time to tell it which process it is running on, but this can easily be passed on via the constructor, a feat which destructors unfortunately cannot perform).
+
+To this end, I decided to have the `ProcessManager` just use POSIX signals to signal all its kids to die.
+
+## Technical overview
+
+So, long story short: I have a master process, which spawns 1 + N children:
+
+1. a queue process, running a loop to wait for messages and then act on them;
+2. N worker processes, also running a messaging loop.
+
+The `ProcessManager` takes care of forking child processes in the constructor and killing them off by sending POSIX signals from the destructor.
+
+The `Messenger` sends around job descriptions and results from the master to the queue and from queue to workers. It uses ZeroMQ sockets for this. At the end of its life, it just shuts down all sockets, closes the ZeroMQ context and that's that.
+
+Note that these instances are cloned to all forked children, but on each child there is only one instance, owned by the singleton `JobManager`.
+
+All good so far.
+
+Now, the issue is this: since we can no longer use our messenger to send a termination message, the loop will run indefinitely. This is why we use the `SIGTERM` signal to stop the process. To do this, we must install a signal handler using the POSIX `signal` call. We use the signal handler to flip some globally accessible flag variable, which we check for in the message loops and exit the loops once it's flipped.
+
+Again, seems simple enough.
+
+Unfortunately, it caused me a week or two of headaches.
+
+## First try: tying knots
+
+The complication arises because ZeroMQ operations `send`, `recv` and `poll`, which we use to wait for messages in the loops, are blocking functions that only exit when they have some data incoming or outgoing **or** when they encounter some error, like **a POSIX signal interrupting them**.
+
+When such an interrupt happens, the operation exits with an `EINTR` exit code, which you can (and should!) check for. The thing is that it can happen for all kinds of signals and some may be harmless. For instance, profilers also use signals to measure a program's time spent in certain functions. For those you may want the `recv` / `send` / `poll` to just retry. Also, on other errors, you may want to just raise an exception and get the hell out of there, back to where the `recv` was called from.
+
+In any case, when we get a POSIX signal while inside `send` / `recv` / `poll`, first the signal handler will flip our flag switch, then, back inside the blocking `send` / `recv` / `poll`, the `send` / `recv` / `poll` will return with an `EINTR` exit code. We check the exit code and the flag switch and either start shutting down when we received our kill signal or continue when we didn't:
+
+```cpp
+while (true) {                  // send/recv/poll retry loop
+  try {
+    int timeout = -1;           // infinite/no timeout, i.e. block
+    socket.recv(timeout);       // or send, or poll
+  } except (zmq::error_t &e) {
+    if (e.num() != EINTR) {
+      throw;
+    } else {
+      if (my_global_flag_is_switched) {
+        std::exit(1);           // or some fancier way of exiting
+      }  // tip
+    }  // toe
+  }  // down
+}  // the stairs
+```
+
+This will often go well. It also often goes wrong, as my tests were showing. About half of the time one of the terminated children would hang…!@\*$%&
+
+The problem here is that the `SIGTERM` signal is not guaranteed to be received inside the blocking ZeroMQ call. In fact, it will often be received when in some other function, because it may still be busy handling a previous message. When this happens, the flag will be flipped, but it is not checked! At some point the message loop returns to the `recv` call and will just block there.
+
+An obvious looking solution to this specific problem is to put another switch-check in front of the `recv`, i.e.:
+
+```cpp
+...
+  if (my_global_flag_is_switched) {
+    std::exit(1);             // or some fancier way of exiting
+  }  // hello darkness, my old friend
+  socket.recv(timeout);       // or send, or poll
+...
+```
+
+While this will certainly reduce the odds of going into a blocking call when `SIGTERM` has been received, it still doesn't guarantee anything. There is still soom innocent looking room in between the check and the blocking call. The signal could still be received just before the `recv` call has been entered. Or, maybe more precisely, before one of the actually blocking system calls inside `recv` has been entered; but also the process could simply have been put on hold by the OS exactly at the moment after the flag check. In any case, this setup will still hang indefinitely every now and then.
+
+So this way of interleaving POSIX and ZeroMQ calls and checks will never be enough, there will always be a possibility that your blocking call will hang.
+
+![A seagull with its beak wide open beside the sea.](/assets/0_kpJXLkNFcTnvN0Om-fc5127c6.webp)
+
+Haaaaaaaaaang. Haaaaaaaaaaaaang.
+
+## Second try: queue it all
+
+I was Googling for alternative solutions and honestly found it really hard to find good resources on this (which is the main reason I’m now writing it all down for you in this article).
+
 Eventually, I found [this article on EINTR in ZeroMQ](http://250bpm.com/blog:12) by Martin Sustrik (ZeroMQ creator) himself. More precisely, in the comment section [Ambroz Bizjak suggested a solution](http://250bpm.com/blog:12/comments/show#post-1608507) to my problem which after some discussion even Sustrik seemed to be unaware of. The solution wasn’t completely fleshed out in the comments, so there was still some filling out for me to do. Luckily for you, you won’t have to repeat this exercise.
 
 The solution is that when going into the blocking ZeroMQ calls, you temporarily block the POSIX signals you want to listen for; `SIGTERM` in our case. This can be done using `sigprocmask`.
@@ -27,10 +152,17 @@ Finally, note that also right after you blocked the signal with `sigprocmask`, y
 
 All in all, the code would then become something like that of Ambroz Bizjak:
 
-set file descriptor to non-blocking;**sigprocmask**() to block SIGINT;**if (stop**) { // handle it }**while (true) {
-  pselect() with sigmask argument which doesn't block SIGINT;****  if (stop**) { // handle it }**  recv();
+```text
+set file descriptor to non-blocking;
+sigprocmask() to block SIGINT;
+if (stop) { // handle it }
+while (true) {
+  pselect() with sigmask argument which doesn't block SIGINT;
+  if (stop) { // handle it }
+  recv();
 }
 sigprocmask(old) to put back the old mask in use before we replaced it;
+```
 
 ## Integrating into ZeroMQ
 
@@ -50,7 +182,7 @@ Now I just had to write it…
 
 ## Ppoll, pselect or self-pipe?
 
-After a two week hiatus, I came back, tried to implement `zmq_ppoll` by simply copy-pasting `zmq_poll` and replacing `poll` with `ppoll`, but was unpleasantly surprised by the fact that `ppoll` apparently doesn't exist on macOS. `[pselect](&lt;https://stackoverflow.com/a/46047380/1199693&gt;)` does exist, so we'll have to go with that.
+After a two week hiatus, I came back, tried to implement `zmq_ppoll` by simply copy-pasting `zmq_poll` and replacing `poll` with `ppoll`, but was unpleasantly surprised by the fact that `ppoll` apparently doesn't exist on macOS. `[pselect](<https://stackoverflow.com/a/46047380/1199693>)` does exist, so we'll have to go with that.
 
 Luckily, the `zmq_poll` implementation is really flexible, and already includes a `select`-based path next to the `poll`-based one. We modify that to take a `sigmask` and Bob's your uncle.
 

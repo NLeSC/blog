@@ -38,7 +38,7 @@ That’s why I started playing around with 3D visualizations instead. The idea i
 
 CityJSON file format is intended as a lightweight and developer-friendly format for spatial information. Like JSON, it is basically a set of key-value pairs. The [CityJSON format](https://www.cityjson.org/specs/overview/) specifies which keys are allowed/required and what values they can have. I was not familiar with the format, so this part of the blogpost also represents my learning experience. A simple CityJSON file could look like this:
 
-```rb
+```json
 {
   "type": "CityJSON",
   "version": "2.0",

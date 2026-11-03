@@ -26,7 +26,8 @@ For the [Netherlands eScience Center Python package template](https://github.com
 You can run shell commands from Python using the [subprocess](https://docs.python.org/3/library/subprocess.html) module from the Python standard library. However, using this module is a hassle, because you have to do all the error handling yourself. [Sh](https://amoffat.github.io/sh/) is a Python package that takes care of all that and allows you to run shell commands using a single line of code. If you want to run `python setup.py install`, all you have to do is:
 
 ```hs
-import shsh.python(['setup.py', 'install'])
+import sh
+sh.python(['setup.py', 'install'])
 ```
 
 If you want to run `foo` and it is installed on your system, you can just do `sh.foo()`.
@@ -38,14 +39,18 @@ So how can we use this for testing? Let’s look at an example. For the Python t
 ```hs
 import pytest
 import os
-import shdef test_install(cookies):
+import sh
+
+def test_install(cookies):
   # generate a temporary project using the cookiecutter
   # cookies fixture
-  project = cookies.bake()                                                    # remember the directory where tests should be run from
+  project = cookies.bake()
+  # remember the directory where tests should be run from
   cwd = os.getcwd()
   # change directories to the generated project directory 
   # (the installation command must be run from here)
-  os.chdir(str(project.project))  try:
+  os.chdir(str(project.project))
+  try:
     # run the shell command
     sh.python(['setup.py', 'install'])
   except sh.ErrorReturnCode as e:

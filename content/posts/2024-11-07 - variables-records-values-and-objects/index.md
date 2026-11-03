@@ -35,16 +35,20 @@ Scopes come for free once you start making functions (procedures in [TEC 2](http
 
 So, if you make functions, you’ll notice that most of your variables will end up being local variables. In fact, if you design these functions well and have them only communicate with other functions via parameters and return values, then the only global variables you’ll have are at the top level of your Python script. In Python, you *can* actually read those global variables from inside a function, but something funny happens if you write to them:
 
+```python
 global_variable = 42
 
-def my_function() -&gt; None:
+def my_function() -> None:
     print(global_variable) # prints 42
     global_variable = 43
     print(global_variable) # prints 43
 
 my_function()
 
-print(global_variable) # prints 42The way this works is that if you try to use a variable, it is first looked up in the local scope you’re in. If it’s not found there, then the global scope is tried. So the first time `global_variable` is read in `my_function`, this is what happens. Assignment however is not affected, so on the next line a *new* variable is made in the *local* scope, which is called `global_variable` and given the value 43.
+print(global_variable) # prints 42
+```
+
+The way this works is that if you try to use a variable, it is first looked up in the local scope you’re in. If it’s not found there, then the global scope is tried. So the first time `global_variable` is read in `my_function`, this is what happens. Assignment however is not affected, so on the next line a *new* variable is made in the *local* scope, which is called `global_variable` and given the value 43.
 
 On the next line, this local variable is found first and its value is printed. Note that the global variable named `global_variable` is now invisible from within `my_function`, as it is masked or *shadowed* by the local variable of the same name. The print statement at the end of the script isn’t in `my_function`’s scope, so, it sees the global version of the variable, which still has the value 42.
 
@@ -61,6 +65,7 @@ Sometimes, one variable just isn’t enough to contain all the information you w
 
 Fortunately, language designers have come to the same conclusion, and have added records* (Pascal) and *structs* (C and C++) to languages. More recent languages like Python tend to have classes instead (more on those in a future instalment), but the closest equivalents in Python would be a *dataclass* [1]:
 
+```python
 from dataclass import dataclass
 
 @dataclass
@@ -72,12 +77,16 @@ class Date:
 @dataclass
 class Person:
     name: str
-    date_of_birth: DateHere we have a statement that creates a class named `Date`, containing `day`, `month` and `year` fields all of type `int`. What does that mean? One way of looking at a class or a record is that it is a description of the structure of a certain type of complex values. So here we are saying that any value of type `Date` must contain three subvalues with the given names, each of type `int`. These subvalues can themselves be complex objects, as we see in class `Person`.
+    date_of_birth: Date
+```
+
+Here we have a statement that creates a class named `Date`, containing `day`, `month` and `year` fields all of type `int`. What does that mean? One way of looking at a class or a record is that it is a description of the structure of a certain type of complex values. So here we are saying that any value of type `Date` must contain three subvalues with the given names, each of type `int`. These subvalues can themselves be complex objects, as we see in class `Person`.
 
 And so here is a hierarchy again, but a different one than the hierarchy of functions. That one lets us describe complex actions as a combination of simpler actions, while this one lets us describe complex objects as combinations of simpler parts. Together, they make it possible to describe very complex programs in such a way that we can understand them one piece at a time.
 
 There’s one thing still missing though. A class is just a description of what a particular type of value looks like. In order to actually do something, we need some variables containing such values (they’re often called *objects*). Fortunately, Python’s `@dataclass` annotation automatically creates a function with the same name as the class, which takes as arguments the values contained in the class, and returns a value containing them [2]. Some code shows it more clearly:
 
+```python
 p = Person(
         name='Albert Einstein',
         date_of_birth=Date(
@@ -89,16 +98,23 @@ p2 = Person(
                 day=23, month=3, year=1882))
 
 p3 = p2
-print(p3.date_of_birth.month)Here we create some values of class `Person` by calling the correspondingly named function, and assign them to variables. To create a `Date`, we have to call that function instead, and pass appropriate arguments.
+print(p3.date_of_birth.month)
+```
+
+Here we create some values of class `Person` by calling the correspondingly named function, and assign them to variables. To create a `Date`, we have to call that function instead, and pass appropriate arguments.
 
 Once we have these complex values, we can use them as a whole, like in the assignment `p3 = p2`, or we can access some detail inside of them using the `.` operator, as in the `print` statement. And just like that, we’re talking about complex things like people and calendar dates!
 
 One more thing before we go. In [TEC 1](https://medium.com/escience-center/dynamic-types-static-types-oh-my-py-25c9743b72c4), we talked about type annotations, which you can use to specify which types function arguments must have, and what the type of the return value will be. Records and (data)classes are in fact types, and you can use them to annotate functions. So given the above, you can write a function
 
-def update_date_of_birth(p: Person, d: Date) -&gt; None:
+```python
+def update_date_of_birth(p: Person, d: Date) -> None:
     p.date_of_birth = d
 
-update_date_of_birth(p2, Date(day=23, month=3, year=1982))and have mypy check that it’s being called correctly.
+update_date_of_birth(p2, Date(day=23, month=3, year=1982))
+```
+
+and have mypy check that it’s being called correctly.
 
 If you go and play around a bit with this code, you may notice that there’s some really funny business going on when you assign using whole objects and also parts of them. In the next instalment, we’ll take a look behind the scenes to see what’s actually happening inside of the computer when we make variables and complex values, and clear all that up.
 

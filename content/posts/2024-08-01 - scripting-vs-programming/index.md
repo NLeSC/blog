@@ -16,6 +16,30 @@ tags:
 
 ][Lourens Veen]·Apr 26, 2023
 
+### Syntax
+
+The *syntax* of a programming language describes which symbols need to be used in which order to write a program in that language. For example:
+
+```text
+{ Pascal }
+a := 1;
+
+// C
+a = 1;
+
+# Python
+a = 1
+
+# R
+a <- 1
+```
+
+These fragments all have exactly the same meaning: first there’s a comment for the programmer that explains which programming language this is (this gets ignored by the computer), and then there’s a statement saying to set the variable `a` to 1. In programming jargon, we say that the programs have the same *semantics*, but a different *syntax*, because they’re written in different languages.
+
+Scripts do relatively simple things, so for a scripting language it’s important that simple things can be expressed in a compact way. In Java, to print “Hello, World!”, you need a class and a method. That’s okay in a large program where you’re going to have lots of classes and methods anyway, but it fails hopelessly in a notebook. In a language like Python, it’s a single line of code which pretty much consists of the command “print” and the text you wanted to print. So Python works quite a bit better as a scripting language syntax-wise.
+
+Beyond this, there isn’t actually that much difference between languages more suitable for scripting and languages more suitable for programming. In the example above, which is ordered chronologically, we can see that newer languages tend to have less “furniture” in the sense of additional symbols, making them easier to type and read, and there’s some variation due to differences in the designer’s taste, but those don’t affect what you can do with the language.
+
 Any remaining differences are usually due to particular features supported by certain languages. In R for example, you can write down a statistical model equation, for which it has a special syntax using the `~` symbol. There’s no equivalent of that in Python or C or Pascal, because those languages weren’t designed for statistics.
 
 ### Structure
