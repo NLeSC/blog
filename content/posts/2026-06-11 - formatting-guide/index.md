@@ -19,7 +19,9 @@ Every post starts with YAML frontmatter. It supplies the title, author, publicat
 ---
 title: "A clear and specific title"
 subtitle: "One sentence that introduces the story"
-author: "Author Name"
+author:
+  - "First Author"
+  - "Second Author"
 slug: "clear-and-specific-title"
 published: true
 source: "local"
@@ -30,12 +32,10 @@ tags:
 ---
 ```
 
-For one author, use `author: "Author Name"` as above. For multiple authors, use a YAML list under the same `author` field:
+For multiple authors, use a YAML list under `author` as above. For one author, a single name is enough:
 
 ```yaml
-author:
-  - "First Author"
-  - "Second Author"
+author: "Author Name"
 ```
 
 Authors appear in the order listed, each linked to their author page. The post appears in every co-author’s archive. Use consistent names across posts and do not leave list entries blank.
