@@ -77,7 +77,11 @@ If your code only runs on your computer with your files on it, in January under 
 
 For example, a line like the following is all too common in research software:
 
-DATAFILE = "C:\Users\Frank\Downloads\KNMI_klimaat_DeBilt_1980-2010.CSV"Hardcoded assumptions like these are errors waiting to happen. They can be avoided by making parameters like file paths user-configurable. For example, in Python, you can use the `[argparse](https://docs.python.org/3/library/argparse.html)` module to accept file paths as command line arguments.
+```python
+DATAFILE = "C:\Users\Frank\Downloads\KNMI_klimaat_DeBilt_1980-2010.CSV"
+```
+
+Hardcoded assumptions like these are errors waiting to happen. They can be avoided by making parameters like file paths user-configurable. For example, in Python, you can use the `[argparse](https://docs.python.org/3/library/argparse.html)` module to accept file paths as command line arguments.
 
 ## Use helpful standards
 

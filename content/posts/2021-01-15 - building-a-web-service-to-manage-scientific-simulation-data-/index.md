@@ -14,6 +14,107 @@ tags:
   - Open Source
 ---
 
+Scientific simulations generate large volume of data that needs to be stored and processed by multidisciplinary teams across different geographical locations. Distributing computational expensive simulations among the available resources, avoiding duplication and keeping the data safe are challenges that scientists face every day.
+
+In this post we present our web service [Ceiba](https://github.com/nlesc-nano/ceiba) and its command line interface [Ceiba-cli](https://github.com/nlesc-nano/ceiba-cli). Ceiba solves the problem of *computing*, *storing* and *securely sharing* computationally *expensive* simulation results. Researchers can save significant time and resources by easily computing new data and reusing existing simulation data to answer their questions.
+
+![Rows of solar panels beneath a blue sky.](/assets/0_bI9DbwobcmYvOYyk-f23819bf.webp)
+
+Photo by American Public Power Association on Unsplash
+
+## Scientific simulations and data
+
+> At the [Netherlands eScience Center](https://www.esciencecenter.nl/) we empower academic researchers by building together simulation tools, data pipelines, etc. A common goal among several tools that we develop for projects in different scientific fields, is to reduce the calculation time of computationally expensive physical simulations (e.g. molecular processes) by applying statistical methods to previously simulated data.
+
+The aforementioned methodology can potentially save us significant human and computational resources by easily generating high value data using previous computations. But before we are ready to apply any statistical method we of course need the data and for doing so, we need to ask ourselves questions like:
+
+> What input is required?
+>
+> Who is going to perform the simulation?
+>
+> What facilities are going to be used?
+>
+> Where is the resulting data going to be stored?
+>
+> How to access the available data?
+
+Physical simulations usually require intricate input that takes into consideration several aspects and parameters used by different models to approximate the phenomena under consideration. Also, scientific simulations are computationally demanding tasks, so they are usually run in (inter)national supercomputers or very specialized facilities. We also want to maximize the impact of the data in the scientific community, therefore we want other scientists to be able to access the data and even add their own, but we need some security layers to protect such valuable data.
+
+There is no silver bullet to address all the previous questions, but there are amazing initiatives like the [folding at home project](https://foldingathome.org/) that distributes some computational tasks among volunteers around the world who give away some time in their computers to simulate protein dynamics.
+
+It seems that if we want to collaborate on the distribution of computational tasks and the assemblage of the resulting data, we need a central “entity” that (1) allows users to request new tasks, (2) receives the task’s results to be stored and (3) returns some available data when requested. It sounds like we need a web service!
+
+> Writing a web service is a nontrivial task, you need to be aware of different technologies, libraries, etc. while making sure that your data is going to be safe and of course you need some infrastructure to host your service. This post goal is to give you some hints about building a web service for scientific applications and it is by no means a complete guide to writing web applications.
+
+## A pull/push model
+
+![People gathered around a laptop, pointing at its screen and keyboard.](/assets/0_HnAn4y-BQGmvGjGZ-63120e1e.webp)
+
+Photo by John Schnobrich on Unsplash
+
+Before entering into the web service technical details, let’s explore what its behavior should be.
+
+So, once it has been decided what are the best approximations and models to perform the simulations, we can compile all the simulation metadata into different jobs. For instance, a job can be a single molecular simulation under some specific conditions. We would like to make all these jobs available to the users, in such a way that they can run one or more jobs at a time but avoiding that the same job is run by more than one user.
+
+It would be great that when the simulation is done a user can send the results to the web service or ask for already available results. We also want to be able to call the web service from our local computer, specialized infrastructure or wherever we want to perform the computation, without worrying about where the service is running.
+
+It seems, that we want a [Git](https://en.wikipedia.org/wiki/Git) -like behavior where we can pull jobs (or available data) and push results.
+
+With these requirements in mind, I have developed an open source web service called [Ceiba](https://github.com/nlesc-nano/ceiba). Let’s see how it works!
+
+## The client
+
+![A bicycle symbol and a forward-pointing arrow painted on a road.](/assets/0_P4hHvh84YZQLPGgi-abb9bbfa.webp)
+
+Photo by Andrew Gook on Unsplash
+
+The web service consists of two parts: a small command line interface (CLI) that communicates with the service and the [Ceiba web service](https://github.com/nlesc-nano/ceiba) that handles all the data.
+
+Our CLI is called [Ceiba-cli](https://github.com/nlesc-nano/ceiba-cli) and it offers several actions to interact with the service, like logging in, computing, querying, etc. as shown in the following snippet:
+
+```text
+>>> ceiba --help
+usage: ceiba [-h] [--version] {login,compute,report,query,add,manage} ...
+
+positional arguments:
+  {login,compute,report,query,add,manage}
+                        Interact with the properties web service
+    login               Log in to the Ceibaweb service
+    compute             Compute available jobs
+    report              Report the results back to the server
+    query               Query some properties from the database
+    add                 Add new jobs to the database
+    manage              Change jobs status
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+```
+
+Using [Ceiba-cli](https://github.com/nlesc-nano/ceiba-cli) we can compute some jobs using a command like:
+
+```sh
+ceiba compute -c collection_name -j number_of_jobs_to_compute
+```
+
+The previous command handles the communication with the web service, fetches the requested jobs from a given collection (or dataset) and runs them directly or invokes a [job scheduler](https://en.wikipedia.org/wiki/Job_scheduler) like [Slurm](https://slurm.schedmd.com/documentation.html). To communicate with the service, [Ceiba-cli](https://github.com/nlesc-nano/ceiba-cli) invokes the [Python Requests library](https://requests.readthedocs.io/en/master/) that handles the communication.
+
+Once the jobs are done we can report the computed data like:
+
+```sh
+moka report
+```
+
+You may be wondering how does the client know what data it needs to send/receive. Well, that is the subject of the next section!
+
+## The Ceiba web service
+
+![Multiple floors of bookshelves and staircases surrounding an open library atrium.](/assets/0_o_Zzwgbaexr6Fz8y-f2228738.webp)
+
+Photo by Tobias Fischer on Unsplash
+
+The main goal of the web service is to minimize the interaction between the users and the data. If the client requests some read-only action you just return the data (if available) and if the client wants to change something, you need to ensure that (1) the client has permissions to mutate the data (2) only the mutations specified by the client are carried out but nothing more. I will skip authentication in this post.
+
 Therefore, the [Ceiba](https://github.com/nlesc-nano/ceiba) web service needs to handle two kinds of requests by the client: read-only queries and mutations on the datasets. These “queries” and “mutations” can be easily describe with [GraphQL](https://graphql.org/).
 
 In a nutshell, [GraphQL](https://graphql.org/) defines a contract (known as a schema) between the actions that a client can perform with the web service and the possible outcomes of those actions. More formally, [GraphQL](https://graphql.org/) is a query language that allows you to specify an application Programming interface (API) using different programming languages. If you have previous experience with [RESTful API](https://en.wikipedia.org/wiki/Representational_state_transfer) have a look at a comparison between [GraphQL and REST](https://www.howtographql.com/basics/1-graphql-is-the-better-rest/).
@@ -65,7 +166,11 @@ If you want to deploy the Ceiba web service to a remote server you need to follo
 * Make sure that you can ssh to your server(s).
 * Install the runner with the following command:
 
-ansible-playbook -i inventory playbook.ymlThe Ceiba server should be up and running!
+```sh
+ansible-playbook -i inventory playbook.yml
+```
+
+The Ceiba server should be up and running!
 
 ## The pesky details
 

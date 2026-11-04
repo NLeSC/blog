@@ -34,7 +34,9 @@ Overall, we did get a better grip on the antipatterns that prevented us from kee
 
 Let’s start with an overview of the steps required to run a basic WRF (real data) experiment, as per the instructions in the [user guide](https://www2.mmm.ucar.edu/wrf/users/wrf_users_guide/build/html/wps.html). First you must run the WRF preprocessing system (WPS), which itself consists of three programs: geogrid, ungrib, and metgrid. Then you run WRF itself, which also consists of two programs: real and wrf.
 
-cd WPS**
+```bash
+cd WPS
+
 # Run geogrid (interpolate spatial datasets to the model grid)
 ./geogrid.exe
 
@@ -53,7 +55,10 @@ ln -sf ../../WPS/met_em* .
 ./real.exe
 
 # Run WRF (the actual forecast)
-./wrf.exeThis workflow is not great in several ways. WRF and WPS are run in different working directories; yet they “pretend” to be in the same directory by use of symbolic links (`ln`). Also, exectuables are in the same directory as the input/output data. Now, imagine, for example, that we want to do multiple experiments with slightly different settings.
+./wrf.exe
+```
+
+This workflow is not great in several ways. WRF and WPS are run in different working directories; yet they “pretend” to be in the same directory by use of symbolic links (`ln`). Also, exectuables are in the same directory as the input/output data. Now, imagine, for example, that we want to do multiple experiments with slightly different settings.
 
 One option would be to move the output to a separate directory between each run. We would need to meticulously bookkeep our files, especially since runs may fail at different stages causing us to re-run (part of) the workflow. Also, we would not be able run the experiments in parallel. Clearly, using WRF in this way is a labour-intensive, error-prone process.
 
@@ -77,7 +82,9 @@ Considering the points above, let’s think about how we would like it to be, an
 
 Let’s see how far we can get with a simple shell script. In this example, we maintain multiple namelists and geogrid tables for each experiment. These are stored alongside the shell script and copied over to the experiment folder once the script is run. The full code is available [here](https://github.com/Urban-M4/wrf-runner).
 
-# Some initialization of the environment, module loads etc.**# ...
+```bash
+# Some initialization of the environment, module loads etc.
+# ...
 
 # Set path to executables
 WPS_HOME=$HOME/wrf-model/WPS
@@ -110,12 +117,15 @@ cp $WRF_HOME/run/*.TBL .
 $WPS_HOME/link_grib.csh "path/to/our/input/data/*"
 $WPS_HOME/ungrib.exe
 $WPS_HOME/geogrid.exe
-grep "ERROR" geogrid.log &amp;&amp; echo "Aborting: ERROR in geogrid.log." &amp;&amp; exit 1
+grep "ERROR" geogrid.log && echo "Aborting: ERROR in geogrid.log." && exit 1
 $WPS_HOME/metgrid.exe
-grep "ERROR" metgrid.log &amp;&amp; echo "Aborting: ERROR in metgrid.log." &amp;&amp; exit 1
+grep "ERROR" metgrid.log && echo "Aborting: ERROR in metgrid.log." && exit 1
 
 $WRF_HOME/run/real.exe
-$WRF_HOME/run/wrf.exeEvidently, WRF and WPS *can* be run from another directory, by calling them by their full path. Alternatively, we could have added the `WPS` and `WRF/run` directories to our `PATH` variable. However, WRF and WPS expect certain files (tables etc.) in the working directory, so we need to copy those.
+$WRF_HOME/run/wrf.exe
+```
+
+Evidently, WRF and WPS *can* be run from another directory, by calling them by their full path. Alternatively, we could have added the `WPS` and `WRF/run` directories to our `PATH` variable. However, WRF and WPS expect certain files (tables etc.) in the working directory, so we need to copy those.
 
 Geogrid and metgrid tables are expected in subfolders, but we can use the namelist setting `opt_geogrid_table_path='.'` (default is `'./geogrid'`) to overwrite that, and similar for metgrid. Geogrid will then look in that folder for a file called `GEOGRID.TBL`. (Why not simply point to the geogrid table directly in the namelist?)
 
@@ -146,7 +156,7 @@ Example Snakemake rules (source [https://snakemake.readthedocs.io/en/stable/proj
 
 ### Our desired workflow
 
-Before we delve into details, let’s have a look at the workflow that we want to achieve. For demonstration purposes I will focus on WPS only. Snakemake provides a command (`snakemake --dag WPS | dot -Tpng &gt; dag.png`) to visualize the task graph for our workflow:
+Before we delve into details, let’s have a look at the workflow that we want to achieve. For demonstration purposes I will focus on WPS only. Snakemake provides a command (`snakemake --dag WPS | dot -Tpng > dag.png`) to visualize the task graph for our workflow:
 
 ![(Un)wieldy workflows with WRF](./unwieldy-workflows-with-wrf-1d504248.png)
 Task graph for our WPS workflow. Boxes (nodes) are rules, arrows indicate dependencies between rules. Dashed lines indicate that these rules have already been executed. Full-line rules still need to be (re)run.As you can see, we want to run four independent experiments. While they share all the same steps, they have a different value for the `experiment` setting. This is achieved through the use of a wildcard*.
@@ -155,6 +165,7 @@ Task graph for our WPS workflow. Boxes (nodes) are rules, arrows indicate depend
 
 The values for the wildcard are provided to snakemake via a configuration file. This is a relatively simple file which, in addition to our experiment-specific settings, contains some global settings like `wps_home`. Our config file looks like this (only showing the first experiment):
 
+```yaml
 wps_home: ~/Urban-M4/WPS
 wrf_home: ~/Urban-M4/WRF
 data_home: /projects/0/prjs0914/wrf-data/default
@@ -168,10 +179,18 @@ experiments:
     use_wudapt_lcz: false
     num_land_cat: 24
   modis_lcz:
-    ...The config file is read at the very top of the Snakefile, like so:
+    ...
+```
 
-configfile: workflow.source_path("config.yaml")The first rule in our workflow, `UPDATE_NAMELIST_WPS`, uses a python package `[f90nml](https://f90nml.readthedocs.io/en/latest/)` to load a reference namelist.wps, modify the settings as specified in the experiment configuration, and store the updated namelist in the output folder for that experiment. It looks like this:
+The config file is read at the very top of the Snakefile, like so:
 
+```python
+configfile: workflow.source_path("config.yaml")
+```
+
+The first rule in our workflow, `UPDATE_NAMELIST_WPS`, uses a python package `[f90nml](https://f90nml.readthedocs.io/en/latest/)` to load a reference namelist.wps, modify the settings as specified in the experiment configuration, and store the updated namelist in the output folder for that experiment. It looks like this:
+
+```python
 rule UPDATE_NAMELIST_WPS:
     input:
         namelist_wps = workflow.source_path("namelist.wps")
@@ -186,12 +205,19 @@ rule UPDATE_NAMELIST_WPS:
         nml = f90nml.read(input.namelist_wps)
         nml["geogrid"]["geog_data_path"] = geog_data_path
         nml["geogrid"]["geog_data_res"] = geog_data_res
-        nml.write(f"{wildcards.experiment}/namelist.wps")Notice that we are reading the reference namelist form the workflow source path. This is because it is stored alongside the snakefile. Normally, all paths in snakemake are relative to the working directory.
+        nml.write(f"{wildcards.experiment}/namelist.wps")
+```
+
+Notice that we are reading the reference namelist form the workflow source path. This is because it is stored alongside the snakefile. Normally, all paths in snakemake are relative to the working directory.
 
 Importantly, this rule works for any value of the `experiment` wildcard (as long as the settings are provided in the configuration file). To invoke the rule for each of our experiments, we use a target rule, like so:
 
+```python
 rule PRODUCE_ALL_NAMELISTS:
-    input: collect("{experiment}/namelist.wps", experiment=config["experiments"].keys())The `collect` function fills the values of `experiment` with all keys found in `config["experiments"]`. When we invoke this target rule, e.g. by running `snakemake PRODUCE_ALL_NAMELISTS`, Snakemake will look for a rule that can produc the following files (unless they already exist):
+    input: collect("{experiment}/namelist.wps", experiment=config["experiments"].keys())
+```
+
+The `collect` function fills the values of `experiment` with all keys found in `config["experiments"]`. When we invoke this target rule, e.g. by running `snakemake PRODUCE_ALL_NAMELISTS`, Snakemake will look for a rule that can produc the following files (unless they already exist):
 
 * usgs/namelist.wps
 * modis_lcz/namelist.wps
@@ -204,6 +230,7 @@ It will find `UPDATE_NAMELIST_WPS`and invoke this rule, inferring that the first
 
 Getting Snakemake to use the different experiment settings was by far the most involved part of our journey. Next, we want to add rules for all the other steps. For example, out METGRID rule looks as follows:
 
+```python
 rule METGRID:
     input:
         "{experiment}/namelist.wps",
@@ -219,13 +246,17 @@ rule METGRID:
         {config[wps_home]}/metgrid.exe
 
         # Scan logfile for errors and raise if necessary (metgrid can fail silently with 0 exit status)
-        grep "ERROR" metgrid.log &amp;&amp; echo "Aborting: ERROR in metgrid.log. " &amp;&amp; exit 1
+        grep "ERROR" metgrid.log && echo "Aborting: ERROR in metgrid.log. " && exit 1
 
         touch finished.metgrid
-        """Snakemake infers the dependecies between rules via their input and output filenames. Since WPS output filenames are not predictable without parsing the namelist, we opted for a workaround: at the end of each rule, we create an empty file called `finished.&lt;rule&gt;`. As such, we inform Snakemake that metgrid must be run after updating the namelist, and after geogrid and ungrib.
+        """
+```
+
+Snakemake infers the dependecies between rules via their input and output filenames. Since WPS output filenames are not predictable without parsing the namelist, we opted for a workaround: at the end of each rule, we create an empty file called `finished.<rule>`. As such, we inform Snakemake that metgrid must be run after updating the namelist, and after geogrid and ungrib.
 
 As opposed to the first rule, which executes Python code (a `run` block), here we use shell commands. This is nice, because it is very similar to what you would do manually on the command line. As an intermediate option we can use `params`. We use this in our `GEOGRID` rule:
 
+```python
 rule GEOGRID:
     input: "{experiment}/namelist.wps",
     output: "{experiment}/finished.geogrid"
@@ -240,15 +271,19 @@ rule GEOGRID:
         {config[wps_home]}/geogrid.exe
 
         # Scan logfile for errors and raise if necessary (geogrid can fail silently with 0 exit status)
-        grep "ERROR" geogrid.log &amp;&amp; echo "Aborting: ERROR in geogrid.log." &amp;&amp; exit 1
+        grep "ERROR" geogrid.log && echo "Aborting: ERROR in geogrid.log." && exit 1
 
         touch finished.geogrid
-        """The use of params enables us to execute some Python code to assign a value to a variable, which can then be accessed in the shell block of the rule. Here, we get the `geogrid_table` from our experiment config. So we can combine the flexibility of Python with the transparancy of plain shell commands.
+        """
+```
+
+The use of params enables us to execute some Python code to assign a value to a variable, which can then be accessed in the shell block of the rule. Here, we get the `geogrid_table` from our experiment config. So we can combine the flexibility of Python with the transparancy of plain shell commands.
 
 ### Final workflow
 
 Putting everything together, our full workflow looks something like below. Notice that `WPS` is the target rule in this case.
 
+```python
 import os
 from pathlib import Path
 
@@ -288,7 +323,7 @@ rule GEOGRID:
         {config[wps_home]}/geogrid.exe
 
         # Scan logfile for errors and raise if necessary (geogrid can fail silently with 0 exit status)
-        grep "ERROR" geogrid.log &amp;&amp; echo "Aborting: ERROR in geogrid.log." &amp;&amp; exit 1
+        grep "ERROR" geogrid.log && echo "Aborting: ERROR in geogrid.log." && exit 1
 
         touch finished.geogrid
         """
@@ -313,7 +348,7 @@ rule UNGRIB:
         {config[wps_home]}/ungrib.exe
 
         # Scan logfile for errors and raise if necessary (ungrib can fail silently with 0 exit status)
-        grep "ERROR" ungrib.log &amp;&amp; echo "Aborting: ERROR in ungrib.log." &amp;&amp; exit 1
+        grep "ERROR" ungrib.log && echo "Aborting: ERROR in ungrib.log." && exit 1
 
         # Report ready
         touch finished.ungrib
@@ -334,13 +369,16 @@ rule METGRID:
         {config[wps_home]}/metgrid.exe
 
         # Scan logfile for errors and raise if necessary (metgrid can fail silently with 0 exit status)
-        grep "ERROR" metgrid.log &amp;&amp; echo "Aborting: ERROR in metgrid.log. " &amp;&amp; exit 1
+        grep "ERROR" metgrid.log && echo "Aborting: ERROR in metgrid.log. " && exit 1
 
         touch finished.metgrid
         """
 
 rule WPS:
-    input: collect("{experiment}/finished.metgrid", experiment=config["experiments"].keys())We’re steadily accumulating lines of code, but overall, we’re quite happy with how interpretable this still looks. As we develop this further, it would be good to split it up into multiple files, and incorporate other best practices as outlined in the [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html).
+    input: collect("{experiment}/finished.metgrid", experiment=config["experiments"].keys())
+```
+
+We’re steadily accumulating lines of code, but overall, we’re quite happy with how interpretable this still looks. As we develop this further, it would be good to split it up into multiple files, and incorporate other best practices as outlined in the [Snakemake documentation](https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html).
 
 ### Struggles
 

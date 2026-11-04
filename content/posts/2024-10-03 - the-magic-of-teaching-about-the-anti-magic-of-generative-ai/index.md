@@ -42,7 +42,7 @@ Image generated in response to prompt for a T2 MRI axial slice of polycystic kid
 
 I then showed some of the coding fails I have seen other people create with ChatGPT. The code I showed was far from ready to run, but it was what I had seen. The code began with approximately the following:
 
-```hs
+```python
 path_to_niftis = Z:\directory1\subdirectory1/subdirectory2\subdirectoy3
 path_to_meta_data = directory1\subdirectory1/subdirectory4\subdirectoy5
 variable_1 = some_never_specified_variable

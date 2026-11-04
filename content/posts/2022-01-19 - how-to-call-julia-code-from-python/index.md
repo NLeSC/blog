@@ -75,13 +75,15 @@ libpython3.10.so.1.0 => /usr/local/lib/libpython3.10.so.1.0 (0x00007f567e548000)
 Now, we will install Julia. We recommend using [jill](https://github.com/abelsiqueira/jill), a script I created, which downloads and installs a specific version of Julia, but Julia can also be installed via the official binaries or package managers. In this post, we use version 1.6.5, which is the current Long Term Support version at the time of writing. Most likely this will work with a newer version as well. To install Julia 1.6.5 using jill, we run:
 
 ```hs
-$ wget https://raw.githubusercontent.com/abelsiqueira/jill/v0.4.0/jill.sh$ sudo bash jill.sh -y -v 1.6.5
+$ wget https://raw.githubusercontent.com/abelsiqueira/jill/v0.4.0/jill.sh
+$ sudo bash jill.sh -y -v 1.6.5
 ```
 
 Now, we will install PyCall and configure it to use the correct Python version. We start Julia by running `julia` in the terminal, and then we set the `ENV["PYTHON"]` variable:
 
 ```hs
-$ juliajulia> ENV["PYTHON"] = "PATH/TO/python"
+$ julia
+julia> ENV["PYTHON"] = "PATH/TO/python"
 ```
 
 Here we use the full path to Python’s executable. In our case, it is the Python distribution we compiled from the source code. You could change the path according to your configuration.
@@ -89,7 +91,8 @@ Here we use the full path to Python’s executable. In our case, it is the Pytho
 Now, we will install PyCall using Pkg, Julia’s package manager:
 
 ```hs
-julia> using Pkgjulia> Pkg.add("PyCall")
+julia> using Pkg
+julia> Pkg.add("PyCall")
 ```
 
 ### Step 3: PyJulia
@@ -103,7 +106,9 @@ $ python3 –m pip install julia
 To finalize configuring the communication between Julia and Python, we run the following in the Python interpreter:
 
 ```hs
-$ python3>>> import julia>>> julia.install()
+$ python3
+>>> import julia
+>>> julia.install()
 ```
 
 If we had more than one Julia version on our system, we could specify it with an argument:
@@ -115,7 +120,8 @@ If we had more than one Julia version on our system, we could specify it with an
 We test the installation running the following in the Python interpreter run:
 
 ```hs
->>> from julia import Main>>> Main.eval('[x^2 for x in 0:4]')
+>>> from julia import Main
+>>> Main.eval('[x^2 for x in 0:4]')
 ```
 
 ## Showcasing PyJulia

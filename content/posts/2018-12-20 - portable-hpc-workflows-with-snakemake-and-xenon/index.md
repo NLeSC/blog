@@ -57,6 +57,21 @@ Although the information contained in both commands is the same, the exact comma
 
 To improve the portability of our workflow, we use the [Xenon](https://github.com/NLeSC/Xenon) command-line tool that hides the differences between Grid Engine, Slurm, and [Torque](http://www.adaptivecomputing.com/products/torque/) from the user. Using Xenon, we can provide a single submit command that will be translated on the fly to the exact command expected by the different schedulers. For example:
 
+```sh
+SUBMIT_CMD="xenon scheduler ${SCHEDULER} \
+--location local:// \
+submit \
+--name smk.{rule} \
+--inherit-env \
+--procs-per-node {threads} \
+--start-single-process \
+--max-run-time 1 \
+--max-memory {resources.mem_mb} \
+--working-directory . \
+--stderr stderr-%j.log \
+--stdout stdout-%j.log"
+```
+
 By simply changing the value of SCHEDULER, this submit command works on both Grid Engine and Slurm clusters — everything else stays the same.
 
 Switching from an Grid Engine system to a Slurm system is now as simple as replacing

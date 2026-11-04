@@ -70,8 +70,8 @@ where `$CACHED_DIR` is the directory with the build files, in which the previous
 ```hs
 cd "${TRAVIS_BUILD_DIR}"
 read PREVIOUS_GIT_COMMIT < $CACHED_DIR/previous_git_commit.txt
-changed_files=\`git diff --name-only $PREVIOUS_GIT_COMMIT HEAD\` 
-touch \`echo $changed_files\`
+changed_files=`git diff --name-only $PREVIOUS_GIT_COMMIT HEAD`
+touch `echo $changed_files`
 ```
 
 I put the changed files list in an environment variable so I could easily add some `echo` 's for debugging. That's it! Running `make` now takes advantage of the already built files and you save tons of time on each build.
@@ -89,7 +89,7 @@ In any case, rebuilding on Travis with `ninja` works slightly differently than w
 ```hs
 find . -type f -printf "%.10T@\n" | sort | read OLDEST_MTIME
 export OLDEST_MTIME=$((OLDEST_MTIME-1))
-find ${TRAVIS_BUILD_DIR} -type f -exec touch -c -m -d “@$OLDEST_MTIME” {} \;
+find ${TRAVIS_BUILD_DIR} -type f -exec touch -c -m -d "@$OLDEST_MTIME" {} \;
 ```
 
 Luckily, the order of the source files' mtimes doesn't matter, so we just set all of them to the timestamp of the oldest build file, minus one.

@@ -44,9 +44,16 @@ Stef: It’s available on [pypi](https://pypi.org/project/triangle/). If you are
 
 Stef: Let me give you an example. Here is the code to generate a simple square and triangulate it:
 
-```hs
-import matplotlib.pyplot as pltimport numpy as npimport triangle as tr
-vertices = np.array([[0, 0], [1, 0], [1, 1], [0, 1]])inp = {'vertices': vertices}out = tr.triangulate(inp, opts='qa0.05')tr.compare(plt, inp, out)plt.show()
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+import triangle as tr
+
+vertices = np.array([[0, 0], [1, 0], [1, 1], [0, 1]])
+inp = {'vertices': vertices}
+out = tr.triangulate(inp, opts='qa0.05')
+tr.compare(plt, inp, out)
+plt.show()
 ```
 ![](./1_KwRJMoxH9912dHdBlhYa5Q-edc53a20.png)
 
@@ -72,15 +79,21 @@ Stef: Yes, that is one of the strengths of `triangle`. It makes multi-region mes
 
 Let me give you an example:
 
-```hs
-vertices = np.array([[0,0], [1,0], [1,1], [0,1]])segments = np.array([[0,1], [1,2], [2,3], [3,0], [1,3]])regions = np.array([
+```python
+vertices = np.array([[0,0], [1,0], [1,1], [0,1]])
+segments = np.array([[0,1], [1,2], [2,3], [3,0], [1,3]])
+regions = np.array([
     [0.25, 0.25, 0, 0], 
     [0.75, 0.75, 1, 0],
-])inp = {
+])
+inp = {
     'vertices': vertices, 
     'segments': segments, 
     'regions': regions,
-}out = tr.triangulate(inp, opts='pqa0.05')tr.compare(plt, inp, out)plt.show()
+}
+out = tr.triangulate(inp, opts='pqa0.05')
+tr.compare(plt, inp, out)
+plt.show()
 ```
 ![](./1_j7JqSTDcmkZDdA-1u2QEoA-0bb45cd8.png)
 

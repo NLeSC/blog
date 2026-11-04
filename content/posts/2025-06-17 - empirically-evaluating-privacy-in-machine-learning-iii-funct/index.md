@@ -94,8 +94,8 @@ Pearson_lemma) says that the best test statistic is the likelihood ratio test: G
 
 Given the decision threshold, we can derive the False Positive and the False Negative rates:
 
-* The False Positive Rate is defined for cases when H0 is falsely rejected. This happens if `X&gt;t` but `X` was generated under H0. This probability is shown by the blue area.
-* The False Negative Rate is defined for cases when H0 is falsely not rejected. This happens if `X&lt;t` but `X` was generated under H1. This probability is shown by the green area.
+* The False Positive Rate is defined for cases when H0 is falsely rejected. This happens if `X>t` but `X` was generated under H0. This probability is shown by the blue area.
+* The False Negative Rate is defined for cases when H0 is falsely not rejected. This happens if `X<t` but `X` was generated under H1. This probability is shown by the green area.
 
 Now that we have an analytical expression for both `FPR` and `FNR`, we can derive the trade-off function — the `FNR` as a function of the `FPR` and `mu`: We rearrange the equation for the `FPR` for `t` and then plug in `t` to the equation for `FNR`. This yields the following trade-off function:
 

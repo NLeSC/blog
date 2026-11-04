@@ -147,11 +147,15 @@ For free! Yes, we can, with GitHub Actions.
 After putting all my code in a git repository (on GitHub), I created a workflow file `.github/workflows/tweet_progress.yml`. The file looks something like this:
 
 ```hs
-name: Tweet latest progresson:
+name: Tweet latest progress
+
+on:
   schedule:
     - cron:  '0 10 * * *'  # 10:00 UTC, see https://crontab.guru/
   # allows you to run this workflow manually from the Actions tab:
-  workflow_dispatch:jobs:
+  workflow_dispatch:
+
+jobs:
   tweet:
     runs-on: ubuntu-latest
     steps:

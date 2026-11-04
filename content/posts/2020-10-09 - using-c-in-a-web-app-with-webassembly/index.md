@@ -60,15 +60,71 @@ OK, now that you’re fully on board with this, let’s get to it. Here’s a li
 
 Here is the equation whose root we want to find, along with its derivative, since that’s what Newton-Raphson requires:
 
+```cpp
+#ifndef H_PROBLEM_HPP
+#define H_PROBLEM_HPP
+
+float equation(float x);
+float derivative(float x);
+
+#endif
+```
+
 File: problem.hpp
+
+```cpp
+// An example equation
+float equation(float x) {
+  return 2 * x * x * x - 4 * x * x + 6;
+}
+
+// Derivative of the above equation
+float derivative(float x) {
+  return 6 * x * x - 8 * x;
+}
+```
 
 File: problem.cpp
 
 The snippet below shows the contents of the file `newtonraphson.hpp`. It is the header file for the Newton-Raphson iterative root finding algorithm. It defines a class named `NewtonRaphson`. Besides the constructor method `NewtonRaphson(float tolerance_in)`, `NewtonRaphson` has one other public method, `solve`, which takes a `float`, and returns another `float`. Furthermore, `NewtonRaphson` also has a private member, `tolerance` of type `float`, which is used to store the class instance's private data.
 
+```cpp
+#ifndef H_NEWTONRAPHSON_HPP
+#define H_NEWTONRAPHSON_HPP
+
+class NewtonRaphson {
+  public:
+    NewtonRaphson(float tolerance_in);
+    float solve(float initial_guess);
+  private:
+    float tolerance;
+};
+#endif
+```
+
 File: *newtonraphson.hpp*
 
 File `newtonraphson.cpp` contains the corresponding implementation:
+
+```cpp
+#include "newtonraphson.hpp"
+#include "problem.hpp"
+#include <cmath>
+
+// Define the constructor method of NewtonRaphson instances
+NewtonRaphson::NewtonRaphson(float tolerance_in) : tolerance(tolerance_in) {}
+
+// Define the 'solve' method of NewtonRaphson instances
+float NewtonRaphson::solve(float initial_guess) {
+  float x = initial_guess;
+  float delta_x = 0;
+  do {
+    delta_x = equation(x) / derivative(x);
+    x = x - delta_x;
+  } while (std::abs(delta_x) >= tolerance);
+  return x;
+};
+```
 
 File: newtonraphson.cpp
 
@@ -77,6 +133,25 @@ From this definition, `NewtonRaphson` instances need to be initialized with a va
 ### Check on command line
 
 The following code is a minimal command line program that we can use to check if everything is working correctly:
+
+```cpp
+#include <iostream>
+#include <iomanip>
+
+#include "newtonraphson.hpp"
+
+int main() {
+  float initial_guess = -4;
+  float tolerance = 0.001;
+  NewtonRaphson newtonraphson(tolerance);
+  float root = newtonraphson.solve(initial_guess);
+
+  std::cout << "Function root is approximately at x = ";
+  std::cout << std::fixed << std::setprecision(2) << root << std::endl;
+
+  return 0;
+}
+```
 
 File: *cli.cpp*
 
@@ -99,6 +174,20 @@ Now we’re ready to move on to the WebAssembly part.
 
 To use the Newton-Raphson code from JavaScript, we’ll need to define the *bindings* file. The binding allows compiled code to be called from JavaScript. For our Newton-Raphson code, the binding file looks like this:
 
+```cpp
+#include <emscripten/bind.h>
+#include "newtonraphson.hpp"
+
+using namespace emscripten;
+
+EMSCRIPTEN_BINDINGS(newtonraphson) {
+   class_<NewtonRaphson>("NewtonRaphson")
+      .constructor<float>()
+      .function("solve", &NewtonRaphson::solve)
+      ;
+}
+```
+
 File: *bindings.cpp*
 
 The binding file uses `embind` [binding statements](https://emscripten.org/docs/porting/connecting_cpp_and_javascript/embind.html#classes) to expose the `NewtonRaphson` class, its constructor method, as well as its public method `solve`.
@@ -114,6 +203,34 @@ emcc -I. -o newtonraphson.js -Oz -s MODULARIZE=1 \
 ```
 
 This will generate a WebAssembly module `newtonraphson.wasm`, along with a JavaScript file `newtonraphson.js`. We also export the `createModule` JavaScript function in the compile command so it can be used to load and initialize the WebAssembly ==module==. Using the `newtonraphson.js` JavaScript library, we can find the root of the mathematical function, and subsequently display its value with the following HTML:
+
+```html
+<html>
+   <head>
+      <!-- Load WebAssembly module -->
+      <script type="text/javascript" src="newtonraphson.js"></script>
+   </head>
+   <body>
+      <div>
+         Function root is approximately at x =
+         <span id="answer"/>
+      </div>
+      <script>
+         // Wait for module to initialize,
+         createModule().then(({NewtonRaphson}) => {
+            // Hardcoded input values
+            const initial_guess = -4;
+            const tolerance = 0.001;
+            // Perform computation
+            const newtonraphson = new NewtonRaphson(tolerance);
+            const root = newtonraphson.solve(initial_guess);
+            // Write the value of 'root' to the tag whose 'id' is equal to "answer"
+            document.getElementById("answer").innerHTML = root.toFixed(2);
+         });
+      </script>
+   </body>
+</html>
+```
 
 File: *index.html*
 

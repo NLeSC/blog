@@ -40,9 +40,59 @@ The way the page communicates with the worker object is through sending messages
 
 The code snippet below shows the web page that uses a web worker. Notice the creation of the `Worker` object, posting of the message, as well as the instructions for handling of any returned messages containing results.
 
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Web worker example</title>
+    <script>
+      const worker = new Worker('worker.js');
+      worker.postMessage({
+        type: 'CALCULATE',
+        payload: { tolerance: 0.001, initial_guess: -4.0 }
+      });
+      worker.onmessage = function(message) {
+        if (message.data.type === 'RESULT') {
+          const root = message.data.payload.root;
+          document.getElementById('answer').innerHTML =
+            "Function root is approximately at x = " + root.toFixed(2);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="slidecontainer">
+      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    </div>
+    <span id="answer"> If you can see this text, WebAssembly code is still running... </span>
+  </body>
+</html>
+```
+
 The web worker code only contains handling of the incoming message. The web worker unpacks the message, does the root finding calculation, and packs the results in a new message that it will send back.
 
 The code for the worker in `worker.js` is:
+
+```js
+importScripts('newtonraphson.js');
+
+onmessage = function(message) {
+  if (message.data.type === 'CALCULATE') {
+    createModule().then(({NewtonRaphson}) => {
+      const tolerance = message.data.payload.tolerance;
+      const finder = new NewtonRaphson(tolerance);
+      const initial_guess = message.data.payload.initial_guess;
+      const root = finder.solve(initial_guess);
+      postMessage({
+        type: 'RESULT',
+        payload: {
+          root: root
+        }
+      });
+    });
+  }
+};
+```
 
 The figure below illustrates what is happening in parallel in the two threads.
 

@@ -30,13 +30,86 @@ The Newton-Raphson algorithm approximates the value of the target equation’s r
 
 Extending the `NewtonRaphson` class accordingly yields the following header file:
 
+```cpp
+#ifndef H_NEWTONRAPHSON_HPP
+#define H_NEWTONRAPHSON_HPP
+
+#include <vector>
+
+struct Iteration {
+  int index;
+  float x;
+  float y;
+  float slope;
+  float delta_x;
+};
+
+class NewtonRaphson {
+  public:
+    NewtonRaphson(float tolerance_in);
+    float solve(float initial_guess);
+    std::vector<Iteration> iterations;
+  private:
+    float tolerance;
+};
+#endif
+```
+
 File: *newtonraphson.hpp*
 
 The `do` loop in `newtonraphson.cpp` is updated to include a `push_back` to the `iterations` vector. This way, we can record the value of relevant variables in each cycle, as follows:
 
+```cpp
+#include "newtonraphson.hpp"
+#include "problem.hpp"
+#include <cmath>
+
+// Define the constructor method of NewtonRaphson instances
+NewtonRaphson::NewtonRaphson(float tolerance_in) : tolerance(tolerance_in) {}
+
+// Define the 'solve' method of NewtonRaphson instances
+float NewtonRaphson::solve(float initial_guess) {
+  float x = initial_guess;
+  float delta_x = 0.0;
+  int i = 0;
+  do {
+    delta_x = equation(x) / derivative(x);
+    iterations.push_back({i++, x, equation(x), derivative(x), delta_x});
+    x = x - delta_x;
+  } while (std::abs(delta_x) >= tolerance);
+  return x;
+};
+```
+
 File: *newtonraphson.cpp*
 
 Before we go into the Emscripten world, let’s first test our C++ code. We can check if the iteration property is populated correctly, by extending the command line interface we made in the [previous blog](https://medium.com/@eScienceCenter/using-c-in-a-web-app-with-webassembly-efd78c08469) as follows:
+
+```cpp
+#include <iostream>
+#include <iomanip>
+
+#include "newtonraphson.hpp"
+
+int main() {
+  float initial_guess = -4;
+  float tolerance = 0.001;
+  NewtonRaphson newtonraphson(tolerance);
+  newtonraphson.solve(initial_guess);
+
+  std::cout << std::fixed;
+  std::cout << std::setprecision(2);
+
+  for (Iteration iteration : newtonraphson.iterations) {
+    std::cout << "index = " << iteration.index;
+    std::cout << " x = " << iteration.x;
+    std::cout << " y = " << iteration.y;
+    std::cout << " slope = " << iteration.slope;
+    std::cout << " delta_x = " << iteration.delta_x << std::endl;
+  }
+  return 0;
+}
+```
 
 File: *cli.cpp*
 
@@ -66,6 +139,31 @@ Emscripten can handle simple types like `float` and `int`, but needs help exposi
 
 So the bindings look like this:
 
+```cpp
+#include <emscripten/bind.h>
+#include "newtonraphson.hpp"
+
+using namespace emscripten;
+
+EMSCRIPTEN_BINDINGS(newtonraphson) {
+  class_<NewtonRaphson>("NewtonRaphson")
+    .constructor<float>()
+    .function("solve", &NewtonRaphson::solve)
+    .property("iterations", &NewtonRaphson::iterations)
+    ;
+
+  value_object<Iteration>("Iteration")
+    .field("index", &Iteration::index)
+    .field("x", &Iteration::x)
+    .field("y", &Iteration::y)
+    .field("slope", &Iteration::slope)
+    .field("delta_x", &Iteration::delta_x)
+    ;
+
+  register_vector<Iteration>("vector<Iteration>");
+}
+```
+
 File: *bindings.cpp*
 
 We can now compile our C++ code to a WebAssembly module with Emscripten using `emcc` command, exactly [like we did before](https://medium.com/@eScienceCenter/using-c-in-a-web-app-with-webassembly-efd78c08469):
@@ -78,7 +176,71 @@ emcc -I. -o newtonraphson.js -Oz -s MODULARIZE=1 \
 
 To get the iteration data in JavaScript we use the following code
 
+```javascript
+const initial_guess = -4;
+const tolerance = 0.001;
+const newtonraphson = new NewtonRaphson(tolerance);
+newtonraphson.solve(initial_guess);
+// newtonraphson.iterations is a vector object, which is not
+// consumeable by Vega, so we need to convert Emscripten's
+// vector of objects to a JavaScript array of objects first
+const iterations = new Array(
+    newtonraphson.iterations.size()
+).fill().map(
+  (_, iteration) => {
+    return newtonraphson.iterations.get(iteration)
+  }
+);
+```
+
 Let’s have a look at the data we want to plot, by logging it to the console with `console.log(JSON.stringify(iterations, null, 2))`, which should return the following data:
+
+```json
+[
+  {
+    "index": 0,
+    "x": -4,
+    "y": -186,
+    "slope": 128,
+    "delta_x": -1.453125
+  },
+  {
+    "index": 1,
+    "x": -2.546875,
+    "y": -52.987266540527344,
+    "slope": 59.29443359375,
+    "delta_x": -0.8936296938691481
+  },
+  {
+    "index": 2,
+    "x": -1.6532453061308519,
+    "y": -13.97024657989909,
+    "slope": 29.62528270250898,
+    "delta_x": -0.4715650048030071
+  },
+  {
+    "index": 3,
+    "x": -1.1816803013278447,
+    "y": -2.8855952468476467,
+    "slope": 17.831652417900354,
+    "delta_x": -0.16182433232889476
+  },
+  {
+    "index": 4,
+    "x": -1.01985596899895,
+    "y": -0.28194181784318495,
+    "slope": 14.39948493700832,
+    "delta_x": -0.01957999324813086
+  },
+  {
+    "index": 5,
+    "x": -1.000275975750819,
+    "y": -0.0038644221796557687,
+    "slope": 14.005519971992072,
+    "delta_x": -0.00027592136438945176
+  }
+]
+```
 
 Great, that looks very similar to the output we got from the command line.
 
@@ -90,9 +252,127 @@ The root finding algorithm tries to find the `x` where `y` is zero using a serie
 
 The generic structure of our Vega-Lite specification looks like this:
 
+```js
+const spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 800,
+  "height": 600,
+  "title": {
+    <stuff related to the title>
+  },
+  "data": {
+    <holds the iterations we want to plot as an array of iteration objects>
+  },
+  "encoding": {
+    <defines stuff related to which field should go on which axis>
+  },
+  "mark": {
+    <defines the line plot>
+  },
+  "selection": {
+    <defines how users can interact with the plot>
+  }
+};
+```
+
 To render a specification we need to use the `vegaEmbed(element, spec)` method which accepts an HTML element and a Vega-Lite specification.
 
+```html
+<html>
+  <head>
+    <script type="text/javascript" src="newtonraphson.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.13.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.13.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.8.0"></script>
+  </head>
+  <body>
+    <div id="plot"></div>
+    <script>
+      ...
+      vegaEmbed(document.getElementById("plot"), spec);
+    </script>
+  </body>
+</html>
+```
+
 Combining the three snippets above (get iteration data, Vega specification and vegaEmbed) and filling in their respective details yields an HTML document with the complete web app:
+
+```html
+<html>
+  <head>
+    <script type="text/javascript" src="newtonraphson.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.13.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.13.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.8.0"></script>
+  </head>
+  <body>
+    <div id="plot"></div>
+    <script>
+      createModule().then(({NewtonRaphson}) => {
+        const initial_guess = -4;
+        const tolerance = 0.001;
+        const newtonraphson = new NewtonRaphson(tolerance);
+        newtonraphson.solve(initial_guess);
+        // newtonraphson.iterations is a vector object which not consumeable by Vega
+        // So convert Emscripten vector of objects to JavaScript array of objects
+        const iterations = new Array(
+            newtonraphson.iterations.size()
+        ).fill().map(
+          (_, iteration) => {
+            return newtonraphson.iterations.get(iteration)
+          }
+        );
+        // Open console in DevTools (F12) to see iterations data as a JSON string
+        console.log(JSON.stringify(iterations, null, 2));
+        const spec = {
+          "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+          "width": 800,
+          "height": 600,
+          "title": {
+            "text": "Iterations",
+            "fontSize": 20,
+            "fontWeight": "normal"
+          },
+          "data": {
+            "values": iterations
+          },
+          "encoding": {
+            "x": {
+              "field": "index",
+              "type": "quantitative",
+              "title": "Iteration index",
+              "axis": {
+                "labelFontSize": 20,
+                "titleFontSize": 20,
+                "labelFontWeight": "lighter",
+                "tickMinStep": 1.0
+              }
+            },
+            "y": {
+              "field": "y",
+              "type": "quantitative",
+              "axis": {
+                "labelFontSize": 20,
+                "titleFontSize": 20,
+                "labelFontWeight": "lighter"
+              }
+            }
+          },
+          "mark": {
+            "type": "line",
+            "point": true,
+            // Enable tooltip so on mouseover it shows all data of that iteration
+            "tooltip": {"content": "data"}
+          },
+          // Enable zooming and panning
+          "selection": {"grid": {"type": "interval", "bind": "scales"}}
+        };
+        vegaEmbed(document.getElementById("plot"), spec);
+      });
+    </script>
+  </body>
+</html>
+```
 
 File: *scatter.html*
 
@@ -118,11 +398,102 @@ It would be nice to write a specification of this plot together with the iterati
 
 The 2x³ — 4x² + 6 equation is plotted by using a [sequence generator](https://vega.github.io/vega-lite/docs/data.html#sequence) to generate a range of `x` values and a [formula transform](https://vega.github.io/vega-lite/docs/calculate.html) is used to calculate the `y` values.
 
+```js
+const equation_line = {
+  "data": {"sequence": {"start": -4, "stop": 4, "step": 0.1, "as": "x"}},
+  "transform": [
+    {
+      "calculate": "2 * datum.x * datum.x * datum.x - 4 * datum.x * datum.x + 6",
+      "as": "y"
+    }
+  ],
+  "mark": "line",
+  "encoding": {
+    "x": {"type": "quantitative", "field": "x"},
+    "y": {"field": "y", "type": "quantitative"},
+    "color": {"value": "#f00"}
+  }
+};
+```
+
 To show where the root is, we draw a dotted vertical line using a [rule marker](https://vega.github.io/vega-lite/docs/rule.html) at `x = -1` and label it `root` with a [text marker](https://vega.github.io/vega-lite/docs/text.html).
+
+```js
+const root_rule = {
+  "data": {"values": [{"x": -1}]},
+  "encoding": {"x": {"field": "x", "type": "quantitative"}},
+  "layer": [
+    {"mark": {"type": "rule", "strokeDash": [4, 8]}},
+    {"mark":
+      {
+        "type": "text",
+        "align": "right",
+        "baseline": "bottom",
+        "dx": -4,
+        "dy": 10,
+        "x": "width",
+        "fontSize": 20,
+        "text": "root = -1.0"
+      }
+    }
+  ]
+};
+```
 
 When we plot the `x` and `y` of each iteration we can no longer see the order of iterations, so we will use a text marker above each circle to indicate which iteration it belongs to.
 
+```js
+const iterations_scatter = {
+  "data": {
+    "values": iterations
+  },
+  "encoding": {
+    "x": {
+      "field": "x",
+      "type": "quantitative",
+      "axis": {
+        "labelFontSize": 20,
+        "titleFontSize": 20,
+        "labelFontWeight": "lighter",
+        "tickMinStep": 1.0
+      }
+    },
+    "y": {
+      "field": "y",
+      "type": "quantitative",
+      "axis": {
+        "labelFontSize": 20,
+        "titleFontSize": 20,
+        "labelFontWeight": "lighter"
+      }
+    },
+    "text": { "field": "index", "type": "quantitative" }
+  },
+  "layer": [
+    {
+      "mark": {"type": "circle", "tooltip": {"content": "data"}},
+      "selection": {"grid": {"type": "interval", "bind": "scales"}}
+    },
+    {"mark": {"type": "text", "dy": -10, "fontSize": 16}}
+  ]
+};
+```
+
 Superimpose the equation line, root ruler, and iteration scatter into a single visualization with:
+
+```js
+const spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 800,
+  "height": 600,
+  "title": {"text": "Iterative root finding", "fontSize": 20, "fontWeight": "normal"},
+  "layer": [
+    equation_line,
+    root_rule,
+    iterations_scatter
+  ]
+};
+```
 
 The HTML page with all JavaScript put together to make a composite plot is available [here](https://github.com/NLESC-JCER/run-cpp-on-web/blob/master/vega/app.html).
 

@@ -38,7 +38,7 @@ Patrick Steinhardt from GitLab, and git contributor, [presented](https://fosdem.
 
 * In git, rewriting history through an interactive rebase is cumbersome and takes several steps.
 * Another limitation is that it leads to orphaned branches because other branches depending on the changed commits are not updated. For instance, this makes is tedious to use workflows with stacked branches.
-* The new `git history` command, inspired by other version control systems such as Jujutsu and Mercurial, provides some functionality that makes such workflows easier. For instance, `git history reword &lt;commit&gt;` allows to amend the commit message of a specific commit; `git history split &lt;commit&gt;` allows to split a specific commit.
+* The new `git history` command, inspired by other version control systems such as Jujutsu and Mercurial, provides some functionality that makes such workflows easier. For instance, `git history reword <commit>` allows to amend the commit message of a specific commit; `git history split <commit>` allows to split a specific commit.
 * The new commands *also* rebase other branches that depend on respective commits.
 
 ### Open Source, LLMs, and security

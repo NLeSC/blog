@@ -14,6 +14,83 @@ tags:
   - RSE
 ---
 
+![An orange crab wearing safety goggles and holding a laboratory flask.](/assets/1_ijMaliTc1TsD40XB7YW5GQ-9aa1eddf.png)
+
+Image: courtesy of Chiara Caratelli
+
+I am a software developer at the [Netherlands eScience Center](https://www.esciencecenter.nl/), where we empower all researchers across all scientific disciplines in the Netherlands by providing the right digital tools for their research. Picture this, a scientist comes to us with a brilliant idea about creating a novel material for improving solar cells or a revolutionary algorithm to grasp the science of protein interactions, but she needs to come out with the high performance software to run hundreds of simulations. Therefore, we work together with them to develop the software tools that can bring their ideas to concrete results.
+
+Some of these projects involve a lot of number crunching and therefore we need tools to produce lightning-fast applications: enter [Rust](https://www.rust-lang.org/). [Rust](https://www.rust-lang.org/) is a low-level language with a welcoming community that [stands as a strong competitor to traditional languages like C/C++/Fortran](https://www.nature.com/articles/d41586-020-03382-2) for numerical applications thanks to its performance, memory management system, high abstraction level, and flourishing ecosystem. Check [the Rust book](https://doc.rust-lang.org/stable/book/) to get a feeling of the language!
+
+> What I love about Rust is that it has been developed to solve concrete problems, built on top of the lessons (painfully) learnt while implementing real systems.
+
+At the [Netherlands eScience Center](https://www.esciencecenter.nl/), my main focus is on [computational chemistry](https://en.wikipedia.org/wiki/Computational_chemistry) and [materials science](https://en.wikipedia.org/wiki/Materials_science). In these fields, the principles of quantum mechanics are used to generate models that allow the computation of interesting physical and chemical properties. These computations boil down to a lot of [***Linear Algebra***.](https://en.wikipedia.org/wiki/Linear_algebra) In case this sounds like an esoteric math concept to you, let me tell you that linear algebra is the mathematical bedrock upon which all modern machine learning applications are based.
+
+The beauty of linear algebra is that many scientific and engineering problems can be modeled using numerical operations on vectors and matrices. Among the powerful tools in the linear algebra toolkit, the algorithms to find [eigenvalues and eigenvectors](https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors) of a given matrix are the cornerstones for generating quantitative solutions to diverse questions like: “how much energy does a molecule absorb?” or “how much force can be applied on a bridge?” Since the start of computational physics, the scientific community has produced a plethora of libraries and tools to solve those numerical problems, mainly written in C/C++/Fortran.
+
+![A colored ball-and-stick molecular model on a dark reflective surface.](/assets/0_OdXNA_YpyI6tlQn6-a8350266.webp)
+
+Photo by Terry Vlisidis on Unsplash
+
+Now the question is: how does Rust compare to the traditional approaches for building number-crunching applications? In this post, I am not going to present benchmarks comparing performance (check [this benchmark](https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust.html) if you are curious about how Rust compares to C/C++). Instead, I will focus on what I consider the most important aspects of developing scientific software: ***development speed and maintainability***.
+
+Do not take me wrong, performance is a top priority. However, if we build a weather model that predicts if we are going to be underwater in a couple of weeks (I live in the Netherlands), making sure that the model is well tested and ruling out the possibility that a [segmentation fault](https://en.wikipedia.org/wiki/Segmentation_fault) is going to pop up (after a couple of weeks of simulation), it is then more important than squeezing out the last bit of performance. Therefore, I am going to address the following questions:
+
+- How much effort is needed to build and deploy the software?
+- How do I manage the dependencies?
+- Can we develop a minimum viable product (MVP) in a reasonable time?
+- How much effort is required to test, document, and maintain the code?
+- How do I parallelize the application?
+
+## Implementing an Eigenvalue solver
+
+I will address the aforementioned questions using the experience that I gained while creating a Rust package (a.k.a [crate](https://learning-rust.github.io/docs/d4.crates.html)) called “e [igenvalues](https://github.com/felipeZ/eigenvalues) **”** where I have implemented a couple of algorithms to compute the eigenvalues and eigenvectors of a given matrix.
+
+[***Here***](https://github.com/felipeZ/eigenvalues) is the link to my eigenvalues library. You can also have a look at the [***documentation***](https://docs.rs/eigenvalues/0.4.0/eigenvalues/).
+
+The following code snippet shows how to use the e [igenvalues](https://github.com/felipeZ/eigenvalues) library,
+
+```rust
+// Use the Davidson method
+use eigenvalues::davidson::Davidson;
+use eigenvalues::{DavidsonCorrection, SpectrumTarget};
+
+// Generate random symmetric matrix
+let matrix = eigenvalues::utils::generate_diagonal_dominant(20, 0.005);
+let tolerance = 1e-4;
+
+// Compute the first 2 lowest eigenvalues/eigenvectors using the DPR method
+let eig = Davidson::new(
+  matrix, 2, DavidsonCorrection::DPR, SpectrumTarget::Lowest, tolerance).unwrap();
+println!("eigenvalues:{}", eig.eigenvalues);
+println!("eigenvectors:{}", eig.eigenvectors);
+```
+
+**How much effort is needed to build and deploy the software?**
+
+![A performer spinning a hoop with burning wicks.](/assets/0_tji-dAXf4iNkxkAM-fb77df43.webp)
+
+Photo by Conor Samuel on Unsplash
+
+Number-crunching software usually relies on highly optimized math libraries (e.g. [OpenBlas](https://www.openblas.net/), [Lapack](http://www.netlib.org/lapack/), [Eigen](https://eigen.tuxfamily.org/), *etc.*)offering low level operations which are used as building blocks to develop more complex calculations. Those dependencies are usually installed by the system administrator or using a Linux package manager (*e.g.* [apt](https://en.wikipedia.org/wiki/APT_\(software\))). These dependencies, together with other miscellaneous libraries to parse, log, *etc.,* are then tied together using something like [CMake](https://cmake.org/), which gracefully compiles and links your dependencies. Go ahead, start laughing!
+
+The previous approach works great on paper, but in reality, developers spend considerable time learning and writing [CMake](https://cmake.org/) configuration files ([CMake](https://cmake.org/) may not be a programming language by itself but it gets the category of a dialect with its own peculiarities). In addition, looking for the right compiler version and installing the correct dependencies without messing up the other libraries make things so complicated that people literally prefer to write and maintain their own set of tools instead of having to deal with the dependency hell. So, you end up juggling different compiler vendors with their corresponding version, [CMake](https://cmake.org/), your core dependencies, the miscellaneous libraries that you have implemented yourself, and (of course) your code. Finally, the cherry on top: you share the software with your collaborators and they will need to install it in their own environment and deal with their own dependency hell, which will probably be different from yours!
+
+How does Rust (partially) solve this mess?
+
+- Say goodbye to CMake! You (or your system admin) still need to install the core highly optimized math libraries, but the Rust package manager (a.k.a [Cargo](https://doc.rust-lang.org/cargo/)) will solve, install and compile all the dependencies for you.
+- [The Rust community offers mature packages](https://crates.io/) providing the common functionality that you need to write numerical applications.
+
+Check my [dependencies file](https://github.com/felipeZ/eigenvalues/blob/master/Cargo.toml) to get an idea of what kind of information [Cargo](https://doc.rust-lang.org/cargo/) (Rust package manager) needs to build your application. In this case, I am using the excellent [nalgebra library](https://nalgebra.org/) to build some algorithms on top of nalgebra’s arrays manipulation API.
+
+**Can we develop a minimum viable product (MVP) in a reasonable time?**
+
+In scientific applications, we often start with a model or a hypothesis in mind and we then build software to prove it (or disprove it) and to connect theory to experiments. Given the high levels of uncertainty, we cannot be sure that what we are developing is going to work out, we need to explore a prototype or minimum viable product to corroborate that our ideas are correct, before investing valuable human resources in a project.
+
+Therefore, it is common to write an MVP in a language like Python that allows to quickly implement an algorithm or method, at the expense of runtime performance (Python is *painfully slow,* but great for prototyping!). It is extremely risky to develop an MVP in C or Fortran given the complexity and low abstraction level of those languages, meaning that to implement the same concepts we need to write many more lines of code compared to Python.
+
+But what if we could implement something almost as quickly as in Python but with the C++ speed? Rust again to the rescue!
+
 Every experienced programmer knows that both their productivity depends on the abstraction level of the language. The fewer lines of code you write, the fewer bugs you introduce.* However, an increase in abstraction often results in a higher runtime cost (code that needs to run extremely fast is often *very* ugly). Rust [zero-cost abstraction](https://carette.xyz/posts/zero_cost_abstraction/) allows you to write more concise code by using a higher level abstraction without additional computing cost at runtime. *Rust *[*iterators*](https://doc.rust-lang.org/book/ch13-02-iterators.html) are a great example of the power of Rust zero cost abstraction. *It is fair to mention that zero-cost abstraction is also central in C++.*
 
 How much effort is required to maintain the code?**

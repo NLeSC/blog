@@ -88,7 +88,9 @@ This ensures that versioned documentation will be automatically created for us f
 Fortunately, the actual commands used to generate the documentation pages never changed since the first version. This actually means that once we know how to do it for one version, automating the procedure for all previous versions with a simple bash script is trivial:
 
 ```hs
-versions=\`git tag -l\`for version in $versions; do  git checkout tags/$version
+versions=`git tag -l`
+for version in $versions; do
+  git checkout tags/$version
   cd doc
   rm -rf build
   make html
@@ -97,7 +99,8 @@ versions=\`git tag -l\`for version in $versions; do  git checkout tags/$version
   mkdir $version
   cp -r doc/build/html/* $version/
   git add $version
-  git commit -m "generate documentation for version $version"done
+  git commit -m "generate documentation for version $version"
+done
 ```
 
 First, we can use git to query all released versions, which correspond to ‘tags’ in git. The command `git tag -l` generates a list of all released versions of our repo. This allows us to iterate over all versions of our software, using a simple for loop in bash.

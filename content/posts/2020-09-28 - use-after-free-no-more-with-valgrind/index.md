@@ -157,9 +157,11 @@ When MUSCLE3 receives a message, it calls an internal function to decode the rec
 ```hs
 DataConstRef DataConstRef::grid_dict_() const {
     auto ext = mp_obj_->as<msgpack::type::ext>();
-    auto oh = msgpack::unpack(ext.data(), ext.size());    if (oh.get().type != msgpack::type::MAP)
+    auto oh = msgpack::unpack(ext.data(), ext.size());
+    if (oh.get().type != msgpack::type::MAP)
         throw std::runtime_error(
-            "Invalid grid format. Bug in MUSCLE 3?");    auto zone = std::make_shared<msgpack::zone>();
+            "Invalid grid format. Bug in MUSCLE 3?");
+    auto zone = std::make_shared<msgpack::zone>();
     return DataConstRef(
         mcp::unpack_data(zone, ext.data(), ext.size()));
 }

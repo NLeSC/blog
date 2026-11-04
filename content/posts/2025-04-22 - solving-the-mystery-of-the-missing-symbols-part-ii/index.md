@@ -24,40 +24,71 @@ Photo by [Tomas Martinez](https://unsplash.com/@tomasmartinez?utm_source=medium&
 
 To identify the source file responsible for the bug, we can start by inspecting the different build artifacts and checking for the C-API symbols. But first, we need to log all the build commands. It is much easier to do this with Make than Ninja (default generator for DuckDB). We can choose our generator by calling CMake as:
 
-$ cmake -G "Unix Makefiles" ...We can then log all the build commands by starting a verbose build with Make:
+```text
+$ cmake -G "Unix Makefiles" ...
+```
 
-$ VERBOSE=1 make -j6 |&amp; tee build.logWith all the build commands recorded to a log file, I searched for commands that create the shared library `libduckdb.dll` and narrowed it down to the following set of build commands:
+We can then log all the build commands by starting a verbose build with Make:
 
+```text
+$ VERBOSE=1 make -j6 |& tee build.log
+```
+
+With all the build commands recorded to a log file, I searched for commands that create the shared library `libduckdb.dll` and narrowed it down to the following set of build commands:
+
+```text
 $ /usr/bin/cmake -E rm -f CMakeFiles/duckdb.dir/objects.a
 $ /usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/duckdb.dir/objects.a @CMakeFiles/duckdb.dir/objects1.rsp
 $ /usr/lib64/ccache/x86_64-w64-mingw32-g++ -O3 -DNDEBUG -shared -o libduckdb.dll \
     -Wl,--out-implib,libduckdb.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive \
-    CMakeFiles/duckdb.dir/objects.a -Wl,--no-whole-archive @CMakeFiles/duckdb.dir/linkLibs.rspGoing through the steps individually, we will see that even though the symbols are present in the earlier steps, the final library creation step drops them.
+    CMakeFiles/duckdb.dir/objects.a -Wl,--no-whole-archive @CMakeFiles/duckdb.dir/linkLibs.rsp
+```
+
+Going through the steps individually, we will see that even though the symbols are present in the earlier steps, the final library creation step drops them.
 
 ## Tracing through the build steps
 
 Let us first look for the object file that has the C-API symbols.
 
-$ tr ' ' '\n' &lt;CMakeFiles/duckdb.dir/objects1.rsp | grep capi.cpp
-main/capi/CMakeFiles/duckdb_main_capi.dir/ub_duckdb_main_capi.cpp.objWe can then check for the C-API symbols in the object, and confirm that the object file is included in the objects archive.
+```text
+$ tr ' ' '\n' <CMakeFiles/duckdb.dir/objects1.rsp | grep capi.cpp
+main/capi/CMakeFiles/duckdb_main_capi.dir/ub_duckdb_main_capi.cpp.obj
+```
 
+We can then check for the C-API symbols in the object, and confirm that the object file is included in the objects archive.
+
+```text
 $ nm -C main/capi/CMakeFiles/duckdb_main_capi.dir/ub_duckdb_main_capi.cpp.obj | grep duckdb_vector_size
 0000000000004f60 T duckdb_vector_size
 $ /usr/bin/x86_64-w64-mingw32-ar t CMakeFiles/duckdb.dir/objects.a | grep capi.cpp
-ub_duckdb_main_capi.cpp.objIf we check for the C-API symbols again in the archive file, we see they are present and publicly visible (exported).
+ub_duckdb_main_capi.cpp.obj
+```
 
+If we check for the C-API symbols again in the archive file, we see they are present and publicly visible (exported).
+
+```text
 $ nm -C CMakeFiles/duckdb.dir/objects.a | grep duckdb_vector_size
 0000000000004f60 T duckdb_vector_size
 $ winedump -j export CMakeFiles/duckdb.dir/objects.a | grep duckdb_vector_size
- 31a0ae4 duckdb_vector_sizeFinally, we can create the shared library by calling the linker.
+ 31a0ae4 duckdb_vector_size
+```
 
+Finally, we can create the shared library by calling the linker.
+
+```text
 $ /usr/lib64/ccache/x86_64-w64-mingw32-g++ -O3 -DNDEBUG -shared -o libduckdb.dll \
     -Wl,--out-implib,libduckdb.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive \
-    CMakeFiles/duckdb.dir/objects.a -Wl,--no-whole-archive @CMakeFiles/duckdb.dir/linkLibs.rspWe see that while the C-API symbols are present, they are not exported!
+    CMakeFiles/duckdb.dir/objects.a -Wl,--no-whole-archive @CMakeFiles/duckdb.dir/linkLibs.rsp
+```
 
+We see that while the C-API symbols are present, they are not exported!
+
+```text
 $ nm -C libduckdb.dll | grep duckdb_vector_size
 00000001f3d116e0 T duckdb_vector_size
 $ winedump -j export libduckdb.dll | grep duckdb_vector_size # no match
+```
+
 > While not helpful on its own, the observation that symbols are not exported in the final linking step that creates the DLL will make sense later.
 
 ## A clue
@@ -70,6 +101,7 @@ Since we could not already isolate the issue to a source file, next, I decided t
 
 I commented out parts of the above files, while ensuring the build still succeeds, and checking for the C-API symbols in the final DLL in the usual way with `nm` and `winedump`. This led me to discover that the *problem disappears if we reorder the include headers* in `src/main/capi/aggregate_function-c.cpp`. You can see the change in this PR: [duckdb/duckdb#16396](https://github.com/duckdb/duckdb/pull/16396/files).
 
+```diff
 diff --git a/src/main/capi/aggregate_function-c.cpp b/src/main/capi/aggregate_function-c.cpp
 index 43ddfdbc074a..1379f652d669 100644
 --- a/src/main/capi/aggregate_function-c.cpp
@@ -86,7 +118,10 @@ index 43ddfdbc074a..1379f652d669 100644
 -#include "duckdb/main/capi/capi_internal.hpp"
  #include "duckdb/main/client_context.hpp"
  #include "duckdb/parser/parsed_data/create_aggregate_function_info.hpp"
- #include "duckdb/planner/expression/bound_function_expression.hpp"This is, of course, not the correct solution since there should not be any dependence on the order in which we include headers. It is indicative of an underlying bug. This means some definition in the headers is being overridden silently. This can only happen for preprocessor macros; anything else would trigger a compilation error.
+ #include "duckdb/planner/expression/bound_function_expression.hpp"
+```
+
+This is, of course, not the correct solution since there should not be any dependence on the order in which we include headers. It is indicative of an underlying bug. This means some definition in the headers is being overridden silently. This can only happen for preprocessor macros; anything else would trigger a compilation error.
 
 ## Solution to the mystery!
 
@@ -99,6 +134,7 @@ When building shared libraries for Windows, the public API has to be marked for 
 
 Superficially, they seem equivalent, however, they are actually used in slightly different contexts. The macro defined in `duckdb.h` is used to annotate symbols that are part of the C-API*. Whereas the macro defined in `winapi.hpp` is used to mark symbols that comprise the *C++ API*. In an earlier commit ([367595af](https://github.com/duckdb/duckdb/commit/367595af51b459d07121647bc2de1beabc836e0c)), the macro defined in `winapi.hpp` was changed to exclude MingW builds.
 
+```diff
 diff --git a/src/include/duckdb/common/winapi.hpp b/src/include/duckdb/common/winapi.hpp
 index 2cff5d12d4..65dd89975e 100644
 --- a/src/include/duckdb/common/winapi.hpp
@@ -108,10 +144,11 @@ index 2cff5d12d4..65dd89975e 100644
  
  #ifndef DUCKDB_API
 -#ifdef _WIN32
-+#if defined(_WIN32) &amp;&amp; !defined(__MINGW32__)
- #if defined(DUCKDB_BUILD_LIBRARY) &amp;&amp; !defined(DUCKDB_BUILD_LOADABLE_EXTENSION)
++#if defined(_WIN32) && !defined(__MINGW32__)
+ #if defined(DUCKDB_BUILD_LIBRARY) && !defined(DUCKDB_BUILD_LOADABLE_EXTENSION)
  #define DUCKDB_API __declspec(dllexport)
  #else
+```
 
 ## The reason &amp; the fix
 

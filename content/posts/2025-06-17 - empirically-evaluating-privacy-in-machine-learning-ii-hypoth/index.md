@@ -82,7 +82,7 @@ Figure 3: The performance boundaries of a hypothesis test for two differentially
 
 Second, the figure illustrates that the parameter `delta` defines the intercepts of the line on both the `FPR` and `FNR` axes. Intuitively, `delta` defines an area where the adversary’s trade-off is not bounded — for instance, they can lower the `FNR` without increasing the `FPR`.
 
-Lastly, the figure illustrates how `epsilon` defines the slope of the constraint. Consider two mechanisms with equal `delta` , but varying `epsilon`parameters — denoted `epsilon1` and `epsilon2` with `epsilon1 &lt; epsilon2` . Then, we see that the constraint for `epsilon2` is closer to the origin of the diagram — showing that a higher `epsilon` means lower privacy and an easier business for an adversary to make inferences about the underlying data.
+Lastly, the figure illustrates how `epsilon` defines the slope of the constraint. Consider two mechanisms with equal `delta` , but varying `epsilon`parameters — denoted `epsilon1` and `epsilon2` with `epsilon1 < epsilon2` . Then, we see that the constraint for `epsilon2` is closer to the origin of the diagram — showing that a higher `epsilon` means lower privacy and an easier business for an adversary to make inferences about the underlying data.
 
 ## What do we learn?
 

@@ -40,13 +40,19 @@ For rotating the IP address, we will use a VPN service. [Here](https://azure.mic
 
 Because internet connections are an important security concern, OpenVPN requires root access — this is the equivalent to administrator rights on a Windows computer. If you have root access, you can for instance run the following command on your terminal:
 
+```sh
 sudo ls -lh # will ask you for your root password
+```
 
 ## Installing and setting up `sirup`
 
 You can install `sirup` as follows:
 
-python -m pip install sirupTo use the package and change your IP address, you need an account with a VPN service provider that offers OpenVPN configuration files for your account. At the time of writing, for instance ProtonVPN and Surfshark offer this option — note that these services are not for free. We will use ProtonVPN in this tutorial.
+```sh
+python -m pip install sirup
+```
+
+To use the package and change your IP address, you need an account with a VPN service provider that offers OpenVPN configuration files for your account. At the time of writing, for instance ProtonVPN and Surfshark offer this option — note that these services are not for free. We will use ProtonVPN in this tutorial.
 
 After creating an account, you need to download two sets of files.
 
@@ -55,8 +61,12 @@ First, you download credentials that identify your Proton account when using Ope
 ![How to manage your IP address in Python](./how-to-manage-your-ip-address-in-python-0efd650a.jpg)
 Copy and paste the username and the password into a `txt` file that looks like this:
 
+```text
 username
-passwordThen, save the file as “proton_credentials.txt”. Remember where it is stored — we will need it later.
+password
+```
+
+Then, save the file as “proton_credentials.txt”. Remember where it is stored — we will need it later.
 
 > 
 
@@ -71,18 +81,26 @@ And download the configuration file(s) you want to use. Store the downloaded fil
 
 We start by defining the path to the `proton_credentials.txt` file. When you execute the code below, you will be asked to enter the root password, which is necessary to make the connection.
 
+```python
 import getpass
 auth_file = "proton_credentials.txt"
 pwd = getpass.getpass("Please enter your root password:")
+```
+
 > A second warning on security.** The code above stores your root password during the Python session without encrypting it. This is OK to do on your laptop — if someone gets access to your Python session, your security has already been compromised — but not recommended on a shared computer such as a cluster or a cloud service.
 
 ### Changing the IP address with `sirup`
 
 Now you can use the `VPNConnector` to change our IP address. We will use the `"my_config_file.ovpn"` configuration file.
 
+```python
 from sirup.VPNConnector import VPNConnector
-config_file = "my_config_file.ovpn"The code below first connects to the server associated with `"my_config_file.ovpn"` and then disconnects.
+config_file = "my_config_file.ovpn"
+```
 
+The code below first connects to the server associated with `"my_config_file.ovpn"` and then disconnects.
+
+```python
 connector = VPNConnector(auth_file, config_file)
 
 # Let's see the current IP address when no VPN tunnel is active
@@ -97,6 +115,7 @@ connector.disconnect(pwd=pwd)
 
 # Now current_ip should be the same as base_ip above
 print(connector.current_ip)
+```
 
 ### Rotating the IP address with `sirup`
 
@@ -104,8 +123,13 @@ Instead of connecting to a single server, you can also rotate across many differ
 
 To do this, you need to download multiple configuration files as described above. Store all of the `.ovpn` configuration files together in a separate directory. Let's say you store them in the `"/path/to/config/files/"` directory. You need to define this path in your Python script:
 
-config_path = "/path/to/config/files/"The following code connects to two different servers before disconnecting again:
+```python
+config_path = "/path/to/config/files/"
+```
 
+The following code connects to two different servers before disconnecting again:
+
+```python
 from sirup.IPRotator import IPRotator
 
 rotator = IPRotator(auth_file=my_auth_file, config_location=config_path, seed=seed) # this will ask for the root password
@@ -121,6 +145,7 @@ print(rotator.connector.current_ip)
 rotator.disconnect()
 
 print(rotator.connector.current_ip)
+```
 
 ## Conclusion
 

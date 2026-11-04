@@ -233,7 +233,11 @@ To be able to compare database performances with the current implementation of `
 
 The entire “minimal” data for the `abcde` package look like this:
 
-abcde   2.9.3   Command-line audio CD ripperThen we try a “detailed” database, containing:
+```text
+abcde   2.9.3   Command-line audio CD ripper
+```
+
+Then we try a “detailed” database, containing:
 
 * package name
 * executable names (which might be different than the package name)
@@ -245,15 +249,21 @@ abcde   2.9.3   Command-line audio CD ripperThen we try a “detailed” databas
 
 Formatted, the information for the same package could look like this:
 
+```text
 abcde [abcde-musicbrainz-tool, abcde, cddb-tool]  2.9.3
 
-Command-line audio CD ripper
+    Command-line audio CD ripper
+
     abcde is a front-end command-line utility (actually, a shell
     script) that grabs tracks off a CD, encodes them to Ogg/Vorbis,
     MP3, FLAC, Ogg/Speex and/or MPP/MP+ (Musepack) format, and tags
     them, all in one go.
+
     Project URL: http://abcde.einval.com/wiki/
-    Nixpkgs URL: https://github.com/NixOS/nixpkgs/pkgs/by-name/ab/abcde/package.nix:83Off-topic: this project’s website gives me heavy 90’s vibes, woah.
+    Nixpkgs URL: https://github.com/NixOS/nixpkgs/pkgs/by-name/ab/abcde/package.nix:83
+```
+
+Off-topic: this project’s website gives me heavy 90’s vibes, woah.
 
 ### `hyperfine`, Engage
 
@@ -261,15 +271,20 @@ If you counted correctly, you should have four search terms, two data types, and
 
 This is what a typical run on the command line looks like:
 
+```text
 $ hyperfine 'nps neovim'
 Benchmark 1: nps neovim
   Time (mean ± σ):       6.0 ms ±   0.4 ms    [User: 1.5 ms, System: 4.4 ms]
-  Range (min … max):     5.0 ms …   7.3 ms    351 runsEven better, we can also get the results in JSON format. Unfortunately, this also means that it’s written to file.
+  Range (min … max):     5.0 ms …   7.3 ms    351 runs
+```
+
+Even better, we can also get the results in JSON format. Unfortunately, this also means that it’s written to file.
 
 Sigh. So we have to read in that file to get the data we need. On the plus side, the JSON detour makes sure we don’t have any unforeseen hick-ups with data parsing, which could have happened if we wanted to retrieve the runtimes via regex from the output shown above.
 
 The JSON data looks like this:
 
+```json
 {
   "results": [
     {
@@ -298,9 +313,16 @@ The JSON data looks like this:
       ]
     }
   ]
-}For benchmarking, we are using `hyperfine` the following way:
+}
+```
 
-hyperfine --shell=none --warmup=5 --export-json [filename] 'COMMAND'Break-down of the moving parts:
+For benchmarking, we are using `hyperfine` the following way:
+
+```bash
+hyperfine --shell=none --warmup=5 --export-json [filename] 'COMMAND'
+```
+
+Break-down of the moving parts:
 
 * `--shell=none` tells `hyperfine` to, well, not start any shell. This shaves a few milliseconds off the benchmark score and allows for easier runtime comparisons.
 * `--warmup=5` tells `hyperfine` to run `COMMAND` 5 times before actually measuring the runtime. This makes sure that all files that are read are properly cached first.
@@ -402,13 +424,18 @@ So far Rust `grep` and `ripgrep` are leading the pack, with SQLite and GNU `grep
 
 That one is easy, we ask the disc usage tool `du`.
 
-du --apparent-size -h *Break-down of the arguments:
+```bash
+du --apparent-size -h *
+```
+
+Break-down of the arguments:
 
 * `--apparent-size` - show the size of the files as they would be without file-system compression, and
 * `-h` - human-readable output, e.g. `M` for megabytes instead of just bytes.
 
 On top of the plain size (as it would appear on a user’s machine), we also compress the databases with `gzip` to see how large a typical download would be.
 
+```text
 $ du --apparent-size -h *
 63M     detailed.sqlite
 28M     detailed.sqlite.tar.gz
@@ -429,7 +456,10 @@ $ du --apparent-size -h *
 25M     package_list_detailed.txt
 4.7M    package_list_detailed.txt.tar.gz
 8.5M    package_list_minimal.txt
-2.3M    package_list_minimal.txt.tar.gzIn the same discussion we also need to have a look at what updating the database with fresh package information would look like.
+2.3M    package_list_minimal.txt.tar.gz
+```
+
+In the same discussion we also need to have a look at what updating the database with fresh package information would look like.
 
 For plain text files, we would either download the whole thing from scratch, or supply diff information, so the existing file could be “patched” with the updates. This would work on a per-row basis which is unfortunate, considering that most of the time you would have an updated version number. To make things worse, the diff would need to indicate the old data *and* the new data. Not great.
 

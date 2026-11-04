@@ -30,6 +30,7 @@ In contrast to profiling the runtime of your entire program, the `timeit` module
 
 * Standalone one-liners, such as:
 
+```python
 # join on a list comprehension
 ",".join([str(n) for n in range(100)])
 
@@ -37,8 +38,12 @@ In contrast to profiling the runtime of your entire program, the `timeit` module
 ",".join(str(n) for n in range(100))
 
 # join on the `map` function
-",".join(map(str, range(100)))2. Standalone multi-liners, such as:
+",".join(map(str, range(100)))
+```
 
+2. Standalone multi-liners, such as:
+
+```python
 # append
 x = []
 for i in range(1000):
@@ -47,10 +52,14 @@ for i in range(1000):
 # list addition
 x = []
 for i in range(1000):
-    x += [i]*(ignoring the faster list-comprehension alternative *`*[i for i in range(100)]*`* for the sake of example)*
+    x += [i]
+```
+
+*(ignoring the faster list-comprehension alternative *`*[i for i in range(100)]*`* for the sake of example)*
 
 3. Any snippets with some setup required:
 
+```python
 # setup
 text = "sample string"
 char = "g"
@@ -60,6 +69,8 @@ char in text
 
 # find-method
 text.find(char)
+```
+
 ![Python’s timeit: Find the fastest code in no time](./pythons-timeit-find-the-fastest-code-in--070a66dd.jpg)
 Calculating with time — Photo by [wu yi](https://unsplash.com/@takeshi2?utm_source=medium&amp;utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=medium&amp;utm_medium=referral)
 
@@ -69,9 +80,13 @@ As `timeit` is a Python module, you can import it and write Python scripts for y
 
 The first way you might implement this is to directly use the `timeit` function from the module:
 
-&gt;&gt;&gt; import timeit
-&gt;&gt;&gt; timeit.timeit()  # default arguments: timeit(stmt='pass', number=1_000_000)
-0.01063702700776048By running `timeit()` without any further arguments, we execute the default statement `stmt='pass'` a million times, showing the minimal overhead of Python’s `pass` statement.
+```python
+>>> import timeit
+>>> timeit.timeit()  # default arguments: timeit(stmt='pass', number=1_000_000)
+0.01063702700776048
+```
+
+By running `timeit()` without any further arguments, we execute the default statement `stmt='pass'` a million times, showing the minimal overhead of Python’s `pass` statement.
 
 > 
 
@@ -81,20 +96,27 @@ The major drawback of this method is that you have to guess the number of times 
 
 Luckily, there is a better way: You can create a `Timer` for your snippet, and call the `autorange` method to automatically try increasing numbers until the time taken is at least 0.2 seconds. It returns the number of repetitions reached, and the total time taken, so you can easily calculate the time per iteration.
 
-&gt;&gt;&gt; import timeit
-&gt;&gt;&gt; timeit.Timer().autorange()  # default arguments: Timer(stmt='pass')
+```python
+>>> import timeit
+>>> timeit.Timer().autorange()  # default arguments: Timer(stmt='pass')
 (50000000, 0.2607337789959274)
+```
 
 ### Standalone one-liners**
 
 Let’s start by comparing the simple one-liners. We give the statement we want to time as a string and specify a custom number of iterations. Note that when your statement already deals with double-quoted strings, the whole string should be given single-quoted, or vice-versa.
 
-&gt;&gt;&gt; from timeit import Timer**&gt;&gt;&gt; Timer('", ".join([str(n) for n in range(100)])').autorange()
+```python
+>>> from timeit import Timer
+>>> Timer('", ".join([str(n) for n in range(100)])').autorange()
 (50000, 0.3393513219925808)
-&gt;&gt;&gt; Timer('", ".join(str(n) for n in range(100))').autorange()
+>>> Timer('", ".join(str(n) for n in range(100))').autorange()
 (50000, 0.38378613100212533)
-&gt;&gt;&gt; Timer('", ".join(map(str, range(100)))').autorange()
-(50000, 0.48742324599879794)From the reported number of repetitions and returned time in seconds, we can calculate that each of these lines took 6.79**, **7.67, **and **9.75** microseconds to execute respectively.
+>>> Timer('", ".join(map(str, range(100)))').autorange()
+(50000, 0.48742324599879794)
+```
+
+From the reported number of repetitions and returned time in seconds, we can calculate that each of these lines took 6.79**, **7.67, **and **9.75** microseconds to execute respectively.
 
 ### **Standalone multi-liners**
 
@@ -104,32 +126,38 @@ To time these snippets that *have* to span multiple lines, you can give `Timer()
 
 These multi-line cases are where it becomes more practical to pass a callable than to re-type your code as a string:
 
-&gt;&gt;&gt; from timeit import Timer**&gt;&gt;&gt; Timer('''x = []
+```python
+>>> from timeit import Timer
+>>> Timer('''x = []
 ... for i in range(1000):
 ...     x.append(i)''').autorange()
 (20000, 0.34225083301134873)
-&gt;&gt;&gt; def add_test():
+>>> def add_test():
 ...     x = []
 ...     for i in range(1000):
 ...         x += [i]
-&gt;&gt;&gt; Timer(append_test).autorange()
+>>> Timer(append_test).autorange()
 (5000, 0.2470278069959022)
+```
 
 ### Setup required**
 
 If there is some setup that only has to be run once, including it in a multi-line snippet means it’s executed at every iteration. Then you’d be measuring something you don’t want to measure! Instead, you can pass this setup statement as a separate argument `setup`.
 
-&gt;&gt;&gt; from timeit import Timer
-&gt;&gt;&gt; Timer(
+```python
+>>> from timeit import Timer
+>>> Timer(
 ...     setup='text = "sample string"; char = "g"',
 ...     stmt='char in text',
 ... ).autorange()
 (20000000, 0.3793242520041531)
-&gt;&gt;&gt; Timer(
+>>> Timer(
 ...     'text.find(char)',
 ...     'text = "sample string"; char = "g"'
 ... ).autorange()
 (5000000, 0.36903892100963276)
+```
+
 ![Python’s timeit: Find the fastest code in no time](./pythons-timeit-find-the-fastest-code-in--404fd5ff.png)
 Time still flies if you’re having fun in the terminal — render by [aclock](https://github.com/tenox7/aclock)
 
@@ -137,44 +165,61 @@ Time still flies if you’re having fun in the terminal — render by [aclock](h
 
 Python’s `timeit` module can also be run as a command line tool.
 
+```text
 $ python -m timeit -n 10000 'pass'
-10000 loops, best of 3: 0.0109 usec per loopThe usage is similar to the imported `timeit` function as shown in the previous section. The `-n` option is optional though, and the same `autorange` behavior will be used if it’s not given. It also reports the actual time per iteration, instead of having to calculate that yourself. This is reported in `nsec`, `usec`, `msec` or `sec`, for nano-, micro-, mili- and whole seconds respectively. Note also that it reports ‘best of 5’: it’s repeated the `autorange` timing five times, and reports the minimum.
+10000 loops, best of 3: 0.0109 usec per loop
+```
 
+The usage is similar to the imported `timeit` function as shown in the previous section. The `-n` option is optional though, and the same `autorange` behavior will be used if it’s not given. It also reports the actual time per iteration, instead of having to calculate that yourself. This is reported in `nsec`, `usec`, `msec` or `sec`, for nano-, micro-, mili- and whole seconds respectively. Note also that it reports ‘best of 5’: it’s repeated the `autorange` timing five times, and reports the minimum.
+
+```text
 $ python -m timeit 'pass'
 50000000 loops, best of 5: 5.21 nsec per loop
+```
 
 ### Standalone one-liners
 
 Testing one-liners with the command line is as easy as replacing `pass` from the introduction with the code you want to test, and the `timeit` tool will automatically report the time in a nice human-readable format.
 
+```text
 $ python -m timeit '", ".join([str(n) for n in range(100)])'
 50000 loops, best of 5: 6.66 usec per loop
 $ python -m timeit '", ".join(str(n) for n in range(100))'
 50000 loops, best of 5: 7.62 usec per loop
 $ python -m timeit '", ".join(map(str, range(100)))'
 50000 loops, best of 5: 9.31 usec per loop
+```
 
 ### Standalone multi-liners
 
 As before, the simplest way to test a snippet of multiple lines is to join the statements with a semicolon if no indentation is required. When indentation is required, the other option is to pass multiple strings as arguments to the command. Note that you still have to add the indentation properly yourself! This can get tricky to count if your indentation is more than a single level deep, but is usually not too hard.
 
+```text
 $ python -m timeit 'x = []' 'for i in range(1000):' '    x.append(i)'
 20000 loops, best of 5: 17.1 usec per loop
 
 $ python -m timeit 'x = []' 'for i in range(1000):' '    x += [i]'
 5000 loops, best of 5: 48.4 usec per loop
+```
 
 ### Setup required
 
 To add some initial setup such as imports or variable declarations, we can use the `-s` option:
 
+```text
 $ python -m timeit -s 'pass' 'pass'
-50000000 loops, best of 5: 5.21 nsec per loopThe setup *does* come before the statement to test in this case, so that makes it a bit more intuitive to read.
+50000000 loops, best of 5: 5.21 nsec per loop
+```
 
+The setup *does* come before the statement to test in this case, so that makes it a bit more intuitive to read.
+
+```text
 $ python -m timeit -s 'text = "sample string"; char = "g"' 'char in text'
 20000000 loops, best of 5: 19 nsec per loop
 $ python -m timeit -s 'text = "sample string"; char = "g"' 'text.find(char)'
 5000000 loops, best of 5: 69.3 nsec per loop
+```
+
 ![Python’s timeit: Find the fastest code in no time](./pythons-timeit-find-the-fastest-code-in--4c2edcf2.png)
 Timing can be an important part of your notebook toolkit
 
@@ -188,6 +233,7 @@ One small caveat is that the outcome is reported as a mean +/- standard deviatio
 
 For simple one-liners, just type the code as you would normally, and type `%timeit` before it. That’s all!
 
+```text
 In [1]: %timeit ", ".join([str(n) for n in range(100)])
 6.92 µs ± 46.7 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
 
@@ -196,11 +242,13 @@ In [2]: %timeit ", ".join(str(n) for n in range(100))
 
 In [3]: %timeit ", ".join(map(str, range(100)))
 10.9 µs ± 1.72 µs per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+```
 
 ### Standalone multi-liners
 
 The `%timeit` magic doesn’t quite work for multi-line snippets though. Why? Because magics with a *single* `%` are *line-magics*. For *cell-magics*, you just have to add another `%` to make it `%%timeit`. Then it will time all the code in your cell. No further difficulties whatsoever!
 
+```text
 In [1]: %%timeit
    ...: x = []
    ...: for i in range(1000):
@@ -212,8 +260,12 @@ In [2]: %%timeit
    ...: x = []
    ...: for i in range(1000):
    ...:     x += [i]
-49 µs ± 385 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)A word of warning: any code on the same line as `%%timeit` will be used as setup and only be run once. I think it’s too easy to make mistakes with this, so I’d avoid this feature. Compare:
+49 µs ± 385 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
+```
 
+A word of warning: any code on the same line as `%%timeit` will be used as setup and only be run once. I think it’s too easy to make mistakes with this, so I’d avoid this feature. Compare:
+
+```text
 In [1]: %%timeit y = [x for x in range(1_000_000)]  # setup is not timed
    ...: len(y)
    ...:
@@ -226,19 +278,26 @@ In [2]: %%timeit
    ...:
    ...:
 22.9 ms ± 35.4 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+```
 
 ### Setup required
 
 Now you might be thinking *“but then where do I put my setup command for either *`*%timeit*`* or *`*%%timeit*`*?”* The answer: you can run it in some previous cell! As IPython/Jupyter already takes care of passing your code on to the `timeit` module properly, it also automatically passes along all current global variables. So we can simply first run a cell with our setup:
 
+```text
 In [1]: text = "sample string"
-In [2]: char = "g"And use the simple `%timeit` magic to time the code we are actually interested in, without specifying which setup is associated with it.
+In [2]: char = "g"
+```
 
+And use the simple `%timeit` magic to time the code we are actually interested in, without specifying which setup is associated with it.
+
+```text
 In [3]: %timeit char in text
 22 ns ± 0.267 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
 
 In [4]: %timeit text.find(char)
 72.3 ns ± 0.811 ns per loop (mean ± std. dev. of 7 runs, 10,000,000 loops each)
+```
 
 ## Summary
 

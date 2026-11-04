@@ -77,6 +77,7 @@ We are all figuring this out as we go. As the technology changes and we get more
 
 ## AI Declaration (aidecl.yaml) for this post
 
+```yaml
 schema_version: "1.0.0"
 project:
   name: "Provenance in the age of LLMs: Why we need AI Declarations"
@@ -116,6 +117,7 @@ declaration:
   date: "2026-04-07"
   declared_by: "Faruk Diblen"
   organization: "Resoft Labs"
+```
 
 ## Acknowledgements
 

@@ -117,7 +117,8 @@ An obvious looking solution to this specific problem is to put another switch-ch
 ...
   if (my_global_flag_is_switched) {
     std::exit(1);             // or some fancier way of exiting
-  }  // hello darkness, my old friend  socket.recv(timeout);       // or send, or poll
+  }  // hello darkness, my old friend
+  socket.recv(timeout);       // or send, or poll
 ...
 ```
 
