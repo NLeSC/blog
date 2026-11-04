@@ -67,6 +67,7 @@ Use `bun run new-post "Title" --author "Full Name" --tags "Tag One,Tag Two"` to 
 ## Content Conventions
 
 - Follow `README.md` for the full authoring contract.
+- Internal post links use root-relative `/posts/<slug>/` URLs, not Markdown source paths or Medium URLs. Copy generated paths and heading fragments from rendered pages; preserve published slugs. Series use manually maintained, ordered Markdown links, not automatic series metadata. Examples live in the formatting guide and `docs/authoring.md`.
 - Post paths use `content/posts/YYYY-MM-DD - post-slug.md` or a directory containing `index.md` and its assets.
 - Author names belong in frontmatter, not filenames.
 - New posts should start unpublished for review unless explicitly requested otherwise.

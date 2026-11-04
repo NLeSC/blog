@@ -46,6 +46,56 @@ A paragraph can include **bold text**, *emphasis*, `inline code`, and a link to 
 A paragraph can include **bold text**, *emphasis*, `inline code`, and a link to [the Netherlands eScience Center](https://www.esciencecenter.nl/).
 ```
 
+## Links to other posts
+
+Use a normal Markdown link with the target post's path, starting with `/posts/`. Copy the path from the post's URL in the browser rather than using its Markdown filename or a Medium URL. Leave out the domain so the link also works on local and preview sites.
+
+<div data-code-example-preview></div>
+
+Read [C++ web app with WebAssembly, Vega, Web Worker and React](/posts/2020-10-27---c-web-app-with-webassembly-vega-web-worker-and-react/).
+
+<div data-code-example-source></div>
+
+```markdown
+Read [C++ web app with WebAssembly, Vega, Web Worker and React](/posts/2020-10-27---c-web-app-with-webassembly-vega-web-worker-and-react/).
+```
+
+For a new post, set an optional `slug` in its frontmatter to give it a shorter URL. For example, `slug: "webassembly-introduction"` makes its path `/posts/webassembly-introduction/`. Without a custom slug, the generated path includes the date, as in the example above. Keep published slugs stable so existing links continue to work.
+
+To link to a section, append its heading anchor. Copy the full fragment from the rendered page to avoid guessing how a heading is converted to an anchor:
+
+```markdown
+[Image formatting examples](/posts/formatting-guide/#images)
+```
+
+## Link posts in a series
+
+A series can use an ordinary numbered list of links. Add the same list to each post, in reading order, and mark the current part as plain text. There is no automatic series navigation; update the lists when adding a part.
+
+Markdown reference links keep long URLs separate from the list. This two-part example uses existing posts; extend the list for a longer series:
+
+<div data-code-example-preview></div>
+
+This post is part of a series:
+
+1. [Using C++ in a web app with WebAssembly][series-webassembly]
+2. C++ web app with WebAssembly, Vega, Web Worker and React (this post)
+
+[series-webassembly]: /posts/2020-10-09---using-c-in-a-web-app-with-webassembly/
+
+<div data-code-example-source></div>
+
+```markdown
+This post is part of a series:
+
+1. [Using C++ in a web app with WebAssembly][series-webassembly]
+2. C++ web app with WebAssembly, Vega, Web Worker and React (this post)
+
+[series-webassembly]: /posts/2020-10-09---using-c-in-a-web-app-with-webassembly/
+```
+
+When copying this example to another part, link the second entry to its post and make that part's own entry plain text instead. You can also add “Previous part” and “Next part” links using the same syntax. Only link to published posts; `published: false` posts have no public page.
+
 ## Headings
 
 Headings divide a longer post into sections. Start with level-two headings because the post title is already the level-one heading.

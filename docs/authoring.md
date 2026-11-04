@@ -38,6 +38,25 @@ Post body here.
 
 Set `featured: true` only when a post should appear in the homepage featured slot. If multiple listed posts are marked, the newest by filename date wins. If no listed post is marked, the newest listed post is featured automatically.
 
+## Link to posts and sections
+
+Use root-relative URLs in Markdown, not paths to another post's `index.md` or links to Medium:
+
+```md
+[Formatting guide](/posts/formatting-guide/)
+[Image examples](/posts/formatting-guide/#images)
+```
+
+Copy the target path and any heading fragment from the rendered page's URL. Leaving out the domain makes these links work on local and preview sites too.
+
+For a new post, optional frontmatter such as `slug: "my-post-title"` gives it the short URL `/posts/my-post-title/`. Slugs accept lowercase letters, numbers, and hyphens. Without a custom slug, the generated URL includes the date. Keep published slugs stable to avoid breaking links.
+
+## Link a series of posts
+
+Use a numbered list in reading order on every part, linking to the other published parts and leaving the current part as plain text. Markdown reference links can keep long paths out of the list itself. Update every part's list when adding another post; series navigation is not generated automatically. Optional “Previous part” and “Next part” links use the same Markdown syntax.
+
+See the formatting guide for a [copyable series example](../content/posts/2026-06-11%20-%20formatting-guide/index.md#link-posts-in-a-series). Posts marked `published: false` have no public page, so wait until a part is published before linking to it.
+
 ## Add images
 
 Store images next to the post `index.md` and reference them with relative paths:
