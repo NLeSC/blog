@@ -81,6 +81,8 @@ export function coverImageUrl(post: PostEntry): string | null {
 
 export function getExcerpt(body: string, maxLen = 200): string {
   return body
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<[^>]*>/g, ' ')
     .replace(/!\[.*?\]\(\/assets\/[^)]+\)/g, '')
     .replace(/!\[.*?\]\(\.\/[^)]+\)/g, '')
     .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
