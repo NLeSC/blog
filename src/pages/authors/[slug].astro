@@ -2,14 +2,14 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { getAuthorInfo, getAuthorPic, getAuthorInitials } from '../../lib/authors';
-import { buildTopicIndex, comparePostsByDateDesc, coverImageUrl, formatDate, getExcerpt, isListedPost, postDate, postUrl } from '../../lib/archive';
+import { authorSlug, buildTopicIndex, comparePostsByDateDesc, coverImageUrl, formatDate, getExcerpt, isListedPost, postDate, postUrl } from '../../lib/archive';
 import { sitePath } from '../../lib/urls';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('posts')).filter(isListedPost);
-  const authors = [...new Set(posts.map(p => p.data.author))];
+  const authors = [...new Set(posts.flatMap(p => p.data.author))];
   return authors.map(author => ({
-    params: { slug: author.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') },
+    params: { slug: authorSlug(author) },
     props: { author },
   }));
 }
@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 const { author } = Astro.props;
 const allPosts = (await getCollection('posts')).filter(isListedPost);
 const authorPosts = allPosts
-  .filter(p => p.data.author === author)
+  .filter(p => p.data.author.includes(author))
   .sort(comparePostsByDateDesc);
 
 const authorInfo = getAuthorInfo(author);

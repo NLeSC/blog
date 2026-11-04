@@ -134,8 +134,11 @@ export function serializePost(post: PostEntry) {
     id: post.id,
     title: post.data.title,
     subtitle: post.data.subtitle || null,
-    author: post.data.author,
-    authorSlug: authorSlug(post.data.author),
+    authors: post.data.author.map(name => ({
+      name,
+      slug: authorSlug(name),
+      url: sitePath(`/authors/${authorSlug(name)}`),
+    })),
     date: postDate(post).toISOString(),
     url: postUrl(post),
     tags: visibleTags(post.data.tags || []),

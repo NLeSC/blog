@@ -19,7 +19,9 @@ Every post starts with YAML frontmatter. It supplies the title, author, publicat
 ---
 title: "A clear and specific title"
 subtitle: "One sentence that introduces the story"
-author: "Author Name"
+author:
+  - "First Author"
+  - "Second Author"
 slug: "clear-and-specific-title"
 published: true
 source: "local"
@@ -29,6 +31,14 @@ tags:
   - reproducibility
 ---
 ```
+
+For multiple authors, use a YAML list under `author` as above. For one author, a single name is enough:
+
+```yaml
+author: "Author Name"
+```
+
+Authors appear in the order listed, each linked to their author page. The post appears in every co-author’s archive. Use consistent names across posts and do not leave list entries blank.
 
 The optional `subtitle` appears beneath the title on the post and in listing previews. Keep it short and plain text; omit it to use an excerpt from the post body in previews. The custom `slug` is also optional. When supplied, it creates a short, stable URL containing only lowercase letters, numbers, and hyphens.
 
