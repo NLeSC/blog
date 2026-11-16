@@ -19,7 +19,7 @@ tags:
 
 <figure>
   <img src="./Committing to sustainable research software.jpg" alt="People discussing sustainable software"/>
-  <figcaption>Photo from IRSC conference. Credit: Society of Research Software Engineering/Dominic Lipinski. (CC-BY-NC)</figcaption>
+  <figcaption>Photo from IRSC conference. Credit: <a href="https://www.danmoganphotography.co.uk/">Dan Mogan Photography</a> (CC-BY-NC)</figcaption>
 </figure>
 
 <!--
