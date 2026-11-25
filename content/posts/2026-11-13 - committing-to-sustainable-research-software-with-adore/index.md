@@ -73,7 +73,7 @@ While the challenges described in all four case studies differed, there are some
 
 ## **Discussion**
 
-After the short presentation from the ADORE signatories the audience answered a few [Mentimeter questions](./irsc26_adore_software.pdf), which fed into an open discussion.
+After the short presentation from the ADORE signatories the audience answered a few [Mentimeter questions](/assets/2026-11-13_irsc26_adore_software.pdf), which fed into an open discussion.
 
 It turned out that out of 16 respondents, 6 came from organisations already implementing ADORE, but more than half were new to it or still exploring – exactly the audience the session hoped to reach.
 
@@ -123,7 +123,7 @@ Finally, signatories were again asked to describe the key benefits of signing AD
 
 
 * Read the declaration and see the current signatories at[ adore.software](https://adore.software)
-* Explore the[ toolkit](https://docs.google.com/document/d/16T1rbMvKVWVa-eGXAc6POdS_WXWxZUYD395w3R008lM/edit) to find the right route for your organisation – or for yourself.
+* Explore the [toolkit](https://docs.google.com/document/d/16T1rbMvKVWVa-eGXAc6POdS_WXWxZUYD395w3R008lM/edit) to find the right route for your organisation – or for yourself.
 
 For questions about ADORE, you can email info@researchsoft.org
 
